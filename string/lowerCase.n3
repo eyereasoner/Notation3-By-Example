@@ -1,0 +1,20 @@
+@prefix : <urn:example:> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :string "HELLO WORLD" .
+
+{
+    :Let :string ?X .
+
+    # Create lowercase of X
+    #    ?X a stringable
+    #    ?Y a stringable or variable
+    ?X string:lowerCase ?Y .
+
+    # E.g. this evaluates to true 
+    ?X string:lowerCase "hello world" .
+}
+=> 
+{   
+    ?X :lowerCase ?Y .
+} .

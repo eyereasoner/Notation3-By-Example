@@ -1,0 +1,19 @@
+@prefix : <urn:example:> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :string "hello world" .
+
+{
+    :Let :string ?X .
+
+    # Evaluate if ?X matches the regular expression ?Y 
+    #    ?X a stringable
+    #    ?Y a regex
+    ?X string:matches "he(l)+o world" .
+    ?X string:matches ".* world" .
+    ?X string:matches "h[ae]llo world" .
+}
+=> 
+{   
+    ?X :matches true .
+} .

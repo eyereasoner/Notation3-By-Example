@@ -1,0 +1,9 @@
+string:capitalize
+string:containsRoughly
+string:format
+string:lowerCase
+string:replaceAll
+string:scrapeAll
+string:substring
+string:upperCase
+list:memberAt

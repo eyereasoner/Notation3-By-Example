@@ -1,0 +1,17 @@
+@prefix : <urn:example:> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param ( "Huey" "Dewey" "Louie" "Dewey" ) .
+
+{
+    :Let :param ?X .
+
+    # Removes duplicated from X 
+    #    ?X a concreteList
+    #    ?Y a variable or list
+    ?X list:unique ?Y .
+}
+=> 
+{   
+    ?X :unique ?Y .
+} .

@@ -1,0 +1,19 @@
+@prefix : <urn:example:> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :string1 "Mozart" .
+:Let :string2 "Bach" .
+
+{
+    :Let :string1 ?X .
+    :Let :string2 ?Y .
+
+    # Evaluate if ?X is lexically greater than ?Y
+    #    ?X a stringable 
+    #    ?Y a stringable
+    ?X string:greaterThan ?Y .
+}
+=> 
+{   
+    ?X :greaterThan ?Y .
+} .

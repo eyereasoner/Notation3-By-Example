@@ -1,0 +1,20 @@
+@prefix : <urn:example:> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :string "hello world" .
+
+{
+    :Let :string ?X .
+
+    # Extracts text from ?X into ?Y 
+    #    ?X a list (S1 S2 S3?) where 
+    #         S1 a stringable
+    #         S2 an int-able start position
+    #         S3 an int-able end position (optional)
+    #    ?Y a stringable
+    ( ?X 2 3) string:substring ?Y .
+}
+=> 
+{   
+    ?X :substring ?Y .
+} .

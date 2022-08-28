@@ -1,0 +1,20 @@
+@prefix : <urn:example:> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param ( 1 2 3 ) .
+
+{
+    :Let :param ?X .
+
+    # Retrieves the last element of a list X
+    #    ?X a list 
+    #    ?Y any
+    ?X list:last ?Y .
+
+    # E.g. this evaluates to true
+    ( "Huie" "Dewey" "Louie" ) list:last "Louie" .
+}
+=> 
+{   
+    ?X :last ?Y .
+} .

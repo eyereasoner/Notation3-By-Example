@@ -1,0 +1,28 @@
+@prefix : <urn:example:> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :params ( 
+"""To be, or not to be, that is the question:
+Whether 'tis nobler in the mind to suffer
+The slings and arrows of outrageous fortune,
+Or to take arms against a sea of troubles
+And by opposing end them. To die—to sleep,
+No more; and by a sleep to say we end"""
+
+"([Tt]o be)"
+) .
+
+{
+    :Let :params ?X .
+
+    # Create an extraction of a string using a regex from ?X into ?Y 
+    #    ?X a list of (S1 S2) S1 a stingable , S2 a regex
+    #    ?Y a variable or list
+    # Finds all the occurences of the regex in the source string
+    ?X string:scrapeAll ?Y .
+
+}
+=> 
+{   
+    ?X :scrapeAll ?Y .
+} .

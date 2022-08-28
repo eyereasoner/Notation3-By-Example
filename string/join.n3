@@ -1,0 +1,24 @@
+@prefix : <urn:example:> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :params ( ("hello" "world") " ") .
+
+{
+    :Let :params ?X .
+
+    # Create a string join of ?X to ?Y 
+    #    ?X a list (L1 S2), where L1 is a list of stringable
+    #       and S2 is a join stringable
+    #    ?Y a variable or a stringable
+    ?X string:join ?Y .
+
+    # E.g. this should evaluate to true
+    ( ( 1 "b" 5 ) "-" ) string:join "1-b-5" .
+
+    # E.g. this should evaluate to false
+    # ( ( 1 "b" 5 ) "-" ) string:join "1-a-5" .
+}
+=> 
+{   
+    ?X :join ?Y .
+} .

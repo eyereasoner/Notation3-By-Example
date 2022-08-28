@@ -1,0 +1,23 @@
+@prefix : <urn:example:> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param1 "cat" .
+:Let :param2 ( 1 "cat" 2 3  ) .
+
+{
+    :Let :param1 ?X .
+    :Let :param2 ?Y .
+
+    #  Evaluates true when X in Y 
+    #    ?X a any
+    #    ?Y a list 
+    ?X list:in ?Y .
+
+    # E.g. this evaluates to true
+    (3) list:in (1 2 (3) 4) .
+    ((3)) list:in (1 2 ((3)) 4) .
+}
+=> 
+{   
+    ?X :in ?Y .
+} .

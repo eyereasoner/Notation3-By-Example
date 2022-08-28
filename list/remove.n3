@@ -1,0 +1,26 @@
+@prefix : <urn:example:> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param ( "Huey" "Dewey" "Louie" ) .
+
+{
+    :Let :param ?X .
+
+    # Removes a member from X 
+    #    ?X a list (S1 S2) where
+    #       S1 is a list
+    #       S2 is concrete
+    #    ?Y a variable or list
+    ( ?X "Dewey" ) list:remove ?Y .
+
+    # E.g. this should evaluate to true
+    ( ?X "Dewey" ) list:remove ( "Huey" "Louie" ) .
+
+    # This should bind ?Z to "Dewey"
+    ( ?X ?Z ) list:remove ( "Huey" "Louie" ) .
+}
+=> 
+{   
+    ?X :remove ?Y .
+    ?X :hasRemoved ?Z .
+} .

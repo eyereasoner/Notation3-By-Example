@@ -1,0 +1,21 @@
+@prefix : <urn:example:> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :params ( "hello world" "l" "x" ) .
+
+{
+    :Let :params ?X .
+
+    # Create a regex string replacement of ?X into ?Y 
+    #    ?X a list of (S1 S2 S3) where S1 is a stringable , S2 a regex
+    #         and S3 the replacement stringable
+    #    ?Y a variable or stringable
+    ?X string:replace ?Y .
+
+    # E.g. these should evaluate to true
+    ( "hello world" "(l)" "[$1]" ) string:replace "he[l][l]o wor[l]d" .
+}
+=> 
+{   
+    ?X :replace ?Y .
+} .

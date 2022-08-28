@@ -1,0 +1,29 @@
+@prefix : <urn:example:> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :params ( 
+"""To be, or not to be, that is the question:
+Whether 'tis nobler in the mind to suffer
+The slings and arrows of outrageous fortune,
+Or to take arms against a sea of troubles
+And by opposing end them. To die—to sleep,
+No more; and by a sleep to say we end"""
+    ( "[Tt]o be" "nobler" )
+    ( "2B" "NOBLER" )
+    
+    ) .
+
+{
+    :Let :params ?X .
+
+    # Create a regex string replacement of ?X into ?Y 
+    #    ?X a list of (S1 S2 S3) where S1 is a stringable , 
+    #         S2 a list of regex
+    #         S3 a list of replacement stringable
+    #    ?Y a variable or stringable
+    ?X string:replaceAll ?Y .
+}
+=> 
+{   
+    ?X :replaceAll ?Y .
+} .

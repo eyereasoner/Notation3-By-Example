@@ -1,0 +1,20 @@
+@prefix : <urn:example:> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param ( "Huey" "Dewey" "Louie" ) .
+
+{
+    :Let :param ?X .
+
+    # For each in list X extract members 
+    #    ?X a list 
+    #    ?Y any
+    ?X list:member ?Y .
+
+    # E.g. this evaluates to true
+    ( "cat" 42 (17)) list:member (17) .
+}
+=> 
+{   
+    ?X :member ?Y .
+} .

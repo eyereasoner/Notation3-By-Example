@@ -1,0 +1,19 @@
+@prefix : <urn:example:> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :string1 "a hello    WORLD string" .
+:Let :string2 "hallo world" .
+
+{
+    :Let :string1 ?X .
+    :Let :string2 ?Y .
+
+    # Evaluate if ?X does not contain ?Y ignoring case and whitespace 
+    #    ?X a stringable
+    #    ?Y a stringable
+    ?X string:notContainsRoughly ?Y .
+}
+=> 
+{   
+    ?X :notContainsRoughly ?Y .
+} .

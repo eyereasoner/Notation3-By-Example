@@ -1,0 +1,20 @@
+@prefix : <urn:example:> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param ( (1) ("cat") ( 2 3 ) ) .
+
+{
+    :Let :param ?X .
+
+    # Append to a list X
+    #    ?X a list (S1 S2 ...) where S1,S2,...a list
+    #    ?Y a variable or list
+    ?X list:append ?Y .
+
+    # E.g. this evaluates to true
+    ( (1) (2) (3 4) ) list:append (1 2 3 4) .
+}
+=> 
+{   
+    ?X :append ?Y .
+} .

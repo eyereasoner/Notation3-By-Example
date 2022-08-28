@@ -1,0 +1,22 @@
+@prefix : <urn:example:> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :string1 "hello world" .
+:Let :string2 "HaLLO WORLD" .
+
+{
+    :Let :string1 ?X .
+    :Let :string2 ?Y .
+
+    # Evaluate if ?X not equals ?Y ignoring case
+    #    ?X a stringable
+    #    ?Y a stringable
+    ?X string:notEqualIgnoringCase ?Y .
+
+    # E.g. this should evaluate to true
+    ?X string:notEqualIgnoringCase "Hello World!" .
+}
+=> 
+{   
+    ?X :notEqualIgnoringCase ?Y .
+} .

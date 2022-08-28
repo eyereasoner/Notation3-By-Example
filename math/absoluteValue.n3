@@ -1,0 +1,23 @@
+@prefix : <urn:example:> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :number -2 .
+
+{
+  :Let :number ?X .
+
+  # Calculate the absolute value of X
+  #    ?X a number
+  #    ?Y a number or a variable
+  ?X math:absoluteValue ?Y .
+
+  # E.g. this evaluates to true
+  ?X math:absoluteValue 2 .
+
+  # E.g. this evaluates to false 
+  # ?X math:absoluteValue -2 .
+}
+=> 
+{
+  :Let :absoluteValue ?Y .
+} .

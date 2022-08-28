@@ -1,0 +1,19 @@
+@prefix : <urn:example:> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :string1 "hello world" .
+:Let :string2 "world" .
+
+{
+    :Let :string1 ?X .
+    :Let :string2 ?Y .
+
+    # Evaluate if ?X ends with ?Y 
+    #    ?X a stringable
+    #    ?Y a stringable
+    ?X string:endsWith ?Y .
+}
+=> 
+{   
+    ?X :endsWith ?Y .
+} .

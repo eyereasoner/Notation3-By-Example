@@ -1,0 +1,20 @@
+@prefix : <urn:example:> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :string "hello world" .
+
+{
+    :Let :string ?X .
+
+    # Eveluate of the string length ?X into ?Y 
+    #    ?X a stringble
+    #    ?Y a variable or an intable
+    ?X string:length ?Y .
+
+    # E.g. this should evaluate to true
+    ?X string:length 11 .
+}
+=> 
+{   
+    ?X :length ?Y .
+} .

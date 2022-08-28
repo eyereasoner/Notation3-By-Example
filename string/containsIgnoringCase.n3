@@ -1,0 +1,19 @@
+@prefix : <urn:example:> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :string1 "hellO World" .
+:Let :string2 "WORLD" .
+
+{
+    :Let :string1 ?X .
+    :Let :string2 ?Y .
+
+    # Evaluate if ?X contains ?Y ignoring any case differences
+    #    ?X a stringable
+    #    ?Y a stringable
+    ?X string:containsIgnoringCase ?Y .
+}
+=> 
+{   
+    ?X :containsIgnoringCase ?Y .
+} .
