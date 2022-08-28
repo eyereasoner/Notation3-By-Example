@@ -14,7 +14,7 @@
 {
     ?TODO a :TodoList .
 
-    # Evaluates to true when all formulas in A hold
+    # Evaluates to true when all formulas in X hold
     #    X a variable or List (S1 S2) where
     #        S1 and S2 formula
     #    Y a variable or formula or baseIRI
