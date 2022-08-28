@@ -24,6 +24,5 @@
 }
 => 
 { 
-    :Result :forAllIn _:x .
-    :Result :completed true .
+    :Result :allCompleted true .
 } .
