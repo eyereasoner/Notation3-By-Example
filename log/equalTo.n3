@@ -15,7 +15,7 @@
 
     :Mika log:equalTo :Mika .
 
-    # All exitstial are equal in assignment
+    # All existential are equal in assignment
     [ ] log:equalTo [ ] .
     _:x log:equalTo 1 .
     
