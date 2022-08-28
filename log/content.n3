@@ -1,0 +1,17 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Let :param <https://raw.githubusercontent.com/josd/eye/master/reasoning/socrates/socrates.n3> .
+
+{
+    :Let :param ?X .
+
+    # Capture the string content of the N3 document X to Y
+    #    ?X a IRI
+    #    ?Y a variable or stingable
+    ?X log:content ?Y .
+}
+=> 
+{   
+    :Result :content ?Y .
+} .

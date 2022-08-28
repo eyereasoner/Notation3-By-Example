@@ -1,0 +1,35 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param "Huey" .
+:Let :param "Dewey" .
+:Let :param "Louie" .
+
+
+{
+    # Collect all bound variables in X into a list
+    #    ?X a list (S1 F1 L1) where
+    #       S1 a variable pattern
+    #       F1 a formula
+    #       L1 a result list
+    #    ?Y a variable or formula or baseIri
+    ( ?X1 { :Let :param ?X1 } ?Y1 ) log:collectAllIn _:x .
+
+    # One can make lists of lists
+    ( (?X2) { :Let :param ?X2 } ?Y2 ) log:collectAllIn _:x .
+
+    # One can select what params to pick
+    ( ?X3 
+        { 
+            :Let :param ?X3 .
+            ?X3 string:lessThan "Louie"  .
+        } 
+      ?Y3 ) log:collectAllIn _:x .
+}
+=> 
+{   
+    :Result1 :collectAllIn ?Y1 .
+    :Result2 :collectAllIn ?Y2 .
+    :Result3 :collectAllIn ?Y3 .
+} .

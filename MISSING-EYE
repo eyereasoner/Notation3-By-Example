@@ -7,3 +7,4 @@ string:scrapeAll
 string:substring
 string:upperCase
 list:memberAt
+log:content

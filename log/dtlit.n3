@@ -1,0 +1,27 @@
+@prefix : <urn:example:> .
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Let :params ( "1971-05-05" xs:date ).
+
+{
+    :Let :params ?X .
+
+    # Create or parse a datatyped literal
+    #    ?X a variable or List (S1 S2) where
+    #         S1 a variable or stringable
+    #         S2 a variable or IRI
+    #    ?Y a variable or literal
+    ?X log:dtlit ?Y .
+
+    # E.g. this evaluates to true
+    ( "R2D2" :myType ) log:dtlit "R2D2"^^:myType .
+
+    # This bind ?Z to the type
+    ( "R2D2" ?Z ) log:dtlit "R2D2"^^:myType .
+}
+=> 
+{   
+    ?X :dtlit ?Y .
+    "R2D2"^^:myType :hasType ?Z .
+} .

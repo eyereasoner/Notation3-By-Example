@@ -1,0 +1,23 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Let :param 42 .
+
+{
+    :Let :param ?X .
+
+    # Evaluates if X is bound
+    #    ?X a any
+    #    ?Y a variable or boolean
+    ?X log:bound ?Y .
+
+    # E.g. this should evaluate to true
+    ?X log:bound true .
+
+    # E.g. this should evaluate to false 
+    # ?Z log:bound true .
+}
+=> 
+{   
+    ?X :bound ?Y .
+} .
