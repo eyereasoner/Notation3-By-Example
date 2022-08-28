@@ -16,6 +16,9 @@
     # All exitstial are equal
     _:x log:equalTo 1 .
     _:x log:notEqualTo 2 .
+
+    # Graphs
+    { :A a :B } log:notEqualTo { :A a :B , :C } .
 }
 => 
 {   

@@ -28,6 +28,10 @@
     _:y log:equalTo _:x .
     _:y log:equalTo 1 .
     # But this will fail: _:y log:equalTo 2 (hint _:x already bound to 1 )
+
+    # Graphs
+    { :A a :B } log:equalTo { :A a :B } .
+    { :B a :C . :A a :B } log:equalTo { :A a :B . :B a :C } .
 }
 => 
 {   
