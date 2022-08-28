@@ -1,22 +1,12 @@
 @prefix : <urn:example:> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-:myFormula1 rdf:value {
-    :Socrates a :Human.
-} .
-
-:myFormula2 rdf:value {
-    :Socrates a :Mortal.
-} .
-
 {
-    ( ?G { ?F rdf:value ?G } ?X ) log:collectAllIn _:x .
-
     # Create a logical AND for formula in X to Y
     #    X a list of formula
     #    Y a variable or formula 
-    ?X log:conjunction ?Y .
+    ( { :Socrates a :Human }
+      { :Socrates a :Mortal } ) log:conjunction ?Y .
 }
 => 
 {   
