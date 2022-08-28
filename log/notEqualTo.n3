@@ -1,0 +1,23 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Mika a :Cat .
+:Akita a :Cat .
+
+{
+    # Evaluate if two RDF nodes are not the same
+    #    X a any 
+    #    Y a any
+    1 log:notEqualTo 2 .
+    "Cat" log:notEqualTo "Cat"@en .
+
+    :Mika log:notEqualTo :Akita .
+
+    # All exitstial are equal
+    _:x log:equalTo 1 .
+    _:x log:notEqualTo 2 .
+}
+=> 
+{   
+    :Result :is true .
+} .

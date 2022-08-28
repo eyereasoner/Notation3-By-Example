@@ -9,3 +9,7 @@ string:upperCase
 list:memberAt
 log:bound
 log:content
+log:inferences
+log:langlit
+log:localName
+log:namespace

@@ -1,0 +1,21 @@
+@prefix : <urn:example:> .
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Let :params <http://example.org/MyName>.
+
+{
+    :Let :params ?X .
+
+    # Parse the local name part from an IRI
+    #    X a IRI
+    #    Y a variable or stringable 
+    ?X log:localName ?Y .
+
+    # E.g. this evaluates to true
+    <http://example.org/Data> log:localName "Data" .
+}
+=> 
+{   
+    ?X :localName ?Y .
+} .

@@ -1,0 +1,27 @@
+@prefix : <urn:example:> .
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Let :params ( "Selemat pagi" "id" ).
+
+{
+    :Let :params ?X .
+
+    # Create or parse a language marked literal
+    #    X a variable or List (S1 S2) where
+    #         S1 a variable or stringable
+    #         S2 a variable or langlit 
+    #    Y a variable or literal
+    ?X log:langlit ?Y .
+
+    # E.g. this evaluates to true
+    ( "Selemat pagi" "id" ) log:langlit "Selemat pagi"@id .
+
+    # This bind ?LANG to the language 
+    ( ?LIT ?LANG ) log:langlit "Selemat pagi"@id .
+}
+=> 
+{   
+    ?X :langlit ?Y .
+    "Selemat pago" :hasLanguage ?LANG .
+} .
