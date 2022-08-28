@@ -16,11 +16,11 @@ No more; and by a sleep to say we end"""
 {
     :Let :params ?X .
 
-    # Create a regex string replacement of ?X into ?Y 
-    #    ?X a list of (S1 S2 S3) where S1 is a stringable , 
+    # Create a regex string replacement of X into Y 
+    #    X a list of (S1 S2 S3) where S1 is a stringable , 
     #         S2 a list of regex
     #         S3 a list of replacement stringable
-    #    ?Y a variable or stringable
+    #    Y a variable or stringable
     ?X string:replaceAll ?Y .
 }
 => 

@@ -7,8 +7,8 @@
   :Let :number ?X .
 
   # Calculate the absolute value of X
-  #    ?X a number
-  #    ?Y a number or a variable
+  #    X a number
+  #    Y a number or a variable
   ?X math:absoluteValue ?Y .
 
   # E.g. this evaluates to true

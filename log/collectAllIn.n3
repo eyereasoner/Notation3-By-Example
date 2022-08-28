@@ -6,14 +6,13 @@
 :Let :param "Dewey" .
 :Let :param "Louie" .
 
-
 {
     # Collect all bound variables in X into a list
-    #    ?X a list (S1 F1 L1) where
+    #    X a list (S1 F1 L1) where
     #       S1 a variable pattern
     #       F1 a formula
     #       L1 a result list
-    #    ?Y a variable or formula or baseIri
+    #    Y a variable or formula or baseIri
     ( ?X1 { :Let :param ?X1 } ?Y1 ) log:collectAllIn _:x .
 
     # One can make lists of lists

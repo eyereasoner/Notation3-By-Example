@@ -15,9 +15,9 @@ No more; and by a sleep to say we end"""
 {
     :Let :params ?X .
 
-    # Create an extraction of a string using a regex from ?X into ?Y 
-    #    ?X a list of (S1 S2) S1 a stingable , S2 a regex
-    #    ?Y a variable or list
+    # Create an extraction of a string using a regex from X into Y 
+    #    X a list of (S1 S2) S1 a stingable , S2 a regex
+    #    Y a variable or list
     # Finds all the occurences of the regex in the source string
     ?X string:scrapeAll ?Y .
 

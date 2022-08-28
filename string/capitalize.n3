@@ -7,8 +7,8 @@
     :Let :string ?X .
 
     # Create capitalization of X
-    #    ?X a stringable
-    #    ?Y a stringable or variable
+    #    X a stringable
+    #    Y a stringable or variable
     ?X string:capitalize ?Y .
 
     # E.g. this evaluates to true 

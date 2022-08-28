@@ -7,8 +7,8 @@
     :Let :param ?X .
 
     # Capture the string content of the N3 document X to Y
-    #    ?X a IRI
-    #    ?Y a variable or stingable
+    #    X a IRI
+    #    Y a variable or stingable
     ?X log:content ?Y .
 }
 => 

@@ -6,9 +6,9 @@
 {
     :Let :string ?X .
 
-    # Eveluate of the string length ?X into ?Y 
-    #    ?X a stringble
-    #    ?Y a variable or an intable
+    # Eveluate of the string length X into Y 
+    #    X a stringble
+    #    Y a variable or an intable
     ?X string:length ?Y .
 
     # E.g. this should evaluate to true

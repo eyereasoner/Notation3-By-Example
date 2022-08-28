@@ -8,9 +8,9 @@
     :Let :string1 ?X .
     :Let :string2 ?Y .
 
-    # Evaluate if ?X does not contain ?Y ignoring case and whitespace 
-    #    ?X a stringable
-    #    ?Y a stringable
+    # Evaluate if X does not contain Y ignoring case and whitespace 
+    #    X a stringable
+    #    Y a stringable
     ?X string:notContainsRoughly ?Y .
 }
 => 

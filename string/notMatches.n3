@@ -6,9 +6,9 @@
 {
     :Let :string ?X .
 
-    # Evaluate if ?X not matches the regular expression ?Y 
-    #    ?X a stringable
-    #    ?Y a regex
+    # Evaluate if X not matches the regular expression Y 
+    #    X a stringable
+    #    Y a regex
     ?X string:notMatches "he(l)+o world" .
     ?X string:notMatches ".* world" .
     ?X string:notMatches "h[ae]llo world" .

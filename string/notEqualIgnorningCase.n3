@@ -8,9 +8,9 @@
     :Let :string1 ?X .
     :Let :string2 ?Y .
 
-    # Evaluate if ?X not equals ?Y ignoring case
-    #    ?X a stringable
-    #    ?Y a stringable
+    # Evaluate if X not equals Y ignoring case
+    #    X a stringable
+    #    Y a stringable
     ?X string:notEqualIgnoringCase ?Y .
 
     # E.g. this should evaluate to true

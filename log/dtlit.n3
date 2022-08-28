@@ -8,10 +8,10 @@
     :Let :params ?X .
 
     # Create or parse a datatyped literal
-    #    ?X a variable or List (S1 S2) where
+    #    X a variable or List (S1 S2) where
     #         S1 a variable or stringable
     #         S2 a variable or IRI
-    #    ?Y a variable or literal
+    #    Y a variable or literal
     ?X log:dtlit ?Y .
 
     # E.g. this evaluates to true

@@ -6,10 +6,10 @@
 {
     :Let :params ?X .
 
-    # Create a string join of ?X to ?Y 
-    #    ?X a list (L1 S2), where L1 is a list of stringable
+    # Create a string join of X to Y 
+    #    X a list (L1 S2), where L1 is a list of stringable
     #       and S2 is a join stringable
-    #    ?Y a variable or a stringable
+    #    Y a variable or a stringable
     ?X string:join ?Y .
 
     # E.g. this should evaluate to true

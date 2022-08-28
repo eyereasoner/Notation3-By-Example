@@ -6,9 +6,9 @@
 {
     :Let :params ?X .
 
-    # Create a formating of ?X to ?Y , similar to printf(3) format
-    #    ?X a list of stringables
-    #    ?Y a variable or a stringable
+    # Create a formating of X to Y , similar to printf(3) format
+    #    X a list of stringables
+    #    Y a variable or a stringable
     ?X string:format ?Y .
 }
 => 

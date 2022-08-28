@@ -7,8 +7,8 @@
     :Let :strings ?X .
 
     # Create concatenation of X
-    #    ?X a list of stringables
-    #    ?Y a stringable or a variable
+    #    X a list of stringables
+    #    Y a stringable or a variable
     ?X string:concatenation ?Y .
 
     # E.g. this evaluates to true 

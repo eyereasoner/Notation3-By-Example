@@ -8,9 +8,9 @@
     :Let :string1 ?X .
     :Let :string2 ?Y .
 
-    # Evaluate if ?X is lexically less than ?Y
-    #    ?X a stringable 
-    #    ?Y a stringable
+    # Evaluate if X is lexically less than Y
+    #    X a stringable 
+    #    Y a stringable
     ?X string:lessThan ?Y .
 }
 => 

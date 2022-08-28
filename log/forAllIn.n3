@@ -1,0 +1,29 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:todo a :TodoList ;
+    :member :task1 , :task2 , :task3 .
+
+:task1 a :Completed .
+
+:task2 a :Completed .
+
+:task3 a :Completed ;
+    :fun true .
+
+{
+    ?TODO a :TodoList .
+
+    # Evaluates to true when all formulas in A hold
+    #    X a variable or List (S1 S2) where
+    #        S1 and S2 formula
+    #    Y a variable or formula or baseIRI
+    # Example:
+    #  test if all the todo tasks are completed
+    ( { ?TODO :member ?M } { ?M a :Completed } ) log:forAllIn _:x . 
+}
+=> 
+{ 
+    :Result :forAllIn _:x .
+    :Result :completed true .
+} .

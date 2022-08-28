@@ -1,0 +1,19 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    # Evaluates if formula X includes the statements (+ evaluation of
+    # universal and existential variables) in Y  
+    #    X a formula
+    #    Y a formula
+    {
+        :Socrates a :Human .
+    } log:includes {
+        ?S a :Human .
+    } .
+}
+=> 
+{ 
+    :Result :includes _:x .
+    :Result :completed true .
+} .

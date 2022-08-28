@@ -6,9 +6,9 @@
 {
     :Let :params ?X .
 
-    # Create an extraction of a string using a regex from ?X into ?Y 
-    #    ?X a list of (S1 S2) S1 a stingable , S2 a regex
-    #    ?Y a variable or stringable
+    # Create an extraction of a string using a regex from X into Y 
+    #    X a list of (S1 S2) S1 a stingable , S2 a regex
+    #    Y a variable or stringable
     ?X string:scrape ?Y .
 
     # E.g. this should evaluate to true
