@@ -9,4 +9,4 @@ The Notation3 built-ins are still a part of current specification development. D
 
 Most of the examples should work with the [EYE](https://github.com/josd/eye) reasoner.
 
-See (CWM)[https://github.com/sbp/cwm] and (jen3)[https://github.com/william-vw/jen3] for alternative implemenatations.
+See [CWM](https://github.com/sbp/cwm) and [jen3](https://github.com/william-vw/jen3) for alternative implemenatations.
