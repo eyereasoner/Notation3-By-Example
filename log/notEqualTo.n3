@@ -13,7 +13,6 @@
 
     :Mika log:notEqualTo :Akita .
 
-    # All exitstial are equal
     _:x log:equalTo 1 .
     _:x log:notEqualTo 2 .
 

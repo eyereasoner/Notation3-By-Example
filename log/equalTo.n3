@@ -15,15 +15,15 @@
 
     :Mika log:equalTo :Mika .
 
-    # All exitstial are equal
+    # All exitstial are equal in assignment
     [ ] log:equalTo [ ] .
     _:x log:equalTo 1 .
     
     # Even Mika is something
     :Mika log:equalTo [ ] .
 
-    # But :Mila is not equal to _:x because that is already equal to 1
-    # Will fail: :Mika log:equalTo :_x .
+    # But :Mila is not equal to _:x because that is already assigned to 1
+    # will fail: :Mika log:equalTo :_x .
 
     _:y log:equalTo _:x .
     _:y log:equalTo 1 .
