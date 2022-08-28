@@ -23,5 +23,5 @@
 => 
 {   
     ?X :langlit ?Y .
-    "Selemat pago" :hasLanguage ?LANG .
+    "Selemat pagi" :hasLanguage ?LANG .
 } .
