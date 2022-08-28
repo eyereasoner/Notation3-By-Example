@@ -12,10 +12,10 @@
     ?X list:iterate ?Y .
 
     # E.g. this evaluates to true
-    ?X list:iterate (1 "Dewey") .
+    ?X list:iterate ( 1 "Dewey" ) .
 
     # We even capture the index
-    ?X list:iterate (?Z "Dewey") .
+    ?X list:iterate ( ?Z "Dewey" ) .
 }
 => 
 {   

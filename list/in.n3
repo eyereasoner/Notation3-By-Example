@@ -14,8 +14,8 @@
     ?X list:in ?Y .
 
     # E.g. this evaluates to true
-    (3) list:in (1 2 (3) 4) .
-    ((3)) list:in (1 2 ((3)) 4) .
+    ( 3 ) list:in ( 1 2 (3) 4 ) .
+    ( (3) ) list:in ( 1 2 ((3)) 4 ) .
 }
 => 
 {   
