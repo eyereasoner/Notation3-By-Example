@@ -2,17 +2,17 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 {
-    # Evaluates if formula X includes the statements (+ evaluation of
+    # Evaluates if formula X not includes the statements (+ evaluation of
     # universal and existential variables) in Y  
     #    X a formula
     #    Y a formula
     {
         :Socrates a :Human .
-    } log:includes {
-        ?S a :Human .
+    } log:notIncludes {
+        ?S a :Mortal .
     } .
 }
 => 
 { 
-    :Result :includes { ?S a :Human } .
+    :Result :notIncludes { ?S a :Mortal } .
 } .

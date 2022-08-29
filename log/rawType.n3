@@ -1,0 +1,23 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    # Evaluates the string X into a formula Y 
+    #    X a variable
+    #    Y a formula
+    "Hello world" log:rawType ?Y1 .
+    42 log:rawType ?Y2 .
+    <http://www.w3c.org> log:rawType ?Y3 .
+    #[] log:rawType ?Y4 .
+    { :Socrates a :Human } log:rawType ?Y5 .
+    ( 42 43 ) log:rawType ?Y6 .
+}
+=> 
+{ 
+    "Hello world" :rawType ?Y1 .
+    42 :rawType ?Y2 .
+    <http://www.w3c.org> :rawType ?Y3 .
+    # [] :rawType ?Y4 .
+    { :Socrates a :Human } :rawType ?Y5 .
+    ( 42 43 ) :rawType ?Y6 .
+} .

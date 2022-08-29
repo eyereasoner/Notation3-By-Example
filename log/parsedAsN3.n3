@@ -1,0 +1,24 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Let :param """
+@prefix : <urn:example:> .
+:Socrates a :Human .
+""" .
+
+{
+    :Let :param ?X .
+
+    # Evaluates the string X into a formula Y 
+    #    X a variable
+    #    Y a formula
+    ?X log:parsedAsN3 ?Y .
+
+    # Works also the other way around (?)
+    # ?Z log:parsedAsN3 { :Socrates a :Mortal } .
+}
+=> 
+{ 
+    :Result1 :parsedAsN3 ?Y .
+    :Result2 :parsedAsN3 ?Z .
+} .
