@@ -11,6 +11,7 @@
     #[] log:rawType ?Y4 .
     { :Socrates a :Human } log:rawType ?Y5 .
     ( 42 43 ) log:rawType ?Y6 .
+    ($ "A" "B" "C" $) log:rawType ?Y7 .
 }
 => 
 { 
@@ -20,4 +21,5 @@
     # [] :rawType ?Y4 .
     { :Socrates a :Human } :rawType ?Y5 .
     ( 42 43 ) :rawType ?Y6 .
+    ($ "A" "B" "C" $) :rawType ?Y7 .
 } .
