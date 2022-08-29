@@ -11,3 +11,7 @@ The examples are based on two lists of Notation3 built-ins:
 - https://w3c.github.io/N3/spec/#builtins
 
 The examples only use built-ins for which at least one example was found in the [EYE](https://github.com/josd/eye) or [jen3](https://github.com/william-vw/jen3) or [CWM](https://github.com/sbp/cwm) project 
+
+## See also
+
+- https://github.com/josd/eye/blob/master/reasoning/bi/biP.n3
