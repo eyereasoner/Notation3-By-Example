@@ -1,0 +1,13 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    # Evaluates a URI X into a string Y 
+    #    X an iri
+    #    Y a string
+    <https://www.w3.org> log:uri ?Y .
+}
+=> 
+{ 
+    :Result :uri ?Y .
+} .
