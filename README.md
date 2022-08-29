@@ -10,8 +10,4 @@ The examples are based on two lists of Notation3 built-ins:
 - https://w3c.github.io/N3/files/builtin_spec.html
 - https://w3c.github.io/N3/spec/#builtins
 
-## Install
-
-Most of the examples should work with the [EYE](https://github.com/josd/eye) reasoner.
-
-See [CWM](https://github.com/sbp/cwm) and [jen3](https://github.com/william-vw/jen3) for alternative implemenatations.
+The examples only use buil-in for which at least an example was found in the [EYE](https://github.com/josd/eye) or [jen3](https://github.com/william-vw/jen3) or [CWM](https://github.com/sbp/cwm) project 

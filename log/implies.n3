@@ -1,0 +1,16 @@
+@prefix : <urn:example:> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Socrates a :Human.
+:Human rdfs:subClassOf :Mortal.
+
+# log:implies is a shortcut for  { ... } => { ... }
+{ 
+    ?A rdfs:subClassOf ?B . 
+    ?S a ?A .
+} 
+log:implies 
+{
+    ?S a ?B .
+} .

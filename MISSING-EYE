@@ -14,5 +14,7 @@ log:langlit
 log:localName
 log:namespace
 log:parsedAsN3
+log:racine
+log:semanticsOrError
 log:skolem
 log:uuid

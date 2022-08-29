@@ -1,0 +1,18 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Let :param <http://example.org/data#Test> .
+
+{
+    :Let :param ?X .
+
+    # Retrieves from the uri X the part without fragment identifier in Y
+    #    ?X an IRI 
+    #    ?Y a variable or stringable
+    ?X log:racine ?Y .
+}
+=> 
+{  
+    # E.g. produces <http://example.org/data>
+    ?X :racine ?Y .
+} .

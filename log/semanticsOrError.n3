@@ -1,0 +1,13 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    # Evaluates a URI X into a formula Y or produce a string on error
+    #    X an iri
+    #    Y a formula or a string
+    <semanticsOrError.data> log:semanticsOrError ?Y .
+}
+=> 
+{ 
+    :Result :semanticsOrError ?Y .
+} .
