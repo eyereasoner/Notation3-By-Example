@@ -11,6 +11,7 @@
     #[] log:rawType ?Y4 .
     { :Socrates a :Human } log:rawType ?Y5 .
     ( 42 43 ) log:rawType ?Y6 .
+    # ($ ... $) is a notation for a log:Set (still decidable if this is part of the spec)
     ($ "A" "B" "C" $) log:rawType ?Y7 .
 }
 => 

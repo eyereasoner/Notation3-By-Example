@@ -1,0 +1,17 @@
+@prefix : <urn:example:> .
+@prefix crypto: <http://www.w3.org/2000/10/swap/crypto#> .
+
+:Let :param "hello world" .
+
+{
+    :Let :param ?X .
+
+    # Calculate the SHA256 checksum of X into Y
+    #    X a stringable
+    #    Y a variable or stringable
+    ?X crypto:sha256 ?Y .
+}
+=> 
+{   
+    ?X :sha256 ?Y .
+} .
