@@ -1,0 +1,21 @@
+@prefix : <urn:example:> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+
+:Let :param { 
+    :A :B :C . 
+    :A0 :B0 ( :C1 :C2 ) .
+    { :D :E :F . } => { :G :H :I . } .
+} .
+
+{
+    :Let :param ?X .
+
+    # Calculate number of n3Statements in the default graph of X 
+    #    X a formula
+    #    Y a variable or numerable
+    ?X graph:length ?Y .
+}
+=> 
+{   
+    ?X :length ?Y .
+} .

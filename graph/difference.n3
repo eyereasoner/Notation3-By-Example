@@ -1,0 +1,26 @@
+@prefix : <urn:example:> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+
+:Let :param1 { 
+    :A :B :C . 
+    :A0 :B0 ( :C1 :C2 ) .
+    { :D :E :F . } => { :G :H :I . } .
+} .
+
+:Let :param2 {
+    :A :B :C .
+} .
+
+{
+    :Let :param1 ?X1 .
+    :Let :param2 ?X2 .
+
+    # Y is the formula of n3statements X1 / X2  ( X1 without n3statementsfrom X2)
+    #    ( X1 X2 ) where X1 and X2 a formula
+    #    Y a variable or formula
+    ( ?X1 ?X2 ) graph:difference ?Y .
+}
+=> 
+{   
+    ( ?X1 ?X2 ) :difference ?Y .
+} .
