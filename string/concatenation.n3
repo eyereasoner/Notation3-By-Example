@@ -18,3 +18,12 @@
 {   
     ?X :concatenation ?Y .
 } .
+
+# Test
+{
+    ?X :concatenation "hello world" .
+}
+=>
+{
+    :test :is :true .
+} .

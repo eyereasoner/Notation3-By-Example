@@ -17,3 +17,12 @@
 {   
     ?X :contains ?Y .
 } .
+
+# Test
+{
+    ?X :contains "world" .
+}
+=>
+{
+    :test :is :true .
+} .

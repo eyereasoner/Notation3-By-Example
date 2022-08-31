@@ -18,3 +18,12 @@
 {   
     ?X :capitalize ?Y .
 } .
+
+# Test
+{
+    ?X :capitalize "HELLO WORLD" .
+}
+=>
+{
+    :test :is :true .
+} .

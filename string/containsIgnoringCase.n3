@@ -17,3 +17,12 @@
 {   
     ?X :containsIgnoringCase ?Y .
 } .
+
+# Test
+{
+    ?X :containsIgnoringCase "WORLD" .
+}
+=>
+{
+    :test :is :true .
+} .
