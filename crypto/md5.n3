@@ -15,3 +15,12 @@
 {   
     ?X :md5 ?Y .
 } .
+
+# Test
+{
+    "hello world" :md5 "5eb63bbbe01eeed093cb22bb8f5acdc3".
+}
+=>
+{
+    :test :is :true .
+} .
