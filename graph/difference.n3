@@ -1,10 +1,10 @@
 @prefix : <urn:example:> .
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 :Let :param1 { 
     :A :B :C . 
-    :A0 :B0 ( :C1 :C2 ) .
-    { :D :E :F . } => { :G :H :I . } .
+    :D :E :F .
 } .
 
 :Let :param2 {
@@ -23,4 +23,13 @@
 => 
 {   
     ( ?X1 ?X2 ) :difference ?Y .
+} .
+
+# Test
+{
+    ?X :difference [ log:equalTo { :D :E :F } ] .
+}
+=>
+{
+    :test :is :true .
 } .
