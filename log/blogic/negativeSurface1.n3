@@ -4,6 +4,9 @@
 :Alice :sibling :Bob .
 :Bob :sibling :Charly .
 
+:Hans :sibling :Mary .
+:Mary :sibling :Agnes .
+
 # (_:X _:Y) is like For all X and Y) within the surface
 # log:negativeSurface claims the RDF graph on the surface
 # is false.
@@ -18,7 +21,7 @@
 #    
 # from which follows:
 #
-# ( P ~ Q ) <=> ~( P AND ~Q ) 
+# ( P -> Q ) <=> ~( P AND ~Q ) 
 #
 # Which means we can nest log:negativeSurface to express P -> Q
 #   
@@ -37,7 +40,7 @@
 
     () log:negativeSurface {
         _:X :sibling _:Z .
-    }
+    } .
 } .
 
 # Filter out what to see in the output 

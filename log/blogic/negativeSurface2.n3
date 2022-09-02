@@ -1,0 +1,43 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Alice has a friend Bob and Bob has a friend Charly
+# Alice has to choose, if she likes Bob or Charly 
+
+:Alice :friend :Bob .
+:Bob :friend :Charly .
+
+# Alice doesn't like Charly
+() log:negativeSurface {
+    :Alice :likes :Charly.
+} .
+
+# Alice doesn't like Bob
+#() log:negativeSurface {
+#    :Alice :likes :Bob.
+#} .
+
+# Here we use two negative surfaces which expresses the rule
+# ~ ( P AND ~Q AND ~R ) <=> ~P OR ~(~Q AND ~R ) <=>
+# P -> ~(~Q AND ~R) <=> P -> Q OR R
+# Adding more negative surfaces expresses thus an OR relation.
+(_:X _:Y _:Z) log:negativeSurface {
+    _:X :friend _:Y .
+    _:Y :friend _:Z .
+
+    () log:negativeSurface {
+        _:X :likes _:Y .
+    } .
+
+    () log:negativeSurface {
+        _:X :likes _:Z .
+    } .
+} .
+
+(_:S _:O) log:querySurface {
+    _:S :friend _:O . 
+} .
+
+(_:S _:O) log:querySurface {
+    _:S :likes _:O . 
+} .
