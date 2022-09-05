@@ -11,7 +11,7 @@
 # log:negativeSurface claims the RDF graph on the surface
 # is false.
 #
-# To having a NOT in a logic is quite powerfull. The implication
+# To have a NOT in a logic is quite powerfull. The implication
 # P -> Q is equivalent to ~P OR Q . Keeping this in mind
 # we can construct implication from negativeSurfaces.
 #
