@@ -1,6 +1,4 @@
 crypto:md5
-crypto:sha256
-crypto:sha512
 string:capitalize
 string:containsRoughly
 string:format
@@ -9,7 +7,6 @@ string:replaceAll
 string:scrapeAll
 string:substring
 string:upperCase
-list:memberAt
 log:bound
 log:content
 log:inferences

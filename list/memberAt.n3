@@ -1,5 +1,6 @@
 @prefix : <urn:example:> .
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 :Let :param ( "Huey" "Dewey" "Louie" ) .
 
@@ -12,14 +13,32 @@
     #       S2 is an int-able
     #    ?Y any
     ( ?X 1 ) list:memberAt ?Y .
-
-    # E.g. this evaluates to true
-    ( ?X 0 ) list:memberAt "Huey" .
-
-    # This bind ?Z to one 
-    ( ?X ?Z ) list:memberAt "Dewey" .
 }
 => 
 {   
     ?X :memberAt ?Y .
+} .
+
+{
+    :Let :param ?X .
+
+    # E.g. this evaluates to true
+    ( ?X 0 ) list:memberAt "Huey" .
+}
+=> 
+{   
+    :test1 :is true .
+} .
+
+{
+    :Let :param ?X .
+
+    # This bind ?Z to one 
+    ( ?X ?Z ) list:memberAt "Dewey" .
+
+    ?Z log:equalTo 1 .
+}
+=> 
+{   
+    :test2 :is true .
 } .

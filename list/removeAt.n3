@@ -1,5 +1,6 @@
 @prefix : <urn:example:> .
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 :Let :param ( "Huey" "Dewey" "Louie" ) .
 
@@ -12,15 +13,33 @@
     #       S2 is an int-able
     #    ?Y a variable or list
     ( ?X 1 ) list:removeAt ?Y .
-
-    # E.g. this should evaluate to true
-    ( ?X 1 ) list:removeAt ( "Huey" "Louie" ) .
-
-    # This should bind ?Z to 1 
-    ( ?X ?Z ) list:removeAt ( "Huey" "Louie" ) .
 }
 => 
 {   
     ?X :removeAt ?Y .
     ?X :hasRemovedItem ?Z .
+} .
+
+{
+    :Let :param ?X .
+
+    # E.g. this should evaluate to true
+    ( ?X 1 ) list:removeAt ( "Huey" "Louie" ) .
+}
+=> 
+{
+    :test1 :is :true .
+} .
+
+{
+    :Let :param ?X .
+
+    # This should bind ?Z to 1 
+    ( ?X ?Z ) list:removeAt ( "Huey" "Louie" ) .
+
+    ?Z log:equalTo 1 .
+}
+=> 
+{
+    :test2 :is :true .
 } .
