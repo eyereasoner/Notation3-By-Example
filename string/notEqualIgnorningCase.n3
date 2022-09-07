@@ -20,3 +20,11 @@
 {   
     ?X :notEqualIgnoringCase ?Y .
 } .
+
+{
+    ?X :notEqualIgnoringCase ?Y .
+}
+=> 
+{
+    :test :is true .
+} .

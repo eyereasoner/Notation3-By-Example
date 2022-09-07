@@ -18,3 +18,11 @@
 {   
     ?X :first ?Y .
 } .
+
+{
+    ?X :first 1 .
+}
+=> 
+{
+    :test :is true .
+} .

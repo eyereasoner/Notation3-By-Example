@@ -17,3 +17,11 @@
 {   
     ?X :lessThan ?Y .
 } .
+
+{
+    ?X :lessThan ?Y .
+}
+=> 
+{
+    :test :is true .
+} .

@@ -20,7 +20,7 @@
 
 # Test
 {
-    ?X :contains "world" .
+    ?X :contains ?Y .
 }
 =>
 {

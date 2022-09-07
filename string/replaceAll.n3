@@ -27,3 +27,11 @@ No more; and by a sleep to say we end"""
 {   
     ?X :replaceAll ?Y .
 } .
+
+{
+    ?X :replaceAll ?Y .
+}
+=> 
+{
+    :test :is true .
+} .

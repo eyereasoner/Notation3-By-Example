@@ -17,3 +17,11 @@
 {   
     ?X :notContainsRoughly ?Y .
 } .
+
+{
+    ?X :notContainsRoughly ?Y .
+}
+=>
+{
+    :test :is true .
+} .

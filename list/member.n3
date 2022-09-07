@@ -18,3 +18,13 @@
 {   
     ?X :member ?Y .
 } .
+
+{
+    ?X :member "Huey" .
+    ?X :member "Dewey" .
+    ?X :member "Louie" .
+}
+=> 
+{
+    :test :is true .
+} .

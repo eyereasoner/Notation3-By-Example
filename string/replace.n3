@@ -19,3 +19,11 @@
 {   
     ?X :replace ?Y .
 } .
+
+{
+    ?X :replace ?Y .
+}
+=> 
+{
+    :test :is true .
+} .

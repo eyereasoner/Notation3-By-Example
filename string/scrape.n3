@@ -18,3 +18,11 @@
 {   
     ?X :scrape ?Y .
 } .
+
+{
+    ?X :scrape "world" .
+}
+=> 
+{
+    :test :is true .
+} .

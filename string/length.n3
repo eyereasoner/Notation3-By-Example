@@ -18,3 +18,11 @@
 {   
     ?X :length ?Y .
 } .
+
+{
+    ?X :length ?Y .
+}
+=> 
+{
+    :test :is true .
+} .

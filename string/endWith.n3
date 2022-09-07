@@ -17,3 +17,11 @@
 {   
     ?X :endsWith ?Y .
 } .
+
+{
+    ?X :endsWith ?Y .
+}
+=> 
+{
+    :test :is true .
+} .

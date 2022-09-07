@@ -22,3 +22,12 @@
     ?X :iterate ?Y .
     "Dewey" :hasIndex ?Z .
 } .
+
+{
+    ?X :iterate ?Y .
+    "Dewey" :hasIndex 1 .
+}
+=> 
+{
+    :test :is true .
+} .

@@ -18,3 +18,11 @@
 {   
     ?X :lowerCase ?Y .
 } .
+
+{
+    ?X :lowerCase ?Y .
+}
+=> 
+{
+    :test :is true .
+} .

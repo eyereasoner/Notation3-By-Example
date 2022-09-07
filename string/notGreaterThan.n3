@@ -17,3 +17,11 @@
 {   
     ?X :notGreaterThan ?Y .
 } .
+
+{
+    ?X :notGreaterThan ?Y .
+}
+=> 
+{
+    :test :is true .
+} .

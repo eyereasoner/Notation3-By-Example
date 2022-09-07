@@ -24,3 +24,11 @@
 {   
     ?X :remove ?Y .
 } .
+
+{
+    ?X :remove ( "Huey" "Louie" ) .
+}
+=> 
+{
+    :test :is true .
+} .

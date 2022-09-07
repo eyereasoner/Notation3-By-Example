@@ -18,3 +18,11 @@
 {   
     ?X :append ?Y .
 } .
+
+{
+    ?X :append (1 "cat" 2 3 ) .
+}
+=> 
+{
+    :test :is true .
+} .

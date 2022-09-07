@@ -18,3 +18,11 @@
 {   
     ?X :upperCase ?Y .
 } .
+
+{
+    ?X :upperCase ?Y .
+}
+=> 
+{
+    :test :is true .
+} .

@@ -15,5 +15,16 @@
 }
 => 
 {   
-    ?X :notMatches true .
+    ?X :notMatches "he(l)+o world" .
+    ?X :notMatches ".* world" .
+    ?X :notMatches "h[ae]llo world" . 
+} .
+
+
+{
+    ?X :notMatches ?Y .
+}
+=> 
+{
+    :test :is true .
 } .

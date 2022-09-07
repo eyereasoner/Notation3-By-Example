@@ -18,3 +18,11 @@
 {   
     ?X :substring ?Y .
 } .
+
+{
+    ?X :substring "ell" .
+}
+=> 
+{
+    :test :is true .
+} .

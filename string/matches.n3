@@ -15,5 +15,15 @@
 }
 => 
 {   
-    ?X :matches true .
+    ?X :matches "he(l)+o world" .
+    ?X :matches ".* world" .
+    ?X :matches "h[ae]llo world" . 
+} .
+
+{
+    ?X :matches ?Y .
+}
+=> 
+{
+    :test :is true .
 } .

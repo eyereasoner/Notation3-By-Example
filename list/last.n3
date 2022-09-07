@@ -18,3 +18,11 @@
 {   
     ?X :last ?Y .
 } .
+
+{
+    ?X :last 3 .
+}
+=> 
+{
+    :test :is true .
+} .

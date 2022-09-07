@@ -22,3 +22,11 @@
 {   
     ?X :join ?Y .
 } .
+
+{
+    ?X :join ?Y .
+}
+=> 
+{
+    :test :is true .
+} .

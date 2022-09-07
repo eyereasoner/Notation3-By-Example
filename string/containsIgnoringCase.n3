@@ -20,7 +20,7 @@
 
 # Test
 {
-    ?X :containsIgnoringCase "WORLD" .
+    ?X :containsIgnoringCase ?Y .
 }
 =>
 {

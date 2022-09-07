@@ -15,3 +15,11 @@
 {   
     ?X :unique ?Y .
 } .
+
+{
+    ?X :unique ?Y .
+}
+=> 
+{
+    :test :is true .
+} .

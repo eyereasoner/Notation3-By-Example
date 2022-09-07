@@ -1,7 +1,7 @@
 @prefix : <urn:example:> .
 @prefix string: <http://www.w3.org/2000/10/swap/string#> .
 
-:Let :params ( "%s/%s" "result" "s" ) .
+:Let :params ( "%s/%s are %s" "result" "s" "ok" ) .
 
 {
     :Let :params ?X .
@@ -14,4 +14,12 @@
 => 
 {   
     ?X :format ?Y .
+} .
+
+{
+    ?X :format "result/s are ok" .
+}
+=>
+{
+    :test :is true .
 } .

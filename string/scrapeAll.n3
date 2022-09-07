@@ -26,3 +26,11 @@ No more; and by a sleep to say we end"""
 {   
     ?X :scrapeAll ?Y .
 } .
+
+{
+    ?X :scrapeAll ("To be" "to be") .
+}
+=> 
+{
+    :test :is true .
+} .

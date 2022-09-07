@@ -21,3 +21,11 @@
 {
   :Let :absoluteValue ?Y .
 } .
+
+{
+    ?X :absoluteValue 2 .
+}
+=> 
+{
+    :test :is true .
+} .
