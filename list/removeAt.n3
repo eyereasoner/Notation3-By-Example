@@ -28,7 +28,7 @@
 }
 => 
 {
-    :test1 :is :true .
+    :test1 :is true .
 } .
 
 {
@@ -41,5 +41,5 @@
 }
 => 
 {
-    :test2 :is :true .
+    :test2 :is true .
 } .

@@ -24,5 +24,5 @@
 }
 =>
 {
-    :test :is :true .
+    :test :is true .
 } .
