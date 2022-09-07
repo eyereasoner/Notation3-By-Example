@@ -19,3 +19,11 @@
 {   
     ?X :namespace ?Y .
 } .
+
+{
+    ?X :namespace "http://example.org" .
+}
+=> 
+{
+    :test :is true .
+} .

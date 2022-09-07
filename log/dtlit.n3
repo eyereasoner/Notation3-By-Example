@@ -25,3 +25,12 @@
     ?X :dtlit ?Y .
     "R2D2"^^:myType :hasType ?Z .
 } .
+
+{
+    ?X :dtlit "1971-05-05"^^xs:date .
+    "R2D2"^^:myType :hasType :myType .
+}
+=> 
+{
+    :test :is true .
+} .

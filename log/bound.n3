@@ -19,5 +19,13 @@
 }
 => 
 {   
+    ?X :bound true .
+} .
+
+{
     ?X :bound ?Y .
+}
+=> 
+{
+    :test :is true .
 } .

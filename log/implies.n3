@@ -14,3 +14,11 @@ log:implies
 {
     ?S a ?B .
 } .
+
+{
+    :Socrates a :Mortal .
+}
+=> 
+{
+    :test :is true .
+} .

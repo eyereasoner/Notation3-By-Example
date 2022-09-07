@@ -11,3 +11,11 @@
 { 
     :Result :semantics ?Y .
 } .
+
+{
+    ?X :semantics { :Socrates a :Human } .
+}
+=> 
+{
+    :test :is true .
+} .

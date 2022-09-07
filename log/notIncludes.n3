@@ -16,3 +16,11 @@
 { 
     :Result :notIncludes { ?S a :Mortal } .
 } .
+
+{
+    ?X :notIncludes { ?Q a :Mortal } .
+}
+=> 
+{
+    :test :is true .
+} .

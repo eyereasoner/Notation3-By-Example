@@ -32,3 +32,14 @@
     :Result2 :collectAllIn ?Y2 .
     :Result3 :collectAllIn ?Y3 .
 } .
+
+
+{
+    ?X :collectAllIn ( "Huey" "Dewey" "Louie" ) .
+    ?Y :collectAllIn ( ("Huey") ("Dewey") ("Louie") ).
+    ?Z :collectAllIn ( "Huey" "Dewey" ).
+}
+=> 
+{
+    :test :is true .
+} .

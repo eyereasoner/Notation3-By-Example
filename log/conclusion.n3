@@ -30,4 +30,15 @@
 => 
 {   
     :Result :conclusion ?Y .
+    ?Y log:includes {
+        :Socrates a :Mortal 
+    } .
+} .
+
+{
+    ?X :conclusion ?Y .
+}
+=> 
+{
+    :test :is true .
 } .

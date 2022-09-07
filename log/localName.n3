@@ -19,3 +19,11 @@
 {   
     ?X :localName ?Y .
 } .
+
+{
+    ?X :localName "MyName" .
+}
+=> 
+{
+    :test :is true .
+} .

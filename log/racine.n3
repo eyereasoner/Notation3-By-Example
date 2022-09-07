@@ -16,3 +16,11 @@
     # E.g. produces <http://example.org/data>
     ?X :racine ?Y .
 } .
+
+{
+    ?X :racine <http://example.org/data> .
+}
+=> 
+{
+    :test :is true .
+} .

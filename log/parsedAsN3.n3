@@ -20,5 +20,12 @@
 => 
 { 
     :Result1 :parsedAsN3 ?Y .
-    :Result2 :parsedAsN3 ?Z .
+} .
+
+{
+    ?X :parsedAsN3 { :Socrates a :Human } .
+}
+=> 
+{
+    :test :is true .
 } .

@@ -23,5 +23,14 @@
 => 
 {   
     ?X :langlit ?Y .
-    "Selemat pagi" :hasLanguage ?LANG .
+    "Selemat pagi"@id :hasLanguage ?LANG .
+} .
+
+{
+    ?X :langlit "Selemat pagi"@id .
+    "Selemat pagi"@id :hasLanguage "id" .
+}
+=> 
+{
+    :test :is true .
 } .

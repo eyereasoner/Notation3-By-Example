@@ -16,3 +16,11 @@
 { 
     :Result :includes { ?S a :Human } .
 } .
+
+{
+    :Result :includes { :Socrates a :Human } .
+}
+=> 
+{
+    :test :is true .
+} .

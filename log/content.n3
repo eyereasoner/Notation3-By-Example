@@ -15,3 +15,11 @@
 {   
     :Result :content ?Y .
 } .
+
+{
+    ?X :content ?Y .
+}
+=> 
+{
+    :test :is true .
+} .

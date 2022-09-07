@@ -11,3 +11,11 @@
 { 
     :Result :semanticsOrError ?Y .
 } .
+
+{
+    ?X :racine ?Y .
+}
+=> 
+{
+    :test :is true .
+} .

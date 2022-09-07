@@ -11,3 +11,11 @@
 { 
     :Result :uri ?Y .
 } .
+
+{
+    ?X :uri "https://www.w3.org" .
+}
+=> 
+{
+    :test :is true .
+} .

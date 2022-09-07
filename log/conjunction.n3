@@ -12,3 +12,14 @@
 {   
     :Result :conjunction ?Y .
 } .
+
+{
+    ?X :conjunction { 
+        :Socrates a :Human  .
+        :Socrates a :Mortal .  
+    } .
+}
+=> 
+{
+    :test :is true .
+} .
