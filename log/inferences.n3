@@ -1,1 +1,40 @@
-# TODO
+@prefix : <urn:example:> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:myFormula rdf:value {
+    :Socrates a :Human.
+    :Human rdfs:subClassOf :Mortal.
+
+    { 
+        ?A rdfs:subClassOf ?B . 
+        ?S a ?A .
+    } 
+    => 
+    {
+        ?S a ?B .
+    } .
+} .
+
+{
+    ?F rdf:value ?X .
+
+    # Check if Y is inferred from X when applying all the rules
+    # it may contain. This is a sort of inline reasoner. 
+    #    X a formula
+    #    Y a variable or formula 
+    ?X log:inferences { :Socrates a :Human } .
+}
+=> 
+{   
+    :Result :inferences { :Socrates a :Human } .
+} .
+
+{
+    ?X :inferences { :Socrates a :Human } .
+}
+=> 
+{
+    :test :is true .
+} .

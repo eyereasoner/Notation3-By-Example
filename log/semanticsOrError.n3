@@ -13,7 +13,7 @@
 } .
 
 {
-    ?X :racine ?Y .
+    ?X :semanticsOrError ?Y .
 }
 => 
 {
