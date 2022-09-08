@@ -21,7 +21,7 @@
 } .
 
 {
-    ?X :namespace "http://example.org" .
+    ?X :namespace "http://example.org/" .
 }
 => 
 {
