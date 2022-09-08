@@ -1,1 +1,25 @@
-# TODO
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+:Let :param "hello world" .
+
+{
+    :Let :param ?X .
+
+    ( ?X "!\n" ) string:concatenation ?Y .
+}
+=>
+{
+    :Result :is ?Y .
+
+    # Send the contents of Y to the string output, X can be used as a label which 
+    # will be ignored by the processor. Eye requires the --strings flag to display
+    # these strings
+    #       X is any
+    #       Y is stringable or variable
+    [] log:outputString ?Y .
+
+
+    [] log:outputString "This <urn:example:is> true .\n" .
+} .

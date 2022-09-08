@@ -19,7 +19,7 @@
 }
 => 
 { 
-    :Result1 :parsedAsN3 ?Y .
+    :Result :parsedAsN3 ?Y .
 } .
 
 {
