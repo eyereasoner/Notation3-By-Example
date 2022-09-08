@@ -1,1 +1,26 @@
-# TODO
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# sample data
+:pers001 :familyName "Garcia".
+:pers001 :givenName "Claudia".
+
+{
+    ?person :familyName "Garcia".
+    # retracting the subject formula and asserting the object formula
+    #    X a formula
+    #    Y a variable or formula 
+    { ?person :givenName "Claudia" } log:becomes { ?person :givenName "Alex" }.
+}
+=>
+{
+}.
+
+{
+    :pers001 :familyName "Garcia".
+    :pers001 :givenName "Alex".
+}
+=> 
+{
+    :test :is true .
+} .
