@@ -1,7 +1,7 @@
 @prefix : <urn:example:> .
 @prefix math: <http://www.w3.org/2000/10/swap/math#> .
 
-:Let :number ( 1.54231 2 ) .
+:Let :number ( 1.55631 2 ) .
 
 {
     :Let :number ?X .
@@ -17,7 +17,7 @@
 } .
 
 {
-    ?X :roundedTo 1.54 .
+    ?X :roundedTo 1.56 .
 }
 => 
 {
