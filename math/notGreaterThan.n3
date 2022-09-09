@@ -1,0 +1,25 @@
+@prefix : <urn:example:> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :params (7 42) .
+
+{
+    :Let :params (?X ?Y) .
+
+    # Evaluate to true when X is not greaterThan Y
+    #    X a numberable or a variable
+    #    Y a numberable or a variable
+    ?X math:notGreaterThan ?Y .
+}
+=> 
+{
+    :Let :notGreaterThan true .
+} .
+
+{
+    ?X :notGreaterThan true.
+}
+=> 
+{
+    :test :is true .
+} .

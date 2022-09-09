@@ -1,0 +1,30 @@
+@prefix : <urn:example:> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :number 1.57079632679 .
+
+{
+    :Let :number ?X .
+
+    # Calculate degrees from radians X
+    #    X a numberable
+    #    Y a numberable or a variable
+    #    OR
+    #    X a numberable or a variable
+    #    Y a numberable
+    ?X math:degrees ?Y .
+}
+=> 
+{
+    :Let :degrees ?Y .
+} .
+
+{
+    ?X :degrees ?Z .
+    ?Z math:lessThan 91 .
+    ?Z math:greaterThan 89 .
+}
+=> 
+{
+    :test :is true .
+} .

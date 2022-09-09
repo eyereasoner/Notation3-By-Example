@@ -1,0 +1,28 @@
+@prefix : <urn:example:> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :number 1.54 .
+
+{
+    :Let :number ?X .
+
+    # Calculate the rounded of X
+    #    X a numberable
+    #    Y a numberable or a variable
+    ?X math:rounded ?Y .
+
+    # E.g. this evaluates to true
+    ?X math:rounded 2 .
+}
+=> 
+{
+    :Let :rounded ?Y .
+} .
+
+{
+    ?X :rounded 2 .
+}
+=> 
+{
+    :test :is true .
+} .

@@ -1,0 +1,31 @@
+@prefix : <urn:example:> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :params (7 2) .
+
+{
+    :Let :params ?X .
+
+    # Calculate exponentiation of the values in  X
+    #    (X1 X2) a where X1 and X2 a numberable or variable
+    #    Y a numberable or a variable
+    ?X math:exponentiation ?Y .
+
+    # This evaluates to Z1 = 2.0
+    (7 ?Z1) math:exponentiation 49 .
+
+    # This evaluates to Z2 = 7
+    # (?Z2 2) math:exponentiation 49 .
+}
+=> 
+{
+    :Let :exponentiation (?Y ?Z1) .
+} .
+
+{
+    ?X :exponentiation (49 2.0).
+}
+=> 
+{
+    :test :is true .
+} .

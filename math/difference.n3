@@ -1,0 +1,25 @@
+@prefix : <urn:example:> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :params (7 2) .
+
+{
+    :Let :params ?X .
+
+    # Calculate difference of the values in  X
+    #    (X1 X2) a where X1 and X2 a numberable or variable
+    #    Y a numberable or a variable
+    ?X math:difference ?Y .
+}
+=> 
+{
+    :Let :difference ?Y .
+} .
+
+{
+    ?X :difference 5.
+}
+=> 
+{
+    :test :is true .
+} .

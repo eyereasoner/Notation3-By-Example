@@ -1,0 +1,32 @@
+@prefix : <urn:example:> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :number 0 .
+
+{
+    :Let :number ?X .
+
+    # Calculate the sinus value of X
+    #    X a numberable
+    #    Y a numberable or a variable
+    #    OR
+    #    X a numberable or a variable
+    #    Y a numberable
+    ?X math:sin ?Y .
+
+    # E.g. this evaluates to true
+    ?X math:sin 0.0 .
+    0.0 math:sin 0 .
+}
+=> 
+{
+    :Let :sin ?Y .
+} .
+
+{
+    ?X :sin 0.0 .
+}
+=> 
+{
+    :test :is true .
+} .

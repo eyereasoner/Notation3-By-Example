@@ -1,0 +1,25 @@
+@prefix : <urn:example:> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :params (7 6) .
+
+{
+    :Let :params (?X ?Y) .
+
+    # Evaluates to true when X in number is equal to Y
+    #    X a numberable or a variable
+    #    Y a numberable or a variable
+    ?X math:notEqualTo ?Y .
+}
+=> 
+{
+    :Let :notEqualTo true .
+} .
+
+{
+    ?X :notEqualTo true .
+}
+=> 
+{
+    :test :is true .
+} .

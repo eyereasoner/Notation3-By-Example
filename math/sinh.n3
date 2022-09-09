@@ -1,0 +1,32 @@
+@prefix : <urn:example:> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :number 0 .
+
+{
+    :Let :number ?X .
+
+    # Calculate the hyperbolic sinus value of X
+    #    X a numberable
+    #    Y a numberable or a variable
+    #    OR
+    #    X a numberable or a variable
+    #    Y a numberable
+    ?X math:sinh ?Y .
+
+    # E.g. this evaluates to true
+    ?X math:sinh 0.0 .
+    0.0 math:sinh 0 .
+}
+=> 
+{
+    :Let :sinh ?Y .
+} .
+
+{
+    ?X :sinh 0.0 .
+}
+=> 
+{
+    :test :is true .
+} .
