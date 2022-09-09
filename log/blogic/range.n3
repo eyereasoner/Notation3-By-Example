@@ -1,0 +1,30 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+:watches rdfs:range :TVSeries .
+:cooks rdfs:range :Food .
+
+:Alice :watches :Friends .
+:Bob :watches :Supranos .
+
+:Alice :cooks :Spaghetti .
+:Bob :cooks :Lasagne .
+
+# This is a way to compile rdfs:range into blogic. No need to have 
+# special RDFS entailment.
+# See slide 33 in http://videolectures.net/iswc09_hayes_blogic/
+# If :A rdfs:range B, then this means that if :C :A :D, then :D a :B .
+(_:X _:Y) log:negativeSurface {
+    _:X rdfs:range _:Y .
+
+    () log:negativeSurface {
+        (_:U _:V) log:negativeSurface {
+            _:U _:X _:V .
+            () log:negativeSurface {
+                _:V rdf:type _:Y .
+            } .
+        } .
+    } .
+} .
