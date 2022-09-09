@@ -11,8 +11,8 @@
     #    ?Y any
     ?X list:last ?Y .
 
-    # E.g. this evaluates to true
-    ( "Huie" "Dewey" "Louie" ) list:last "Louie" .
+    # E.g. this evaluate to true
+    ?X list:last 3 .
 }
 => 
 {   
