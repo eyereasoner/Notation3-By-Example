@@ -3,48 +3,69 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-# Define consumes as a property that persons can do on food
-:consumes 
-    rdfs:domain :Person ;
-    rdfs:range :Food .
+# Foods can be eatable or drinkable
+:Eatable rdfs:subClassOf :Food .
+:Drinkable rdfs:subClassOf :Food .
+
+# Define consumes as a property that persons can do with food
+:consumes rdfs:domain :Person .
 
 # Eating and drinking are examples of such properties
-:eats rdfs:subPropertyOf :consumes .
-:drinks rdfs:subPropertyOf :consumes .
+:eats rdfs:subPropertyOf :consumes ;
+    rdfs:range :Eatable .
+
+:drinks rdfs:subPropertyOf :consumes ;
+    rdfs:range :Drinkable .
 
 # Origin defines the origin of the food 
-:Origin rdfs:subClassOf rdfs:Class .
-
-# We can serve French , Indian and Indonesian food
 :French rdfs:subClassOf :Origin .
 :Indian rdfs:subClassOf :Origin .
 :Indonesian rdfs:subClassOf :Origin .
 
 # Some things can have dietary precautions
-:Dietary rdfs:subClassOf rdfs:Class .
-
-# Things can be halal , haram or kosher
 :Halal rdfs:subClassOf :Dietary .
 :Haram rdfs:subClassOf :Dietary .
 :Kosher rdfs:subClassOf :Dietary .
 
-# NasiGoreng is a halal indonesian dish 
-:NasiGoreng a :Indonesian , :Halal .
+# Food list
+:NasiGoreng a :Eatable , :Indonesian , :Halal .
+:ChickenTikkaMasala a :Eatable , :Indian , :Halal .
+:CoqAuVin a :Eatable , :French , :Haram .
+:Brisket a :Eatable , :Kosher .
+:Wine a :Drinkable , :French , :Haram .
+:Water a :Drinkable , :Halal  , :Kosher .
 
-# Wine is French, but considered haram
-:Wine a :French , :Haram .
+# Food preferences of passengers
 
-# These passengers eat and drink food
-:Alice :eats :NasiGoreng .
+## Alice does Halal
+:Alice a :Person .
+:Alice :diet :Halal .
 
-:Bob :eats :NasiGoreng ;
-     :drinks :Wine .
+## Bob does Halal and Haram and Kosher
+:Bob a :Person .
+:Bob :diet :Halal , :Haram , :Kosher.
 
-:Charly :eats :ChickenTikkaMasala .
+## Charly does Kosher
+:Charly a :Person .
+:Charly :diet :Kosher .
 
-# Alice doesn't do haram food 
-() log:negativeSurface {
-    :Alice :consumes [ a :Haram ] .
+# Start serving food acoording to preferences
+(_:S _:Plate _:Drink _:Type) log:negativeSurface {
+    _:S a :Person .
+    _:S :diet _:Type .
+
+    _:Plate a :Eatable , _:Type .
+    _:Drink a :Drinkable , _:Type .
+
+    () log:negativeSurface {
+        _:S :eats _:Plate .
+        _:S :drinks _:Drink . 
+    } .
+} .
+
+# Find out what we need to serve Alice
+(_:S _:O _:T) log:querySurface {
+    :Alice :consumes _:O .
 } .
 
 ####################################################################
@@ -124,7 +145,6 @@ rdfs:range
 rdfs:subClassOf rdfs:domain rdfs:Class ;
                 rdfs:range rdfs:Class .
 
-
 # rdfs:subPropertyOf 
 #
 #    P rdfs:subPropertyOf Q
@@ -153,12 +173,3 @@ rdfs:subPropertyOf
 ####################################################################
 # END RDFS Definitions                                             # 
 ####################################################################
-
-# Find out who needs to be served special Halal food (who does not do haram food)
-(_:S ) log:querySurface {
-    _:S :consumes [ a :Halal ] .
-
-    () log:negativeSurface {
-        _:S :consumes [ a :Haram ] .
-    } .
-} .
