@@ -1,0 +1,32 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Alice a :Programmer .
+
+# ~Quiche
+() log:negativeSurface {
+    :Alice :eats :Quiche .
+} .
+
+# We want to express:
+#
+#    ~Quiche -> RealProgammer
+#
+#    =:= ~(~Quiche) OR RealProgammer
+#    =:= ~( ~Quiche AND ~RealProgrammer )
+(_:S) log:negativeSurface {
+    _:S a :Programmer .
+
+    () log:negativeSurface {
+        _:S :eats :Quiche .
+    } .
+
+    () log:negativeSurface {
+        _:S a :RealProgrammer .
+    } .
+
+} .
+
+(_:S _:C) log:querySurface {
+    _:S a _:C.
+}.
