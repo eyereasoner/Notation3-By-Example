@@ -12,7 +12,7 @@
 :eats rdfs:subPropertyOf :consumes .
 :drinks rdfs:subPropertyOf :consumes .
 
-# Origin defined the origin of the food 
+# Origin defines the origin of the food 
 :Origin rdfs:subClassOf rdfs:Class .
 
 # We can serve French , Indian and Indonesian food
@@ -30,6 +30,7 @@
 
 # NasiGoreng is a halal indonesian dish 
 :NasiGoreng a :Indonesian , :Halal .
+
 # Wine is French, but considered haram
 :Wine a :French , :Haram .
 
