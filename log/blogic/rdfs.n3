@@ -1,0 +1,163 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# Define consumes as a property that persons can do on food
+:consumes 
+    rdfs:domain :Person ;
+    rdfs:range :Food .
+
+# Eating and drinking are examples of such properties
+:eats rdfs:subPropertyOf :consumes .
+:drinks rdfs:subPropertyOf :consumes .
+
+# Origin defined the origin of the food 
+:Origin rdfs:subClassOf rdfs:Class .
+
+# We can serve French , Indian and Indonesian food
+:French rdfs:subClassOf :Origin .
+:Indian rdfs:subClassOf :Origin .
+:Indonesian rdfs:subClassOf :Origin .
+
+# Some things can have dietary precautions
+:Dietary rdfs:subClassOf rdfs:Class .
+
+# Things can be halal , haram or kosher
+:Halal rdfs:subClassOf :Dietary .
+:Haram rdfs:subClassOf :Dietary .
+:Kosher rdfs:subClassOf :Dietary .
+
+# NasiGoreng is a halal indonesian dish 
+:NasiGoreng a :Indonesian , :Halal .
+# Wine is French, but considered haram
+:Wine a :French , :Haram .
+
+# These passengers eat and drink food
+:Alice :eats :NasiGoreng .
+
+:Bob :eats :NasiGoreng ;
+     :drinks :Wine .
+
+:Charly :eats :ChickenTikkaMasala .
+
+# Alice doesn't do haram food 
+() log:negativeSurface {
+    :Alice :consumes [ a :Haram ] .
+} .
+
+####################################################################
+# START RDFS Definitions                                           # 
+####################################################################
+# rdfs:domain
+# 
+#    P rdfs:domain Q
+#
+#    if 
+#      A P B
+#    then
+#      A a Q
+(_:X _:Y) log:negativeSurface {
+    _:X rdfs:domain _:Y .
+
+    () log:negativeSurface {
+        (_:U _:V) log:negativeSurface {
+            _:U _:X _:V .
+            () log:negativeSurface {
+                _:U rdf:type _:Y .
+            } .
+        } .
+    } .
+} .
+
+rdfs:domain 
+    rdfs:domain rdf:Property ;
+    rdfs:range rdfs:Class .
+
+# rdfs:range
+#
+#    P rdfs:range Q
+# 
+#    if 
+#      A P B
+#    then
+#      B a Q
+(_:X _:Y) log:negativeSurface {
+    _:X rdfs:range _:Y .
+
+    () log:negativeSurface {
+        (_:U _:V) log:negativeSurface {
+            _:U _:X _:V .
+            () log:negativeSurface {
+                _:V rdf:type _:Y .
+            } .
+        } .
+    } .
+} .
+
+rdfs:range 
+    rdfs:domain rdfs:Property ;
+    rdfs:range rdfs:Class .
+
+# rdfs:subClassOf 
+#
+#    P rdfs:subClassOf Q
+# 
+#    if 
+#      A a P
+#    then
+#      A a Q
+(_:X _:Y) log:negativeSurface {
+    _:X rdfs:subClassOf _:Y .
+
+    () log:negativeSurface {
+        (_:U) log:negativeSurface {
+            _:U rdf:type _:X .
+            () log:negativeSurface {
+                _:U rdf:type _:Y.
+            } .
+        } .
+    } .
+} .
+
+rdfs:subClassOf rdfs:domain rdfs:Class ;
+                rdfs:range rdfs:Class .
+
+
+# rdfs:subPropertyOf 
+#
+#    P rdfs:subPropertyOf Q
+# 
+#    if 
+#      A P B
+#    then
+#      A Q B
+(_:X _:Y) log:negativeSurface {
+    _:X rdfs:subPropertyOf _:Y .
+
+    () log:negativeSurface {
+        (_:U _:V) log:negativeSurface {
+            _:U _:X _:V .
+            () log:negativeSurface {
+                _:U _:Y _:V.
+            } .
+        } .
+    } .
+} .
+
+rdfs:subPropertyOf 
+    rdfs:domain rdf:Property ;
+    rdfs:range rdf:Property .
+
+####################################################################
+# END RDFS Definitions                                             # 
+####################################################################
+
+# Find out who needs to be served special Halal food (who does not do haram food)
+(_:S ) log:querySurface {
+    _:S :consumes [ a :Halal ] .
+
+    () log:negativeSurface {
+        _:S :consumes [ a :Haram ] .
+    } .
+} .

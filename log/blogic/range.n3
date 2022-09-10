@@ -28,3 +28,15 @@
         } .
     } .
 } .
+
+(_:S _:O) log:querySurface {
+    _:S :watches _:O .
+} .
+
+(_:S _:O) log:querySurface {
+    _:S :cooks _:O .
+} .
+
+(_:S _:O) log:querySurface {
+    _:S a _:O .
+} .
