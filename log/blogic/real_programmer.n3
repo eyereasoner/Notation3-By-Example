@@ -19,7 +19,7 @@
 #              = ~{ ~{ ~(P AND Q) AND ~( ~P AND ~Q ) } }
 
 # NOT
-(_:S) log:negativeSurface {
+(_:S) log:negativeSurface { 
 
     #NOT
     () log:negativeSurface {
@@ -59,10 +59,18 @@
     } .
 } .
 
+# P (eat quich) -> Q ( you are a programmer)
+#
+# P -> Q = ~ ( P AND ~Q )
 (_:S) log:negativeSurface {
+    # P
     _:S :eats :Quiche .
 
+    # -- implicit AND 
+
+    # NOT
     () log:negativeSurface {
+        # Q
         _:S a :Programmer .
     } .
 } .
