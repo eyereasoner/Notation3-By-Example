@@ -3,26 +3,49 @@
 
 :Alice a :Programmer .
 
+# Choose if Alice eats quiche or not
+# :Alice :eats :Quiche .
+
 # ~Quiche
 () log:negativeSurface {
     :Alice :eats :Quiche .
 } .
 
-# We want to express:
+# We want to express an exclusive disjunction
 #
-#    ~Quiche -> RealProgammer
+#    Quiche <-/-> RealProgammer
 #
-#    =:= ~(~Quiche) OR RealProgammer
-#    =:= ~( ~Quiche AND ~RealProgrammer )
+# only when you don't eat quiche you are a real programmer
+#   
+#    P <-/-> Q = ~{ ( P AND Q ) OR ( ~P AND ~Q ) }
+#              = ~{ ~{ ~(P AND Q) AND ~( ~P AND ~Q ) } }
 (_:S) log:negativeSurface {
-    _:S a :Programmer .
+
+    _:S a :Programmer . # Ignore eye backchaining
 
     () log:negativeSurface {
-        _:S :eats :Quiche .
-    } .
 
-    () log:negativeSurface {
-        _:S a :RealProgrammer .
+        _:S a :Programmer . # Ignore eye backchaining
+
+        () log:negativeSurface {
+            _:S :eats :Quiche .
+
+            _:S a :RealProgammer .
+        }.
+
+        () log:negativeSurface {
+
+            _:S a :Programmer . # Ignore eye backchaining
+
+            () log:negativeSurface {
+                _:S :eats :Quiche .
+            } .
+
+            () log:negativeSurface {
+                _:S a :RealProgammer .
+            }
+        } .
+
     } .
 
 } .
