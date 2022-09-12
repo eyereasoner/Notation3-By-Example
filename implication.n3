@@ -33,7 +33,10 @@
 }
 => 
 {
-    :Alice :does ( ?X ?Y ).
+    :Alice :does ( ?X ?Y ).  
+
+    # :Alice :does ( :Cats :Piano )
+    # :Alice :does ( :Music :Piano ) #(because of the first rule)
 } .
 
 # Or in other query
@@ -44,6 +47,9 @@
 => 
 {
     :Alice :doesPianoAnd ?X .
+
+    # :Alice :doesPianoAnd :Cats 
+    # :Alice :doesPianoAnd :Music #(because of the first rule)
 } .
 
 # Or 
@@ -54,6 +60,9 @@
 => 
 {
     ?Who :doesPianoAnd2 ?What .
+
+    # :Alice :doesPianoAnd2 :Cats 
+    # :Alice :doesPianoAnd2 :Music #(because of the first rule)
 } .
 
 # Test 
