@@ -87,18 +87,13 @@
     } .
 }.
 
-# P (eat quiche) -> Q ( you are a programmer)
+# Q (eat quiche) -> P ( you are a programmer)
 #
-# P -> Q = ~ ( P AND ~Q )
+# Q -> P = ~ ( Q AND ~P )
 (_:S) log:negativeSurface {
-    # P
     _:S :eats :Quiche .
 
-    # -- implicit AND 
-
-    # NOT
     () log:negativeSurface {
-        # Q
         _:S a :Programmer .
     } .
 } .
