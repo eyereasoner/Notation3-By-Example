@@ -61,7 +61,7 @@
 # This is same as
 #     P <-> ~Q
 # and is the same as
-#     ( P -> ~Q ) AND (~Q -> P)
+#     ( P -> ~Q ) AND (~Q -> P) AND ( ~P -> Q ) AND ( Q -> ~ P )
 # P = real programmer
 # Q = eat quiche
 (_:S) log:negativeSurface {
@@ -84,6 +84,28 @@
 
     () log:negativeSurface {
         _:S a :RealProgrammer .
+    } .
+}.
+
+(_:S) log:negativeSurface {
+
+    () log:negativeSurface {
+        _:S a :RealProgrammer .
+    } .
+
+    () log:negativeSurface {
+        _:S :eats :Quiche .
+    } .
+}.
+
+(_:S) log:negativeSurface {
+
+    _:S :eats :Quiche .
+ 
+    () log:negativeSurface {
+        () log:negativeSurface {
+            _:S a :RealProgrammer .
+        } .
     } .
 }.
 
