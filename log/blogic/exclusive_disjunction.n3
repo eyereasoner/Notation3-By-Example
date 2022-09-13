@@ -1,0 +1,40 @@
+@prefix : <urn:example:> .
+@prefix t: <urn:logic:demo:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Alice :is :Racing.
+:Bob :is :Racing.
+
+:Alice a :Winner .
+
+# This should fail
+#:Bob a :Winner .
+
+# An exclusive disjunction P <-/-> Q means that P is true or Q but not botj
+# This is same as
+#     P <-> ~Q
+(_:S) log:negativeSurface {
+
+    () log:negativeSurface {
+
+        () log:negativeSurface {
+            :Alice a :Winner .
+            :Bob a :Winner .
+        } .
+    } .
+}.
+
+(_:S) log:negativeSurface {
+    () log:negativeSurface {
+        :Alice :is :Winner .
+    } .
+
+    () log:negativeSurface {
+        :Bob a :Winner .
+    } .
+}.
+
+(_:S _:O ) log:querySurface {
+    _:S a _:O.
+} .

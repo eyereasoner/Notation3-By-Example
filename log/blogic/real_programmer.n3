@@ -1,80 +1,115 @@
 @prefix : <urn:example:> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
+############################################## 
+# Test 1
+
 # Bob 
 :Bob :eats :Quiche.
+
+# This should fail
+#:Bob a :RealProgrammer .
+
+#
+##############################################
+
+############################################## 
+# Test 2
 
 # Alice doesn't eat Quiche
 () log:negativeSurface {
     :Alice :eats :Quiche .
 } .
 
-# We want to express an exclusive disjunction
-#
-#    Quiche <-/-> RealProgammer
-#
-# only when you don't eat quiche you are a real programmer
-#   
-#    P <-/-> Q = ~{ ( P AND Q ) OR ( ~P AND ~Q ) }
-#              = ~{ ~{ ~(P AND Q) AND ~( ~P AND ~Q ) } }
+# This should fail
+#:Alice :eats :Quiche .
 
-# NOT
-(_:S) log:negativeSurface { 
+#
+##############################################
 
-    #NOT
+############################################## 
+# Test 3
+
+() log:negativeSurface {
+    :Charly a :RealProgrammer .
+} .
+
+#
+##############################################
+
+############################################## 
+# Test 4
+
+() log:negativeSurface {
     () log:negativeSurface {
-
-        # NOT 
-        () log:negativeSurface {
-            # P
-            _:S :eats :Quiche .
-
-            # -- implicit AND 
-
-            # Q
-            _:S a :RealProgammer .
-        }.
-
-        # -- implicit AND
-
-        # NOT
-        () log:negativeSurface {
-
-            # NOT
-            () log:negativeSurface {
-                # P
-                _:S :eats :Quiche .
-            } .
-
-            # -- implicit AND
-
-            # NOT
-            () log:negativeSurface {
-
-                # Q 
-                _:S a :RealProgammer .
-            }
-        } .
-
+        :Dave :eats :Quiche .
     } .
 } .
 
-# P (eat quich) -> Q ( you are a programmer)
+() log:negativeSurface {
+    () log:negativeSurface {
+        () log:negativeSurface {
+            :Estelle a :RealProgrammer.
+        } .
+    } .
+} .
+
 #
-# P -> Q = ~ ( P AND ~Q )
+##############################################
+
+# An exclusive disjunction P <-/-> Q means that P is true or Q but not both
+# This is same as
+#     P <-> ~Q
+# and is the same as
+#     ( P -> ~Q ) AND (~Q -> P)
+# P = real programmer
+# Q = eat quiche
 (_:S) log:negativeSurface {
-    # P
+
+    _:S a :RealProgrammer .
+
+    () log:negativeSurface {
+    
+        () log:negativeSurface {
+            _:S :eats :Quiche  .
+        } .
+    } .
+}.
+
+(_:S) log:negativeSurface {
+
+    () log:negativeSurface {
+        _:S :eats :Quiche .
+    } .
+
+    () log:negativeSurface {
+        _:S a :RealProgrammer .
+    } .
+}.
+
+# Q (eat quiche) -> P ( you are a programmer)
+#
+# Q -> P = ~ ( Q AND ~P )
+(_:S) log:negativeSurface {
     _:S :eats :Quiche .
 
-    # -- implicit AND 
-
-    # NOT
     () log:negativeSurface {
-        # Q
         _:S a :Programmer .
     } .
 } .
 
 (_:S _:C) log:querySurface {
     _:S a _:C.
-}.
+} .
+
+(_:S _:C) log:querySurface {
+    _:S :eats _:C .
+} .
+
+(_:S _:C) log:querySurface {
+    () log:negativeSurface { _:S :eats _:C } .
+} .
+
+(_:S _:C) log:querySurface {
+    () log:negativeSurface { _:S a _:C } .
+} .
