@@ -22,6 +22,8 @@
 #     P <-> ~Q
 # And is the same as
 #     ( P -> ~Q ) AND (~Q -> P) AND ( ~P -> Q ) AND ( Q -> ~ P )
+
+# [1]
 (_:S) log:negativeSurface {
 
     :Alice a :Winner .
@@ -33,6 +35,7 @@
     } .
 }.
 
+# [2]
 (_:S) log:negativeSurface {
     () log:negativeSurface {
         :Bob a :Winner .
@@ -43,6 +46,9 @@
     } .
 }.
 
+# [3] 
+# Remark [2] and [3] are the same only with the order switched. One
+# could keep only one of these rules
 (_:S) log:negativeSurface {
     () log:negativeSurface {
         :Alice a :Winner .
@@ -53,6 +59,7 @@
     } .
 }.
 
+# [4]
 (_:S) log:negativeSurface {
     :Bob a :Winner .
 

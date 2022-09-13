@@ -79,17 +79,6 @@
 (_:S) log:negativeSurface {
 
     () log:negativeSurface {
-        _:S :eats :Quiche .
-    } .
-
-    () log:negativeSurface {
-        _:S a :RealProgrammer .
-    } .
-}.
-
-(_:S) log:negativeSurface {
-
-    () log:negativeSurface {
         _:S a :RealProgrammer .
     } .
 
