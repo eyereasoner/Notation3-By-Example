@@ -37,6 +37,26 @@
 #
 ##############################################
 
+############################################## 
+# Test 4
+
+() log:negativeSurface {
+    () log:negativeSurface {
+        :Dave :eats :Quiche .
+    } .
+} .
+
+() log:negativeSurface {
+    () log:negativeSurface {
+        () log:negativeSurface {
+            :Estelle :eats :Quiche .
+        } .
+    } .
+} .
+
+#
+##############################################
+
 # An exclusive disjunction P <-/-> Q means that P is true or Q but not both
 # This is same as
 #     P <-> ~Q
