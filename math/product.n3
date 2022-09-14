@@ -1,0 +1,25 @@
+@prefix : <urn:example:> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :param (100 10 5) .
+
+{
+    :Let :param ?X .
+
+    # Calculate the product of X 
+    #    X a numberable list
+    #    Y a numberable or a variable
+    ?X math:product ?Y .
+}
+=> 
+{
+    :Let :product ?Y .
+} .
+
+{
+    ?X :product 5000.
+}
+=> 
+{
+    :test :is true .
+} .

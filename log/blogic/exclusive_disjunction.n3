@@ -1,0 +1,79 @@
+@prefix : <urn:example:> .
+@prefix t: <urn:logic:demo:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Alice :is :Racing .
+:Bob :is :Racing .
+
+# Make Bob the loser
+:Alice a :Winner .
+
+# Make Bob a winner
+#() log:negativeSurface {
+#    :Alice a :Winner .
+#} .
+
+# This should fail: we can have only one winner
+#:Bob a :Winner .
+
+# An exclusive disjunction P <-/-> Q means that P is true or Q but not botj
+# This is same as
+#     P <-> ~Q
+# And is the same as
+#     ( P -> ~Q ) AND (~Q -> P) AND ( ~P -> Q ) AND ( Q -> ~ P )
+
+# [1]
+(_:S) log:negativeSurface {
+
+    :Alice a :Winner .
+
+    () log:negativeSurface {
+        () log:negativeSurface {
+            :Bob a :Winner .
+        } .
+    } .
+}.
+
+# [2]
+(_:S) log:negativeSurface {
+    () log:negativeSurface {
+        :Bob a :Winner .
+    } .
+
+    () log:negativeSurface {
+        :Alice a :Winner .
+    } .
+}.
+
+# [3] 
+# Remark [2] and [3] are the same only with the order switched. One
+# could keep only one of these rules
+(_:S) log:negativeSurface {
+    () log:negativeSurface {
+        :Alice a :Winner .
+    } .
+
+    () log:negativeSurface {
+        :Bob a :Winner .
+    } .
+}.
+
+# [4]
+(_:S) log:negativeSurface {
+    :Bob a :Winner .
+
+    () log:negativeSurface {
+        () log:negativeSurface {
+            :Alice a :Winner .
+        } .
+    } .
+}.
+
+(_:S _:O) log:querySurface {
+    _:S a _:O.
+} .
+
+(_:S _:O) log:querySurface {
+    _:S :is _:O.
+} .

@@ -6,21 +6,21 @@
 {
   :Let :number ?X .
 
-  # Calculate the absolute value of X
+  # Calculate the negation value of X
   #    X a numberable 
   #    Y a numberable or a variable
-  ?X math:absoluteValue ?Y .
+  ?X math:negation ?Y .
 
   # E.g. this evaluates to true
-  ?X math:absoluteValue 2 .
+  ?X math:negation 2 .
 }
 => 
 {
-  :Let :absoluteValue ?Y .
+  :Let :negation ?Y .
 } .
 
 {
-    ?X :absoluteValue 2 .
+    ?X :negation 2 .
 }
 => 
 {

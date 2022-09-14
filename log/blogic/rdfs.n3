@@ -1,0 +1,175 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# Foods can be eatable or drinkable
+:Eatable rdfs:subClassOf :Food .
+:Drinkable rdfs:subClassOf :Food .
+
+# Define consumes as a property that persons can do with food
+:consumes rdfs:domain :Person .
+
+# Eating and drinking are examples of such properties
+:eats rdfs:subPropertyOf :consumes ;
+    rdfs:range :Eatable .
+
+:drinks rdfs:subPropertyOf :consumes ;
+    rdfs:range :Drinkable .
+
+# Origin defines the origin of the food 
+:French rdfs:subClassOf :Origin .
+:Indian rdfs:subClassOf :Origin .
+:Indonesian rdfs:subClassOf :Origin .
+
+# Some things can have dietary precautions
+:Halal rdfs:subClassOf :Dietary .
+:Haram rdfs:subClassOf :Dietary .
+:Kosher rdfs:subClassOf :Dietary .
+
+# Food list
+:NasiGoreng a :Eatable , :Indonesian , :Halal .
+:ChickenTikkaMasala a :Eatable , :Indian , :Halal .
+:CoqAuVin a :Eatable , :French , :Haram .
+:Brisket a :Eatable , :Kosher .
+:Wine a :Drinkable , :French , :Haram .
+:Water a :Drinkable , :Halal  , :Kosher .
+
+# Food preferences of passengers
+
+## Alice does Halal
+:Alice a :Person .
+:Alice :diet :Halal .
+
+## Bob does Halal and Haram and Kosher
+:Bob a :Person .
+:Bob :diet :Halal , :Haram , :Kosher.
+
+## Charly does Kosher
+:Charly a :Person .
+:Charly :diet :Kosher .
+
+# Start serving food acoording to preferences
+(_:S _:Plate _:Drink _:Type) log:negativeSurface {
+    _:S a :Person .
+    _:S :diet _:Type .
+
+    _:Plate a :Eatable , _:Type .
+    _:Drink a :Drinkable , _:Type .
+
+    () log:negativeSurface {
+        _:S :eats _:Plate .
+        _:S :drinks _:Drink . 
+    } .
+} .
+
+# Find out what we need to serve Alice
+(_:S _:O _:T) log:querySurface {
+    :Alice :consumes _:O .
+} .
+
+####################################################################
+# START RDFS Definitions                                           # 
+####################################################################
+# rdfs:domain
+# 
+#    P rdfs:domain Q
+#
+#    if 
+#      A P B
+#    then
+#      A a Q
+(_:X _:Y) log:negativeSurface {
+    _:X rdfs:domain _:Y .
+
+    () log:negativeSurface {
+        (_:U _:V) log:negativeSurface {
+            _:U _:X _:V .
+            () log:negativeSurface {
+                _:U rdf:type _:Y .
+            } .
+        } .
+    } .
+} .
+
+rdfs:domain 
+    rdfs:domain rdf:Property ;
+    rdfs:range rdfs:Class .
+
+# rdfs:range
+#
+#    P rdfs:range Q
+# 
+#    if 
+#      A P B
+#    then
+#      B a Q
+(_:X _:Y) log:negativeSurface {
+    _:X rdfs:range _:Y .
+
+    () log:negativeSurface {
+        (_:U _:V) log:negativeSurface {
+            _:U _:X _:V .
+            () log:negativeSurface {
+                _:V rdf:type _:Y .
+            } .
+        } .
+    } .
+} .
+
+rdfs:range 
+    rdfs:domain rdfs:Property ;
+    rdfs:range rdfs:Class .
+
+# rdfs:subClassOf 
+#
+#    P rdfs:subClassOf Q
+# 
+#    if 
+#      A a P
+#    then
+#      A a Q
+(_:X _:Y) log:negativeSurface {
+    _:X rdfs:subClassOf _:Y .
+
+    () log:negativeSurface {
+        (_:U) log:negativeSurface {
+            _:U rdf:type _:X .
+            () log:negativeSurface {
+                _:U rdf:type _:Y.
+            } .
+        } .
+    } .
+} .
+
+rdfs:subClassOf rdfs:domain rdfs:Class ;
+                rdfs:range rdfs:Class .
+
+# rdfs:subPropertyOf 
+#
+#    P rdfs:subPropertyOf Q
+# 
+#    if 
+#      A P B
+#    then
+#      A Q B
+(_:X _:Y) log:negativeSurface {
+    _:X rdfs:subPropertyOf _:Y .
+
+    () log:negativeSurface {
+        (_:U _:V) log:negativeSurface {
+            _:U _:X _:V .
+            () log:negativeSurface {
+                _:U _:Y _:V.
+            } .
+        } .
+    } .
+} .
+
+rdfs:subPropertyOf 
+    rdfs:domain rdf:Property ;
+    rdfs:range rdf:Property .
+
+####################################################################
+# END RDFS Definitions                                             # 
+####################################################################

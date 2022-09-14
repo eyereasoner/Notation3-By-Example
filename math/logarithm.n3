@@ -1,0 +1,31 @@
+@prefix : <urn:example:> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :param (100 10) .
+
+{
+    :Let :param ?X .
+
+    # Calculate the logaritm of X in a base
+    #    ( X1 X2 ) a numberable or a variable
+    #    Y a numberable or a variable
+    ?X math:logarithm ?Y .
+
+    # This evaluates to Z1 = 10
+    ( 100 ?Z1 ) math:logarithm 2.0 .
+
+    # This evaluates to Z2 = 100
+    #( ?Z2 10 ) math:logarithm 2.0 .
+}
+=> 
+{
+    :Let :logarithm (?Y ?Z1) .
+} .
+
+{
+    ?X :logarithm (2.0 10.0).
+}
+=> 
+{
+    :test :is true .
+} .

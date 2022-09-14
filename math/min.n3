@@ -1,0 +1,25 @@
+@prefix : <urn:example:> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :param (3 1 80 28 10) .
+
+{
+    :Let :param ?X .
+
+    # Calculate minimum of a list X as Y
+    #    X a list of numberable
+    #    Y a numberable or a variable
+    ?X math:min ?Y .
+}
+=> 
+{
+    :Let :min ?Y .
+} .
+
+{
+    ?X :min 1 .
+}
+=> 
+{
+    :test :is true .
+} .

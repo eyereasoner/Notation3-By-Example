@@ -1,0 +1,77 @@
+@prefix : <urn:example:> .
+
+:Alice :likes :Cats ;
+       :plays :Piano .
+
+# A material implication works like an if->then
+#    P -> Q
+# If P then Q
+{
+    ?Person :plays :Piano .
+}
+=>
+{
+    ?Person :likes :Music .
+} .
+
+# A converse implication works like a kind of a definition 
+#     P <- Q
+# Not Q without P 
+{
+    ( ?X ?Y ) :likesXplaysY ?Person .
+}
+<=
+{
+    ?Person :likes ?X .
+    ?Person :plays ?Y .
+} .
+
+# This converse implication you can use now in other rules
+# Find out what Alice likes and plays
+{
+    ( ?X ?Y ) :likesXplaysY :Alice .
+}
+=> 
+{
+    :Alice :does ( ?X ?Y ).  
+
+    # :Alice :does ( :Cats :Piano )
+    # :Alice :does ( :Music :Piano ) #(because of the first rule)
+} .
+
+# Or in other query
+# What does Alice do besides playing piano?
+{
+    ( ?X :Piano ) :likesXplaysY :Alice .
+}
+=> 
+{
+    :Alice :doesPianoAnd ?X .
+
+    # :Alice :doesPianoAnd :Cats 
+    # :Alice :doesPianoAnd :Music #(because of the first rule)
+} .
+
+# Or 
+# Who does play the piano and likes What
+{
+    ( ?What :Piano ) :likesXplaysY ?Who .
+}
+=> 
+{
+    ?Who :doesPianoAnd2 ?What .
+
+    # :Alice :doesPianoAnd2 :Cats 
+    # :Alice :doesPianoAnd2 :Music #(because of the first rule)
+} .
+
+# Test 
+{
+    :Alice :does ( :Cats :Piano ) , ( :Music :Piano ) ;
+        :doesPianoAnd :Cats , :Music ;
+        :doesPianoAnd2 :Cats , :Music .
+}
+=>
+{
+    :test :is true .
+} .

@@ -1,0 +1,25 @@
+@prefix : <urn:example:> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :param (22 7) .
+
+{
+    :Let :param ?X .
+
+    # Calculate the remainder of X 
+    #    ( X1 X2 ) a numberable or a variable
+    #    Y a numberable or a variable
+    ?X math:remainder ?Y .
+}
+=> 
+{
+    :Let :remainder ?Y .
+} .
+
+{
+    ?X :remainder 1.
+}
+=> 
+{
+    :test :is true .
+} .

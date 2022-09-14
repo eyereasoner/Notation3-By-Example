@@ -1,0 +1,42 @@
+@prefix : <urn:example:> .
+@prefix t: <urn:logic:demo:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Alice :is :Breathing .
+
+:Bob :is :Alive .
+
+# This should fail
+#() log:negativeSurface {
+#    :Bob :is :Breathing .
+#} .
+
+# A biconditions P <-> Q is true when P if and only if Q
+# This is same as
+#    ( P -> Q ) AND ( Q -> P )
+(_:S) log:negativeSurface {
+
+    _:S :is :Breathing .
+
+    () log:negativeSurface {
+        _:S :is :Alive .
+    } .
+}.
+
+(_:S) log:negativeSurface {
+
+    _:S :is :Alive .
+
+    () log:negativeSurface {
+        _:S :is :Breathing .
+    } .
+}.
+
+() log:querySurface {
+    _:S :is :Breathing .
+} .
+
+() log:querySurface {
+    _:S :is :Alive .
+} .
