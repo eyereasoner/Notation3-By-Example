@@ -22,6 +22,8 @@
     _:x _:b _:y .
 
     # Search for a cardinality Counter 
+    # ...actually this means for any log:GraphCounter you 
+    # can find this must be true.
     _:Counter a log:GraphCounter .
 
     { _:x _:b _:o } _:Counter _:c .
