@@ -1,6 +1,5 @@
 @prefix : <urn:example:> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
-@prefix func: <http://www.w3.org/2007/rif-builtin-function#>.
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 
@@ -40,7 +39,7 @@
         _:Graph :cardinalCount _:Count .
     } .
     ( () _:Graph _:List ) log:collectAllIn _:Scope .
-    (_:List) func:count _:Count .
+    _:List list:length _:Count .
 } .
 
 (_:S _:X) log:querySurface {
