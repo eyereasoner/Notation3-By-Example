@@ -1,0 +1,50 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix func: <http://www.w3.org/2007/rif-builtin-function#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+
+:HasCardinalityCheck owl:onProperty :name .
+:HasCardinalityCheck owl:cardinality 3 .
+
+:P1 :name "Patrick" .
+:P1 :name "Christian" .
+:P1 :name "Herman" .
+
+:P2 :name "Stefanie" .
+:P2 :name "Elizabeth" .
+
+# Check for a cardinality
+(_:a _:b _:c _:x _:y) log:negativeSurface {
+    _:a owl:onProperty _:b.
+    _:a owl:cardinality _:c.
+
+    _:x _:b _:y .
+
+    # Search for a cardinality Counter 
+    _:Counter a log:GraphCounter .
+
+    { _:x _:b _:o } _:Counter _:c .
+    
+    () log:negativeSurface {
+       _:x a _:a.
+    }.
+}.
+
+# This is a local implementation of a log:GraphCounter
+:cardinalCount a log:GraphCounter .
+(_:Graph _:Count) log:negativeSurface {
+    ( ) log:querySurface {
+        _:Graph :cardinalCount _:Count .
+    } .
+    ( () _:Graph _:List ) log:collectAllIn _:Scope .
+    (_:List) func:count _:Count .
+} .
+
+(_:S _:X) log:querySurface {
+    _:S a _:X .
+} .
+
+(_:S _:X) log:querySurface {
+    _:S :name _:X .
+} .
