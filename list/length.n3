@@ -1,0 +1,28 @@
+@prefix : <urn:example:> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param ( 1 2 3 ) .
+
+{
+    :Let :param ?X .
+
+    # Returns the length of a list X
+    #    ?X a list 
+    #    ?Y a numerable
+    ?X list:length ?Y .
+
+    # E.g. this evaluate to true
+    #?X list:last 3 .
+}
+=> 
+{   
+    ?X :length ?Y .
+} .
+
+{
+    ?X :length 3 .
+}
+=> 
+{
+    :test :is true .
+} .
