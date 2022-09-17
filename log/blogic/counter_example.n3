@@ -1,0 +1,33 @@
+@prefix : <urn:example:> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+# Test to find if there can be rdf:values that can have value 5
+
+# Start with one
+:Test rdf:value 0. 
+
+# This is a counter example 
+(_:X) log:negativeSurface {
+   # This fails
+   # _:X rdf:value 5 .
+
+   # This works
+   :Test rdf:value 5 .
+} . 
+
+(_:G _:X _:Y) log:negativeSurface {
+    _:G rdf:value _:X .
+
+    ( _:X 1 ) math:sum _:Y .
+    
+    () log:negativeSurface  {
+        _:G rdf:value _:Y.
+    } .
+} .
+
+(_:S _:O) log:querySurface {
+    _:S rdf:value _:O .
+} .
