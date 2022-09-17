@@ -4,18 +4,20 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix math: <http://www.w3.org/2000/10/swap/math#> .
 
-# Test to find if there can be rdf:values that can have value 5
+# Test to find if any consecutive numbers never will be greather than 100
 
 # Start with one
 :Test rdf:value 0. 
 
 # This is a counter example 
-(_:X) log:negativeSurface {
-   # This fails
-   # _:X rdf:value 5 .
+(_:X _:Y) log:negativeSurface {
+    _:X rdf:value _:Y .
 
-   # This works
-   :Test rdf:value 5 .
+    () log:negativeSurface {
+        () log:negativeSurface {
+            _:Y math:greaterThan 100.
+        }
+    } .
 } . 
 
 (_:G _:X _:Y) log:negativeSurface {
