@@ -1,0 +1,28 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+## Uncommenting one of these below should create a contradiction
+#:Alice :loves :Wine .
+#:Alice :likes :Beer .
+
+## There is nothing that Alice loves
+(_:What) log:negativeSurface {
+    :Alice :loves _:What  .
+    () log:negativeSurface {
+        () log:negativeSurface {
+            :Alice :loves _:What .
+        }
+    } .
+} .
+
+() log:negativeSurface {
+    :Alice :likes :Beer .
+    () log:negativeSurface {
+        :Alice :loves :Wine .
+    } .
+} .
+
+(_:S _:O) log:querySurface {
+    _:S :loves _:O .
+} .
+
