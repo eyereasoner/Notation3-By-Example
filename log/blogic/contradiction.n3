@@ -8,8 +8,8 @@
     :Alice :loves :Wine .
     # An empty graph in N3 means true
     # We thus say:
-    #    ¬(Alice loves Wine) ∧ ¬true ) 
-    #       = ¬(Alice loves Win) ∨ true
+    #    ¬((Alice loves Wine) ∧ ¬true ) 
+    #       = ¬(Alice loves Wine) ∨ true
     #       = true
     () log:negativeSurface {} .
 } .
