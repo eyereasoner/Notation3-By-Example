@@ -40,3 +40,18 @@
 (_:S _:O) log:querySurface {
     _:S a _:O .
 } .
+
+# Test 
+() log:negativeSurface {
+    :Spaghetti a :Food .
+    :Lasagne a :Food .
+    :Friends a :TVSeries .
+    :Supranos a :TVSeries .
+    () log:negativeSurface {
+        :test :is true .
+    }
+} .
+
+() log:querySurface {
+    :test :is true .
+} .

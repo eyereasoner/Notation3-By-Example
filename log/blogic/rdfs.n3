@@ -173,3 +173,17 @@ rdfs:subPropertyOf
 ####################################################################
 # END RDFS Definitions                                             # 
 ####################################################################
+
+# Test 
+() log:negativeSurface {
+    :Alice :consumes :NasiGoreng , :ChickenTikkaMasala , :Water .
+    :Bob :consumes :NasiGoreng , :ChickenTikkaMasala , :CoqAuVin , :Brisket , :Water , :Wine .
+    :Charly :consumes :Brisket , :Water .
+    () log:negativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:querySurface {
+    :test :is true .
+} .

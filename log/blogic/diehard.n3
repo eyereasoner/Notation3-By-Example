@@ -1,0 +1,196 @@
+@prefix : <urn:example:> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+# In the movie Die Hard, the heros must obtain exactly 4 gallons
+# of water using a 5 gallon jug, a 3 gallon jug, and a water faucet.
+#
+# Example from Leslie Lamport
+#
+# https://github.com/tlaplus/Examples/blob/master/specifications/DieHard/DieHard.tla
+:Start rdf:value 
+    << :small rdf:value 0 >> ,
+    << :big rdf:value 0 >> ;
+    rdfs:next :Next .
+
+# We need to find a counter example of the big jar having 4 gallons...
+(_:G _:X) log:negativeSurface {
+    _:G rdf:value << :big rdf:value _:X >> .
+
+    () log:negativeSurface {
+        () log:negativeSurface {
+            _:X math:equalTo 4 .
+        }
+    } .
+} .
+
+## Fill small
+(_:Small _:Big _:G _:S) log:negativeSurface {
+    _:G rdf:value << :small rdf:value _:Small >> ,
+                  << :big rdf:value _:Big >> ;
+        rdfs:next _:S.
+
+    ( 3 _:Big ) log:skolem _:Next .
+
+    () log:negativeSurface {
+        _:S rdf:value << :small rdf:value 3 >> , << :big rdf:value _:Big >>  .
+        _:S rdfs:next _:Next .
+    } .
+} .
+
+### Fill big
+(_:Small _:Big _:G _:S) log:negativeSurface {
+    _:G rdf:value << :small rdf:value _:Small >> ,
+                  << :big rdf:value _:Big >> ;
+        rdfs:next _:S.
+
+    ( _:Small 5 ) log:skolem _:Next .
+
+    () log:negativeSurface {
+        _:S rdf:value << :small rdf:value _:Small >> , << :big rdf:value 5 >>  .
+        _:S rdfs:next _:Next .
+    } .
+}.
+
+###  Empty Small
+(_:Small _:Big _:G _:S) log:negativeSurface {
+    _:G rdf:value << :small rdf:value _:Small >> ,
+                  << :big rdf:value _:Big >> ;
+        rdfs:next _:S.
+
+    ( 0 _:Big ) log:skolem _:Next .
+
+    () log:negativeSurface {
+        _:S rdf:value << :small rdf:value 0 >> , << :big rdf:value _:Big >>  .
+        _:S rdfs:next _:Next .
+    } .
+}.
+
+###  Empty Big
+(_:Small _:Big _:G _:S) log:negativeSurface {
+    _:G rdf:value << :small rdf:value _:Small >> ,
+                  << :big rdf:value _:Big >> ;
+        rdfs:next _:S.
+
+    ( _:Small 0 ) log:skolem _:Next .
+
+    () log:negativeSurface {
+        _:S rdf:value << :small rdf:value _:Small >> , << :big rdf:value 0 >>  .
+        _:S rdfs:next _:Next .
+    } .
+}.
+
+### Small to Big
+(_:Small _:Big _:G _:S) log:negativeSurface {
+    _:G rdf:value << :small rdf:value _:Small >> ,
+                  << :big rdf:value _:Big >> ;
+        rdfs:next _:S.
+
+    (_:Small _:Big) math:sum _:Sum .
+
+    () log:negativeSurface {
+
+        () log:negativeSurface {
+
+            _:Sum math:lessThan 5 .
+
+            ( _:Sum _:Big ) math:min _:A .
+            ( _:Small _:Sum ) math:min _:Diff .
+
+            ( _:Diff _:Sum ) log:skolem _:Next .
+
+            () log:negativeSurface {
+                _:S rdf:value << :small rdf:value _:Diff >> , << :big rdf:value _:Sum >>  .
+                _:S rdfs:next _:Next .
+            } .
+        } .
+    } .
+}.
+
+(_:Small _:Big _:G _:S) log:negativeSurface {
+    _:G rdf:value << :small rdf:value _:Small >> ,
+                  << :big rdf:value _:Big >> ;
+        rdfs:next _:S.
+
+    (_:Small _:Big) math:sum _:Sum .
+
+    () log:negativeSurface {
+
+        () log:negativeSurface {
+
+            _:Sum math:greaterThan 4 .
+
+            ( 5 _:Big ) math:min _:A .
+            ( _:Small _:A ) math:min _:Diff .
+
+            ( _:Diff 5 ) log:skolem _:Next .
+
+            () log:negativeSurface {
+                _:S rdf:value << :small rdf:value _:Diff >> , << :big rdf:value 5 >>  .
+                _:S rdfs:next _:Next .
+            } .
+        } .
+    } .
+}.
+
+### Big to Small
+(_:Small _:Big _:G _:S) log:negativeSurface {
+    _:G rdf:value << :small rdf:value _:Small >> ,
+                  << :big rdf:value _:Big >> ;
+        rdfs:next _:S.
+
+    (_:Small _:Big) math:sum _:Sum .
+
+    () log:negativeSurface {
+
+         () log:negativeSurface {
+
+            _:Sum math:lessThan 3 . 
+
+            ( _:Sum _:Small ) math:min _:A .
+            ( _:Big _:A ) math:min _:Diff .
+
+            ( _:Sum _:Diff ) log:skolem _:Next .
+
+            () log:negativeSurface {
+                _:S rdf:value << :small rdf:value _:Sum >> , << :big rdf:value _:Diff >>  . 
+                _:S rdfs:next _:Next .
+            } .
+         } .
+    } .
+} .
+
+(_:Small _:Big _:G _:S) log:negativeSurface {
+    _:G rdf:value << :small rdf:value _:Small >> ,
+                  << :big rdf:value _:Big >> ;
+        rdfs:next _:S.
+
+    (_:Small _:Big) math:sum _:Sum .
+
+    () log:negativeSurface {
+
+         () log:negativeSurface {
+            _:Sum math:greaterThan 2 .
+
+            ( 3 _:Small ) math:min _:A .
+            ( _:Big _:A ) math:min _:Diff .
+
+            ( 3 _:Diff ) log:skolem _:Next .
+
+            () log:negativeSurface {
+                _:S rdf:value << :small rdf:value 3 >> , << :big rdf:value _:Diff >>  .
+                _:S rdfs:next _:Next .
+            } .
+         } .
+    } .
+}.
+
+(_:S _:O) log:querySurface {
+    _:S rdf:value _:O .
+} .
+
+#(_:S _:O) log:querySurface {
+#    _:S rdfs:next _:O .
+#} .

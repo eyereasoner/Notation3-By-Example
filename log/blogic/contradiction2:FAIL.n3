@@ -2,7 +2,7 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 ## Uncommenting one of these below should create a contradiction
-#:Alice :loves :Wine .
+:Alice :loves :Wine .
 #:Alice :likes :Beer .
 
 ## There is nothing that Alice loves

@@ -49,3 +49,16 @@
 (_:S _:O) log:querySurface {
     _:S :sibling  _:O . 
 } .
+
+# Test
+() log:negativeSurface {
+    :Alice :sibling :Charly .
+    :Hans :sibling :Agnes .
+    () log:negativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:querySurface {
+    :test :is true .
+} .

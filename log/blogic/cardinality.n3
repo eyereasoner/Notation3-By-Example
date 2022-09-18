@@ -42,10 +42,22 @@
     _:List list:length _:Count .
 } .
 
+# Test
+() log:negativeSurface {
+    :P1 a :HasCardinalityCheck .
+    () log:negativeSurface {
+        :test :is true .
+    } .
+} .
+
 (_:S _:X) log:querySurface {
     _:S a _:X .
 } .
 
 (_:S _:X) log:querySurface {
     _:S :name _:X .
+} .
+
+() log:querySurface {
+    :test :is true .
 } .
