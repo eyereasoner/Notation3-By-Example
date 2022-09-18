@@ -12,12 +12,9 @@
 # This is a counter example 
 (_:X _:Y) log:negativeSurface {
     _:X rdf:value _:Y .
+    _:Y math:greaterThan 100.
 
-    () log:negativeSurface {
-        () log:negativeSurface {
-            _:Y math:greaterThan 100.
-        }
-    } .
+    () log:negativeSurface false .
 } . 
 
 (_:G _:X _:Y) log:negativeSurface {
