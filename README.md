@@ -7,7 +7,7 @@ The Notation3 built-ins are still a part of current specification development. D
 
 The examples are based on two lists of Notation3 built-ins:
 
-- https://w3c.github.io/N3/files/builtin_spec.html
+- https://w3c.github.io/N3/files/builtins.html
 - https://w3c.github.io/N3/spec/#builtins
 
 The examples only use built-ins for which at least one example was found in the [EYE](https://github.com/josd/eye) or [jen3](https://github.com/william-vw/jen3) or [CWM](https://github.com/sbp/cwm) project 
