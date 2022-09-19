@@ -4,7 +4,8 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix math: <http://www.w3.org/2000/10/swap/math#> .
 
-# Test to find if any consecutive numbers never will be greather than 100
+# Someone claims that one can't count to more than 100
+# Find a counter example
 
 # Start with one
 :Test rdf:value 0. 
