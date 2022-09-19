@@ -33,10 +33,15 @@
     } .
 }.
 
-() log:querySurface {
-    _:S :is :Breathing .
+# Test
+() log:negativeSurface {
+    :Alice :is :Alive .
+    :Bob   :is :Breathing .
+    () log:negativeSurface {
+          :test :is true .
+    } .
 } .
 
-() log:querySurface {
-    _:S :is :Alive .
+(_:O) log:querySurface {
+    _:S :is _:O .
 } .

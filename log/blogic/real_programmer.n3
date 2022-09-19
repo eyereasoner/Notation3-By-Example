@@ -124,3 +124,19 @@
 (_:S _:C) log:querySurface {
     () log:negativeSurface { _:S a _:C } .
 } .
+
+# Test
+() log:negativeSurface {
+    :Alice a :RealProgrammer .
+    :Bob a :Programmer .
+    :Charly a :Programmer .
+    :Dave a :Programmer .
+    :Estelle a :Programmer .
+    () log:negativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:querySurface {
+    :test :is true .
+} .

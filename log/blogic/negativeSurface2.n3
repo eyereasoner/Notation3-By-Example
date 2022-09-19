@@ -41,3 +41,15 @@
 (_:S _:O) log:querySurface {
     _:S :likes _:O . 
 } .
+
+# Test
+() log:negativeSurface {
+    :Alice :likes :Bob .
+    () log:negativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:querySurface {
+    :test :is true .
+} .

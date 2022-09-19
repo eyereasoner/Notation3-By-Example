@@ -1,0 +1,33 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Alice :loves :Wine .
+
+# This should not give a contradiction
+() log:negativeSurface {
+    :Alice :loves :Wine .
+    # An empty graph in N3 means true
+    # We thus say:
+    #    ¬((Alice loves Wine) ∧ ¬true ) 
+    #       = ¬(Alice loves Wine) ∨ true
+    #       = true
+    () log:negativeSurface {} .
+} .
+
+(_:S _:O) log:querySurface {
+    _:S :loves _:O .
+} .
+
+# Test
+() log:negativeSurface {
+    :Alice :loves :Wine .
+    () log:negativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:querySurface {
+    :test :is true .
+} .
+
+

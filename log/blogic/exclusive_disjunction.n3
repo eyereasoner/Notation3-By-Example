@@ -70,10 +70,25 @@
     } .
 }.
 
+# Test 
+() log:negativeSurface {
+    :Alice a :Winner ;
+        :is :Racing .
+    :Bob :is :Racing .
+
+    () log:negativeSurface {
+        :test :is true .
+    } .
+} .
+
 (_:S _:O) log:querySurface {
     _:S a _:O.
 } .
 
 (_:S _:O) log:querySurface {
     _:S :is _:O.
+} .
+
+() log:querySurface {
+    :test :is true .
 } .
