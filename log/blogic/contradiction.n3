@@ -4,29 +4,29 @@
 :Alice :loves :Wine .
 
 # This should not give a contradiction
-() log:negativeSurface {
+() log:onNegativeSurface {
     :Alice :loves :Wine .
     # An empty graph in N3 means true
     # We thus say:
     #    ¬((Alice loves Wine) ∧ ¬true ) 
     #       = ¬(Alice loves Wine) ∨ true
     #       = true
-    () log:negativeSurface {} .
+    () log:onNegativeSurface {} .
 } .
 
-(_:S _:O) log:querySurface {
+(_:S _:O) log:onQuerySurface {
     _:S :loves _:O .
 } .
 
 # Test
-() log:negativeSurface {
+() log:onNegativeSurface {
     :Alice :loves :Wine .
-    () log:negativeSurface {
+    () log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-() log:querySurface {
+() log:onQuerySurface {
     :test :is true .
 } .
 

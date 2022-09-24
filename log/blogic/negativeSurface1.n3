@@ -8,12 +8,12 @@
 :Mary :sibling :Agnes .
 
 # (_:X _:Y) is like For all X and Y) within the surface
-# log:negativeSurface claims the RDF graph on the surface
+# log:onNegativeSurface claims the RDF graph on the surface
 # is false.
 #
 # To have a NOT in a logic is quite powerfull. The implication
 # P -> Q is equivalent to ~P OR Q . Keeping this in mind
-# we can construct implication from negativeSurfaces.
+# we can construct implication from onNegativeSurfaces.
 #
 # E.g. using De Morgan's laws
 #
@@ -23,42 +23,42 @@
 #
 # ( P -> Q ) <=> ~( P AND ~Q ) 
 #
-# Which means we can nest log:negativeSurface to express P -> Q
+# Which means we can nest log:onNegativeSurface to express P -> Q
 #   
 # What in N3 was:
 #    { ?X a ?Y } => { ?Y a :Test } .
 # is in blogic
-#    (_:X _:Y) log:negativeSurface {
+#    (_:X _:Y) log:onNegativeSurface {
 #       _:X a _:Y .
-#       () log:negativeSurface  {
+#       () log:onNegativeSurface  {
 #           _:Y a :Test .
 #       } .
 #    } .
-(_:X _:Y _:Z) log:negativeSurface {
+(_:X _:Y _:Z) log:onNegativeSurface {
     _:X :sibling _:Y .
     _:Y :sibling _:Z .
 
-    () log:negativeSurface {
+    () log:onNegativeSurface {
         _:X :sibling _:Z .
     } .
 } .
 
 # Filter out what to see in the output 
-# ( _:P _:O ) is for all P and O in log:querySurface 
+# ( _:P _:O ) is for all P and O in log:onQuerySurface 
 # return only the triples matching 
-(_:S _:O) log:querySurface {
+(_:S _:O) log:onQuerySurface {
     _:S :sibling  _:O . 
 } .
 
 # Test
-() log:negativeSurface {
+() log:onNegativeSurface {
     :Alice :sibling :Charly .
     :Hans :sibling :Agnes .
-    () log:negativeSurface {
+    () log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-() log:querySurface {
+() log:onQuerySurface {
     :test :is true .
 } .
