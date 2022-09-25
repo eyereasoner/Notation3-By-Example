@@ -37,7 +37,7 @@
 
 # Test 
 (_:x) log:onNegativeSurface {
-    :Wodan a :FalseGod .
+    :Moradin a :FalseGod .
     _:x a :TrueGod .
     () log:onNegativeSurface {
         :test :is true .
