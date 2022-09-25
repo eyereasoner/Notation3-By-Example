@@ -5,7 +5,7 @@
 :Mordakin a :God .
 
 # We introduce a positive surface (as a negative as negative surface).
-# On this surface we introduce a god (_:x) of any God is not equal 
+# On this surface we introduce a god (_:x). If any God is not equal 
 # to this god, we burn the fuse.
 () log:onNegativeSurface {
     (_:x) log:onNegativeSurface {
