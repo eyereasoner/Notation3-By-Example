@@ -2,20 +2,22 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # The test will fail if we introduce a new God
-:Moradin a :God .
+:Mordakin a :God .
 
-# Creating a God in the second negative surface and demanding 
-# that every God should be equal to this one God.
-# ∃ x : x a God  ->  ∃ y : y a God -> x = y
-(_:x) log:onNegativeSurface {
-    _:x a :God .
+# We introduce a positive surface (as a negative as negative surface).
+# On this surface we introduce a god (_:x) of any God is not equal 
+# to this god, we burn the fuse.
+() log:onNegativeSurface {
+    (_:x) log:onNegativeSurface {
+        _:x a :God .
 
-    (_:y) log:onNegativeSurface {
-        _:y a :God .
+        (_:y) log:onNegativeSurface {
+            _:y a :God .
 
-        () log:onNegativeSurface {
-            _:x log:equalTo _:y .
-        } . 
+            _:x log:notEqualTo _:y .
+
+            () log:onNegativeSurface false .
+        } .
     } .
 } .
 
