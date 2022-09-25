@@ -42,6 +42,6 @@
     } .
 } .
 
-(_:O) log:querySurface {
+(_:S _:O) log:querySurface {
     _:S :is _:O .
 } .
