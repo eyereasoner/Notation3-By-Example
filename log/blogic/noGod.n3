@@ -3,7 +3,7 @@
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
 # We introduce a positive surface (a negagative of a negative surface)
-# to add a new God on the surface. Then we count home many there are 
+# to add a new God on the surface. Then we count how many there are 
 # and if there is just one, we know we didn't have a God on the original
 # surface.
 () log:onNegativeSurface {
