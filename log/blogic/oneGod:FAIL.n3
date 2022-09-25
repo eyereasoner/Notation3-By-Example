@@ -1,0 +1,26 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# The test will fail if we introduce a new God
+:Wodan a :God .
+
+# A positive surface is a negative of a negative surface.
+# We can demonstrate this by introducting a God on a positive
+# service and demand this is the only God.
+#
+# ∃ x : x a God  ->  ∃ y : y a God -> x = y
+(_:x) log:onNegativeSurface {
+    _:x a :God .
+
+    (_:y) log:onNegativeSurface {
+        _:y a :God .
+
+        () log:onNegativeSurface {
+            _:x log:equalTo _:y .
+        } . 
+    } .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    _:S a _:O .
+} .
