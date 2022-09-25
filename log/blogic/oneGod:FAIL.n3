@@ -4,10 +4,8 @@
 # The test will fail if we introduce a new God
 :Wodan a :God .
 
-# A positive surface is a negative of a negative surface.
-# We can demonstrate this by introducting a God on a positive
-# service and demand this is the only God.
-#
+# Creating a God in the second negative surface and demanding 
+# that every God should be equal to this one God.
 # ∃ x : x a God  ->  ∃ y : y a God -> x = y
 (_:x) log:onNegativeSurface {
     _:x a :God .
