@@ -28,7 +28,7 @@ _:x a :PastaEater ;
 # Test
 
 () log:onNegativeSurface {
-    _:x a :PastaEater, :RiceEater , :RiceEater .
+    _:x a :PastaEater, :RiceEater , :RisottoEater .
     () log:onNegativeSurface {
         :test :is true .
     } .
