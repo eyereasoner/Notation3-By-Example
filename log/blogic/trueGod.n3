@@ -4,7 +4,7 @@
 # We introduce a new God
 :Moradin a :God .
 
-# A negative surface of a negative surface is a positive surface.
+# A negative surface of a negative surface is the implicit positive surface.
 # On this positive surface we introduce a 'True God'. Any god that is
 # different from this 'True God' is a 'False God'.
 () log:onNegativeSurface {
