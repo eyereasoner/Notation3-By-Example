@@ -1,0 +1,49 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# We introduce a new God
+:Moradin a :God .
+
+# A negative surface of a negative surface is a positive surface.
+# On this positive surface we introduce a 'True God'. Any god that is
+# different from this 'True God' is a 'False God'.
+() log:onNegativeSurface {
+    (_:x) log:onNegativeSurface {
+        _:x a :God .
+
+        (_:y) log:onNegativeSurface { 
+            _:y a :God .
+
+            _:x log:equalTo _:y .
+            () log:onNegativeSurface {
+                _:y a :TrueGod .
+            } .
+        } .
+
+        (_:y) log:onNegativeSurface { 
+            _:y a :God .
+
+            _:x log:notEqualTo _:y .
+            () log:onNegativeSurface {
+                _:y a :FalseGod .
+            } .
+        } .
+    } .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    _:S a _:O .
+} .
+
+# Test 
+(_:x) log:onNegativeSurface {
+    :Wodan a :FalseGod .
+    _:x a :TrueGod .
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .

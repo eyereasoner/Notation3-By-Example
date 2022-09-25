@@ -1,0 +1,50 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+# We introduce a positive surface (a negagative of a negative surface)
+# to add a new God on the surface. Then we count home many there are 
+# and if there is just one, we know we didn't have a God on the original
+# surface.
+() log:onNegativeSurface {
+    (_:x) log:onNegativeSurface {
+        _:x a :God .
+
+        (_:y _:Counter) log:onNegativeSurface { 
+
+            # See: cardinality.n3
+            _:Counter a log:GraphCounter .
+            { _:y a :God } _:Counter 1.
+
+            () log:onNegativeSurface {
+                <> a :MissingGodTest .
+            } .
+        } .
+    } .
+} .
+
+# This is a local implementation of a log:GraphCounter
+:cardinalCount a log:GraphCounter .
+(_:Graph _:Count _:List _:Scope) log:onNegativeSurface {
+    ( ) log:onQuerySurface {
+        _:Graph :cardinalCount _:Count .
+    } .
+    ( () _:Graph _:List ) log:collectAllIn _:Scope .
+    _:List list:length _:Count .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    _:S a _:O .
+} .
+
+# Test 
+(_:x) log:onNegativeSurface {
+    _:x a :MissingGodTest .
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .

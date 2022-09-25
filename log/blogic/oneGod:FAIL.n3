@@ -2,7 +2,7 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # The test will fail if we introduce a new God
-:Wodan a :God .
+:Moradin a :God .
 
 # Creating a God in the second negative surface and demanding 
 # that every God should be equal to this one God.
