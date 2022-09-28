@@ -11,7 +11,7 @@
 
 ### Context provides the context of the user who wants to access the knowledge base
 
-- `Context.n3` provides an example how to defined a Public and Friend context
+- `Context.n3` provides an example how to define a Public and Friend context
   
 ### Query are documents that filter out the fields to show from the results
 
