@@ -14,7 +14,7 @@
     () log:onNegativeSurface {
         # We write the triples on a result surface
         () log:onResultSurface {
-            _:S _:P _:O .
+            _:S _:P _:O {| log:ohyeah :Policy_2 |} .
         } .
     } .
-} {| :name "Policy 2" |}.
+} {| :name :Policy_2 |}.
