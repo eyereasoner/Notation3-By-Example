@@ -1,0 +1,20 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# Policy 2 : a Friend gets to see all the data
+(_:Login _:S _:P _:O) log:onNegativeSurface {
+    () log:onAccessSurface {
+        _:Login a :Friend .
+    } .
+
+    _:S a foaf:Person .
+    _:S _:P _:O .
+
+    () log:onNegativeSurface {
+        # We write the triples on a result surface
+        () log:onResultSurface {
+            _:S _:P _:O .
+        } .
+    } .
+} {| :name "Policy 2" |}.

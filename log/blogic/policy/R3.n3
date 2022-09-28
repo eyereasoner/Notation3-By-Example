@@ -1,0 +1,8 @@
+@prefix : <urn:example:> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+:Person2 
+    a foaf:Person ;
+    foaf:name "Bob" ;
+    foaf:telephone <urn:tel:0213-3123-1231> ;
+    foaf:email <mail:bob@somewhere.org> .

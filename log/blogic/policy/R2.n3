@@ -1,0 +1,6 @@
+@prefix : <urn:example:> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+:Address1 
+    foaf:streetName :FarlaneRoad ;
+    foaf:city :FarField .
