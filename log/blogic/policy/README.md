@@ -42,7 +42,7 @@ eye --nope --quiet --blogic log/blogic/policy/*.n3
 () log:onResultSurface {<urn:example:Person1> foaf:telephone <urn:tel:0012-1219-212-121>}.
 () log:onResultSurface {<urn:example:Person1> foaf:email <mail:alice@somewhere.org>}.
 () log:onResultSurface {<urn:example:Person1> foaf:address <urn:example:Address1>}.
-() log:onResultSurface {<urn:example:Person1> <urn:example:inLoveWith> <urn:example:Bob>}.
+() log:onResultSurface {<urn:example:Person1> <urn:example:inLoveWith> <urn:example:Person2>}.
 () log:onResultSurface {<urn:example:Person2> a foaf:Person}.
 () log:onResultSurface {<urn:example:Person2> foaf:name "Bob"}.
 () log:onResultSurface {<urn:example:Person2> foaf:telephone <urn:tel:0213-3123-1231>}.
