@@ -16,7 +16,7 @@
     #    }
     #} .
 
-    ## But this not?
+    ## And this also (!)
     (_:x) log:onPositiveSurface {
         _:x a :EvenNumber .
     } .
