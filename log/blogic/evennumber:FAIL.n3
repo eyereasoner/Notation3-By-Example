@@ -4,6 +4,8 @@
 
 2 a :NaturalNumber , :EvenNumber .
 
+# ( x a NaturalNumber AND x : 2 = 0 ) -> NOT( x a EvenNumber )
+# This should be a contradiction when x is an even number
 (_:x) log:onNegativeSurface {
     _:x a :NaturalNumber . 
 
