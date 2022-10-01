@@ -1,0 +1,32 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+2 a :NaturalNumber , :EvenNumber .
+
+# (x a NaturalNumber) -> (x + 1 a NaturalNumber)
+(_:x) log:onNegativeSurface {
+    _:x a :NaturalNumber . 
+
+    (_:x 2) math:remainder 0 .
+
+    ## This burns the fuse
+    #() log:onNegativeSurface {
+    #    (_:x) log:onNegativeSurface {
+    #        _:x a :EvenNumber .
+    #    }
+    #} .
+
+    ## But this not?
+    (_:x) log:onPositiveSurface {
+        _:x a :EvenNumber .
+    } .
+} .
+
+(_:x) log:onQuerySurface {
+    _:x a :NaturalNumber .
+} .
+
+(_:x) log:onQuerySurface {
+    _:x a :EvenNumber .
+} .
