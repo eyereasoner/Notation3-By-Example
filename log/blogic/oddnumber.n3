@@ -5,13 +5,11 @@
 10 a :NaturalNumber .
 
 # All x : (X a EvenNumber) OR (X a OddNumber)
-#      |    |
-#      v  & v  <= these z1,2 shouldn't be needed  
-(_:x _:z1 _:z2) log:onNegativeSurface {
-    _:z1 log:onNegativeSurface {
+(_:x) log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:x a :EvenNumber .
     } .
-    _:z2 log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:x a :OddNumber .
     } .
 } . 
@@ -35,15 +33,11 @@
 
     (_:x 2) math:remainder 0 .
 
-    # TODO, produces a skolem like
-    # _:sk_25 log:onNegativeSurface {10 a <urn:example:OddNumber>}.
-    # I would expect
-    # () log:onNegativeSurface {10 a <urn:example:OddNumber>}.
     () log:onPositiveSurface {
         _:x a :OddNumber .
     } .
 
-    ## This works fine
+    ## Or alternative implementation
     #() log:onNegativeSurface {
     #    () log:onNegativeSurface {
     #        _:x a :OddNumber .
