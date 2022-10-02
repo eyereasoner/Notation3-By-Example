@@ -1,0 +1,71 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+10 a :NaturalNumber .
+
+# All x : (X a EvenNumber) OR (X a OddNumber)
+#      |    |
+#      v  & v  <= these z1,2 shouldn't be needed  
+(_:x _:z1 _:z2) log:onNegativeSurface {
+    _:z1 log:onNegativeSurface {
+        _:x a :EvenNumber .
+    } .
+    _:z2 log:onNegativeSurface {
+        _:x a :OddNumber .
+    } .
+} . 
+
+# All x,y : (X a NaturalNumber) ->  (y = x-1, y > 0 a NaturalNumber)
+(_:x _:y) log:onNegativeSurface {
+    _:x a :NaturalNumber .
+
+    (_:x -1 ) math:sum _:y .
+
+    _:y math:greaterThan 0 .
+
+    () log:onNegativeSurface {
+        _:y a :NaturalNumber .
+    } .
+} . 
+
+# All x : (X a NaturalNumber) -> ( x : 2 = 0 , not(X a OddNumber) )
+(_:x) log:onNegativeSurface {
+    _:x a :NaturalNumber .
+
+    (_:x 2) math:remainder 0 .
+
+    # TODO, produces a skolem like
+    # _:sk_25 log:onNegativeSurface {10 a <urn:example:OddNumber>}.
+    # I would expect
+    # () log:onNegativeSurface {10 a <urn:example:OddNumber>}.
+    () log:onPositiveSurface {
+        _:x a :OddNumber .
+    } .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    _:S a _:O .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    () log:onNegativeSurface {
+        _:S a _:O .
+    }
+} .
+
+# Test
+() log:onNegativeSurface {
+    10 a :EvenNumber .
+    8 a :EvenNumber .
+    6 a :EvenNumber .
+    4 a :EvenNumber .
+    2 a :EvenNumber .
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
