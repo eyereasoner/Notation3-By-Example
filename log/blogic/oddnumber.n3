@@ -42,6 +42,13 @@
     () log:onPositiveSurface {
         _:x a :OddNumber .
     } .
+
+    ## This works fine
+    #() log:onNegativeSurface {
+    #    () log:onNegativeSurface {
+    #        _:x a :OddNumber .
+    #    }
+    #} .
 } .
 
 (_:S _:O) log:onQuerySurface {
