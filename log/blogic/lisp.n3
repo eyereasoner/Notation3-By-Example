@@ -4,14 +4,8 @@
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
 :Prog1 :value
-    (:first 
-        (:first 
-            (:rest 
-                (:and 
-                    ({:A a :B } {:C a :D } {:E a :F })
-                ) 
-            )
-        )
+    (:cons 
+         (:quote { :a a :b} ) ({ :a a :c })
     ) .
 
 # Compile
@@ -25,10 +19,6 @@
     } .
 } .
 
-# X :eval Y
-#  X a list (X1 X2 ... XN)
-#       where X1 a function
-#  Y the result of applying X1 on (X2 .. XN)
 (_:L1 _:L2 _:H _:R _:Inner) log:onNegativeSurface {
     () log:onQuerySurface {
         _:L1 :eval _:L2 .
@@ -36,7 +26,7 @@
 
     _:L1 log:rawType rdf:List .
 
-    # Calculate the H(ead) and R(est
+    # Calculate the H(ead) and R(est)
     _:L1 list:first _:H .
     ( (_:H) _:R ) list:append _:L1 .
 
@@ -46,7 +36,6 @@
     _:R _:H _:L2 .
 } .
 
-# Return the value when the L1 is not a list
 (_:L1 _:L2 _:Type) log:onNegativeSurface {
     () log:onQuerySurface {
         _:L1 :eval _:L2 .
@@ -56,7 +45,6 @@
     _:L1 log:equalTo _:L2 .
 } .
 
-# Reuturn the value when the fist of L1 is not a uri
 (_:L1 _:L2 _:H _:R _:Answer _:Type) log:onNegativeSurface {
     () log:onQuerySurface {
         _:L1 :eval _:L2 .
@@ -79,30 +67,88 @@
 # "built-ins"                                               #
 #############################################################
 
-# :and
+# :quote
 (_:L1 _:L2) log:onNegativeSurface {
     () log:onQuerySurface {
-        (_:L1) :and _:L2 .
+        (_:L1) :quote _:L2 .
     } .
-    _:L1 log:conjunction _:L2 .
+    _:L1 log:equalTo _:L2 .
 } .
 
-# :first
+# :atom
 (_:L1 _:L2 _:X) log:onNegativeSurface {
     () log:onQuerySurface {
-        (_:L1) :first _:L2 .
+        _:L1 :atom true .
+    } .
+    _:L1 :eval _:X .
+    _:X log:rawType log:Formula . 
+} .
+
+(_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1) :atom false .
+    } .
+    _:L1 :eval _:X .
+    _:X log:rawType _:Y . 
+    _:Y log:notEqualTo log:Formula .
+} .
+
+# :eq
+(_:L1 _:L2 _:L3 _:X _:Y) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1 _:L2) :eq true .
+    } .
+    _:L1 :eval _:X .
+    _:L2 :eval _:Y .
+    _:X :atom true .
+    _:X log:equalTo _:Y .
+} .
+
+(_:L1 _:L2 _:L3 _:X _:Y) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1 _:L2) :eq false .
+    } .
+    _:L1 :eval _:X .
+    _:L2 :eval _:Y .
+    _:X :atom false .
+} .
+
+(_:L1 _:L2 _:L3 _:X _:Y) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1 _:L2) :eq false .
+    } .
+    _:L1 :eval _:X .
+    _:L2 :eval _:Y .
+    _:X log:notEqualTo _:Y .
+} .
+
+# :car
+(_:L1 _:L2 _:X) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1) :car _:L2 .
     } .
     _:L1 :eval _:X .
     _:X list:first _:L2 .
 } .
 
-# :rest
-(_:L1 _:X _:L2) log:onNegativeSurface {
+# :cdr
+(_:L1 _:X _:Y _:L2) log:onNegativeSurface {
     () log:onQuerySurface {
-        (_:L1) :rest _:L2 .
+        (_:L1) :cdr _:L2 .
     } .
-    _:L1 list:first _:X .
-    ( (_:X) _:L2 ) list:append _:L1 .
+    _:L1 :eval _:X .
+    _:X list:first _:Y .
+    ( (_:Y) _:L2 ) list:append _:X .
+} .
+
+# :cons
+(_:L1 _:X _:Y _:L2 _:L3) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1 _:L2) :cons _:L3 .
+    } .
+    _:L1 :eval _:X .
+    _:L2 :eval _:Y .
+    ( (_:X) _:Y ) list:append _:L3 .
 } .
 
 (_:S _:O) log:onQuerySurface {
