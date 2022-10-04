@@ -4,7 +4,7 @@
 # The test will fail if we introduce a new God
 :Mordakin a :God .
 
-# We write on a positive surface. On this surface we introduce a god (_:x). 
+# We write on the positive surface, and we introduce a god (_:x). 
 # If any God is not equal to this god, we burn the fuse.
 (_:x) log:onPositiveSurface {
     _:x a :God .
