@@ -4,8 +4,15 @@
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
 :Prog1 :value
-  ( :and ({:A a :B } {:C a :D } {:E a :F }) 
-  ) .
+    (:first 
+        (:first 
+            (:rest 
+                (:and 
+                    ({:A a :B } {:C a :D } {:E a :F })
+                ) 
+            )
+        )
+    ) .
 
 # Compile
 (_:Name _:Prog _:Answer) log:onNegativeSurface {
@@ -35,16 +42,11 @@
 
     _:H log:rawType log:Other .
 
-    # Evaluate the body
-     _:R _:H _:Inner .
-
-    # Evaluate the rest
-    _:Inner :eval _:L2 .
+    # Evaluate first the inner
+    _:R _:H _:L2 .
 } .
 
-# X :eval Y
-#  X a Formula
-#  Y return the formula
+# Return the value when the L1 is not a list
 (_:L1 _:L2 _:Type) log:onNegativeSurface {
     () log:onQuerySurface {
         _:L1 :eval _:L2 .
@@ -54,14 +56,16 @@
     _:L1 log:equalTo _:L2 .
 } .
 
+# Reuturn the value when the fist of L1 is not a uri
 (_:L1 _:L2 _:H _:R _:Answer _:Type) log:onNegativeSurface {
     () log:onQuerySurface {
         _:L1 :eval _:L2 .
     } .
 
     _:L1 log:rawType rdf:List .
-    _:L1 list:first _:H .
 
+    # Calculate the H(ead) and R(est)
+    _:L1 list:first _:H .
     ( (_:H) _:R ) list:append _:L1 .
 
     _:H log:rawType _:Type .
@@ -84,11 +88,12 @@
 } .
 
 # :first
-(_:L1 _:L2) log:onNegativeSurface {
+(_:L1 _:L2 _:X) log:onNegativeSurface {
     () log:onQuerySurface {
         (_:L1) :first _:L2 .
     } .
-    _:L1 list:first _:L2 .
+    _:L1 :eval _:X .
+    _:X list:first _:L2 .
 } .
 
 # :rest
