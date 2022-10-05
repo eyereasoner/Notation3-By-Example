@@ -1,0 +1,61 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# A OR B
+#  |= ~( ~A OR ~B )
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
+        :A a :Fish .
+    } .
+    () log:onNegativeSurface {
+        :B a :Mussle .
+    } .
+} .
+
+# ( A OR B ) -> ( C OR D )
+#  |= ~( (A OR B) AND ~(C OR D))
+#  |= ~( ~(~A AND ~B) AND ~( ~( ~C AND ~D) )
+#  |= ~( ~(~A AND ~B) AND (~C AND ~D) )
+() log:onNegativeSurface {
+    # This the (A OR B) part.
+    () log:onNegativeSurface {
+        () log:onNegativeSurface {
+            :A a :Fish .
+        } .
+        () log:onNegativeSurface {
+            :B a :Mussle .
+        } . 
+    } .
+    # This is the implied ( C OR D )
+    () log:onPositiveSurface {
+        () log:onNegativeSurface {
+            :C a :Freeze .
+        } .
+        () log:onNegativeSurface {
+            :D a :Thaw .
+        } . 
+    } .
+} .
+
+# Test
+# ( C OR D ) -> (test is true)
+#  |= ~( (C OR D) AND ~(test is true) )
+#  |= ~( ~( ~C AND ~D) AND ~(test is true) )
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
+        () log:onNegativeSurface {
+            :C a :Freeze .
+        } .
+        () log:onNegativeSurface {
+            :D a :Thaw .
+        } . 
+    } . 
+    # OR 
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
