@@ -17,7 +17,7 @@
 #  |= ~( ~(~A AND ~B) AND ~( ~( ~C AND ~D) )
 #  |= ~( ~(~A AND ~B) AND (~C AND ~D) )
 () log:onNegativeSurface {
-    # This the (A OR B) part.
+    # This is the (A OR B) part.
     () log:onNegativeSurface {
         () log:onNegativeSurface {
             :A a :Fish .
@@ -58,4 +58,23 @@
 
 () log:onQuerySurface {
     :test :is true .
+} .
+
+# Debug
+(_:X1 _:X2 _:X3 _:X4) log:onNegativeSurface {
+    () log:onNegativeSurface {
+        () log:onNegativeSurface {
+            _:X1 a _:X2 .
+        } .
+        () log:onNegativeSurface {
+            _:X3 a _:X4 .
+        } . 
+    } .  
+    () log:onNegativeSurface {
+        { _:X1 a _:X2 } :OR { _:X3 a _:X4 } .
+    } .
+} .
+
+(_:G1 _:G2) log:onQuerySurface {
+    _:G1 :OR _:G2 .
 } .
