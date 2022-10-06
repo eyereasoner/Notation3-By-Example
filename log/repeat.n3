@@ -1,0 +1,25 @@
+@prefix : <urn:example:> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    # Make a a for-loop ..
+    #   X a variable or numberable
+    #   Y a variable or numberable
+    4 log:repeat ?I .
+}
+=>
+{
+    :test :number ?I .
+} .
+
+{   
+    :test :number 0 .
+    :test :number 1 .
+    :test :number 2 .
+    :test :number 3 .
+}
+=> 
+{
+    :test :is true .
+} .
