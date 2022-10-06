@@ -1,0 +1,25 @@
+@prefix : <urn:example:> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param ( 1 2 3 ) .
+
+{
+    :Let :param ?X .
+
+    # Retrieves the tails elements of a list X
+    #    ?X a list 
+    #    ?Y a list
+    ?X list:rest ?Y .
+}
+=> 
+{   
+    ?X :rest ?Y .
+} .
+
+{
+    ?X :rest (2 3) .
+}
+=> 
+{
+    :test :is true .
+} .

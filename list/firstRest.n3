@@ -1,0 +1,28 @@
+@prefix : <urn:example:> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param ( 1 2 3 ) .
+
+{
+    :Let :param ?X .
+
+    # Retrieves the first and rest elements of a list X
+    #    ?X a list 
+    #    ?Y a list
+    ?X list:firstRest ?Y .
+
+    # E.g. this evaluates to true
+    ( :a :b :c ) list:firstRest ( :a (:b :c) ).
+}
+=> 
+{   
+    ?X :firstRest ?Y .
+} .
+
+{
+    ?X :firstRest (1 (2 3)) .
+}
+=> 
+{
+    :test :is true .
+} .

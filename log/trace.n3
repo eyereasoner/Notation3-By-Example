@@ -1,0 +1,27 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Alice a :Person .
+
+{
+    ?Who a :Person .
+
+    # Trace does nothing but printing debug information
+    # on stderr. Traces can be printed more than once due to internal
+    # processing effects N3 rules
+    #   X a blank node 
+    #   Y a list of things to output
+    [] log:trace (
+        1
+        (2 3)
+        "Hello world" 
+        ?Who 
+        { :A a :B } 
+        _:x
+        ($ "A" "B" "C" $)
+        ) .
+}
+=> 
+{
+    :test :is true .
+} .

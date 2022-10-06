@@ -4,7 +4,7 @@
 # We introduce a new God
 :Moradin a :God .
 
-# On a new positive surface we introduce a 'True God'. Any god that is
+# On the positive surface we introduce a 'True God'. Any god that is
 # different from this 'True God' is a 'False God'.
 (_:x) log:onPositiveSurface {
     _:x a :God .

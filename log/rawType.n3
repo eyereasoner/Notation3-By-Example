@@ -16,6 +16,8 @@
     ($ "A" "B" "C" $) log:rawType ?Y7 .
     # RDF-star
     << :Cats :love :Fish >> log:rawType ?Y8 .
+    true log:rawType ?Y9 .
+    false log:rawType ?Y10 .
 }
 => 
 { 
@@ -27,6 +29,8 @@
     ( 42 43 ) :rawType ?Y6 .
     ($ "A" "B" "C" $) :rawType ?Y7 .
     << :Cats :love :Fish >> :rawType ?Y8 .
+    true :rawType ?Y9 .
+    false :rawType ?Y10 .
 } .
 
 {
@@ -37,6 +41,8 @@
     ( 42 43 ) :rawType rdf:List .
     ($ "A" "B" "C" $) :rawType log:Set .
     << :Cats :love :Fish >> :rawType log:Formula .
+    true :rawType log:Literal .
+    false :rawType log:Literal .
 }
 => 
 {

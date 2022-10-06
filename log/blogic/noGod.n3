@@ -2,8 +2,8 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
-# On a new positive surface we introduce a new God. Then we count how 
-# many Gods there are on the implicite surface and if there is just one, 
+# On the positive surface we introduce a new God. Then we count how 
+# many Gods there are on the implicit surface and if there is just one, 
 # we know we didn't have a God on the original surface.
 (_:x) log:onPositiveSurface {
     _:x a :God .
