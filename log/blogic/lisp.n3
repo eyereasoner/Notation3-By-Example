@@ -3,6 +3,8 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
+# Small demonstrator of a lispy kind of interpreter in blogic
+# Here you can write a small program
 :Prog1 :value
     (:car
         (:cdr 
@@ -12,6 +14,26 @@
         )
     ) .
 
+# This is to display the output of your program
+(_:S _:O) log:onQuerySurface {
+    _:S :result _:O .
+} .
+
+# Test
+( _:S _:O) log:onNegativeSurface {
+    _:S :result { :a a :c } .
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
+
+# START BLOGIC Stuff------------------------------------------------------------
+# This is still work in progress
+
 # Compile
 (_:Name _:Prog _:Answer) log:onNegativeSurface {
     _:Name :value _:Prog .
@@ -19,7 +41,7 @@
     _:Prog :eval _:Answer .
 
     () log:onNegativeSurface {
-        :test :is _:Answer .
+        _:Name :result _:Answer .
     } .
 } .
 
@@ -153,10 +175,4 @@
     ( (_:X) _:Y ) list:append _:L3 .
 } .
 
-(_:S _:O) log:onQuerySurface {
-    _:S :is _:O .
-} .
-
-(_:S _:O) log:onQuerySurface {
-    _:S :value _:O .
-} .
+# END BLOGIC Stuff--------------------------------------------------------------
