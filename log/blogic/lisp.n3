@@ -4,8 +4,12 @@
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
 :Prog1 :value
-    (:cons 
-         (:quote { :a a :b} ) ({ :a a :c })
+    (:car
+        (:cdr 
+            (:cons 
+                 (:quote {:a a :b} ) ({ :a a :c })
+            )
+        )
     ) .
 
 # Compile
@@ -27,8 +31,7 @@
     _:L1 log:rawType rdf:List .
 
     # Calculate the H(ead) and R(est)
-    _:L1 list:first _:H .
-    ( (_:H) _:R ) list:append _:L1 .
+    _:L1 list:firstRest ( _:H _:R ) .
 
     _:H log:rawType log:Other .
 
@@ -53,8 +56,7 @@
     _:L1 log:rawType rdf:List .
 
     # Calculate the H(ead) and R(est)
-    _:L1 list:first _:H .
-    ( (_:H) _:R ) list:append _:L1 .
+    _:L1 list:firstRest ( _:H _:R ).
 
     _:H log:rawType _:Type .
 
@@ -137,8 +139,8 @@
         (_:L1) :cdr _:L2 .
     } .
     _:L1 :eval _:X .
-    _:X list:first _:Y .
-    ( (_:Y) _:L2 ) list:append _:X .
+
+    _:X list:firstRest ( _:Y _:L2 ) .
 } .
 
 # :cons
