@@ -3,7 +3,7 @@
 
 :Ghent a :City .
 
-# All _:S that is a city , holds _:S a HumanCommunity AND _:S a :Settlement
+# There is an _:S that is a city implies _:S a HumanCommunity AND _:S a :Settlement
 ( (_:S) { _:S a :City } ) :implies { _:S a :HumanCommunity } , { _:S a :Settlement } .
 
 (_:S _:O) log:onQuerySurface {
