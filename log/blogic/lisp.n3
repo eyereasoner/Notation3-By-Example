@@ -1,0 +1,178 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+# Small demonstrator of a lispy kind of interpreter in blogic
+# Here you can write a small program
+:Prog1 :value
+    (:car
+        (:cdr 
+            (:cons 
+                 (:quote {:a a :b} ) ({ :a a :c })
+            )
+        )
+    ) .
+
+# This is to display the output of your program
+(_:S _:O) log:onQuerySurface {
+    _:S :result _:O .
+} .
+
+# Test
+( _:S _:O) log:onNegativeSurface {
+    _:S :result { :a a :c } .
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
+
+# START BLOGIC Stuff------------------------------------------------------------
+# This is still work in progress
+
+# Compile
+(_:Name _:Prog _:Answer) log:onNegativeSurface {
+    _:Name :value _:Prog .
+
+    _:Prog :eval _:Answer .
+
+    () log:onNegativeSurface {
+        _:Name :result _:Answer .
+    } .
+} .
+
+(_:L1 _:L2 _:H _:R _:Inner) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:L1 :eval _:L2 .
+    } .
+
+    _:L1 log:rawType rdf:List .
+
+    # Calculate the H(ead) and R(est)
+    _:L1 list:firstRest ( _:H _:R ) .
+
+    _:H log:rawType log:Other .
+
+    # Evaluate first the inner
+    _:R _:H _:L2 .
+} .
+
+(_:L1 _:L2 _:Type) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:L1 :eval _:L2 .
+    } .
+    _:L1 log:rawType _:Type .
+    _:Type log:notEqualTo rdf:List .
+    _:L1 log:equalTo _:L2 .
+} .
+
+(_:L1 _:L2 _:H _:R _:Answer _:Type) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:L1 :eval _:L2 .
+    } .
+
+    _:L1 log:rawType rdf:List .
+
+    # Calculate the H(ead) and R(est)
+    _:L1 list:firstRest ( _:H _:R ).
+
+    _:H log:rawType _:Type .
+
+    _:Type log:notEqualTo log:Other .
+
+    _:L1 log:equalTo _:L2 .
+} .
+
+#############################################################
+# "built-ins"                                               #
+#############################################################
+
+# :quote
+(_:L1 _:L2) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1) :quote _:L2 .
+    } .
+    _:L1 log:equalTo _:L2 .
+} .
+
+# :atom
+(_:L1 _:L2 _:X) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:L1 :atom true .
+    } .
+    _:L1 :eval _:X .
+    _:X log:rawType log:Formula . 
+} .
+
+(_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1) :atom false .
+    } .
+    _:L1 :eval _:X .
+    _:X log:rawType _:Y . 
+    _:Y log:notEqualTo log:Formula .
+} .
+
+# :eq
+(_:L1 _:L2 _:L3 _:X _:Y) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1 _:L2) :eq true .
+    } .
+    _:L1 :eval _:X .
+    _:L2 :eval _:Y .
+    _:X :atom true .
+    _:X log:equalTo _:Y .
+} .
+
+(_:L1 _:L2 _:L3 _:X _:Y) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1 _:L2) :eq false .
+    } .
+    _:L1 :eval _:X .
+    _:L2 :eval _:Y .
+    _:X :atom false .
+} .
+
+(_:L1 _:L2 _:L3 _:X _:Y) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1 _:L2) :eq false .
+    } .
+    _:L1 :eval _:X .
+    _:L2 :eval _:Y .
+    _:X log:notEqualTo _:Y .
+} .
+
+# :car
+(_:L1 _:L2 _:X) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1) :car _:L2 .
+    } .
+    _:L1 :eval _:X .
+    _:X list:first _:L2 .
+} .
+
+# :cdr
+(_:L1 _:X _:Y _:L2) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1) :cdr _:L2 .
+    } .
+    _:L1 :eval _:X .
+
+    _:X list:firstRest ( _:Y _:L2 ) .
+} .
+
+# :cons
+(_:L1 _:X _:Y _:L2 _:L3) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L1 _:L2) :cons _:L3 .
+    } .
+    _:L1 :eval _:X .
+    _:L2 :eval _:Y .
+    ( (_:X) _:Y ) list:append _:L3 .
+} .
+
+# END BLOGIC Stuff--------------------------------------------------------------
