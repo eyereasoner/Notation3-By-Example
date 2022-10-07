@@ -33,7 +33,7 @@
     } . 
     () log:onNegativeSurface {
         (_:X2) log:onNegativeSurface {
-            _:X2 :contains :Alcohol .
+            _:X2 :contains :Alcohol . # This is the extra rule that makes the Question work (josd)
             _:X2 a :French .
 
             () log:onNegativeSurface {
