@@ -6,11 +6,11 @@
 :Croissant a :French, :Bread .
 
 # ∀ x : ( x a Wine ) -> ( x contains Alcohol )
-(?X) log:onNegativeSurface {
-    ?X a :Wine .
+(_:X) log:onNegativeSurface {
+    _:X a :Wine .
 
     () log:onNegativeSurface {
-        ?X :contains :Alcohol .
+        _:X :contains :Alcohol .
     } .
 } .
 
@@ -23,20 +23,20 @@
 #         ( ( x a Wine ) -> ( x contains Alcohol ) )  ->
 #         ( ( x a French ) -> ( x needs ImportTax ) )
 #  ) 
-(?X) log:onNegativeSurface {
-    (?X) log:onNegativeSurface {
-        ?X a :Wine .
+(_:X) log:onNegativeSurface {
+    (_:X) log:onNegativeSurface {
+        _:X a :Wine .
 
         () log:onNegativeSurface {
-            ?X :contains :Alcohol .
+            _:X :contains :Alcohol .
         } .
     } . 
-    (?X) log:onNegativeSurface {
-        (?X) log:onNegativeSurface {
-            ?X a :French .
+    () log:onNegativeSurface {
+        (_:X) log:onNegativeSurface {
+            _:X a :French .
 
             () log:onNegativeSurface {
-                ?X :needs :ImportTax .
+                _:X :needs :ImportTax .
             } .
         } . 
     } .
