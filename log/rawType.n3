@@ -14,8 +14,10 @@
     ( 42 43 ) log:rawType ?Y6 .
     # ($ ... $) is a notation for a log:Set (still decidable if this is part of the spec)
     ($ "A" "B" "C" $) log:rawType ?Y7 .
-    true log:rawType ?Y8 .
-    false log:rawType ?Y9 .
+    # RDF-star
+    << :Cats :love :Fish >> log:rawType ?Y8 .
+    true log:rawType ?Y9 .
+    false log:rawType ?Y10 .
 }
 => 
 { 
@@ -26,8 +28,9 @@
     { :Socrates a :Human } :rawType ?Y5 .
     ( 42 43 ) :rawType ?Y6 .
     ($ "A" "B" "C" $) :rawType ?Y7 .
-    true :rawType ?Y8 .
-    false :rawType ?Y9 .
+    << :Cats :love :Fish >> :rawType ?Y8 .
+    true :rawType ?Y9 .
+    false :rawType ?Y10 .
 } .
 
 {
@@ -37,6 +40,7 @@
     { :Socrates a :Human } :rawType log:Formula .
     ( 42 43 ) :rawType rdf:List .
     ($ "A" "B" "C" $) :rawType log:Set .
+    << :Cats :love :Fish >> :rawType log:Formula .
     true :rawType log:Literal .
     false :rawType log:Literal .
 }
