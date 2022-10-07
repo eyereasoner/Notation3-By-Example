@@ -1,0 +1,123 @@
+@prefix : <urn:example:> .
+
+# Examples form Dörthe Arndt "Implicit quantification made explicit"
+
+:A a :B , :C. 
+
+:Kurt :knows :Alice .
+
+:Kurt :thinks { :Alice :is :Pretty } .
+
+# A blank node means an existential
+#  If something is a B, then there is something 
+#  (maybe else) that is a B-able
+{
+    [] a :B .
+}
+=>
+{
+    # vv-* this is a new blank node
+      [] :is :Bable . 
+} .
+
+# A blank node can also be named an its scope is limited to
+# the parent premisse.
+#  { SCOPE-A } => { SCOPE-B }
+{
+    _:x a :C .
+}
+=>
+{
+    # vvv-* this is a new blank node, not _:x in the premisse
+      _:x :is :Cable .
+} .
+
+# A question mark means universal. Its scope
+# is the *parent* premisse and conclusion. See next example
+#  Everyone that Kurt knows also knows Kurt 
+{
+    :Kurt :knows ?W .
+}
+=> 
+{
+    ?W :knows :Kurt .
+} . 
+
+# When there is a combination of existentials
+# and universals, then the universal is always
+# interpreted outside the scope of the existentials
+#
+# For everyone (y) there is someone (x) that thinks
+# that he/she (a member of y) is pretty.
+#
+# and not
+#
+# There is someone (x) that thinks everyone (y) is
+# pretty.
+#
+# The scope of ?y is the outer graph plus conclusion
+{
+    _:x :thinks { ?y :is :Pretty } .
+}
+=> 
+{
+    ?y :isThoughtAs :Pretty .
+} .
+
+# When existentials are nested the scope is limited
+# to the contaiment graph. E.g.
+#
+# There is someone (_:x1) that thinks something other
+# (_:x2) is Pretty.
+#
+# And not
+#
+# There is someone (_:x) that thinks for her/himself
+# that he/she is pretty. 
+{
+    _:x :thinks { _:x :is :Pretty } .
+}
+=>
+{
+    [] :containsPretty true .
+} .
+
+# A statement
+:ChateauxGreysac a :French , :Wine .
+:Badenhortst a :SouthAfrican , :Wine .
+:Croissant a :French, :Bread .
+
+# A rule
+{ ?X a :Wine } => { ?X :contains :Alcohol } .
+
+# Reasoning about rules..
+# One can reason about rules in N3. How should the
+# universal ?X be interpreted in the example below?
+# Is the scope of ?X in the examples below is limited
+# to the inner implications? Or to the outer premisse
+# and conclusion. The answer depends on the 
+# implementation and was the core of Arndt-s research
+{  
+    # The ?X here is or not bounded to ...
+    { ?X a :Wine } => { ?X :contains :Alcohol } 
+}
+=> 
+{
+    # ..the ?X-s here?
+    { ?X a :French } => { ?X :needs :ImportTax }
+} .
+
+# Test
+{
+    [] :is :Bable .
+    [] :is :Cable .
+    :Alice :knows :Kurt .
+    :Alice :isThoughtAs :Pretty .
+    [] :containsPretty true .
+
+    # Don't test the rules about rules
+}
+=>
+{
+    :test :is true .
+} .

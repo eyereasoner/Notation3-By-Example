@@ -1,5 +1,8 @@
 #!/bin/bash
 
+OK=0
+FAILED=0
+
 if [ "$1" == "clean" ]; then
     rm *.out 2> /dev/null
     for n3 in crypto graph list log log/blogic math string time ; do
@@ -28,9 +31,14 @@ for f in $(find . -name "*.out" | sort) ; do
 
     if [[ $f =~ blogic ]] && [[ $f =~ FAIL ]] && [[ ! -s $f ]]; then
         echo "OK"
+        ((OK++))
     elif [[ $(grep '<urn:example:test> <urn:example:is> true' $f) ]]; then
         echo "OK"
+        ((OK++))
     else
         echo "FAILED"
+        ((FAILED++))
     fi
 done
+
+echo "Results: ${OK} OK , ${FAILED} FAILED"
