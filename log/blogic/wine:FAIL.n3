@@ -62,6 +62,10 @@
 } .
 
 () log:onNegativeSurface {
+    :Badenhorst :needs :ImportTax .
+} .
+
+() log:onNegativeSurface {
     :ChateauxGreysac :needs :ImportTax .
 
     () log:onNegativeSurface {
