@@ -20,8 +20,8 @@
 #
 # Question: how to write (what we actually need in this test)
 #  ∀ x : ( 
-#         ( x a Wine ) -> ( x contains Alcohol )  ->
-#         ( x a French ) -> ( x needs ImportTax ) 
+#         ( ( x a Wine ) -> ( x contains Alcohol ) )  ->
+#         ( ( x a French ) -> ( x needs ImportTax ) )
 #  ) 
 (?X) log:onNegativeSurface {
     (?X) log:onNegativeSurface {
