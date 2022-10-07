@@ -16,27 +16,27 @@
 
 # The rule below is
 # ( ∀ x1 : ( x1 a Wine ) -> ( x1 contains Alcohol ) ) ->
-#   ( ∀ x2 : ( x2 a French ) -> ( x1 needs ImportTax ) ) 
+#   ( ∀ x2 : ( x2 a French ) -> ( x2 needs ImportTax ) ) 
 #
 # Question: how to write (what we actually need in this test)
 #  ∀ x : ( 
 #         ( ( x a Wine ) -> ( x contains Alcohol ) )  ->
 #         ( ( x a French ) -> ( x needs ImportTax ) )
 #  ) 
-(_:X) log:onNegativeSurface {
-    (_:X) log:onNegativeSurface {
-        _:X a :Wine .
+(_:X1 _:X2) log:onNegativeSurface {
+    (_:X1) log:onNegativeSurface {
+        _:X1 a :Wine .
 
         () log:onNegativeSurface {
-            _:X :contains :Alcohol .
+            _:X1 :contains :Alcohol .
         } .
     } . 
     () log:onNegativeSurface {
-        (_:X) log:onNegativeSurface {
-            _:X a :French .
+        (_:X2) log:onNegativeSurface {
+            _:X2 a :French .
 
             () log:onNegativeSurface {
-                _:X :needs :ImportTax .
+                _:X2 :needs :ImportTax .
             } .
         } . 
     } .
