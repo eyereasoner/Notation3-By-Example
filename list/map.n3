@@ -24,7 +24,6 @@
     #      ...
     #  Y will contain (1 4 ...)
     ( ?X math:exponentiation) list:map ?Y .
-
 }
 => 
 {   
