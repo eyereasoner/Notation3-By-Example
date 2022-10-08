@@ -1,0 +1,40 @@
+@prefix : <urn:example:> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:Let :param ( (1 2) (2 2) (3 2) (4 2) ) .
+
+{
+    :Let :param ?X .
+
+    # Map a built-in on a list of values
+    #    ?X a list (S1 S2) where
+    #        S1 a list
+    #        S2 a built-in 
+    #    ?Y a variable or a list
+    #
+    # For every element A in S1:
+    #     A built-in-S2 B
+    # will be executed. All the B's will be
+    # mapped into the list Y.
+    # 
+    # E.g. in the example:
+    #      ( 1 2 ) math:exponentiation ?B  -> B = 1
+    #      ( 2 2 ) math:exponentiation ?B  -> B = 4 
+    #      ...
+    #  Y will contain (1 4 ...)
+    ( ?X math:exponentiation) list:map ?Y .
+
+}
+=> 
+{   
+    ?X :map ?Y .
+} .
+
+{
+    ?X :map (1 4 9 16)
+}
+=> 
+{
+    :test :is true .
+} .
