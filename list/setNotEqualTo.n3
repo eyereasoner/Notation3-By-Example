@@ -1,0 +1,26 @@
+@prefix : <urn:example:> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param ($ "Huey" "Dewey" "Dewey" "Louie" $) .
+
+{
+    :Let :param ?X .
+
+    # Evaluates to true when two sets are equal
+    #    ?X a variable or list 
+    #    ?Y a variable or list
+    ?X list:setNotEqualTo ($ "Louie" "Huey" "Dewey" "Bob" $) .
+
+}
+=> 
+{   
+    ?X :setNotEqualTo ($ "Louie" "Huey" "Dewey" "Bob" $) .
+} .
+
+{
+    ?X :setNotEqualTo ($ "Louie" "Huey" "Dewey" "Bob" $) .
+}
+=> 
+{
+    :test :is true .
+} .
