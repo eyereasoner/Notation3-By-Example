@@ -1,6 +1,8 @@
 @prefix : <urn:example:> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
 
 {
     # Make a a for-loop ..
@@ -13,11 +15,45 @@
     :test :number ?I .
 } .
 
+# A more elaborate example. Split a list in parts of length 4
+:List :contains (1 2 3 4 5 6 7 8 9 10 11 12) .
+
+{
+    :List :contains ?X .
+
+    # L = length list
+    ?X list:length ?L .
+
+    # Q = number of parts = L / 4
+    ( ?L 4 ) math:quotient ?Q .
+
+    # For I = 0 .. Q
+    ?Q log:repeat ?I .
+
+    # P = 4 * I
+    (?I 4) math:product ?P .
+
+    # X1 = P + 1 ; X2 = P + 2 ; X3 = P + 3 ; X4 = P + 4
+    (?P 1) math:sum ?X1 .
+    (?P 2) math:sum ?X2 .
+    (?P 3) math:sum ?X3 .
+    (?P 4) math:sum ?X4 .
+}
+=> 
+{
+    :List :part (?X1 ?X2 ?X3 ?X4) .
+} .
+
+# Test
 {   
     :test :number 0 .
     :test :number 1 .
     :test :number 2 .
     :test :number 3 .
+
+    :List :part (1 2 3 4) .
+    :List :part (5 6 7 8) .
+    :List :part (9 10 11 12) .
 }
 => 
 {
