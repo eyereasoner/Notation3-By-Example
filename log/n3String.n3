@@ -1,0 +1,26 @@
+@prefix : <urn:example:> .
+@prefix xs: <http://www.w3.org/2001/XMLSchema#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Let :params { <http://example.org/MyName> a :Name } .
+
+{
+    :Let :params ?X .
+
+    # Transform a subject into an N3 string
+    #    X an any
+    #    Y a variable or stringable
+    ?X log:n3String ?Y .
+}
+=> 
+{   
+    ?X :n3String ?Y .
+} .
+
+{
+    ?X :n3String ?Z .
+}
+=> 
+{
+    :test :is true .
+} .
