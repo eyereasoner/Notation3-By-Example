@@ -1,0 +1,66 @@
+@prefix : <urn:example:> .
+
+# Paths
+#  :book1 :metadata [
+#        :author [
+#           :lastName "Austen"
+#           :fistName "Jane" .
+#        ]
+#  ]
+:book1!:metadata!:author 
+        :lastName "Austen" ;
+        :firstName "Jane" .
+
+# NOTE: This is not equal to:
+#
+:book2!:metadata!:author :lastName "Austen" .  # 1
+:book2!:metadata!:author :firstName "Jane" .   # 2
+#
+# Why? #1 and #2 are different paths
+
+# :book3 :metadata [
+#      :author _:anAuthor
+# ] .
+# _:somebody :father _:anAuthor ;
+#            :lastName "Boll" .
+:book3!:metadata!:author^:father :lastName "Boll" .
+
+# Collections
+:book4 :readBy ( :Jos :Pat :Ruben ) .
+(:book1 :book2) :readBy ( :Jos :Pat :Ruben ).
+#(:book1 :book3) (:readBy :likedBy) (:Jos :Ruben).
+
+{
+    :book1 :metadata [
+        :author [
+            :lastName "Austen" ;
+            :firstName "Jane" 
+        ]
+    ] .
+
+    :book2 :metadata [
+        :author [
+            :lastName "Austen" ;
+        ]
+    ] .
+
+    :book2 :metadata [
+        :author [
+            :firstName "Jane" ;
+        ]
+    ] .
+
+    :book3 :metadata [
+        :author _:x
+    ] .
+    _:y :father _:x ;
+        :lastName "Boll" .
+
+    :book4 :readBy (:Jos :Pat :Ruben) .
+    (:book1 :book2) :readBy (:Jos :Pat :Ruben).
+   # (:book1 :book3) (:readBy :likedBy) (:Jos :Ruben).
+}
+=>
+{
+    :test :is true .
+} .
