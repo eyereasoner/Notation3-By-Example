@@ -16,7 +16,7 @@
 } .
 
 # A more elaborate example. Split a list in parts of length 4
-:List :contains (1 2 3 4 5 6 7 8 9 10 11 12) .
+:List :contains (:a :b :c :d :e :f :g :h :i :j :k :l) .
 
 {
     :List :contains ?X .
@@ -34,14 +34,20 @@
     (?I 4) math:product ?P .
 
     # X1 = P + 1 ; X2 = P + 2 ; X3 = P + 3 ; X4 = P + 4
-    (?P 1) math:sum ?X1 .
-    (?P 2) math:sum ?X2 .
-    (?P 3) math:sum ?X3 .
-    (?P 4) math:sum ?X4 .
+    (?P 0) math:sum ?X1 .
+    (?P 1) math:sum ?X2 .
+    (?P 2) math:sum ?X3 .
+    (?P 3) math:sum ?X4 .
+
+    # Read the members at these positions
+    (?X ?X1) list:memberAt ?Y1 .
+    (?X ?X2) list:memberAt ?Y2 .
+    (?X ?X3) list:memberAt ?Y3 .
+    (?X ?X4) list:memberAt ?Y4 .
 }
 => 
 {
-    :List :part (?X1 ?X2 ?X3 ?X4) .
+    :List :part (?Y1 ?Y2 ?Y3 ?Y4) .
 } .
 
 # Test
@@ -51,9 +57,9 @@
     :test :number 2 .
     :test :number 3 .
 
-    :List :part (1 2 3 4) .
-    :List :part (5 6 7 8) .
-    :List :part (9 10 11 12) .
+    :List :part (:a :b :c :d) .
+    :List :part (:e :f :g :h) .
+    :List :part (:i :j :k :l) .
 }
 => 
 {
