@@ -15,11 +15,11 @@
 }
 => 
 {   
-    ?X :lessThan ?Y .
+    :test :lessThan true .
 } .
 
 {
-    ?X :lessThan ?Y .
+    :test :lessThan true .
 }
 => 
 {

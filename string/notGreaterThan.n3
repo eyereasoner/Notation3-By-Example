@@ -15,11 +15,11 @@
 }
 => 
 {   
-    ?X :notGreaterThan ?Y .
+    :test :notGreaterThan true .
 } .
 
 {
-    ?X :notGreaterThan ?Y .
+    :test :notGreaterThan true .
 }
 => 
 {

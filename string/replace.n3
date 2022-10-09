@@ -21,7 +21,7 @@
 } .
 
 {
-    ?X :replace ?Y .
+    ?X :replace "hello world" .
 }
 => 
 {

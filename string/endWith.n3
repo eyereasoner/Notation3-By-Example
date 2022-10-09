@@ -15,11 +15,11 @@
 }
 => 
 {   
-    ?X :endsWith ?Y .
+    :test :endsWith true .
 } .
 
 {
-    ?X :endsWith ?Y .
+    :test :endsWith true .
 }
 => 
 {

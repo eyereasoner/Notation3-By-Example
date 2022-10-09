@@ -20,7 +20,7 @@
 } .
 
 {
-    ?X :upperCase ?Y .
+    ?X :upperCase "HELLO WORLD" .
 }
 => 
 {

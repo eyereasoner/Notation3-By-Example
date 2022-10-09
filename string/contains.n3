@@ -15,12 +15,12 @@
 }
 => 
 {   
-    ?X :contains ?Y .
+    :test :contains true .
 } .
 
 # Test
 {
-    ?X :contains ?Y .
+    :test :contains true .
 }
 =>
 {

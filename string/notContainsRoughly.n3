@@ -15,11 +15,11 @@
 }
 => 
 {   
-    ?X :notContainsRoughly ?Y .
+    :test :notContainsRoughly true .
 } .
 
 {
-    ?X :notContainsRoughly ?Y .
+    :test :notContainsRoughly true .
 }
 =>
 {

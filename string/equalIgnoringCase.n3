@@ -18,11 +18,11 @@
 }
 => 
 {   
-    ?X :equalIgnoringCase ?Y .
+    :test :equalIgnoringCase true .
 } .
 
 {
-    ?X :equalIgnoringCase ?Y .
+    :test :equalIgnoringCase true .
 }
 =>
 {

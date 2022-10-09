@@ -24,7 +24,7 @@
 } .
 
 {
-    ?X :join ?Y .
+    ?X :join "hello world" .
 }
 => 
 {

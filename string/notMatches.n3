@@ -20,7 +20,6 @@
     ?X :notMatches "h[ae]llo world" . 
 } .
 
-
 {
     ?X :notMatches ?Y .
 }

@@ -20,7 +20,7 @@
 } .
 
 {
-    ?X :length ?Y .
+    ?X :length 11 .
 }
 => 
 {
