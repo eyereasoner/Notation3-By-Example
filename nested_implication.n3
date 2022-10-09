@@ -1,0 +1,46 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Light :is :Green .
+
+:Renault a :Car ;
+    :is :Waiting .
+
+# Nesting an implies rule in the conclusion is like providing a guard
+# in the premisse.
+#
+#  IF (Light is Green):
+#     IF ( C a Car AND C is Waiting ): C is Driving          #1
+#     IF ( P a Person AND P is Waiting ): P is StillWaiting  #2
+#
+# Rule number #1 still gets fired even when there is no Person (waiting) 
+{
+    :Light :is :Green .
+}
+=>
+{
+    { ?C a :Car . ?C :is :Waiting } => { ?C :is :Driving } .
+    { ?P a :Person . ?P :is :Waiting } => { ?P :is :StillWaiting } .
+} .
+
+# Nesting a implies rule in the premisse is like matching a rule
+#
+# IF EXISTS_RULE("IF (P a Person AND P is Waiting) : P is StillWaiting"):
+#     GreenLightRule is true 
+{
+   { ?P a :Person . ?P :is :Waiting } => { ?P :is :StillWaiting } . 
+}
+=>
+{
+    :GreenLightRule :is true .
+} .
+
+# Test
+{
+    :Renault :is :Driving .
+    :GreenLightRule :is true .
+}
+=>
+{
+    :test :is true .
+} .
