@@ -5,7 +5,7 @@ FAILED=0
 
 if [ "$1" == "clean" ]; then
     rm *.out 2> /dev/null
-    for n3 in crypto graph list log log/blogic math string time ; do
+    for n3 in crypto graph list log log/blogic math string examples/dev ; do
         rm $n3/*.out 2> /dev/null
     done
     exit 0
@@ -24,6 +24,11 @@ done
 for n3 in log/blogic/*.n3 ; do 
     echo "eye --nope --quiet --blogic $n3 > $n3.out 2> /dev/null"
     eye --nope --quiet --blogic $n3 > $n3.out 2> /dev/null
+done
+
+for n3 in examples/dev/*.n3 ; do 
+    echo "eye --nope --quiet --pass-only-new $n3 > $n3.out 2> /dev/null"
+    eye --nope --quiet --pass-only-new $n3 > $n3.out 2> /dev/null
 done
 
 for f in $(find . -name "*.out" | sort) ; do

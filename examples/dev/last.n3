@@ -1,0 +1,49 @@
+@prefix : <urn:example:>.
+@prefix dev: <urn:example:dev:>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+{
+    (1 2 3 4) dev:last ?X .
+}
+=>
+{
+    :Result :is ?X .
+} .
+
+###################################################
+# Start Implementation
+
+{
+    ?X dev:last ?Y .
+}
+<=
+{
+    ?X list:firstRest (?H ?T) .
+    ( ?T ?X) dev:last_ ?Y .
+} .
+
+{
+    ( () ?X) dev:last_ ?X .
+}
+<= true .
+
+{
+    ( ?X ?Y ) dev:last_ ?Z .
+}
+<=
+{
+    ?X list:firstRest (?H ?T) .
+    (?T ?H ) dev:last_ ?Z .
+} .
+
+# End Implementation
+###################################################
+
+# Test
+{
+    :Result :is 4 .
+}
+=>
+{
+    :test :is true .
+} .

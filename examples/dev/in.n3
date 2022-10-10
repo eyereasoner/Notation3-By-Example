@@ -1,0 +1,58 @@
+@prefix : <urn:example:>.
+@prefix dev: <urn:example:dev:>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param1 "cat" .
+:Let :param2 ( 1 "cat" 2 3  ) .
+
+{
+    :Let :param1 ?X .
+    :Let :param2 ?Y .
+
+    #  Evaluates true when X in Y 
+    #    ?X a any
+    #    ?Y a list 
+    ?X dev:in ?Y .
+}
+=>
+{
+    ?X :in ?Y .
+} .
+
+###################################################
+# Start Implementation
+
+{
+    ?X dev:in ?Y 
+}
+<=
+{
+    ?Y list:firstRest (?H ?T) .
+    (?T ?X) dev:member_ ?H .
+} .
+
+{
+    (?X ?Y) dev:member_ ?Y.
+}
+<= true .
+
+{
+    (?X ?Y) dev:member_ ?Z .
+}
+<= 
+{
+    ?X list:firstRest (?H ?T) .
+    (?T ?Y) dev:member_ ?H .
+} .
+
+# End Implementation
+###################################################
+
+# Test
+{
+    "cat" :in (1 "cat" 2 3) .
+}
+=>
+{
+    :test :is true .
+} .

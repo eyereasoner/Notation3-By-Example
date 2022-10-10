@@ -1,0 +1,58 @@
+@prefix : <urn:example:>.
+@prefix dev: <urn:example:dev:>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param ( "Huey" "Dewey" "Louie" ) .
+
+{
+    :Let :param ?X .
+
+    # For each in list X extract members 
+    #    ?X a list 
+    #    ?Y any
+    ?X dev:member ?Y .
+}
+=>
+{
+    ?X :member ?Y .
+} .
+
+###################################################
+# Start Implementation
+
+{
+    ?X dev:member ?Y 
+}
+<=
+{
+    ?X list:firstRest (?H ?T) .
+    (?T ?Y) dev:member_ ?H .
+} .
+
+{
+    (?X ?Y) dev:member_ ?Y.
+}
+<= true .
+
+{
+    (?X ?Y) dev:member_ ?Z .
+}
+<= 
+{
+    ?X list:firstRest (?H ?T) .
+    (?T ?Y) dev:member_ ?H .
+} .
+
+# End Implementation
+###################################################
+
+# Test
+{
+    ?X :member "Huey" .
+    ?X :member "Dewey" .
+    ?X :member "Louie" .
+}
+=>
+{
+    :test :is true .
+} .

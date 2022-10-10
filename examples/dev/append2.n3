@@ -1,0 +1,47 @@
+@prefix : <urn:example:>.
+@prefix dev: <urn:example:dev:>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param ( (1) ("cat") ) .
+
+# Append to a list 
+#   ?X a list (S1 S1) where S1, S2 a list
+#   ?Y a variable or list
+{
+    :Let :param ?X .
+    ?X dev:append2 ?Y .
+}
+=>
+{
+    :Result :is ?Y .
+} .
+
+###################################################
+# Start Implementation
+
+{
+    (() ?X) dev:append2 ?X .
+}
+<= true .
+
+{
+    (?X ?L) dev:append2 ?Z .
+}
+<= 
+{
+    ?X list:firstRest ( ?H ?T) .
+    ?Z list:firstRest ( ?H ?R ).
+    (?T ?L) dev:append2 ?R .
+} .
+
+# End implementation
+###################################################
+
+# Test
+{
+    :Result :is (1 "cat") .
+}
+=>
+{
+    :test :is true .
+} .

@@ -1,0 +1,58 @@
+@prefix : <urn:example:>.
+@prefix dev: <urn:example:dev:>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param ( "Huey" "Dewey" "Dewey" "Louie" ) .
+
+{
+    :Let :param ?X .
+
+    # Removes a member from X 
+    #    ?X a list (S1 S2) where
+    #       S1 is a list
+    #       S2 is concrete
+    #    ?Y a variable or list
+    ( ?X "Dewey" ) dev:removeFirst ?Y .
+}
+=>
+{
+    ?X :remove ?Y .
+} .
+
+###################################################
+# Start Implementation
+{
+    (?X ?Y) dev:removeFirst ?Z .
+}
+<=
+{
+    ?X list:firstRest (?H ?T) .
+    (?T ?H ?Y) dev:select3_ ?Z .
+} .
+
+{
+    (?X1 ?X2 ?X2) dev:select3_ ?X1 .
+}
+<= true .
+
+{
+    (?X1 ?X2 ?X3) dev:select3_ ?Y .
+}
+<=
+{
+    ?X1 list:firstRest (?X1H ?X1T) .
+    ?Y list:firstRest (?X2 ?YT) .
+    (?X1T ?X1H ?X3) dev:select3_ ?YT .
+} .
+
+# End Implementation
+###################################################
+
+# Test
+{
+    ?X :remove ( "Huey" "Dewey" "Louie" ) .
+}
+=>
+{
+    :test :is true .
+} .
