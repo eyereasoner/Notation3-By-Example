@@ -1,5 +1,6 @@
 @prefix : <urn:example:> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
 
 # Paths
 #  :book1 :metadata [
@@ -25,6 +26,16 @@
 # _:somebody :father _:anAuthor ;
 #            :lastName "Boll" .
 :book3!:metadata!:author^:father :lastName "Boll" .
+
+# Paths can also be used in calculations
+{
+    # (2 + 2) * 3
+    ( (2 2)!math:sum 3 ) math:product ?X .
+}
+=>
+{
+    :result :is ?X .
+} .
 
 # Collections
 :book4 :readBy ( :Jos :Pat :Ruben ) .
@@ -93,6 +104,8 @@
     :book4 :readBy (:Jos :Pat :Ruben) .
     (:book1 :book2) :readBy (:Jos :Pat :Ruben).
     (:book1 :book3) (:readBy :likedBy) (:Jos :Ruben).
+
+    :result :is 12 .
 }
 =>
 {
