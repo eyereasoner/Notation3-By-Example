@@ -1,4 +1,5 @@
 @prefix : <urn:example:> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 
 # Paths
 #  :book1 :metadata [
@@ -30,6 +31,39 @@
 (:book1 :book2) :readBy ( :Jos :Pat :Ruben ).
 (:book1 :book3) (:readBy :likedBy) (:Jos :Ruben).
 
+# The equal sign is used to express an owl:sameAs identity.
+# This means the subject and object IRI refer to the same
+# thing. This does NOT mean that the subject and object IRI 
+# are equal. This also does NOT mean that any inferences
+# you make about the subject are also valid for the object.
+#
+# This will not work:
+#
+#      :Alice :knows :Bob .
+#      :Alice = <http://alice.pods.me/profile/card#me> .
+#      {
+#         ?A :knows ?B .
+#      }
+#      => 
+#      {
+#         ?B :knows ?A ,
+#      } .  
+#
+# and expecting as answer:
+#
+#      <http://alice.pods.me/profile/card#me> :knows :Bob.
+:Alice :knows :Bob .
+:Alice = <http://alice.pods.me/profile/card#me> .
+
+{
+    ?A :knows ?B .
+}
+=>
+{
+    ?B :knows ?A .
+} .
+
+# Test
 {
     :book1 :metadata [
         :author [
