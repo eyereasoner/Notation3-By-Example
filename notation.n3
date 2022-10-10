@@ -28,7 +28,7 @@
 # Collections
 :book4 :readBy ( :Jos :Pat :Ruben ) .
 (:book1 :book2) :readBy ( :Jos :Pat :Ruben ).
-#(:book1 :book3) (:readBy :likedBy) (:Jos :Ruben).
+(:book1 :book3) (:readBy :likedBy) (:Jos :Ruben).
 
 {
     :book1 :metadata [
@@ -58,7 +58,7 @@
 
     :book4 :readBy (:Jos :Pat :Ruben) .
     (:book1 :book2) :readBy (:Jos :Pat :Ruben).
-   # (:book1 :book3) (:readBy :likedBy) (:Jos :Ruben).
+    (:book1 :book3) (:readBy :likedBy) (:Jos :Ruben).
 }
 =>
 {
