@@ -12,7 +12,7 @@
 
 ###################################################
 # Start Implementation
-
+# Ported from https://www.swi-prolog.org/pldoc/doc/_SWI_/library/lists.pl
 {
     ?X dev:last ?Y .
 }
