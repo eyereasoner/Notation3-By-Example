@@ -41,6 +41,10 @@
     } .
 } .
 
-() log:onQuerySurface {
+() log:onAnswerSurface {
+    :test :is true .
+} .
+
+() log:onAskSurface {
     :test :is true .
 } .
