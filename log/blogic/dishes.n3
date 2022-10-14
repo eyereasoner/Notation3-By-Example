@@ -1,0 +1,46 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Bob doesn't do the dishes
+() log:onNegativeSurface {
+    :Bob :does :Dishes .
+} .
+
+# When anyone cant do dishes, it is because the sink doens't contain water
+(_:X) log:onNegativeSurface {
+    () log:onNegativeSurface {
+        _:X :does :Dishes .
+    } .
+    () log:onPositiveSurface {
+        :Sink :contains :Water .
+    } .
+} .
+
+# If the faucet is open, then the sink contains water.
+#    A -> B
+# But, B is false due to the previous rule, thus A needs to be false
+#
+# Internally these rules are active:
+#    A -> B
+#    B <- A
+() log:onNegativeSurface {
+    :Faucet :is :Open.
+    
+    () log:onNegativeSurface {
+        :Sink :contains :Water .
+    } .
+} .
+
+# Test that we don't have an open faucet
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
+        :Faucet :is :Open.
+    } .
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
