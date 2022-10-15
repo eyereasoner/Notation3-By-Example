@@ -8,7 +8,7 @@
 } .
 
 :Let :param2 {
-    :A :B :C .
+    ?X ?Y :C .
 } .
 
 {

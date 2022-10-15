@@ -1,0 +1,84 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+# Alice is on the implicit postive surface
+:Alice :knows :Bob.
+
+# Bob is on a new positive surface
+#   .. but when reasoning about surfaces this
+#   should be interpreted as a conjunction 
+#   with Alice's statement.
+() log:onPositiveSurface {
+    :Bob :knows :Charly .
+} .
+
+# If  X know Y, then X,Y is knowable
+(_:S _:O) log:onNegativeSurface {
+
+    # We could add the premisse on a postive
+    # surface .. it is not strictly needed 
+    # because the implicit surface is positive
+    #   () log:onNegativeSurface {  <-- this part here is implicit positive --> }
+    # This also means that
+    #   () log:onNegativeSurface {}
+    # is a contradiction because a positive empty surface {} is a 'true'
+    () log:onPositiveSurface {
+        _:S :knows _:O .
+    } .
+
+    () log:onNegativeSurface {
+        _:S :isKnowable true .
+        _:O :isKnowable true .
+    } .
+} .
+
+# Here we implement a broken rule, we add graffiti
+# on the positive surface to block the scope of variables
+(_:S _:O) log:onNegativeSurface {
+    # Write for _:S new grafiti ..
+    (_:S) log:onPositiveSurface {
+        _:S :knows _:O .
+    } .
+    () log:onNegativeSurface {
+        _:S :hates _:O .
+    } .
+} .
+
+(_:S) log:onQuerySurface {
+    _:S :isKnowable true .
+} .
+
+# Test 
+# See the noGod example why this works...
+() log:onPositiveSurface {
+    [] :hates [] .
+
+    (_:Counter _:S _:O) log:onNegativeSurface {
+        :Alice :isKnowable true .
+        :Bob :isKnowable true .
+        :Charly :isKnowable true .
+
+        # There shouldn't be an extra hates
+        _:Counter a log:GraphCounter .
+        { _:S :hates _:O } _:Counter 1.
+
+        () log:onNegativeSurface {
+            :test :is true .
+        } .
+    } .
+} .
+
+# Add a counter
+:cardinalCount a log:GraphCounter .
+(_:Graph _:Count _:List _:Scope) log:onNegativeSurface {
+    ( ) log:onQuerySurface {
+        _:Graph :cardinalCount _:Count .
+    } .
+    ( () _:Graph _:List ) log:collectAllIn _:Scope .
+    _:List list:length _:Count .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
