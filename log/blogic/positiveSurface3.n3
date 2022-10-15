@@ -13,7 +13,7 @@
     :Bob :knows :Charly .
 } .
 
-# If  X know Y, then X,Y is knowable
+# If X knows Y, then X,Y is knowable
 (_:S _:O) log:onNegativeSurface {
 
     # We could add the premisse on a postive
