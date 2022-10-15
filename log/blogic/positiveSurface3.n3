@@ -16,7 +16,7 @@
 # If X knows Y, then X,Y is knowable
 (_:S _:O) log:onNegativeSurface {
 
-    # We could add the premisse on a postive
+    # We add the premise on a postive
     # surface .. it is not strictly needed 
     # because the implicit surface is positive
     #   () log:onNegativeSurface {  <-- this part here is implicit positive --> }
@@ -34,7 +34,7 @@
 } .
 
 # Here we implement a broken rule, we add graffiti
-# on the positive surface to block the scope of variables
+# on the positive surface to block the scope of the variables
 (_:S _:O) log:onNegativeSurface {
     # Write for _:S new grafiti ..
     (_:S) log:onPositiveSurface {
@@ -59,7 +59,7 @@
         :Bob :isKnowable true .
         :Charly :isKnowable true .
 
-        # There shouldn't be an extra hates
+        # There shouldn't be any extra hates
         _:Counter a log:GraphCounter .
         { _:S :hates _:O } _:Counter 1.
 
