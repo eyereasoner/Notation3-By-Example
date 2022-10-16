@@ -7,10 +7,16 @@
 () log:onNegativeSurface {
     :Alice :knows :Bob .
 } .
+() log:onAskSurface {
+    :Bob :knows :Alice .
+} .
 
 # Choose one : test case B
 #() log:onNegativeSurface {
 #    :Bob :knows :Alice .
+#} .
+#() log:onAskSurface {
+#    :Alice :knows :Bob .
 #} .
 
 # C -> A OR B
@@ -62,7 +68,3 @@
 #(_:S _:O) log:onQuerySurface {
 #    _:S :knows _:O .
 #} .
-
-() log:onAskSurface {
-    :Bob :knows :Alice .
-} .
