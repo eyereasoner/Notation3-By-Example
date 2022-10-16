@@ -4,14 +4,14 @@
 :Alice :likes :Bob .
 
 # Choose one : test case A
-#() log:onNegativeSurface {
-#    :Alice :knows :Bob .
-#} .
+() log:onNegativeSurface {
+    :Alice :knows :Bob .
+} .
 
 # Choose one : test case B
-() log:onNegativeSurface {
-    :Bob :knows :Alice .
-} .
+#() log:onNegativeSurface {
+#    :Bob :knows :Alice .
+#} .
 
 # C -> A OR B
 #
@@ -42,10 +42,6 @@
 #
 #  NOT( C . NOT(B) . NOT( A . NOT(B) ) )
 #
-# In eye v22.1015.1421 this works for the test case
-#   NOT ( Bob knows Alice )
-# but not
-#   NOT ( Alice knows Bob )
 () log:onNegativeSurface {
     :Alice :likes :Bob .
 
@@ -63,6 +59,10 @@
     } .  
 } .
 
-(_:S _:O) log:onQuerySurface {
-    _:S :knows _:O .
+#(_:S _:O) log:onQuerySurface {
+#    _:S :knows _:O .
+#} .
+
+() log:onAskSurface {
+    :Bob :knows :Alice .
 } .
