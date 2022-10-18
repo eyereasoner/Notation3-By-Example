@@ -1,0 +1,29 @@
+@prefix : <http://example.org/ns#>.
+
+:Beetle a :Car .
+
+() :onNegativeSurface {
+    :Beetle a :Car.
+
+    () :onNegativeSurface {
+        :Beetle :is :green . 
+    } .
+
+    () :onNegativeSurface {
+        :Beetle :is :blue . 
+    } .
+} .
+
+() :onNegativeSurface {
+    :Beetle :is :green.
+    () :onNegativeSurface {
+        :Beetle :is :beautiful.
+    }.
+}.
+
+() :onNegativeSurface {
+    :Beetle :is :blue.
+    () :onNegativeSurface {
+        :Beetle :is :beautiful.
+    }.
+}.

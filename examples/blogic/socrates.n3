@@ -1,0 +1,13 @@
+@prefix : <http://example.org/ns#>.
+
+:Socrates a :Man.
+:Man :subClassOf :Human.
+
+() :onNegativeSurface {
+    :Man :subClassOf :Human.
+    :Socrates a :Man.
+    () :onNegativeSurface {
+        :Socrates a :Human.
+    }.
+}.
+

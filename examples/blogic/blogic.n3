@@ -1,0 +1,91 @@
+@prefix : <http://example.org/ns#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+
+#--BLOGIC---------------------------------------------------
+
+# p . ~( p q ) = ~q
+{
+    ?S ?P ?O .
+
+    () :onNegativeSurface ?G .
+    
+    ?G log:includes { ?S ?P ?O } .
+
+    ( ?G { ?S ?P ?O } ) graph:difference ?H .
+}
+=>
+{
+    () :onNegativeSurface ?H .
+} .
+
+# ~ ( ~( p . q ) . ~( r . q ) ) = ~( ~p . ~r) . q
+{
+    () :onNegativeSurface {
+        () :onNegativeSurface ?G .
+        () :onNegativeSurface ?H .
+    } .
+
+    ?G log:includes { ?S ?P ?O } .
+    ?H log:includes { ?S ?P ?O } .
+
+    (?G { ?S ?P ?O }) graph:difference ?G_ .
+    (?H { ?S ?P ?O }) graph:difference ?H_ .
+} 
+=>
+{
+    () :onNegativeSurface {
+        () :onNegativeSurface ?G_ .
+        () :onNegativeSurface ?H_ .
+    } .
+    true => { ?S ?P ?O } .
+} .
+
+# ~( p . ~q ) . ~( r . ~q ) = ~( ~( ~p . ~r) . ~q )
+{
+    () :onNegativeSurface ?G .
+    () :onNegativeSurface ?H .
+
+    ?G log:notEqualTo ?H .
+
+    ?G log:includes { ?S :onNegativeSurface ?O } .
+    ?H log:includes { ?S :onNegativeSurface ?O } .
+
+    (?G { ?S :onNegativeSurface ?O }) graph:difference ?G_ .
+    (?H { ?S :onNegativeSurface ?O }) graph:difference ?H_ .
+} 
+=>
+{
+    () :onNegativeSurface {
+        # Why I need a blank node here to stop this rule from looping
+        # endlessly?
+        # ?X :onNegativeSurface ?O doesn't work.
+        # () :onNegativeSurface ?O doesn't work.
+        [] :onNegativeSurface ?O  .
+
+        () :onNegativeSurface {
+            () :onNegativeSurface ?G_ .
+            () :onNegativeSurface ?H_ .
+        } .
+    } .
+} .
+
+# ~~p = p
+{
+    ?X :onNegativeSurface {
+        ?Y :onNegativeSurface ?G .
+    } .
+}
+=> 
+{
+    true => ?G .
+} .
+
+# p = p
+{
+    () :onPositiveSurface ?G .
+}
+=> 
+{
+    true => ?G .
+} .
