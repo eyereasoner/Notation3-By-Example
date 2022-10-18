@@ -1,0 +1,70 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Alice :likes :Bob .
+
+# Choose one : test case A
+() log:onNegativeSurface {
+    :Alice :knows :Bob .
+} .
+() log:onAskSurface {
+    :Bob :knows :Alice .
+} .
+
+# Choose one : test case B
+#() log:onNegativeSurface {
+#    :Bob :knows :Alice .
+#} .
+#() log:onAskSurface {
+#    :Alice :knows :Bob .
+#} .
+
+# C -> A OR B
+#
+#    C : Alice likes Bob
+#    A : Alice knows Bob
+#    B : Bob knows Alice
+#
+# This is the normal way to write it
+#() log:onNegativeSurface {
+#    :Alice :likes :Bob .
+#
+#    () log:onNegativeSurface {
+#        :Alice :knows :Bob .
+#    } .
+#
+#    () log:onNegativeSurface {
+#        :Bob :knows :Alice .
+#    } .
+#} .
+
+# This is the funky way to write it
+# because 
+#   C -> A OR B
+# is equal to
+#   (A -> B) -> (C -> B)
+#
+# One way to write this is 
+#
+#  NOT( C . NOT(B) . NOT( A . NOT(B) ) )
+#
+() log:onNegativeSurface {
+    :Alice :likes :Bob .
+
+    () log:onNegativeSurface {
+        :Bob :knows :Alice .
+    } .
+
+    ( ) log:onNegativeSurface {
+        
+        :Alice :knows :Bob .
+
+        () log:onNegativeSurface {
+            :Bob :knows :Alice .
+        } .
+    } .  
+} .
+
+#(_:S _:O) log:onQuerySurface {
+#    _:S :knows _:O .
+#} .

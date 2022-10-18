@@ -2,6 +2,7 @@
 
 OK=0
 FAILED=0
+SKIPPED=0
 
 if [ "$1" == "clean" ]; then
     rm *.out 2> /dev/null
@@ -37,6 +38,9 @@ for f in $(find . -name "*.out" | sort) ; do
     if [[ $f =~ blogic ]] && [[ $f =~ FAIL ]] && [[ ! -s $f ]]; then
         echo "OK"
         ((OK++))
+    elif [[ $f =~ SKIP ]]; then
+        echo "SKIPPED"
+        ((SKIPPED++))
     elif [[ $(grep '<urn:example:test> <urn:example:is> true' $f) ]]; then
         echo "OK"
         ((OK++))
@@ -49,7 +53,7 @@ for f in $(find . -name "*.out" | sort) ; do
     fi
 done
 
-echo "Results: ${OK} OK , ${FAILED} FAILED"
+echo "Results: ${OK} OK , ${FAILED} FAILED, ${SKIPPED} SKIPPED"
 
 if [[ ${FAILED} -eq 0 ]]; then 
     exit 0
