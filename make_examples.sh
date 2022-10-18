@@ -6,7 +6,7 @@ SKIPPED=0
 
 if [ "$1" == "clean" ]; then
     rm *.out 2> /dev/null
-    for n3 in crypto graph list log log/blogic math string examples/dev ; do
+    for n3 in crypto graph list log log/blogic math string ; do
         rm $n3/*.out 2> /dev/null
     done
     exit 0
@@ -27,12 +27,11 @@ for n3 in log/blogic/*.n3 ; do
     eye --nope --quiet --blogic $n3 > $n3.out 2> /dev/null
 done
 
-for n3 in examples/dev/*.n3 ; do 
-    echo "eye --nope --quiet --pass-only-new $n3 > $n3.out 2> /dev/null"
-    eye --nope --quiet --pass-only-new $n3 > $n3.out 2> /dev/null
-done
-
 for f in $(find . -name "*.out" | sort) ; do
+    if [[ $f =~ examples ]]; then 
+        continue
+    fi
+
     echo -n "Testing $f ... "
 
     if [[ $f =~ blogic ]] && [[ $f =~ FAIL ]] && [[ ! -s $f ]]; then
