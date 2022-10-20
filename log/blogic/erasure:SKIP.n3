@@ -9,7 +9,7 @@
 # B
 :Bob :likes :Jazz .
 
-# A . ~( B . ~(A) ) |= A , whatever B is
+# A . ~( B . ~(A) ) = A , whatever B is
 # Testing we don't get a fuse
 () log:onNegativeSurface {
     # B
@@ -21,7 +21,7 @@
     } .
 } .
 
-# A . ~(B . ~(C . ~A)) |= A . ~B , whatever C is
+# A . ~(B . ~(C . ~A)) = A . ~B , whatever C is
 # 
 # Make C something false...
 () log:onNegativeSurface {
@@ -37,7 +37,7 @@
     } . 
 } .
 
-# A . ~(B . ~(C . ~A)) |= A . ~B , whatever C is
+# A . ~(B . ~(C . ~A)) = A . ~B , whatever C is
 #
 # Make C something true...
 () log:onNegativeSurface {
@@ -53,7 +53,7 @@
     } . 
 } .
 
-# A . ~(B . ~( C . ~(D . ~A))) |= A . (B -> C), whatever D is
+# A . ~(B . ~( C . ~(D . ~A))) = A . (B -> C), whatever D is
 #
 # Make D something false...
 () log:onNegativeSurface {
@@ -73,7 +73,7 @@
     } .
 } .
 
-# A . ~(B . ~( C . ~(D . ~A))) |= A . (B -> C), whatever D is
+# A . ~(B . ~( C . ~(D . ~A))) = A . (B -> C), whatever D is
 #
 # Make D something true...
 () log:onNegativeSurface {
