@@ -1,0 +1,131 @@
+@prefix : <http://example.org/#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Erasure test
+
+# A
+:Alice a :Person .
+
+# B
+:Bob :likes :Jazz .
+
+# A . ~( B . ~(A) ) |= A , whatever B is
+# Testing we don't get a fuse
+() log:onNegativeSurface {
+    # B
+    () log:onNegativeSurface true .
+
+    # This we should get as output
+    () log:onNegativeSurface {
+        :Alice a :Person .
+    } .
+} .
+
+# A . ~(B . ~(C . ~A)) |= A . ~B , whatever C is
+# 
+# Make C something false...
+() log:onNegativeSurface {
+    :Bob :likes :Quiche .
+
+    () log:onNegativeSurface {
+        # C
+        () log:onNegativeSurface true .
+
+        () log:onNegativeSurface {
+            :Alice a :Person .
+        } .
+    } . 
+} .
+
+# A . ~(B . ~(C . ~A)) |= A . ~B , whatever C is
+#
+# Make C something true...
+() log:onNegativeSurface {
+    :Bob :likes :TurboPascal .
+
+    () log:onNegativeSurface {
+        # C
+        :Eggs :likes :ZZTop .
+
+        () log:onNegativeSurface {
+            :Alice a :Person .
+        } .
+    } . 
+} .
+
+# A . ~(B . ~( C . ~(D . ~A))) |= A . (B -> C), whatever D is
+#
+# Make D something false...
+() log:onNegativeSurface {
+    :Bob :likes :Jazz .
+
+    () log:onNegativeSurface {
+        :Bob :likes :Funk .
+
+        () log:onNegativeSurface {
+            # D .
+            () log:onNegativeSurface true .
+
+            () log:onNegativeSurface {
+                :Alice a :Person .
+            } .
+        } .
+    } .
+} .
+
+# A . ~(B . ~( C . ~(D . ~A))) |= A . (B -> C), whatever D is
+#
+# Make D something true...
+() log:onNegativeSurface {
+    :Bob :likes :Jazz .
+
+    () log:onNegativeSurface {
+        :Bob :likes :AcidJazz .
+
+        () log:onNegativeSurface {
+            # D .
+            :Ducks :like :Bach .
+
+            () log:onNegativeSurface {
+                :Alice a :Person .
+            } .
+        } .
+    } .
+} .
+
+() log:onQuerySurface {
+    :Alice a :Person .
+} .
+
+(_:O) log:onQuerySurface {
+    :Bob :likes _:O .
+} .
+
+(_:O) log:onQuerySurface {
+    () log:onNegativeSurface {
+        :Bob :likes _:O .
+    } .
+} .
+
+# Test
+() log:onNegativeSurface {
+    :Alice a :Person .
+    :Bob :likes :AcidJazz .
+    :Bob :likes :Funk .
+
+    () log:onNegativeSurface {
+        :Bob :likes :Quiche.
+    } .
+
+    () log:onNegativeSurface {
+        :Bob :likes :TurboPascal .
+    } .
+
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
