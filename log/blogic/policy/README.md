@@ -31,8 +31,11 @@ eye --nope --quiet --blogic log/blogic/policy/*.n3
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 
+
 () log:onResultSurface {<urn:example:Person1> foaf:name "Alice". <<<urn:example:Person1> foaf:name "Alice">> log:ohyeah <urn:example:Policy_1>. <urn:example:Person1> foaf:email <mail:alice@somewhere.org>. <<<urn:example:Person1> foaf:email <mail:alice@somewhere.org>>> log:ohyeah <urn:example:Policy_1>}.
 () log:onResultSurface {<urn:example:Person2> foaf:name "Bob". <<<urn:example:Person2> foaf:name "Bob">> log:ohyeah <urn:example:Policy_1>. <urn:example:Person2> foaf:email <mail:bob@somewhere.org>. <<<urn:example:Person2> foaf:email <mail:bob@somewhere.org>>> log:ohyeah <urn:example:Policy_1>}.
+() log:onWarningSurface {<urn:example:Person1> foaf:email <mail:alice@somewhere.org>. <<<urn:example:Person1> foaf:email <mail:alice@somewhere.org>>> a log:WARNING. <<<urn:example:Person1> foaf:email <mail:alice@somewhere.org>>> log:warningMessage "You are exposing email addresses as public access!"}.
+() log:onWarningSurface {<urn:example:Person2> foaf:email <mail:bob@somewhere.org>. <<<urn:example:Person2> foaf:email <mail:bob@somewhere.org>>> a log:WARNING. <<<urn:example:Person2> foaf:email <mail:bob@somewhere.org>>> log:warningMessage "You are exposing email addresses as public access!"}.
 ```
 
 ### Output friend access
