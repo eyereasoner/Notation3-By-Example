@@ -1,0 +1,24 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# Provide a warning when something bad happens
+# E.g. exposing an email to a PublicAccess login
+(_:Login _:RS _:S _:email) log:onNegativeSurface {
+    () log:onAccessSurface {
+        _:Login a :PublicAccess .
+    } .
+
+    () log:onResultSurface _:RS.
+    _:RS log:includes {_:S foaf:email _:email}.
+
+    () log:onNegativeSurface {
+        # We write the warning triples on a warning surface
+        () log:onWarningSurface {
+            _:S foaf:email _:email {| 
+                a log:WARNING; 
+                log:warningMessage "You are exposing email addresses as public access!" 
+            |}.
+        } .
+    } .
+} {| :name :Policy_3_warning |}.

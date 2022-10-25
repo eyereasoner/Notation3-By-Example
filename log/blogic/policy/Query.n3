@@ -7,3 +7,10 @@
         _:S _:P _:O .    
     } .
 } .
+
+(_:S _:P _:O) log:onQuerySurface {
+    () log:onWarningSurface {
+        _:S _:P _:O .    
+    } .
+} .
+
