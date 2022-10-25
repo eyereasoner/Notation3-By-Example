@@ -8,6 +8,7 @@
 
 - `Policy1.n3` states that a public context can only see the foaf:name and foaf:email
 - `Policy2.n3` states that a friend can see all personal information
+- `Policy3.n3` states that a warning should be provided when emails get exposed
 
 ### Context provides the context of the user who wants to access the knowledge base
 
