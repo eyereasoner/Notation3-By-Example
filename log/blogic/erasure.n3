@@ -6,7 +6,7 @@
 # A
 :A a :A0 .
 
-# A . ~( B . ~(A) ) = A , whatever B is
+# A . ~( B . ~A ) = A , whatever B is
 # Testing we don't get a fuse
 () log:onNegativeSurface {
     # B
@@ -100,7 +100,7 @@
     } .
 } .
 
-# A . ~(B . ~(C . ~B)) = A . ~B, whatever C is
+# ~(B . ~(C . ~B)) = ~B, whatever C is
 # Make C something false
 () log:onNegativeSurface {
     :B a :B5 .
@@ -115,7 +115,7 @@
     } .
 } .
 
-# A . ~(B . ~(C . ~B)) = A . ~B, whatever C is
+# ~(B . ~(C . ~B)) = ~B, whatever C is
 # Make C something true
 () log:onNegativeSurface {
     :B a :B6 .
@@ -130,7 +130,7 @@
     } .
 } .
 
-# A . ~(B . ~(C . ~(D . ~B))) = A . (B -> C), whatever D is
+# ~(B . ~(C . ~(D . ~B))) = (B -> C), whatever D is
 #
 # Make a B
 :B a :B7 .
@@ -153,7 +153,6 @@
         } .
     } .
 } .
-
 
 (_:S _:O) log:onQuerySurface {
     _:S a  _:O .
