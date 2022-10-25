@@ -4,10 +4,7 @@
 # Erasure test
 
 # A
-:Alice a :Person .
-
-# B
-:Bob :likes :Jazz .
+:A a :A0 .
 
 # A . ~( B . ~(A) ) = A , whatever B is
 # Testing we don't get a fuse
@@ -17,22 +14,23 @@
 
     # This we should get as output
     () log:onNegativeSurface {
-        :Alice a :Person .
+        :A a :A0 .
     } .
 } .
 
 # A . ~(B . ~(C . ~A)) = A . ~B , whatever C is
 # 
 # Make C something false...
+#  `-> we should get a ~B
 () log:onNegativeSurface {
-    :Bob :likes :Quiche .
+    :B a :B1 .
 
     () log:onNegativeSurface {
         # C
         () log:onNegativeSurface true .
 
         () log:onNegativeSurface {
-            :Alice a :Person .
+            :A a :A0 .
         } .
     } . 
 } .
@@ -40,85 +38,155 @@
 # A . ~(B . ~(C . ~A)) = A . ~B , whatever C is
 #
 # Make C something true...
+#  `-> we should get a ~B
 () log:onNegativeSurface {
-    :Bob :likes :TurboPascal .
+    :B a :B2 .
 
     () log:onNegativeSurface {
         # C
-        :Eggs :likes :ZZTop .
+        :C a :C2 .
 
         () log:onNegativeSurface {
-            :Alice a :Person .
+            :A a :A0 .
         } .
     } . 
 } .
 
-# A . ~(B . ~( C . ~(D . ~A))) = A . (B -> C), whatever D is
+# A . ~(B . ~(C . ~(D . ~A))) = A . (B -> C), whatever D is
 #
+# Make a B
+:B a :B3 .
 # Make D something false...
+#  `-> we should get a (B -> C)
 () log:onNegativeSurface {
-    :Bob :likes :Jazz .
+    :B a :B3 .
 
     () log:onNegativeSurface {
-        :Bob :likes :Funk .
+        # C
+        :C a :C3 .
 
         () log:onNegativeSurface {
             # D .
             () log:onNegativeSurface true .
 
             () log:onNegativeSurface {
-                :Alice a :Person .
+                :A a :A0 .
             } .
         } .
     } .
 } .
 
-# A . ~(B . ~( C . ~(D . ~A))) = A . (B -> C), whatever D is
+# A . ~(B . ~(C . ~(D . ~A))) = A . (B -> C), whatever D is
 #
+# Make a B
+:B a :B4 .
 # Make D something true...
+#  `-> we should get a (B -> C)
 () log:onNegativeSurface {
-    :Bob :likes :Jazz .
+    :B a :B4 .
 
     () log:onNegativeSurface {
-        :Bob :likes :AcidJazz .
+        # C
+        :C a :C4 .
 
         () log:onNegativeSurface {
             # D .
-            :Ducks :like :Bach .
+            :D a :D4 .
 
             () log:onNegativeSurface {
-                :Alice a :Person .
+                :A a :A0 .
             } .
         } .
     } .
 } .
 
-() log:onQuerySurface {
-    :Alice a :Person .
-} .
+# A . ~(B . ~(C . ~B)) = A . ~B, whatever C is
+# Make C something false
+() log:onNegativeSurface {
+    :B a :B5 .
 
-(_:O) log:onQuerySurface {
-    :Bob :likes _:O .
-} .
-
-(_:O) log:onQuerySurface {
     () log:onNegativeSurface {
-        :Bob :likes _:O .
+        # C
+        () log:onNegativeSurface true .
+
+        () log:onNegativeSurface {
+            :B a :B5 .
+        } .
+    } .
+} .
+
+# A . ~(B . ~(C . ~B)) = A . ~B, whatever C is
+# Make C something true
+() log:onNegativeSurface {
+    :B a :B6 .
+
+    () log:onNegativeSurface {
+        # C
+        :C a :C6 .
+
+        () log:onNegativeSurface {
+            :B a :B6 .
+        } .
+    } .
+} .
+
+# A . ~(B . ~(C . ~(D . ~B))) = A . (B -> C), whatever D is
+#
+# Make a B
+:B a :B7 .
+# Make D something false...
+#  `-> we should get (B -> C)
+() log:onNegativeSurface {
+    :B a :B7 .
+
+    () log:onNegativeSurface {
+        # C
+        :C a :C7 .
+
+        () log:onNegativeSurface {
+            # D .
+            () log:onNegativeSurface true .
+
+            () log:onNegativeSurface {
+                :B a :B7 .
+            } .
+        } .
+    } .
+} .
+
+
+(_:S _:O) log:onQuerySurface {
+    _:S a  _:O .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    () log:onNegativeSurface {
+        _:S a _:O .
     } .
 } .
 
 # Test
 () log:onNegativeSurface {
-    :Alice a :Person .
-    :Bob :likes :AcidJazz .
-    :Bob :likes :Funk .
+    :A a :A0 .
+
+    :C a :C3 .
+    :C a :C4 .
+    :C a :C7 .
 
     () log:onNegativeSurface {
-        :Bob :likes :Quiche.
+        :B a :B1.
     } .
 
     () log:onNegativeSurface {
-        :Bob :likes :TurboPascal .
+        :B a :B2 .
+    } .
+
+    () log:onNegativeSurface {
+        :B a :B5 .
+    } .
+
+    () log:onNegativeSurface {
+        :B a :B6 .
     } .
 
     () log:onNegativeSurface {
