@@ -13,11 +13,9 @@
     ?G log:includes { ?S ?P ?O } .
 
     ( ?G { ?S ?P ?O } ) graph:difference ?H .
-}
-=>
-{
-    () :onNegativeSurface ?H .
-} .
+
+    { () :onNegativeSurface ?G . } log:becomes { () :onNegativeSurface ?H } .
+} => true .
 
 # ~ ( ~( p . q ) . ~( r . q ) ) = ~( ~p . ~r) . q
 {

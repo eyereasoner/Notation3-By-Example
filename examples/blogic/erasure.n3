@@ -1,0 +1,47 @@
+@prefix : <http://example.org/ns#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+
+:A a :AA .
+
+() :onNegativeSurface {
+    :B a :BB .
+    :C a :CC .
+    () :onNegativeSurface {
+        :A a :AA .
+    } .
+} .
+
+{
+    ?S ?P ?O .
+
+    () :onNegativeSurface ?G .
+    
+    ( ?G { ?S ?P ?O } ) :findPath ?Path .
+
+    ( ?G ?Path ) graph:difference ?H .
+
+    { () :onNegativeSurface ?G . } log:becomes { () :onNegativeSurface ?H } .
+} => true .
+
+# Find the path to a Search triple in a possible nested negative surface
+{
+    (?G ?Search) :findPath ?Search .
+}
+<=
+{
+    ?G log:includes ?Search .
+} .
+
+{
+    (?G ?Search) :findPath { () :onNegativeSurface ?Path } . 
+}
+<=
+{
+    ?G log:includes {
+        () :onNegativeSurface ?H .
+    } .
+
+    ( ?H ?Search) :findPath ?Path .
+} .
+#--------------------------------------------------------------------
