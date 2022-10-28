@@ -1,0 +1,38 @@
+@prefix : <urn:example:>.
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+
+:Let :param { 
+    :A :B :C . 
+    :D :E :F .
+} .
+
+{
+    :Let :param ?X .
+
+    # For each in formula X extract member triples as Formula
+    #    ?X a Formula or variable
+    #    ?Y a Formula or variable
+    ?X graph:list ?Y .
+
+    # This built-in also works in the other direction
+    ?Z graph:list ( { :G :H :I } { :J :K :L } ) .
+}
+=> 
+{   
+    :graph :list ?Y .
+    ?Z :list ( { :G :H :I } { :J :K :L } ) .
+} .
+
+
+# Test
+{
+   :graph :list ( { :A :B :C } { :D :E :F } ) .
+   { 
+     :G :H :I .
+     :J :K :L .
+   } :list ( { :G :H :I } { :J :K :L } )  .
+}
+=>
+{
+    :test :is true .
+} .

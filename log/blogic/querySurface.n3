@@ -99,3 +99,9 @@
         } .
     } .
 } .
+
+# Make the ./make_example.sh happy
+:test :is true .
+() log:onQuerySurface {
+    :test :is true .
+} .
