@@ -1,0 +1,13 @@
+flag('quantify', 'http://josd.github.io/.well-known/genid/3430155645379238679#').
+implies(exopred(A, B, C), answer(A, B, C), '<http://eulersharp.sourceforge.net/2003/03swap/pass>').
+scope('<file:///Users/hochsten/Dev/Mellon/Notation3-By-Example/examples/n3p/demo.n3>').
+pfx(:, '<urn:example:>').
+'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'('<urn:example:Alice>', '<urn:example:Person>').
+
+%% Adding Bob
+'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'('<urn:example:Bob>', '<urn:example:Person>').
+
+implies('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, '<urn:example:Person>'), '<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, '<urn:example:Human>'), '<file:///Users/hochsten/Dev/Mellon/Notation3-By-Example/examples/n3p/demo.n3>').
+
+scount(2).
+end_of_file.

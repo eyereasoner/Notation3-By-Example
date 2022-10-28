@@ -1,0 +1,11 @@
+@prefix : <urn:example:> .
+
+:Alice a :Person .
+
+{
+    ?S a :Person  .
+}
+=>
+{
+    ?S a :Human .
+} . 
