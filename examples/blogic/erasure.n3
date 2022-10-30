@@ -1,6 +1,8 @@
 @prefix : <http://example.org/ns#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
 :A a :AA .
 
@@ -12,17 +14,46 @@
     } .
 } .
 
+#{
+#    ?S ?P ?O .
+#
+#    () :onNegativeSurface ?G .
+#    
+#    ( ?G { ?S ?P ?O } ) :findPath ?Path .
+#
+#    ( ?G ?Path ) graph:difference ?H .
+#
+#    { () :onNegativeSurface ?G . } log:becomes { () :onNegativeSurface ?H } .
+#} => true .
+
 {
-    ?S ?P ?O .
+    ( 
+        { 
+          () log:onNegativeSurface { :A a :AA } . 
+          :B a :BB  .
+        }  
+        { :A a :AA }
+    ) graph:filter ?H.
+}
+=>
+{
+    :Result :is ?H.
+} .
 
-    () :onNegativeSurface ?G .
-    
-    ( ?G { ?S ?P ?O } ) :findPath ?Path .
+{
+    (?F ?F) graph:filter {} .
+}
+<= true .
 
-    ( ?G ?Path ) graph:difference ?H .
-
-    { () :onNegativeSurface ?G . } log:becomes { () :onNegativeSurface ?H } .
-} => true .
+{
+    (?F ?G) graph:filter ?H .
+}
+<= 
+{
+    ?F graph:list ?X .
+    (?X ?G) list:remove ?Y .
+    ?H graph:list ?Y .
+} .
 
 # Find the path to a Search triple in a possible nested negative surface
 {
