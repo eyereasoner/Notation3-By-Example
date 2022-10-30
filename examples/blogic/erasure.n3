@@ -4,15 +4,15 @@
 @prefix math: <http://www.w3.org/2000/10/swap/math#> .
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
-:A a :AA .
+#:A a :AA .
 
-() :onNegativeSurface {
-    :B a :BB .
-    :C a :CC .
-    () :onNegativeSurface {
-        :A a :AA .
-    } .
-} .
+#() :onNegativeSurface {
+#    :B a :BB .
+#    :C a :CC .
+#    () :onNegativeSurface {
+#        :A a :AA .
+#    } .
+#} .
 
 #{
 #    ?S ?P ?O .
@@ -29,10 +29,19 @@
 {
     ( 
         { 
-          () log:onNegativeSurface { :A a :AA } . 
-          :B a :BB  .
+          :A a :AA .
+          () :onNegativeSurface { 
+                :D a :DD .
+                :A a :AA .
+                :B a :BB .
+                () :onNegativeSurface {
+                    :B a :BB .
+                } .
+          } . 
+          :B a :BB .
+          :C a :CC .
         }  
-        { :A a :AA }
+        { :A a :AA . :B a :BB }
     ) graph:filter ?H.
 }
 =>
@@ -40,20 +49,86 @@
     :Result :is ?H.
 } .
 
-{
-    (?F ?F) graph:filter {} .
-}
-<= true .
+################################################################
 
+# (X Y) graph:filter Z - filter all Y from list X 
+#    X a Formula
+#    Y a Formula
+# Z contains X with recursively formula Y removed
 {
     (?F ?G) graph:filter ?H .
 }
 <= 
 {
     ?F graph:list ?X .
-    (?X ?G) list:remove ?Y .
-    ?H graph:list ?Y .
+    ?G graph:list ?Y .
+    (?X ?Y) graph:_filter ?Z .
+    ?H graph:list ?Z .
 } .
+
+{
+    (?X ()) graph:_filter ?X .
+}
+<= true .
+
+{
+    (?X ?Y) graph:_filter ?Z .
+}
+<=
+{
+    ?Y list:length ?L .
+    ?L math:notEqualTo 0 .
+    ?Y list:firstRest (?First ?Rest) .
+    (?X ?First ()) graph:__filter ?Temp .
+    (?Temp ?Rest) graph:_filter ?Z .
+} .
+
+# (X Y Temp) graph:__filter Z
+#    X a List
+#    Y a Formula (single triple)
+#    Temp a List (temporary result list)
+#    Z the result of removing Y from X
+{
+    (() ?G ?Result) graph:__filter ?Result .
+}
+<= true .
+
+{
+    (?F ?G ?Temp) graph:__filter ?H .
+}
+<=
+{
+    ?F list:firstRest (?First ?Rest) .
+    ?First log:equalTo ?G .
+    (?Rest ?G ?Temp) graph:__filter ?H .
+} .
+
+{
+    (?F ?G ?Temp) graph:__filter ?H .
+}
+<=
+{
+    ?F list:firstRest (?First ?Rest) .
+    ?First log:notEqualTo ?G .
+    ?First log:includes { () :onNegativeSurface ?SubForm } .
+    ( ?SubForm ?G) graph:filter ?SubFormCleaned .
+    ( ?Temp ( { () log:onNegativeSurface ?SubFormCleaned . } ) ) list:append ?Temp2 .
+    (?Rest ?G ?Temp2) graph:__filter ?H .
+} .
+
+{
+    (?F ?G ?Temp) graph:__filter ?H .
+}
+<=
+{
+    ?F list:firstRest (?First ?Rest) .
+    ?First log:notEqualTo ?G .
+    ?First log:notIncludes { () :onNegativeSurface ?SubForm } .
+    ( ?Temp (?First) ) list:append ?Temp2 .
+    (?Rest ?G ?Temp2) graph:__filter ?H .
+} .
+
+################################################################
 
 # Find the path to a Search triple in a possible nested negative surface
 {
