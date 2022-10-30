@@ -154,6 +154,32 @@
     } .
 } .
 
+# ~(B . ~(C . ~(D . ~B))) = (B -> C), whatever D is
+#
+# Make a B
+:B a :B8 .
+:D a :D8 .
+# Make D something true...
+#  `-> we should get (B -> C)
+() log:onNegativeSurface {
+    :B a :B8 .
+
+    () log:onNegativeSurface {
+        # C
+        :C a :C8 .
+
+        () log:onNegativeSurface {
+            # D .
+            :D a :D8 .
+
+            () log:onNegativeSurface {
+                :B a :B8 .
+            } .
+        } .
+    } .
+} .
+
+
 (_:S _:O) log:onQuerySurface {
     _:S a  _:O .
 } .
@@ -171,6 +197,7 @@
     :C a :C3 .
     :C a :C4 .
     :C a :C7 .
+    :C a :C8 .
 
     () log:onNegativeSurface {
         :B a :B1.
