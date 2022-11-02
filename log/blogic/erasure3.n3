@@ -1,0 +1,42 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Conjunctive Erasure test
+
+# ~(A . B . ~(C . ~(A . B . D))) = A . B -> C . ~D
+# Make a A and a B
+:A a :A2 .
+:B a :B2 .
+
+() log:onNegativeSurface {
+    :A a :A2 .
+    :B a :B2 .
+
+    () log:onNegativeSurface {
+        # C
+        :C a :C2 .
+
+        () log:onNegativeSurface {
+            :A a :A2 .
+            :B a :B2 .
+            :D a :D2 .
+        } .
+    } .
+} .
+
+# Test
+() log:onNegativeSurface {
+    :C a :C2 .
+
+    () log:onNegativeSurface {
+        :D a :D2 .
+    } .
+
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
