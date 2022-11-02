@@ -1,0 +1,49 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Erasure test
+
+# ~(B . ~(C . ~(B . D))) = B -> C . ~D
+# Make a B
+:B a :B2 .
+() log:onNegativeSurface {
+    :B a :B2 .
+
+    () log:onNegativeSurface {
+        # C
+        :C a :C2 .
+
+        () log:onNegativeSurface {
+            :B a :B2 .
+            :D a :D2 .
+        } .
+    } .
+} .
+
+# Verbose
+(_:S _:O) log:onQuerySurface {
+    _:S a _:O .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    () log:onNegativeSurface {
+        _:S a _:O .
+    } .
+} .
+
+# Test
+() log:onNegativeSurface {
+    :C a :C2 .
+
+    () log:onNegativeSurface {
+        :D a :D2 .
+    } .
+
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
