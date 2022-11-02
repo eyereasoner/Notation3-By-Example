@@ -1,0 +1,22 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Alice a :Cyclist .
+() log:onNegativeSurface {
+    :Alice a :IceSkater .
+} .
+
+# All cyclists are iceskaters and all iceskaters are cyclists
+(_:X) log:onNegativeSurface {
+    _:X a :Cyclist .
+    () log:onNegativeSurface {
+        _:X a :IceSkater .
+    } .
+} . 
+
+(_:X) log:onNegativeSurface {
+    _:X a :IceSkater .
+    () log:onNegativeSurface {
+        _:X a :Cyclist .
+    } .
+} . 

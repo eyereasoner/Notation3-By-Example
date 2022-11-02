@@ -1,0 +1,31 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Some cyclists are not iceskaters
+_:X a :Cyclist .
+
+() log:onNegativeSurface {
+    _:X a :IceSkater .
+} .
+
+# Some iceskaters are not cyclists
+_:Y a :IceSkater .
+() log:onNegativeSurface {
+    _:Y a :Cyclist .
+} .
+
+# All cyclists are skaters
+(_:X) log:onNegativeSurface {
+    _:X a :Cyclist .
+    () log:onNegativeSurface {
+        _:X a :IceSkater .
+    } .
+} . 
+
+# All skaters are cyclists 
+(_:X) log:onNegativeSurface {
+    _:X a :IceSkater .
+    () log:onNegativeSurface {
+        _:X a :Cyclist .
+    } .
+} . 

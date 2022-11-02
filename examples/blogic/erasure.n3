@@ -41,7 +41,7 @@
           :B a :BB .
           :C a :CC .
         }  
-        { :A a :AA . :B a :BB }
+        { :A a :AA  }
     ) graph:filter ?H.
 }
 =>
