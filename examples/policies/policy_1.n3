@@ -1,0 +1,37 @@
+@prefix : <http://example.org/ns#> .
+@prefix pol: <https://github.com/phochste/policy#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+
+:Rule1 a pol:Rule ;
+    pol:body { 
+        (_:Subject _:Object) 
+            # When we have a create
+            pol:when {
+                _:Subject a :Create ;
+                    :object _:Object .
+            } ;
+            # ... send it to the append log
+            pol:then {
+                _:Subject pol:policy [
+                    a fno:Execution ;
+                    fno:executes :appendToLog
+                ] .
+            } ;
+            # ... and remove all blind copies
+            pol:then {
+                _:Subject pol:policy [
+                    a fno:Execution ;
+                    fno:executes :removeBlindCopies
+                ] .
+            } ;
+            # ... and send a message to Jos
+            pol:then {
+                _:Subject pol:policy [
+                    a fno:Execution ;
+                    fno:executes :sendMessage ;
+                    :to <https://github.com/josd/profile.ttl> ;
+                    :from  <https://patrickhochstenbach.net/profile/card#me> ;
+                    :message _:Object 
+                ] .
+            } .
+    } .

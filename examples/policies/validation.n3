@@ -1,0 +1,24 @@
+@prefix pol: <https://github.com/phochste/policy#> .
+@prefix util: <https://github.com/phochste/util#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+# Rule validation
+# .. when need a pol:Rule 
+# .. with a pol:body
+# .. with one and only one pol:when
+# .. with at least one pol:then
+(_:Rule _:Body _:WhenCount _:ThenCount _:S _:O) log:onNegativeSurface {
+    _:Rule a pol:Rule ;
+       pol:body _:Body .
+
+    ( { _:S pol:when _:O } _:Body) util:cardinality _:WhenCount .
+    ( { _:S pol:then _:O } _:Body) util:cardinality _:ThenCount .
+
+    _:WhenCount math:equalTo 1 .
+    _:ThenCount math:greaterThan 0 .
+
+    () log:onNegativeSurface {
+        _:Rule a pol:ValidRule .
+    } .
+} .

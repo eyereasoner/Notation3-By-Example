@@ -1,0 +1,7 @@
+@prefix : <http://example.org/ns#> .
+
+:Record1 a :Create ;
+    :object <http://miel.data.pod/publications/mellon.pdf> ;
+    :target <http://ruben.data.pod/inbox> ;
+    :bcc <http://patrick.data.pod/inbox> ;
+    :bcc <http://patrick.data.pod/inbox> .
