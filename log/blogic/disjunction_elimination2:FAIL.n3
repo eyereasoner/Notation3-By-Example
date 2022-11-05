@@ -1,0 +1,55 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:A a :B .
+:C a :B .
+:D a :B .
+
+# This should fail !
+() log:onNegativeSurface {
+    :D a :C .
+} .
+
+(_:S) log:onNegativeSurface {
+    _:S a :B .
+
+    () log:onNegativeSurface {
+        _:S a :B1 .
+    } .
+
+    () log:onNegativeSurface {
+        _:S a :B2 .
+    } .
+
+    () log:onNegativeSurface {
+        _:S a :B3 .
+    } .
+} .
+
+(_:S) log:onNegativeSurface {
+    _:S a :B1 .
+
+    () log:onNegativeSurface {
+        _:S a :C .
+    }.
+} .
+
+(_:S) log:onNegativeSurface {
+    _:S a :B2 .
+
+    () log:onNegativeSurface {
+        _:S a :C .
+    }.
+} .
+
+(_:S) log:onNegativeSurface {
+    _:S a :B3 .
+
+    () log:onNegativeSurface {
+        _:S a :C .
+    }.
+} .
+
+(_:S _:O) log:onQuerySurface {
+    _:S a _:O .
+} .
