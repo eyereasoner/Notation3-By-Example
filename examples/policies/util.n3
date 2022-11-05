@@ -50,7 +50,7 @@
 
     _:GraphL list:firstRest (_:F _:R) .
 
-    _:F util:includesNoBind _:Pat .
+    _:F log:includesNotBind _:Pat .
 
     (_:Result (_:F) ) list:append _:ResultNext .
 
@@ -67,21 +67,6 @@
     _:F log:notIncludes _:Pat .
 
     (_:Pat _:List _:Result) util:_collectAllIn _:R .
-} .
-
-##################################################################
-
-# X util:includesNoBind Y
-#   X a formula or variable
-#   Y a formula or variable
-# Is true when X includes Y (no binging will be done)
-(_:F _:G _:T1 _:T2) log:onNegativeSurface {
-    () log:onQuerySurface {
-        _:F util:includesNoBind _:G .
-    } .
-    ( () (_:F)) list:append _:T1 .
-    (_:T1 _:G) list:remove _:T2 .
-    _:T2 list:length 0 .
 } .
 
 ##################################################################
