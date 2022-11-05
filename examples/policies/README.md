@@ -2,7 +2,7 @@
 
 This is an [RDF Surfaces](https://josd.github.io/surface/) implementation of the [Mellon Rule language for decentralized business processes](https://mellonscholarlycommunication.github.io/spec-rulelanguage/).
 
-A policy document described which actions a Mellon choreographer (orchestrator) process 
+A policy document describes which actions a Mellon choreographer (orchestrator) process 
 should take when receiving an incoming [Event Notification](https://www.eventnotifications.net)
 message.
 
