@@ -1,0 +1,32 @@
+@prefix : <http://example.org/ns#> .
+@prefix query: <https://github.com/phochste/query#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+(  _:Query _:Body 
+   _:Param _:WhereBody _:ResultBody
+   _:Surface
+) log:onNegativeSurface {
+    () log:onNeutralSurface {
+        _:Query a query:Query ;
+            query:select _:Body .
+    } .
+
+    _:Body log:includes {
+        _:Param query:where _:WhereBody ;
+                query:result _:ResultBody .
+    } .
+
+    ( _:WhereBody {
+        () log:onNegativeSurface {
+            _:Query query:answer _:ResultBody .
+        } 
+    }) log:conjunction _:Surface.
+
+    () log:onNegativeSurface {
+        _:Param log:onNegativeSurface _:Surface.
+    } .
+} .
+
+(_:X _:Answer) log:onQuerySurface {
+    _:X query:answer _:Answer .
+} .
