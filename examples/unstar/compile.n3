@@ -1,0 +1,188 @@
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@prefix u: <https://w3c.github.io/rdf-star/unstar#> .
+
+#----------------------------------------
+#
+# ?X log:isQuoted ?Y
+#   Check if X is a quoted graph
+#      - X a Formula
+#      - Y a boolean
+{
+    ?F log:isQuoted true .
+}
+<=
+{
+    ?F log:includes << ?S ?P ?O >> .
+} .
+
+{
+    ?F log:isQuoted true .
+}
+<=
+{
+    ?F log:notIncludes << ?S ?P ?O >> .
+} .
+
+#----------------------------------------
+# 
+#  ?X log:isBlank ?Y 
+#    Check if X is a blank node
+#      - X a variable
+#      - Y a boolean
+#   
+{
+    ?Node log:isBlank true .
+}
+<=
+{
+    ?Node log:rawType log:Other .
+    ?Node log:localN3String ?NodeS .
+    ?NodeS string:startsWith "_:" .
+} .
+
+{
+    ?Node log:isBlank false .
+}
+<=
+{
+    ?Node log:rawType log:Other .
+    ?Node log:localN3String ?NodeS .
+    ?NodeS string:notMatches "^_:" .
+} .
+
+{
+    ?Node log:isBlank false .
+}
+<=
+{
+    ?Node log:rawType log:Literal .
+} .
+
+{
+    ?Node log:isBlank false .
+}
+<=
+{
+    ?Node log:rawType log:Formula .
+} .
+
+{
+    ?Node log:isBlank false .
+}
+<=
+{
+    ?Node log:rawType log:List .
+} .
+
+#----------------------------------------
+#
+#  ?X u:parse (?Skolem ?S ?P ?O ?LS ?LP ?LO)
+#    Parse a quoted graph into its consituents
+#      X - a << s p o >> Formula
+#      Y - a list (?Skolem ?S ?P ?O ?LS ?LP ?LO)
+#            Skolem - a blank node for the blank node
+#            S - the subject
+#            P - the predicate
+#            O - the object
+#            LS - literal version of subject or false
+#            LP - literal version of predicate or false
+#            LO - literal version of object or false
+{
+    ?Formula u:parse (?Skolem ?S ?P ?O ?LS ?LP ?LO) .
+}
+<=
+{
+    ?Formula log:rawType log:Formula .
+    ?Formula log:includes << ?S ?P ?O >> .
+    ?Formula u:tripleLiteral (?LS ?LP ?LO) .
+    ?Formula log:skolem ?Skolem .
+} .
+
+#----------------------------------------
+#
+#  ?X u:makeLiteral ?Y
+#    Create a string literal version of X in Y 
+#    If X is a blank node, Y will be false
+#     X - a variable
+#     Y - a stringable
+{
+    ?X u:makeLiteral ?XS .
+}
+<=
+{
+    ?X log:isBlank false .
+    ?X log:uri ?Str .
+    ( "<%s>" ?Str ) string:format ?XS .
+} .
+
+{
+    ?X u:makeLiteral ?XS .
+}
+<=
+{
+    ?X log:isBlank false .
+    ?X log:rawType log:Literal .
+    ?X log:localN3String ?XS .
+} .
+
+{
+    ?X u:makeLiteral false .
+}
+<=
+{
+    ?X log:isBlank true .
+} .
+
+#----------------------------------------
+#
+#  << ?S ?P ?O >> u:tripleLiteral (?LS ?LP ?LO)
+#   Create the literal version of a quoted graph
+{
+    ?F u:tripleLiteral (?LS ?LP ?LO) .
+}
+<=
+{
+    ?F log:includes << ?S ?P ?O >> .
+    ?S u:makeLiteral ?LS .
+    ?P u:makeLiteral ?LP .
+    ?O u:makeLiteral ?LO .
+} .
+
+#----------------------------------------
+# Parse a quoted graph into unstar version
+{
+    ?S ?P ?O .
+    ?S log:isQuoted true .
+    ?S u:parse (?Skolem ?Sp ?Pp ?Op ?LS ?LP ?LO) .
+}
+=>
+{
+    ?Skolem 
+       u:subject ?Sp ;
+       u:predicate ?Pp ;
+       u:object ?Op .
+    ?Skolem ?P ?O .
+    
+    { ?LS log:notEqualTo false . } => { ?Skolem u:subjectLexical ?LS . } .
+    { ?LP log:notEqualTo false . } => { ?Skolem u:predicateLexical ?LP . } .
+    { ?LO log:notEqualTo false . } => { ?Skolem u:objectLexical ?LO . } .
+} .
+
+{
+    ?S ?P ?O .
+    ?O log:isQuoted true .
+    ?O u:parse (?Skolem ?Sp ?Pp ?Op ?LS ?LP ?LO) .
+}
+=>
+{
+    ?Skolem 
+       u:subject ?Sp ;
+       u:predicate ?Pp ;
+       u:object ?Op .
+    ?S ?P ?Skolem .
+
+    { ?LS log:notEqualTo false . } => { ?Skolem u:subjectLexical ?LS . } .
+    { ?LP log:notEqualTo false . } => { ?Skolem u:predicateLexical ?LP . } .
+    { ?LO log:notEqualTo false . } => { ?Skolem u:objectLexical ?LO . } .
+} .
