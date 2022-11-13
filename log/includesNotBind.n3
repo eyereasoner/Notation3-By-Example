@@ -1,0 +1,30 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Let :param { :Alice a :Person } .
+
+{
+    :Let :param ?F .
+
+    # Evaluates if formula X includes the statements (+ evaluation of
+    # universal and existential variables) in Y  
+    # This version of includes will not bind the variables in Y.
+    # One can use this built-in to peek into a formula, without
+    # changing anything to the bindings.
+    #    X a formula
+    #    Y a formula
+    ?F log:includesNotBind { ?A a ?B } .
+}
+=> 
+{ 
+    :Result :includesNotBind { ?A a ?B } .
+} .
+
+{
+    :Result :includesNotBind { ?M a ?N } .
+}
+=> 
+{
+    :test :is true .
+} .
+
