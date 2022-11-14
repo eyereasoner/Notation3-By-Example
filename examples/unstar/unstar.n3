@@ -193,3 +193,34 @@
 } .
 
 # Unpack any nested quoted graphs
+{
+    ?S ?P ?O .
+    (?S ?P ?O) u:unpack (?NewS ?NewP ?NewO) .
+}
+=>
+{
+    ?NewS ?NewP ?NewO .
+} .
+
+{
+    (?S ?P ?O) u:unpack (<< ?Skolem ?Y ?Z>> ?P ?O) .
+}
+<=
+{
+    ?S log:isQuoted true .
+    ?S log:includes << ?X ?Y ?Z >> .
+    ?X log:isQuoted true .
+    ?X log:skolem ?Skolem .    
+} .
+
+{
+    (?S ?P ?O) u:unpack (?X ?Y ?Z) .
+}
+<=
+{
+    ?S log:isQuoted true .
+    ?S log:includes << ?X ?Y ?Z >> .
+    ?X log:isQuoted true .
+    ?X log:skolem ?Skolem .    
+} .
+

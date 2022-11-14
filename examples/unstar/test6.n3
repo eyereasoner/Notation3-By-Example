@@ -4,24 +4,19 @@
 << << :a :b :c >> :d :e >> :p :o .
 
 {
-    ?Z u:subject :a ;
+    ?Y u:subject :a ;
        u:predicate :b ;
        u:object :c ;
        u:subjectLexical   "<urn:example:a>" ;
        u:predicateLexical "<urn:example:b>" ;
-       u:objectLexical    "<urn:example:c>" ;
+       u:objectLexical    "<urn:example:c>" .
 
-    ?Y u:subject ?Z ;
+    ?X u:subject ?Y ;
        u:predicate :d ;
        u:object :e ;
        u:predicateLexical "<urn:example:d>" ;
        u:objectLexical    "<urn:example:e>" .
 
-    ?X u:subject ?Y ;
-       u:predicate :p ;
-       u:object :o ;
-       u:predicateLexical "<urn:example:p>" ;
-       u:objectLexical    "<urn:example:o>" .
     ?X :p :o .   
 }
 =>
