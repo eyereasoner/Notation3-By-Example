@@ -4,13 +4,25 @@
 << << :a :b :c >> :d :e >> :p :o .
 
 {
-    ?S u:subject :s ;
+    ?Z u:subject :a ;
+       u:predicate :b ;
+       u:object :c ;
+       u:subjectLexical   "<urn:example:a>" ;
+       u:predicateLexical "<urn:example:b>" ;
+       u:objectLexical    "<urn:example:c>" ;
+
+    ?Y u:subject ?Z ;
+       u:predicate :d ;
+       u:object :e ;
+       u:predicateLexical "<urn:example:d>" ;
+       u:objectLexical    "<urn:example:e>" .
+
+    ?X u:subject ?Y ;
        u:predicate :p ;
        u:object :o ;
-       u:subjectLexical   "<urn:example:s>" ;
        u:predicateLexical "<urn:example:p>" ;
        u:objectLexical    "<urn:example:o>" .
-    ?S :p :o .   
+    ?X :p :o .   
 }
 =>
 {
