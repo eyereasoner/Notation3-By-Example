@@ -223,4 +223,3 @@
     ?X log:isQuoted true .
     ?X log:skolem ?Skolem .    
 } .
-
