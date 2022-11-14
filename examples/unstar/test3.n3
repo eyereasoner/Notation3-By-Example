@@ -1,4 +1,4 @@
-@prefix : <http://example.org/> .
+@prefix : <urn:example:> .
 @prefix u: <https://w3c.github.io/rdf-star/unstar#> .
 
 << :a :b :c >> :p :o .
@@ -8,20 +8,20 @@
     ?S1 u:subject :a ;
        u:predicate :b ;
        u:object :c ;
-       u:subjectLexical   "<http://example.org/a>" ;
-       u:predicateLexical "<http://example.org/b>" ;
-       u:objectLexical    "<http://example.org/c>" .
+       u:subjectLexical   "<urn:example:a>" ;
+       u:predicateLexical "<urn:example:b>" ;
+       u:objectLexical    "<urn:example:c>" .
     ?S1 :p :o .   
 
     ?S2 u:subject :a ;
        u:predicate :b ;
        u:object :c ;
-       u:subjectLexical   "<http://example.org/a>" ;
-       u:predicateLexical "<http://example.org/b>" ;
-       u:objectLexical    "<http://example.org/c>" .
+       u:subjectLexical   "<urn:example:a>" ;
+       u:predicateLexical "<urn:example:b>" ;
+       u:objectLexical    "<urn:example:c>" .
     ?S2 :p :o2 .   
 }
 =>
 {
-    :test3 :is true .
+    :test :is true .
 } .

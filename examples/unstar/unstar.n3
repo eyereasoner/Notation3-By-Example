@@ -17,7 +17,7 @@
 } .
 
 {
-    ?F log:isQuoted true .
+    ?F log:isQuoted false .
 }
 <=
 {
@@ -77,9 +77,10 @@
 
 #----------------------------------------
 #
-#  ?X u:parse (?Skolem ?S ?P ?O ?LS ?LP ?LO)
+#  (?X ?Y ?Z) u:parse (?Skolem ?S ?P ?O ?LS ?LP ?LO)
 #    Parse a quoted graph into its consituents
-#      X - a << s p o >> Formula
+#      X - a list (?X ?Y ?Z)
+#            Which is a triple from the data
 #      Y - a list (?Skolem ?S ?P ?O ?LS ?LP ?LO)
 #            Skolem - a blank node for the blank node
 #            S - the subject
@@ -89,11 +90,32 @@
 #            LP - literal version of predicate or false
 #            LO - literal version of object or false
 {
-    ?Formula u:parse (?Skolem ?S ?P ?O ?LS ?LP ?LO) .
+    (?X ?Y ?Z) u:parse (?Skolem ?Y ?Z ?Skolem ?S ?P ?O ?LS ?LP ?LO) .
 }
 <=
 {
-    ?Formula log:rawType log:Formula .
+    # Case 1 : subject is quoted
+    ?X log:isQuoted true .
+    ?Z log:isQuoted false .
+    ?X u:_parse (?Skolem ?S ?P ?O ?LS ?LP ?LO) .
+} .
+
+{
+    (?X ?Y ?Z) u:parse (?X ?Y ?Skolem ?Skolem ?S ?P ?O ?LS ?LP ?LO) .
+}
+<=
+{
+    # Case 2 : object is quoted
+    ?X log:isQuoted false .
+    ?Z log:isQuoted true .
+    ?Z u:_parse (?Skolem ?S ?P ?O ?LS ?LP ?LO) .
+} .
+
+{
+    ?Formula u:_parse (?Skolem ?S ?P ?O ?LS ?LP ?LO) .
+}
+<=
+{
     ?Formula log:includes << ?S ?P ?O >> .
     ?Formula u:tripleLiteral (?LS ?LP ?LO) .
     ?Formula log:skolem ?Skolem .
@@ -150,39 +172,24 @@
 } .
 
 #----------------------------------------
+
 # Parse a quoted graph into unstar version
 {
     ?S ?P ?O .
-    ?S log:isQuoted true .
-    ?S u:parse (?Skolem ?Sp ?Pp ?Op ?LS ?LP ?LO) .
+    (?S ?P ?O) u:parse (?NewS ?NewP ?NewO ?Skolem ?Sp ?Pp ?Op ?LS ?LP ?LO) .
 }
 =>
 {
+    ?NewS ?NewP ?NewO .
+
     ?Skolem 
        u:subject ?Sp ;
        u:predicate ?Pp ;
        u:object ?Op .
-    ?Skolem ?P ?O .
     
     { ?LS log:notEqualTo false . } => { ?Skolem u:subjectLexical ?LS . } .
     { ?LP log:notEqualTo false . } => { ?Skolem u:predicateLexical ?LP . } .
     { ?LO log:notEqualTo false . } => { ?Skolem u:objectLexical ?LO . } .
 } .
 
-{
-    ?S ?P ?O .
-    ?O log:isQuoted true .
-    ?O u:parse (?Skolem ?Sp ?Pp ?Op ?LS ?LP ?LO) .
-}
-=>
-{
-    ?Skolem 
-       u:subject ?Sp ;
-       u:predicate ?Pp ;
-       u:object ?Op .
-    ?S ?P ?Skolem .
-
-    { ?LS log:notEqualTo false . } => { ?Skolem u:subjectLexical ?LS . } .
-    { ?LP log:notEqualTo false . } => { ?Skolem u:predicateLexical ?LP . } .
-    { ?LO log:notEqualTo false . } => { ?Skolem u:objectLexical ?LO . } .
-} .
+# Unpack any nested quoted graphs
