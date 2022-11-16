@@ -1,0 +1,66 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Alice a :Person .
+
+{
+    :Alice :built-in-1 :Ok .
+
+    :Alice :built-in-3 :Ok .
+    ?Who :built-in-3 :Ok .
+    ?Who log:equalTo :Alice .
+
+    :Alice :built-in-4 ?X .
+    :Alice :built-in-4 (:Alice) .
+}
+=>
+{
+    :built-in-4 :has ?X .
+    :test :is true .
+} .
+
+# A backward rule is like a user defined built-in. In the body you specify
+# specify what must be true, in the head you define the built-in template.
+# It works a bit like stating in an imperative language:
+#
+#   function (:Alice,:built-in-1,:Ok) {
+#       :Alice a :Person .
+#   }
+{
+    :Alice :built-in-1 :Ok .
+}
+<= # Notice the backward arrow here
+{
+    :Alice a :Person .
+} .
+
+# The head can only contain one triple. The example below will not work!
+#{
+#    :Alice :built-in-2 :NotOk;
+#           :test 123 .
+#}
+#<=
+#{
+#    :Alice a :Person .
+#} .
+
+# More interesting backward rules can be created by adding variab;es
+{
+    ?Who :built-in-3 :Ok .
+}
+<=
+{
+    ?Who a :Person .
+} . 
+
+# Or, adding other built-ins
+{
+    ?Who :built-in-4 ?Result .
+}
+<=
+{
+    ?Who a :Person .
+    ( () (?Who)) list:append ?Result .
+    # The result will be bound to the result in the head
+} .
