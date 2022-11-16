@@ -1,0 +1,18 @@
+@prefix : <http://example.org/ns#> .
+@prefix query: <https://github.com/phochste/query#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+() log:onNeutralSurface {
+    :MyQuery a query:Query ;
+        query:select {
+            (_:S _:O) 
+                query:where {
+                    _:S a _:O ;
+                        :likes :Fruit .
+                    # _:S _:P _:O # fails
+                } ;
+                query:result {
+                    _:S a _:O .
+                } .
+        } .
+}.

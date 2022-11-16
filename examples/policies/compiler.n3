@@ -1,11 +1,12 @@
 @prefix : <http://example.org/ns#> .
 @prefix pol: <https://github.com/phochste/policy#> .
+@prefix util: <https://github.com/phochste/util#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Search for a pol:Rule 
 #  pol:body holds the logic of the rule
 #  ... pol:when select on what conditions the rule should be executed
-#  ... pol:then* described what should happen when the condition holds
+#  ... pol:then* describes what should happen when the condition holds
 (  _:Rule _:Body 
    _:Param _:WhenBody _:ThenBody
    _:WhenBodyPrime

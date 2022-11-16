@@ -1,0 +1,5 @@
+@prefix : <http://example.org/ns#> .
+
+:Alice a :Person ;
+    :likes :Fruit .
+:Bob a :Person .
