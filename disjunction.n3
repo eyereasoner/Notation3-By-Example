@@ -1,0 +1,48 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Light1 :is :Green .
+:Light2 :is :Orange .
+:Light3 :is :Red .
+
+# In N3Logic all statements in a rule are a logical conjunction (AND).
+# To create a logical disjunction (OR) two patterns are possible.
+#
+# Pattern #1 : repeating the rule
+{
+    ?L :is :Orange .
+}
+=>
+{
+    ?L :is :Warning .
+} .
+
+{
+    ?L :is :Red .
+}
+=>
+{
+    ?L :is :Warning .
+} .
+
+# Pattern #2 : use a list:in an find a match
+{
+    ?L :is ?Color .
+    ?Color list:in ( :Orange :Red ).
+}
+=>
+{
+    ?L :is :Warning2.
+} .
+
+
+# Test
+{
+    :Light2 :is :Warning , :Warning2 .
+    :Light3 :is :Warning , :Warning2 .
+}
+=>
+{
+    :test :is true .
+} .
