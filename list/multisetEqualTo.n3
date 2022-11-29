@@ -1,0 +1,27 @@
+@prefix : <urn:example:> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Let :param ("Huey" "Dewey" "Dewey" "Louie") .
+
+{
+    :Let :param ?X .
+
+    # Evaluates to true when two multi sets are equal
+    # This is implemented as a list in this built-in
+    #    ?X a variable or list 
+    #    ?Y a variable or list
+    ?X list:multisetEqualTo ("Dewey" "Louie" "Huey" "Dewey") .
+
+}
+=> 
+{   
+    ?X :multisetEqualTo ("Dewey" "Louie" "Huey" "Dewey") .
+} .
+
+{
+    ?X :multisetEqualTo ("Dewey" "Louie" "Huey" "Dewey") .
+}
+=> 
+{
+    :test :is true .
+} .
