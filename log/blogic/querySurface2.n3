@@ -1,0 +1,19 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:Alice a :Person .
+
+# Create a dynamic query surface
+(_:X _:Y) :is { _:X a _:Y }.
+(_:X _:Y) :is { _:X :is _:Y }.
+
+(_:P _:Q) log:onNegativeSurface {
+    _:P :is _:Q .
+
+    () log:onNegativeSurface {
+        _:P log:onQuerySurface _:Q .
+        # Make test happy
+        :test :is true .
+    } .
+} .

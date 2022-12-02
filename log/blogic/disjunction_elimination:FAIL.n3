@@ -1,0 +1,78 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Example by Dörthe Arndt
+# Elimination of disjunction is a form of a tautology of the form
+#
+# (P -> Q) . (R -> Q ) . (P v R ) |- Q
+#
+# Proof:
+# 
+# |- ~(P . ~Q) . ~(R . ~Q) . ~(~P . ~R) 
+# |- ~( ~(~P . ~R) . ~Q ) . ~(~P . ~R)
+# |- (P v R)->Q . (P v R)
+# Here follows Q
+:Beetle a :Car .
+
+(_:S) log:onNegativeSurface {
+    # P
+    _:S :is :green.
+
+    () log:onNegativeSurface {
+        # -> Q
+        _:S :is :beautiful .
+    } .
+} .
+
+(_:S) log:onNegativeSurface {
+    # R
+    _:S :is :blue.
+
+    () log:onNegativeSurface {
+        # -> Q
+        _:S :is :beautiful .
+    } .
+} .
+
+(_:S) log:onNegativeSurface {
+    # Need to match something in the data to trigger the rules
+    _:S a :Car.
+
+    # P
+    () log:onNegativeSurface {
+        _:S :is :green . 
+    } .
+
+    # OR R
+    () log:onNegativeSurface {
+        _:S :is :blue . 
+    } .
+} .
+
+# In reasoners that support disjunction via contrapositives
+# we can at least check that denying the conclusion (Q) 
+# will lead to a inconsistency (the reasoner should burn
+# a logical fuse).
+
+# The negation of the conclusion should blow an inference fuse
+# ~Q (!?)
+() log:onNegativeSurface {
+    :Beetle :is :beautiful .
+} .
+
+# When a full disjunction elimintation is supported 
+# in a reasoner, this also needs to work. But it is a
+# very computing intensive operation.
+# 
+## Test
+#() log:onNegativeSurface {
+#    :Beetle :is :beautiful .
+#    
+#    () log:onNegativeSurface {
+#        :test :is true .
+#    } .
+#} .
+#
+#(_:S _:O) log:onQuerySurface {
+#    _:S :is _:O .
+#} .
