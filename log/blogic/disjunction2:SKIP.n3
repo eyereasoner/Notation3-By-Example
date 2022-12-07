@@ -1,0 +1,74 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Testing to make a disjunction based on generated data
+# 1 We first infer that Alice and Bob are students
+# 2 Then we say that students are from Ghent or Leuven
+# 3 Then we say that Ghent and Leuven students are smart
+
+:Alice a :PhdStudent .
+:Bob a :MasterStudent .
+
+# [1]
+(_:S) log:onNegativeSurface {
+    _:S a :MasterStudent .
+
+    () log:onNegativeSurface {
+        _:S a :Student .
+    } .
+} .
+
+(_:S) log:onNegativeSurface {
+    _:S a :PhdStudent .
+
+    () log:onNegativeSurface {
+        _:S a :Student .
+    } .
+} .
+
+# [2]
+(_:S) log:onNegativeSurface {
+    _:S a :Student .
+
+    () log:onNegativeSurface {
+        _:S a :GhentStudent .
+    } .
+
+    () log:onNegativeSurface {
+        _:S a :LeuvenStudent .
+    } .
+} .
+
+# [3]
+(_:S) log:onNegativeSurface {
+    _:S a :GhentStudent .
+
+    () log:onNegativeSurface {
+        _:S a :SmartPerson .
+    } .
+} .
+
+(_:S) log:onNegativeSurface {
+    _:S a :LeuvenStudent .
+
+    () log:onNegativeSurface {
+        _:S a :SmartPerson .
+    } .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    _:S a _:O .
+} .
+
+# Test
+() log:onNegativeSurface {
+    :Alice a :SmartPerson .
+    :Bob a :SmartPerson .
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
