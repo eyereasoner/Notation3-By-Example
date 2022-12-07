@@ -2,7 +2,7 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Testing if we don't eliminate too much 
-# Failing this when reasoning only allows disjunction via contrapositives
+# Skip this when reasoning only allows disjunction via contrapositives
 
 :A a :B .
 
