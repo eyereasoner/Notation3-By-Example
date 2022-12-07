@@ -1,0 +1,57 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Testing full disjunction. Skipping the test because
+# we see it is failing when activating line 35 (_:S a :Person)
+
+:Alice a :Person .
+
+# For all S a Person : 
+#  (S a DogLover) OR
+#  (S a CatLover)
+(_:S) log:onNegativeSurface {
+    _:S a :Person .
+
+    () log:onNegativeSurface {
+        _:S a :DogLover .
+    } .
+
+    () log:onNegativeSurface {
+        _:S a :CatLover .
+    } .
+} .
+
+# All DogLovers are PetLovers
+(_:S) log:onNegativeSurface {
+    _:S a :DogLover .
+
+    () log:onNegativeSurface {
+        _:S a :PetLover .
+    } .
+} .
+
+# All CatLovers (that are Persons) are PetLovers
+(_:S) log:onNegativeSurface {
+    _:S a :Person .  # Without this line it works
+    _:S a :CatLover .
+
+    () log:onNegativeSurface {
+        _:S a :PetLover .
+    } .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    _:S a _:O .
+} .
+
+# Test
+() log:onNegativeSurface {
+    :Alice a :PetLover .
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
