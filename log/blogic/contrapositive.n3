@@ -1,0 +1,59 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+
+# We need positive facts to trigger the query .
+# .. in this case stating that Alice likes Dogs
+:Alice a :Person ; :likes :Dogs .
+
+# A Person likes Cats or Dogs (or both)
+(_:S) log:onNegativeSurface {
+    _:S a :Person .
+
+    () log:onNegativeSurface {
+        _:S :likes :Cats .
+    } .
+
+    () log:onNegativeSurface {
+        _:S :likes :Dogs .
+    } .
+} .
+
+# A person that likes cats , likes Pets
+(_:S) log:onNegativeSurface {
+    _:S :likes :Cats .
+
+    () log:onNegativeSurface {
+        _:S a :PetLover .
+    } .
+} .
+
+# A person that likes dogs , likes Pets
+(_:S) log:onNegativeSurface {
+    _:S :likes :Dogs .
+
+    () log:onNegativeSurface {
+        _:S a :PetLover .
+    } .
+} .
+
+# We can query if we have a PetLover in the family
+(_:S) log:onNegativeSurface {
+    _:S a :PetLover .
+
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    _:S a _:O .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    _:S :likes _:O .
+} .

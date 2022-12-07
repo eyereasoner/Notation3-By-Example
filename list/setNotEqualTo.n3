@@ -7,8 +7,8 @@
     :Let :param ?X .
 
     # Evaluates to true when two sets are equal
-    #    ?X a variable or list 
-    #    ?Y a variable or list
+    #    ?X a variable or set
+    #    ?Y a variable or set
     ?X list:setNotEqualTo ($ "Louie" "Huey" "Dewey" "Bob" $) .
 
 }

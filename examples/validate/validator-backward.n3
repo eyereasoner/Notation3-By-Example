@@ -1,0 +1,109 @@
+@prefix : <urn:example.org:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+:test1 a :TestCase ;
+    :forBuiltIn list:iterate ;
+    rdf:subject ?List ;
+    rdf:object  (1 "Tim") .
+
+:test2 a :TestCase ;
+    :forBuiltIn list:iterate ;
+    rdf:subject ("William" "Tim" "Patrick") ;
+    rdf:object  (1 "William") .
+
+:test3 a :TestCase ;
+    :forBuiltIn list:iterate ;
+    rdf:subject ("William" "Tim" "Patrick") ;
+    rdf:object  (?V "Tim") .
+
+:test4 a :TestCase ;
+    :forBuiltIn list:iterate ;
+    rdf:subject ("William" "Tim" "Patrick") ;
+    rdf:object  (3 "Patrick") .
+
+:test5 a :TestCase ;
+    :forBuiltIn list:iterate ;
+    rdf:subject ("William" "Tim" "Patrick") ;
+    rdf:object  ?V .
+
+# invalid cases
+:test6 a :TestCase ;
+    :forBuiltIn list:iterate ;
+    rdf:subject ("William" "Tim" "Patrick") ;
+    rdf:object  ("a3" "Patrick") .
+
+:test7 a :TestCase ;
+    :forBuiltIn list:iterate ;
+    rdf:subject () ;
+    rdf:object  ("a3" "Patrick") .
+
+{
+    ?Test a :TestCase ;
+        :forBuiltIn list:iterate ;
+        rdf:subject ?Subject ;
+        rdf:object ?Object .
+    ?Subject (:domain list:iterate) true .
+    ?Object (:range list:iterate) true .
+}
+=>
+{
+    ?Test a log:Valid .
+} .
+
+# Domain can be a variable
+{
+    ?Subject (:domain list:iterate) true .
+}
+<=
+{
+    ?Subject log:bound false .
+} .
+
+# Domain can be a list
+{
+    ?Subject (:domain list:iterate) true .
+}
+<=
+{
+    ?Subject log:rawType rdf:List .
+} .
+
+# Range can be a variable .
+{
+    ?Object (:range list:iterate) true .
+}
+<=
+{
+    ?Object log:bound false .
+} .
+
+# Range can be a list of length 2 with positive integer as first value,
+# second value can be anything
+{
+    ?Object (:range list:iterate) true .
+}
+<=
+{
+    ?Object log:rawType rdf:List .
+    ?Object list:length 2 .
+    ( ?Index ?Value ) log:equalTo ?Object .
+    ?Index log:rawType log:Literal .
+    ?Index math:greaterThan 0 .  # How to valuate something is an integer? 
+} .
+
+# Range can be a list of length 2 with a variable as first value, 
+# second value can be anything
+{
+    ?Object (:range list:iterate) true .
+}
+<=
+{
+    ?Object log:rawType rdf:List .
+    ?Object list:length 2 .
+    ( ?Index ?Value ) log:equalTo ?Object .
+    ?Index log:bound false .
+} .
