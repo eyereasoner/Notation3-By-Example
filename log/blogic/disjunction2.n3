@@ -6,8 +6,10 @@
 # 2 Then we say that students are from Ghent or Leuven
 # 3 Then we say that Ghent and Leuven students are smart
 
+# This only seems to work when only Alice or Bob is a fact,
+# but not both
 :Alice a :PhdStudent .
-:Bob a :MasterStudent .
+#:Bob a :MasterStudent .
 
 # [1]
 (_:S) log:onNegativeSurface {
@@ -62,13 +64,30 @@
 
 # Test
 () log:onNegativeSurface {
+
     :Alice a :SmartPerson .
+
+    () log:onNegativeSurface {
+        :testAlice :is true .
+    } .
+} .
+
+() log:onNegativeSurface {
     :Bob a :SmartPerson .
+
+    () log:onNegativeSurface {
+        :testBob :is true .
+    } .
+} .
+
+() log:onNegativeSurface {
+    :testAlice :is true .
+    :testBob :is true .
     () log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-() log:onQuerySurface {
-    :test :is true .
+(_:S _:O) log:onQuerySurface {
+    _:S :is _:O .
 } .
