@@ -6,10 +6,8 @@
 # 2 Then we say that students are from Ghent or Leuven
 # 3 Then we say that Ghent and Leuven students are smart
 
-# This only seems to work when only Alice or Bob is a fact,
-# but not both
 :Alice a :PhdStudent .
-#:Bob a :MasterStudent .
+:Bob a :MasterStudent .
 
 # [1]
 (_:S) log:onNegativeSurface {
