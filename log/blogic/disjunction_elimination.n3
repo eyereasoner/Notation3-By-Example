@@ -56,23 +56,22 @@
 
 # The negation of the conclusion should blow an inference fuse
 # ~Q (!?)
-() log:onNegativeSurface {
-    :Beetle :is :beautiful .
-} .
-
-# When a full disjunction elimintation is supported 
-# in a reasoner, this also needs to work. But it is a
-# very computing intensive operation.
-# 
-## Test
 #() log:onNegativeSurface {
 #    :Beetle :is :beautiful .
-#    
-#    () log:onNegativeSurface {
-#        :test :is true .
-#    } .
 #} .
-#
-#(_:S _:O) log:onQuerySurface {
-#    _:S :is _:O .
-#} .
+
+# When a full disjunction elimintation is supported 
+# in a reasoner, this also needs to work. 
+# 
+## Test
+() log:onNegativeSurface {
+    :Beetle :is :beautiful .
+    
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    _:S :is _:O .
+} .

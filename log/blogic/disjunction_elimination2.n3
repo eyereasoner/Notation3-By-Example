@@ -5,11 +5,10 @@
 :C a :B .
 :D a :B .
 
-# This should fail !
-() log:onNegativeSurface {
-    :D a :C .
-} .
+# This is an extension of disjunction_elimination.n3 which should conclude 
+# that A ,C ,D are all :C-s.
 
+# ∀S : (S a B) -> (S a B1) ∨ (S a B2) ∨ (S a B3) 
 (_:S) log:onNegativeSurface {
     _:S a :B .
 
@@ -26,6 +25,7 @@
     } .
 } .
 
+# ∀S : (S a B1) -> (S a C) 
 (_:S) log:onNegativeSurface {
     _:S a :B1 .
 
@@ -34,6 +34,7 @@
     }.
 } .
 
+# ∀S : (S a B2) -> (S a C) 
 (_:S) log:onNegativeSurface {
     _:S a :B2 .
 
@@ -42,6 +43,7 @@
     }.
 } .
 
+# ∀S : (S a B3) -> (S a C) 
 (_:S) log:onNegativeSurface {
     _:S a :B3 .
 
@@ -52,4 +54,18 @@
 
 (_:S _:O) log:onQuerySurface {
     _:S a _:O .
+} .
+
+# Test
+() log:onNegativeSurface {
+    :A a :C .
+    :C a :C .
+    :D a :C .
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
 } .

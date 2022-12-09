@@ -54,9 +54,10 @@
     } .
 } .
 
-# Test if we still get the C
 () log:onNegativeSurface {
+    # Test if we still get the C
     :A a :C .
+    # Test if we still get the disjunction
     :A a :D .
 
     () log:onNegativeSurface {
