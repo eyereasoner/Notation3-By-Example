@@ -10,15 +10,16 @@
          odrl:target <http://example.com/document:1234> ;
          odrl:assigner <http://example.com/org:616> ;
          odrl:action odrl:distribute ;   
-#         odrl:constraint [
-#            odrl:leftOperand odrl:dateTime ;
-#            odrl:operator odrl:gt ;
-#            odrl:rightOperand "2022-01-01"^^xsd:date
-#         ]  
-#         ;
          odrl:constraint [
             odrl:leftOperand odrl:dateTime ;
-            odrl:operator odrl:lt ;
+            odrl:operator odrl:gt ;
             odrl:rightOperand "2022-01-01"^^xsd:date
-         ] 
+         ]  
+      ## Uncomment the lines below to make an invalid policy
+      #   ;
+      #   odrl:constraint [
+      #      odrl:leftOperand odrl:dateTime ;
+      #      odrl:operator odrl:lt ;
+      #      odrl:rightOperand "2022-01-01"^^xsd:date
+      #   ] 
     ] .

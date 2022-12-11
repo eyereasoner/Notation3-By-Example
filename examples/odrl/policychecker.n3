@@ -20,7 +20,7 @@
 
     () log:onNegativeSurface {
         # Here we execute the logical constraint and make the policy valid
-        # when the contrain holds
+        # when the contraint holds
         () log:onNegativeSurface {
             _:LO _:O _:RO .
             () log:onNegativeSurface {
@@ -48,25 +48,40 @@
     _:CurrentDate string:greaterThan _:Date .
 } .
 
-# When a constraint is (in)valid, then the policy is (in)valid
-(_:Policy _:Permission _:Constraint _:Valid) log:onNegativeSurface {
+# When all contrains are valid, then the policy is valid
+# TODO : This need to be done more elegant without collectAllIn
+(_:Policy _:Permission _:C1 _:C2 _:L1 _:L2 _:N1 _:N2 _:Scope) log:onNegativeSurface {
     _:Policy a odrl:Offer .
     _:Policy odrl:permission _:Permission.
-    _:Permission odrl:constraint _:Constraint .
-    _:Constraint :is _:Valid .
+
+    ( () { _:Permission odrl:constraint _:C1 . _:C1 :is :Valid } _:L1 ) log:collectAllIn _:Scope .
+    ( () { _:Permission odrl:constraint _:C2  } _:L2 ) log:collectAllIn _:Scope .
+
+    _:L1 list:length _:N1 .
+    _:L2 list:length _:N2 .
+
     () log:onNegativeSurface {
-        _:Policy :is _:Valid .
+        () log:onNegativeSurface {
+            _:N1 log:equalTo _:N2 .
+            () log:onNegativeSurface {
+                _:Policy :is :Valid .
+            } .
+        } .
+        () log:onNegativeSurface {
+            _:N1 log:notEqualTo _:N2 .
+            () log:onNegativeSurface {
+                _:Policy :is :InValid .
+            } .
+        } .
     } .
 } .
 
-# Here we add a validation, a policy can't be both valid and invalid
-(_:S) log:onNegativeSurface {
-    _:S a odrl:Offer . 
-    _:S :is :Valid .
-    _:S :is :NotValid .
-} .
-
 # Show something on the output
-(_:S _:O) log:onQuerySurface {
-    _:S :is _:O .
+(_:S _:P _:O) log:onQuerySurface {
+    _:S _:P _:O .
+    _:P log:notEqualTo log:onNegativeSurface .
+    _:P log:notEqualTo log:onQuerySurface .
+    () log:onConstructSurface {
+        _:S _:P _:O .
+    } .
 } .
