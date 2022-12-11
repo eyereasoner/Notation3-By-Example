@@ -15,7 +15,7 @@ The contraint below expresses a policy valid until `2022-01-01`.
          odrl:constraint [
             odrl:leftOperand odrl:dateTime ;
             odrl:operator odrl:lt ;
-            odrl:rightOperand "2022-01-01"^^xsd:date
+            odrl:rightOperand "2023-01-01"^^xsd:date
          ] 
     ] .
 ```
