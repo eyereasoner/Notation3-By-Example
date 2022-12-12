@@ -1,32 +1,12 @@
 eye --nope --quiet --blogic example2.n3 policychecker.n3 security.n3
 EYE v22.1211.2244 josd
 SWI-Prolog version 8.4.1
-starting 71 [msec cputime] 95 [msec walltime]
+starting 73 [msec cputime] 93 [msec walltime]
 GET file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/example2.n3 SC=11
 GET file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/policychecker.n3 SC=5
 GET file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/security.n3 SC=1
-networking 13 [msec cputime] 17 [msec walltime]
-@prefix : <urn:example.org:>.
-@prefix odrl: <http://www.w3.org/ns/odrl/2/>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#>.
-@prefix string: <http://www.w3.org/2000/10/swap/string#>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#>.
-
-_:bn_1 <urn:example.org:currentDate> "2022-12-11"^^xsd:date.
-<http://example.com/policy:6164> a odrl:Offer.
-<http://example.com/policy:6164> odrl:profile <http://example.com/odrl:profile:10>.
-<http://example.com/policy:6164> odrl:permission _:bn_2.
-_:bn_2 odrl:target <http://example.com/document:2912>.
-_:bn_2 odrl:assigner <http://example.com/org:616>.
-_:bn_2 odrl:action odrl:distribute.
-_:bn_2 odrl:constraint _:bn_3.
-_:bn_3 odrl:leftOperand odrl:dateTime.
-_:bn_3 odrl:operator odrl:lt.
-_:bn_3 odrl:rightOperand "2022-01-01"^^xsd:date.
-_:bn_3 <urn:example.org:is> <urn:example.org:NotSatisfied>.
-<http://example.com/policy:6164> <urn:example.org:is> <urn:example.org:NotSatisfied>.
-
-reasoning 130 [msec cputime] 133 [msec walltime]
-2022-12-12T06:27:10.669Z in=17 out=13 ent=88 step=596 brake=7 inf=840937 sec=0.215 inf/sec=3911335
+networking 12 [msec cputime] 23 [msec walltime]
+** ERROR ** eam ** inference_fuse({(_:e_Policy_1 _:e_Permission_1 _:e_Constraint_1 _:e_Validity_1 _:e_Scope_1 _:e_Scope2_1) log:onNegativeSurface {_:e_Policy_1 a odrl:Offer. _:e_Policy_1 odrl:permission _:e_Permission_1. ({({_:e_Permission_1 odrl:constraint _:e_Constraint_1} {_:e_Constraint_1 <urn:example.org:is> <urn:example.org:Satisfied>}) log:forAllIn _:e_Scope_1} {_:e_Validity_1 log:equalTo <urn:example.org:Satisfied>} {_:e_Validity_1 log:equalTo <urn:example.org:NotSatisfied>}) log:ifThenElseIn _:e_Scope_1. () log:onNegativeSurface {_:e_Policy_1 <urn:example.org:is> _:e_Validity_1}}. "makevars(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'('<http://josd.github.io/.well-known/genid/2386245662104955732#e_Policy_1>','<http://www.w3.org/ns/odrl/2/Offer>'),'<http://www.w3.org/ns/odrl/2/permission>'('<http://josd.github.io/.well-known/genid/2386245662104955732#e_Policy_1>','<http://josd.github.io/.well-known/genid/2386245662104955732#e_Permission_1>'),'<http://www.w3.org/2000/10/swap/log#ifThenElseIn>'(['<http://www.w3.org/2000/10/swap/log#forAllIn>'(['<http://www.w3.org/ns/odrl/2/constraint>'('<http://josd.github.io/.well-known/genid/2386245662104955732#e_Permission_1>','<http://josd.github.io/.well-known/genid/2386245662104955732#e_Constraint_1>'),'<urn:example.org:is>'('<http://josd.github.io/.well-known/genid/2386245662104955732#e_Constraint_1>','<urn:example.org:Satisfied>')],'<http://josd.github.io/.well-known/genid/2386245662104955732#e_Scope_1>'),'<http://www.w3.org/2000/10/swap/log#equalTo>'('<http://josd.github.io/.well-known/genid/2386245662104955732#e_Validity_1>','<urn:example.org:Satisfied>'),'<http://www.w3.org/2000/10/swap/log#equalTo>'('<http://josd.github.io/.well-known/genid/2386245662104955732#e_Validity_1>','<urn:example.org:NotSatisfied>')],'<http://josd.github.io/.well-known/genid/2386245662104955732#e_Scope_1>'),'<http://www.w3.org/2000/10/swap/log#onNegativeSurface>'([],'<urn:example.org:is>'('<http://josd.github.io/.well-known/genid/2386245662104955732#e_Policy_1>','<http://josd.github.io/.well-known/genid/2386245662104955732#e_Validity_1>'))),('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'('<http://example.com/policy:6164>','<http://www.w3.org/ns/odrl/2/Offer>'),'<http://www.w3.org/ns/odrl/2/permission>'('<http://example.com/policy:6164>','<http://josd.github.io/.well-known/genid/2386245662104955732#bn_2>'),'<http://www.w3.org/2000/10/swap/log#ifThenElseIn>'(['<http://www.w3.org/2000/10/swap/log#forAllIn>'(['<http://www.w3.org/ns/odrl/2/constraint>'('<http://josd.github.io/.well-known/genid/2386245662104955732#bn_2>',_7784),'<urn:example.org:is>'(_7784,'<urn:example.org:Satisfied>')],[['<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/example2.n3>','<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/policychecker.n3>','<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/security.n3>'],1]),'<http://www.w3.org/2000/10/swap/log#equalTo>'('<urn:example.org:NotSatisfied>','<urn:example.org:Satisfied>'),'<http://www.w3.org/2000/10/swap/log#equalTo>'('<urn:example.org:NotSatisfied>','<urn:example.org:NotSatisfied>')],[['<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/example2.n3>','<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/policychecker.n3>','<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/security.n3>'],1]),'<http://www.w3.org/2000/10/swap/log#onNegativeSurface>'([],'<urn:example.org:is>'('<http://example.com/policy:6164>','<urn:example.org:NotSatisfied>'))),beta(['<http://josd.github.io/.well-known/genid/2386245662104955732#e_Policy_1>','<http://josd.github.io/.well-known/genid/2386245662104955732#e_Permission_1>','<http://josd.github.io/.well-known/genid/2386245662104955732#e_Constraint_1>','<http://josd.github.io/.well-known/genid/2386245662104955732#e_Validity_1>','<http://josd.github.io/.well-known/genid/2386245662104955732#e_Scope_1>','<http://josd.github.io/.well-known/genid/2386245662104955732#e_Scope2_1>']))". "call(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'('<http://example.com/policy:6164>','<http://www.w3.org/ns/odrl/2/Offer>'),'<http://www.w3.org/ns/odrl/2/permission>'('<http://example.com/policy:6164>','<http://josd.github.io/.well-known/genid/2386245662104955732#bn_2>'),'<http://www.w3.org/2000/10/swap/log#ifThenElseIn>'(['<http://www.w3.org/2000/10/swap/log#forAllIn>'(['<http://www.w3.org/ns/odrl/2/constraint>'('<http://josd.github.io/.well-known/genid/2386245662104955732#bn_2>',_7784),'<urn:example.org:is>'(_7784,'<urn:example.org:Satisfied>')],[['<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/example2.n3>','<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/policychecker.n3>','<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/security.n3>'],1]),'<http://www.w3.org/2000/10/swap/log#equalTo>'('<urn:example.org:NotSatisfied>','<urn:example.org:Satisfied>'),'<http://www.w3.org/2000/10/swap/log#equalTo>'('<urn:example.org:NotSatisfied>','<urn:example.org:NotSatisfied>')],[['<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/example2.n3>','<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/policychecker.n3>','<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/security.n3>'],1]),'<http://www.w3.org/2000/10/swap/log#onNegativeSurface>'([],'<urn:example.org:is>'('<http://example.com/policy:6164>','<urn:example.org:NotSatisfied>'))))"} => false)
+reasoning 94 [msec cputime] 96 [msec walltime]
+2022-12-12T06:34:41.208Z in=17 out=0 ent=84 step=326 brake=5 inf=554488 sec=0.179 inf/sec=3097698
 
