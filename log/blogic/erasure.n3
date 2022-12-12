@@ -192,6 +192,8 @@
 
 # Test
 () log:onNegativeSurface {
+    # The positive surface is added here to optimize the execution speed
+    # it doesn't have any other effect
     () log:onPositiveSurface {
         :A a :A0 .
 
