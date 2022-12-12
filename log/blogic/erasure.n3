@@ -192,12 +192,14 @@
 
 # Test
 () log:onNegativeSurface {
-    :A a :A0 .
+    () log:onPositiveSurface {
+        :A a :A0 .
 
-    :C a :C3 .
-    :C a :C4 .
-    :C a :C7 .
-    :C a :C8 .
+        :C a :C3 .
+        :C a :C4 .
+        :C a :C7 .
+        :C a :C8 .
+    } .
 
     () log:onNegativeSurface {
         :B a :B1.
