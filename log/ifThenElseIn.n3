@@ -1,0 +1,34 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix math: <http://www.w3.org/2000/10/swap/log#> .
+
+:myFirstGuess 
+    a :Guess ;
+    :number 42 .
+
+{
+    ?G a :Guess ; 
+       :number ?N .
+
+    # If X evaluates to true, then evaluate X otherwise Z
+    #    ( X Y Z ) a 3 tuple of Formulas 
+    #    S a Scope or Formula context
+    (
+       { ?N log:equalTo 42 }
+       { ?Answer log:equalTo :Correct }
+       { ?Answer log:equalTo :Wrong }
+    ) log:ifThenElseIn ?SCOPE .
+}
+=>
+{
+    ?G :is ?Answer .
+} .
+
+# Test
+{
+    :myFirstGuess :is :Correct .
+}
+=>
+{   
+    :test :is true .
+} .
