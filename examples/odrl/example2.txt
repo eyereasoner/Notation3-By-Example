@@ -1,0 +1,21 @@
+@prefix : <urn:example.org:>.
+@prefix odrl: <http://www.w3.org/ns/odrl/2/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+
+_:bn_1 <urn:example.org:currentDate> "2022-12-11"^^xsd:date.
+<http://example.com/policy:6164> a odrl:Offer.
+<http://example.com/policy:6164> odrl:profile <http://example.com/odrl:profile:10>.
+<http://example.com/policy:6164> odrl:permission _:bn_2.
+_:bn_2 odrl:target <http://example.com/document:2912>.
+_:bn_2 odrl:assigner <http://example.com/org:616>.
+_:bn_2 odrl:action odrl:distribute.
+_:bn_2 odrl:constraint _:bn_3.
+_:bn_3 odrl:leftOperand odrl:dateTime.
+_:bn_3 odrl:operator odrl:lt.
+_:bn_3 odrl:rightOperand "2022-01-01"^^xsd:date.
+_:bn_3 <urn:example.org:is> <urn:example.org:NotSatisfied>.
+<http://example.com/policy:6164> <urn:example.org:is> <urn:example.org:NotSatisfied>.
+

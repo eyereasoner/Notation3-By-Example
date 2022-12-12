@@ -1,0 +1,89 @@
+@prefix : <urn:example.org:> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+# Check if the ODRL policies are valid. This is true when
+# all constrains are valid (in our example)
+
+(_:Policy _:Permission _:Constraint _:LO _:O _:RO _:Validity _:Scope) log:onNegativeSurface {
+
+    # Gather all the metadata of the policy
+    _:Policy a odrl:Offer .
+    _:Policy odrl:permission _:Permission .
+    _:Permission odrl:constraint _:Constraint .
+
+    # This matches logical constraints that are in the policy
+    _:Constraint odrl:leftOperand _:LO .
+    _:Constraint odrl:operator _:O .
+    _:Constraint odrl:rightOperand _:RO .
+
+    # Using the experimental ifThenElseIn built-in to
+    # execute the logical contraint (see below for an
+    # implementation using backward rules)
+    ( 
+      # if 
+      {_:LO _:O _:RO} 
+      # then
+      {_:Validity log:equalTo :Satisfied} 
+      # else 
+      {_:Validity log:equalTo :NotSatisfied}
+    ) log:ifThenElseIn _:Scope.
+
+    () log:onNegativeSurface {
+        _:Constraint :is _:Validity .
+    } .
+} .
+
+# Implementation of an odrl:lt checker for dates
+(_:Blank _:CurrentDate _:Date) log:onNegativeSurface {
+    () log:onQuerySurface {
+        odrl:dateTime odrl:lt _:Date .
+    } .
+    _:Blank :currentDate _:CurrentDate  .
+    _:CurrentDate string:lessThan _:Date .
+} .
+
+# Implementation of an odrl:gt checker for dates
+(_:Blank _:CurrentDate _:Date) log:onNegativeSurface {
+    () log:onQuerySurface {
+        odrl:dateTime odrl:gt _:Date .
+    } .
+    _:Blank :currentDate _:CurrentDate  .
+    _:CurrentDate string:greaterThan _:Date .
+} .
+
+# A policy is valid when all the contraints are valid 
+(_:Policy _:Permission _:Constraint _:Validity _:Scope _:Scope2) log:onNegativeSurface {
+    _:Policy a odrl:Offer .
+    _:Policy odrl:permission _:Permission .
+    
+    (
+        # if
+        {
+            # All constraints are valid ..
+            ( 
+                { _:Permission odrl:constraint _:Constraint }
+                { _:Constraint :is :Satisfied } 
+            ) log:forAllIn _:Scope .
+        }
+        # then
+        {  _:Validity log:equalTo :Satisfied } 
+        {  _:Validity log:equalTo :NotSatisfied }
+    ) log:ifThenElseIn _:Scope .
+
+    () log:onNegativeSurface {
+        _:Policy :is _:Validity .
+    } .
+} .
+
+# Show something on the output
+(_:S _:P _:O) log:onQuerySurface {
+    _:S _:P _:O .
+    _:P log:notEqualTo log:onNegativeSurface .
+    _:P log:notEqualTo log:onQuerySurface .
+    () log:onConstructSurface {
+        _:S _:P _:O .
+    } .
+} .

@@ -1,0 +1,19 @@
+@prefix : <urn:example.org:> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+[ :currentDate "2022-12-11"^^xsd:date ] .
+
+# This policy should fail
+<http://example.com/policy:6164> a odrl:Offer ;
+    odrl:profile <http://example.com/odrl:profile:10> ;
+    odrl:permission [
+         odrl:target <http://example.com/document:2912> ;
+         odrl:assigner <http://example.com/org:616> ;
+         odrl:action odrl:distribute ;   
+         odrl:constraint [
+            odrl:leftOperand odrl:dateTime ;
+            odrl:operator odrl:lt ;
+            odrl:rightOperand "2022-01-01"^^xsd:date
+         ] 
+    ] .

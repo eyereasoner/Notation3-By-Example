@@ -17,7 +17,7 @@
 # This should fail: we can have only one winner
 #:Bob a :Winner .
 
-# An exclusive disjunction P <-/-> Q means that P is true or Q but not botj
+# An exclusive disjunction P <-/-> Q means that P is true or Q but not both
 # This is same as
 #     P <-> ~Q
 # And is the same as
