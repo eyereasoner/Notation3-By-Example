@@ -4,29 +4,35 @@
 @prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
-# Check if the policies are valid
+# Check if the ODRL policies are valid. This is true when
+# all constrains are valid (in our example)
 
-(_:Policy _:Permission _:Constraint _:LO _:O _:RO) log:onNegativeSurface {
+(_:Policy _:Permission _:Constraint _:LO _:O _:RO _:Validity _:Scope) log:onNegativeSurface {
 
     # Gather all the metadata of the policy
     _:Policy a odrl:Offer .
     _:Policy odrl:permission _:Permission .
     _:Permission odrl:constraint _:Constraint .
 
-    # This is a logical constraint that is in the policy
+    # This matches logical constraints that are in the policy
     _:Constraint odrl:leftOperand _:LO .
     _:Constraint odrl:operator _:O .
     _:Constraint odrl:rightOperand _:RO .
 
+    # Using the experimental ifThenElseIn built-in to
+    # execute the logical contraint (see below for an
+    # implementation using backward rules)
+    ( 
+      # if 
+      {_:LO _:O _:RO} 
+      # then
+      {_:Validity log:equalTo :Satisfied} 
+      # else 
+      {_:Validity log:equalTo :NotSatisfied}
+    ) log:ifThenElseIn _:Scope.
+
     () log:onNegativeSurface {
-        # Here we execute the logical constraint and make the policy valid
-        # when the contraint holds
-        () log:onNegativeSurface {
-            _:LO _:O _:RO .
-            () log:onNegativeSurface {
-                _:Constraint :is :Valid .
-            } .
-        } .
+        _:Constraint :is _:Validity .
     } .
 } .
 
@@ -48,31 +54,27 @@
     _:CurrentDate string:greaterThan _:Date .
 } .
 
-# When all contrains are valid, then the policy is valid
-# TODO : This need to be done more elegant without collectAllIn
-(_:Policy _:Permission _:C1 _:C2 _:L1 _:L2 _:N1 _:N2 _:Scope) log:onNegativeSurface {
+# A policy is valid when all the contraints are valid 
+(_:Policy _:Permission _:Constraint _:Validity _:Scope _:Scope2) log:onNegativeSurface {
     _:Policy a odrl:Offer .
-    _:Policy odrl:permission _:Permission.
-
-    ( () { _:Permission odrl:constraint _:C1 . _:C1 :is :Valid } _:L1 ) log:collectAllIn _:Scope .
-    ( () { _:Permission odrl:constraint _:C2  } _:L2 ) log:collectAllIn _:Scope .
-
-    _:L1 list:length _:N1 .
-    _:L2 list:length _:N2 .
+    _:Policy odrl:permission _:Permission .
+    
+    (
+        # if
+        {
+            # All constraints are valid ..
+            ( 
+                { _:Permission odrl:constraint _:Constraint }
+                { _:Constraint :is :Satisfied } 
+            ) log:forAllIn _:Scope .
+        }
+        # then
+        {  _:Validity log:equalTo :Satisfied } 
+        {  _:Validity log:equalTo :NotSatisfied }
+    ) log:ifThenElseIn _:Scope .
 
     () log:onNegativeSurface {
-        () log:onNegativeSurface {
-            _:N1 log:equalTo _:N2 .
-            () log:onNegativeSurface {
-                _:Policy :is :Valid .
-            } .
-        } .
-        () log:onNegativeSurface {
-            _:N1 log:notEqualTo _:N2 .
-            () log:onNegativeSurface {
-                _:Policy :is :InValid .
-            } .
-        } .
+        _:Policy :is _:Validity .
     } .
 } .
 

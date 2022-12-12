@@ -1,0 +1,10 @@
+@prefix : <urn:example.org:> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# We don't want to have an invalid policies in our system
+
+(_:Policy) log:onNegativeSurface {
+    _:Policy a odrl:Offer ;
+        :is :NotSatisfied .
+} .

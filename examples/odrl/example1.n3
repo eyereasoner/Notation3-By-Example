@@ -4,6 +4,7 @@
 
 [ :currentDate "2022-12-11"^^xsd:date ] .
 
+# This policy should succeed
 <http://example.com/policy:6163> a odrl:Offer ;
     odrl:profile <http://example.com/odrl:profile:10> ;
     odrl:permission [
@@ -12,14 +13,7 @@
          odrl:action odrl:distribute ;   
          odrl:constraint [
             odrl:leftOperand odrl:dateTime ;
-            odrl:operator odrl:gt ;
-            odrl:rightOperand "2022-01-01"^^xsd:date
-         ]  
-      ## Uncomment the lines below to make an invalid policy
-      #   ;
-      #   odrl:constraint [
-      #      odrl:leftOperand odrl:dateTime ;
-      #      odrl:operator odrl:lt ;
-      #      odrl:rightOperand "2022-01-01"^^xsd:date
-      #   ] 
+            odrl:operator odrl:lt ;
+            odrl:rightOperand "2023-01-01"^^xsd:date
+         ] 
     ] .

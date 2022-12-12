@@ -1,0 +1,32 @@
+eye --nope --quiet --blogic example2.n3 policychecker.n3 security.n3
+EYE v22.1211.2244 josd
+SWI-Prolog version 8.4.1
+starting 71 [msec cputime] 95 [msec walltime]
+GET file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/example2.n3 SC=11
+GET file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/policychecker.n3 SC=5
+GET file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/odrl/security.n3 SC=1
+networking 13 [msec cputime] 17 [msec walltime]
+@prefix : <urn:example.org:>.
+@prefix odrl: <http://www.w3.org/ns/odrl/2/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+
+_:bn_1 <urn:example.org:currentDate> "2022-12-11"^^xsd:date.
+<http://example.com/policy:6164> a odrl:Offer.
+<http://example.com/policy:6164> odrl:profile <http://example.com/odrl:profile:10>.
+<http://example.com/policy:6164> odrl:permission _:bn_2.
+_:bn_2 odrl:target <http://example.com/document:2912>.
+_:bn_2 odrl:assigner <http://example.com/org:616>.
+_:bn_2 odrl:action odrl:distribute.
+_:bn_2 odrl:constraint _:bn_3.
+_:bn_3 odrl:leftOperand odrl:dateTime.
+_:bn_3 odrl:operator odrl:lt.
+_:bn_3 odrl:rightOperand "2022-01-01"^^xsd:date.
+_:bn_3 <urn:example.org:is> <urn:example.org:NotSatisfied>.
+<http://example.com/policy:6164> <urn:example.org:is> <urn:example.org:NotSatisfied>.
+
+reasoning 130 [msec cputime] 133 [msec walltime]
+2022-12-12T06:27:10.669Z in=17 out=13 ent=88 step=596 brake=7 inf=840937 sec=0.215 inf/sec=3911335
+
