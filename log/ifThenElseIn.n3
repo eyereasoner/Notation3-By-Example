@@ -10,7 +10,7 @@
     ?G a :Guess ; 
        :number ?N .
 
-    # If X evaluates to true, then evaluate X otherwise Z
+    # If X evaluates to true, then evaluate Y otherwise Z
     #    ( X Y Z ) a 3 tuple of Formulas 
     #    S a Scope or Formula context
     (
