@@ -10,7 +10,7 @@ The examples are based on two lists of Notation3 built-ins:
 - https://w3c.github.io/N3/files/builtins.html
 - https://w3c.github.io/N3/spec/#builtins
 
-The examples only use built-ins for which at least one example was found in the [EYE](https://github.com/josd/eye) or [jen3](https://github.com/william-vw/jen3) or [CWM](https://github.com/sbp/cwm) project.
+The examples only use built-ins for which at least one example was found in the [EYE](https://github.com/eyereasoner/eye) or [jen3](https://github.com/william-vw/jen3) or [CWM](https://github.com/sbp/cwm) project.
 
 Run the code online by copy and pasting into the online [Notation3 Editor](http://ppr.cs.dal.ca:3002/n3/editor/).
 
