@@ -16,4 +16,4 @@ Run the code online by copy and pasting into the online [Notation3 Editor](http:
 
 ## See also
 
-- https://github.com/josd/eye/blob/master/reasoning/bi/biP.n3
+- https://github.com/eyereasoner/eye/blob/master/reasoning/bi/biP.n3
