@@ -1,0 +1,31 @@
+@prefix : <urn:example.org:> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Alice :says (log:pos :Bob :is :Handsome) .
+
+:Alice :says << :Bob :is :Handsome >>.
+
+# Sub list test
+(log:neg (_:S _:P) 
+    _:S :says (log:pos _:P :is :Handsome)
+    (log:neg () 
+        _:S :likes _:P
+    )
+) log:evalAs log:RDFSurface .
+
+(log:query (_:S _:O)
+    _:S :likes _:O 
+) log:evalAs log:RDFSurface .
+
+# RDF Star test
+(log:neg (_:S _:P) 
+    _:S :says << _:P :is :Handsome >>
+    (log:neg () 
+        _:S :likes-star _:P
+    )
+) log:evalAs log:RDFSurface .
+
+(log:query (_:S _:O)
+    _:S :likes-star _:O 
+) log:evalAs log:RDFSurface .

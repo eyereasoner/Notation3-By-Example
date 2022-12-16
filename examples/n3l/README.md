@@ -42,4 +42,11 @@ The Socrated example can be programmed like:
 ) log:evalAs log:RDFSurface .
 ```
 
+This results in :
+
+```
+<urn:example.org:Socrates> a <urn:example.org:Human>.
+<urn:example.org:Socrates> a <urn:example.org:Mortal>.
+```
+
 Note that `rdf:type`-s should be written explicitly in the list and not as `a`.
