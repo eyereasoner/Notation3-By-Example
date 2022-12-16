@@ -1,7 +1,7 @@
 # N3L - RDF Surfaces in Lists
 
 N3L is a serialization of [RDF Surfaces](https://w3c-cg.github.io/rdfsurfaces/) in pure RDF (without
-N3 subgraphs or notation). The N3L is a lisp like implementation of RDF Surfaces introducing
+N3 subgraphs or notation). The N3L is a lisp like implementation of RDF Surfaces introducing:
 
 - `log:neg` as a negative surface function
 - `log:pos` as a positive surface function
