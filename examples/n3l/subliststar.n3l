@@ -4,8 +4,6 @@
 
 :Alice :says (log:pos :Bob :is :Handsome) .
 
-:Alice :says << :Bob :is :Handsome >>.
-
 # Sub list test
 (log:neg (_:S _:P) 
     _:S :says (log:pos _:P :is :Handsome)
@@ -17,6 +15,9 @@
 (log:query (_:S _:O)
     _:S :likes _:O 
 ) log:evalAs log:RDFSurface .
+
+# In case we would allow RDF star
+:Alice :says << :Bob :is :Handsome >>.
 
 # RDF Star test
 (log:neg (_:S _:P) 
