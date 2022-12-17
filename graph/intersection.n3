@@ -17,7 +17,7 @@
     :Let :param2 ?X2 .
 
     # Y is the formula X1 ∩ X2  ( intersection of X1 and X2)
-    #    ( X1 X2 ) where X1 and X2 a formula
+    #    ( X1 X2 ... XN ) where X1 .. XN are formula
     #    Y a variable or formula
     ( ?X1 ?X2 ) graph:intersection ?Y .
 }
