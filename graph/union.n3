@@ -3,31 +3,37 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 :Let :param1 { 
-    :A :B :C . 
+    :A :B :C .
+    :A :X :C . 
     :D :E :F .
 } .
 
 :Let :param2 {
-    :A :B :C .
+    :A :Y :C .
 } .
 
 {
     :Let :param1 ?X1 .
     :Let :param2 ?X2 .
 
-    # Y is the formula X1 / X2  ( X1 without X2)
+    # Y is the formula X1 ∪ X2  ( union of X1 and X2)
     #    ( X1 X2 ) where X1 and X2 a formula
     #    Y a variable or formula
-    ( ?X1 ?X2 ) graph:difference ?Y .
+    ( ?X1 ?X2 ) graph:union ?Y .
 }
 => 
 {   
-    ( ?X1 ?X2 ) :difference ?Y .
+    ( ?X1 ?X2 ) :union ?Y .
 } .
 
 # Test
 {
-    ?X :difference [ log:equalTo { :D :E :F } ] .
+    ?X :union [ log:equalTo { 
+        :A :B :C . 
+        :A :X :C .
+        :D :E :F .
+        :A :Y :C . 
+    } ] .
 }
 =>
 {
