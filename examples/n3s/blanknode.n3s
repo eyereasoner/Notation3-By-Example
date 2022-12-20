@@ -13,5 +13,17 @@ n3s:implies
   _:x a :Human .
 } .
 
-# Should return 
-# [ a :Human ]
+# Should return [1]
+# [ a :Human ] 
+
+{
+  _:y a :Person ; :loves :Food .
+}
+n3s:implies
+{
+  _:y a :Human2 .
+} .
+
+# Should return [2]
+# [ a :Human]
+# where [1] and [2] are different blank nodes

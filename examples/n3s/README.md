@@ -46,8 +46,8 @@ EYE v22.1219.2214
 ## Limitations
 
 - No nesting of graphs
-- Scoping of blank nodes in now global
-  - See `blanknode.n3s` for an example that fails
+- Scopeing of blank nodes
+  - Blank nodes in antecedent will be turned into universals that are visible in consequent of a rule
 
 ## Implemented with
 

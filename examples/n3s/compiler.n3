@@ -85,7 +85,7 @@
     ( _:T _:Acc1New _:Acc2New ) :_qvar2bn _:X .
 } .
 
-(_:Y _:X _:Xn _:Scope) log:onNegativeSurface {
+(_:Y _:X _:Xn _:Xnp _:Scope) log:onNegativeSurface {
     () log:onQuerySurface {
         _:X :skolemize _:Y .
     } .
@@ -99,9 +99,28 @@
         _:X log:skolem _:Y .
         }
         {
-        _:X log:equalTo _:Y .
+            (
+                {
+                    _:X :isSkolem true .
+                }
+                {
+                    # Rewrite the skolem to trigger creating a universal
+                    [] log:skolem _:Y .
+                }
+                {
+                    _:X log:equalTo _:Y .
+                }
+            ) log:ifThenElseIn _:Scope .
         }
     ) log:ifThenElseIn _:Scope .
+} .
+
+(_:X _:Xn) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:X :isSkolem true .
+    } .
+    _:X log:namespace _:Xn .
+    _:Xn string:startsWith "http://eyereasoner.github.io/.well-known/genid/" .
 } .
 
 # Debug
