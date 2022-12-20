@@ -24,7 +24,7 @@
 #         ( ( x a French ) -> ( x needs ImportTax ) )
 #  ) 
 (_:X1 _:X2) log:onNegativeSurface {
-    (_:X1) log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:X1 a :Wine .
 
         () log:onNegativeSurface {
