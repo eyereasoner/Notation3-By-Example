@@ -94,13 +94,15 @@
 
     ( 
         {
-        _:X log:namespace _:Xn .
-        _:Xn log:equalTo "https://github.com/eyereasoner/Notation3-By-Example/example/n3q/" .
+            _:X log:namespace _:Xn .
+            _:Xn log:equalTo "https://github.com/eyereasoner/Notation3-By-Example/example/n3q/" .
         }
         {
-        _:X log:skolem _:Y .
+            _:X log:skolem _:Y .
         }
         {
+            # If we got a blank node, write it into a 'flagged' skolem
+            # to trigger generating a universal in :_qvar2bn
             (
                 {
                     _:X :isSkolem true .
@@ -122,7 +124,7 @@
         _:X :isSkolem true .
     } .
     _:X log:namespace _:Xn .
-    _:Xn string:startsWith "http://eyereasoner.github.io/.well-known/genid/" .
+    _:Xn string:contains ".well-known/genid/" .
 } .
 
 (_:X _:Y _:T1 _:T2 _:T3) log:onNegativeSurface {
@@ -142,8 +144,8 @@
     _:X log:uri _:T1 .
     (
         {
-        _:T1 string:startsWith "http://eyereasoner.github.io/.well-known/genid/" .
-        _:T1 string:endsWith "-flagged" .
+            _:T1 string:contains ".well-known/genid/" .
+            _:T1 string:endsWith "-flagged" .
         }
         {
             _:Y log:equalTo true .
