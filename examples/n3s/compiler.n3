@@ -8,13 +8,15 @@
 @prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
 
-(_:A _:G _:X _:Xp _:Y _:Yp _:NewG) log:onNegativeSurface {
+(_:A _:G _:X _:Xp _:Y _:Yp _:Ypp _:NewG) log:onNegativeSurface {
     _:A :implies _:G .
     _:A :qvar2bn (_:Xp _:X).
     _:G :qvar2bn (_:Yp _:Y).
 
+    _:Yp :keepFlagged _:Ypp .
+
     ( _:X
-      { () log:onNegativeSurface _:Y }
+      { _:Ypp log:onNegativeSurface _:Y }
     ) graph:union _:NewG .
 
     () log:onNegativeSurface {
@@ -105,7 +107,7 @@
                 }
                 {
                     # Rewrite the skolem to trigger creating a universal
-                    [] log:skolem _:Y .
+                    [] :flaggedSkolem _:Y .
                 }
                 {
                     _:X log:equalTo _:Y .
@@ -121,6 +123,72 @@
     } .
     _:X log:namespace _:Xn .
     _:Xn string:startsWith "http://eyereasoner.github.io/.well-known/genid/" .
+} .
+
+(_:X _:Y _:T1 _:T2 _:T3) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:X :flaggedSkolem _:Y .
+    } .
+    _:X log:skolem _:T1 .
+    _:T1 log:uri _:T2 .
+    ( _:T2 "-flagged" ) string:concatenation _:T3 .
+    _:Y log:uri _:T3 .
+} .
+
+(_:X _:T1 _:Y _:Scope) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:X :isFlagged _:Y .
+    } .
+    _:X log:uri _:T1 .
+    (
+        {
+        _:T1 string:startsWith "http://eyereasoner.github.io/.well-known/genid/" .
+        _:T1 string:endsWith "-flagged" .
+        }
+        {
+            _:Y log:equalTo true .
+        }
+        {
+            _:Y log:equalTo false .
+        }
+    ) log:ifThenElseIn _:Scope .
+} .
+
+(_:X _:Y _:T) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:X :keepFlagged _:Y .
+    } .
+    (_:X ()) :_keepFlagged _:Y .
+} .
+
+(_:Acc) log:onNegativeSurface {
+    () log:onQuerySurface {
+        ( () _:Acc ) :_keepFlagged _:Acc .
+    } .
+} .
+
+(_:X _:Acc _:Y _:H _:T _:N _:AccNew _:Scope) log:onNegativeSurface {
+    () log:onQuerySurface {
+        ( _:X _:Acc ) :_keepFlagged _:Y .
+    } .
+
+    _:X log:rawType rdf:List .
+    _:X list:length _:N .
+    _:N math:greaterThan 0 .
+
+    _:X list:firstRest (_:H _:T) .
+
+    (
+        { _:H :isFlagged true }
+        {
+            ( _:Acc (_:H)) list:append _:AccNew .
+        }
+        {
+            _:Acc log:equalTo _:AccNew .
+        }
+    ) log:ifThenElseIn _:Scope .
+
+    ( _:T _:AccNew ) :_keepFlagged _:Y .
 } .
 
 # Debug
