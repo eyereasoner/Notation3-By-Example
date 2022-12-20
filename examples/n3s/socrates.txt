@@ -8,7 +8,7 @@
 @prefix string: <http://www.w3.org/2000/10/swap/string#>.
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
 @prefix ns1: <urn:example.org:>.
-@prefix var: <http://eyereasoner.github.io/.well-known/genid/3604079811938047114#>.
+@prefix var: <http://eyereasoner.github.io/.well-known/genid/3917894951695475063#>.
 
 <urn:example.org:Socrates> a <urn:example.org:Human>.
 <urn:example.org:Socrates> a <urn:example.org:Mortal>.
