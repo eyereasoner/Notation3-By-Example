@@ -39,6 +39,10 @@ This results in :
 <urn:example.org:Socrates> a <urn:example.org:Mortal>.
 ```
 
+## Requires
+
+EYE v22.1219.2214 
+
 ## Limitations
 
 - No nesting of graphs
