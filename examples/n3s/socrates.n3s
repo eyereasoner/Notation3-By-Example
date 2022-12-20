@@ -1,0 +1,18 @@
+@prefix : <urn:example.org:> .
+@prefix : <urn:example.org:> .
+@prefix q: <https://github.com/eyereasoner/Notation3-By-Example/example/n3q#> .
+@prefix n3s: <https://github.com/eyereasoner/Notation3-By-Example/example/n3s#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Socrates a :Human .
+:Human rdfs:subClassOf :Mortal .
+
+{
+    q:A rdfs:subClassOf q:B .
+    q:S a q:A .
+} 
+n3s:implies
+{
+    q:S a q:B .
+} .

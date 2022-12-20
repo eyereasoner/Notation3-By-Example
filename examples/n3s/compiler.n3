@@ -1,0 +1,82 @@
+@prefix : <https://github.com/eyereasoner/Notation3-By-Example/example/n3s#> .
+@prefix q: <https://github.com/eyereasoner/Notation3-By-Example/example/n3q#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+
+(_:A _:G _:X _:Y) log:onNegativeSurface {
+    _:A :implies _:G .
+    _:A :qvar2bn _:X .
+    _:G :qvar2bn _:Y .
+    () log:onNegativeSurface {
+        :result :is _:X , _:Y .
+    } .
+} .
+
+(_:X _:Y _:Temp _:L) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:X :qvar2bn _:Y .
+    } .
+    _:X graph:list _:L .
+    ( _:L () ) :_qvar2bn _:Temp .
+    _:Y graph:list _:Temp .
+} .
+
+(_:Acc) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (() _:Acc) :_qvar2bn _:Acc .
+    } .
+} .
+
+(
+    _:L _:X _:Acc _:AccNew
+    _:N _:H _:T 
+    _:S _:P _:O
+    _:Sv _:Pv _:Ov
+) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:L _:Acc) :_qvar2bn _:X .
+    } .
+    _:L log:rawType rdf:List .
+    _:L list:length _:N .
+    _:N math:greaterThan 0 .
+
+    _:L list:firstRest (_:H _:T) .
+
+    _:H log:includes { _:S _:P _:O } .
+
+    _:S :skolemize _:Sv .
+    _:P :skolemize _:Pv .
+    _:O :skolemize _:Ov .
+
+    ( _:Acc ({ _:Sv _:Pv _:Ov }) ) list:append _:AccNew .
+
+    ( _:T _:AccNew ) :_qvar2bn _:X .
+} .
+
+(_:Y _:X _:Xn _:Scope) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:X :skolemize _:Y .
+    } .
+
+    ( 
+        {
+        _:X log:namespace _:Xn .
+        _:Xn log:equalTo "https://github.com/eyereasoner/Notation3-By-Example/example/n3q#" .
+        }
+        {
+        _:X log:skolem _:Y .
+        }
+        {
+        _:X log:equalTo _:Y .
+        }
+    ) log:ifThenElseIn _:Scope .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    _:S :is _:O .
+} .
