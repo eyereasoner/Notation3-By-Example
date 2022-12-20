@@ -8,38 +8,47 @@
 @prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
 
-(_:A _:G _:X _:Y) log:onNegativeSurface {
+(_:A _:G _:X _:Xp _:Y _:Yp _:NewG) log:onNegativeSurface {
     _:A :implies _:G .
-    _:A :qvar2bn _:X .
-    _:G :qvar2bn _:Y .
+    _:A :qvar2bn (_:Xp _:X).
+    _:G :qvar2bn (_:Yp _:Y).
+
+    ( _:X
+      { () log:onNegativeSurface _:Y }
+    ) graph:union _:NewG .
+
     () log:onNegativeSurface {
-        :result :is _:X , _:Y .
+        _:Xp log:onNegativeSurface _:NewG .
+        _:Yp log:onQuerySurface _:Y .
     } .
 } .
 
-(_:X _:Y _:Temp _:L) log:onNegativeSurface {
+(_:X _:Y _:Z _:T1 _:T2 _:L) log:onNegativeSurface {
     () log:onQuerySurface {
-        _:X :qvar2bn _:Y .
+        _:X :qvar2bn (_:Y _:Z).
     } .
     _:X graph:list _:L .
-    ( _:L () ) :_qvar2bn _:Temp .
-    _:Y graph:list _:Temp .
+    ( _:L () () ) :_qvar2bn (_:T1 _:T2) .
+    _:T2 list:unique _:Y .
+    _:Z graph:list _:T1 .
 } .
 
-(_:Acc) log:onNegativeSurface {
+(_:Acc1 _:Acc2 ) log:onNegativeSurface {
     () log:onQuerySurface {
-        (() _:Acc) :_qvar2bn _:Acc .
+        (() _:Acc1 _:Acc2) :_qvar2bn (_:Acc1 _:Acc2) .
     } .
 } .
 
 (
-    _:L _:X _:Acc _:AccNew
+    _:L _:X _:Acc1 _:Acc2 
+    _:Acc1New _:Acc2New _:Acc2S _:Acc2P 
     _:N _:H _:T 
     _:S _:P _:O
     _:Sv _:Pv _:Ov
+    _:Scope
 ) log:onNegativeSurface {
     () log:onQuerySurface {
-        (_:L _:Acc) :_qvar2bn _:X .
+        (_:L _:Acc1 _:Acc2) :_qvar2bn _:X .
     } .
     _:L log:rawType rdf:List .
     _:L list:length _:N .
@@ -53,9 +62,27 @@
     _:P :skolemize _:Pv .
     _:O :skolemize _:Ov .
 
-    ( _:Acc ({ _:Sv _:Pv _:Ov }) ) list:append _:AccNew .
+    (
+        { _:S log:equalTo _:Sv }
+        { _:Acc2 log:equalTo _:Acc2S }
+        { (_:Acc2 (_:Sv)) list:append _:Acc2S }
+    ) log:ifThenElseIn _:Scope .
 
-    ( _:T _:AccNew ) :_qvar2bn _:X .
+    (
+        { _:P log:equalTo _:Pv }
+        { _:Acc2S log:equalTo _:Acc2P }
+        { (_:Acc2S (_:Pv)) list:append _:Acc2P }
+    ) log:ifThenElseIn _:Scope .
+
+    (
+        { _:O log:equalTo _:Ov }
+        { _:Acc2P log:equalTo _:Acc2New }
+        { (_:Acc2P (_:Ov)) list:append _:Acc2New }
+    ) log:ifThenElseIn _:Scope .
+
+    ( _:Acc1 ({ _:Sv _:Pv _:Ov }) ) list:append _:Acc1New .
+
+    ( _:T _:Acc1New _:Acc2New ) :_qvar2bn _:X .
 } .
 
 (_:Y _:X _:Xn _:Scope) log:onNegativeSurface {
@@ -75,8 +102,4 @@
         _:X log:equalTo _:Y .
         }
     ) log:ifThenElseIn _:Scope .
-} .
-
-(_:S _:O) log:onQuerySurface {
-    _:S :is _:O .
 } .
