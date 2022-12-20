@@ -38,3 +38,25 @@ This results in :
 <urn:example.org:Socrates> a <urn:example.org:Human>.
 <urn:example.org:Socrates> a <urn:example.org:Mortal>.
 ```
+
+## Limitations
+
+- No nesting of graphs
+- Scoping of blank nodes in now global
+  - See `blanknode.n3s` for an example that fails
+
+## Implemented with
+
+- graph:union
+- graph:list
+- list:append
+- list:firstRest
+- list:length
+- list:unique
+- log:equalTo
+- log:includes
+- log:onNegativeSurface
+- log:onQuerySurface
+- log:rawType
+- log:skolem
+- math:greaterThan

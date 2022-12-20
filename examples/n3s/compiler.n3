@@ -1,5 +1,5 @@
 @prefix : <https://github.com/eyereasoner/Notation3-By-Example/example/n3s#> .
-@prefix q: <https://github.com/eyereasoner/Notation3-By-Example/example/n3q#> .
+@prefix q: <https://github.com/eyereasoner/Notation3-By-Example/example/n3q/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
@@ -93,7 +93,7 @@
     ( 
         {
         _:X log:namespace _:Xn .
-        _:Xn log:equalTo "https://github.com/eyereasoner/Notation3-By-Example/example/n3q#" .
+        _:Xn log:equalTo "https://github.com/eyereasoner/Notation3-By-Example/example/n3q/" .
         }
         {
         _:X log:skolem _:Y .
@@ -102,4 +102,13 @@
         _:X log:equalTo _:Y .
         }
     ) log:ifThenElseIn _:Scope .
+} .
+
+# Debug
+(_:S _:O) log:onQuerySurface {
+    _:S log:onNegativeSurface2 _:O .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    _:S log:onQuerySurface2 _:O .
 } .
