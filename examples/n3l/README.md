@@ -1,15 +1,13 @@
 # N3L - RDF Surfaces in Lists
 
-N3L is a serialization of [RDF Surfaces](https://w3c-cg.github.io/rdfsurfaces/) in pure RDF (without
-N3 subgraphs or notation). The N3L is a lisp like implementation of RDF Surfaces introducing:
+N3L is a serialization of [RDF Surfaces](https://w3c-cg.github.io/rdfsurfaces/) in pure RDF (without N3 subgraphs or notation). The N3L is a lisp like implementation of RDF Surfaces introducing:
 
 - `log:neg` as a negative surface function
 - `log:pos` as a positive surface function
 - `log:query` as a query surface function
 - `log:construct` as a construct surface function
 
-N3L programs can be executed by providing at least a (possible empty) list of parameters and
-a zero or groups of 3 arguments that constitute the triples:
+N3L scripts can be executed by providing at least a (possible empty) list of parameters and a zero or groups of 3 arguments that constitute the triples:
 
 ```
 ( N3L-Fuction (Params) 
@@ -18,7 +16,7 @@ a zero or groups of 3 arguments that constitute the triples:
     .... ) log:evalAs log:RDFSurface .
 ```
 
-The Socrated example can be programmed like:
+The Socrates example can be programmed like:
 
 ```
 @prefix : <urn:example.org:> .
