@@ -28,8 +28,8 @@
     ) graph:union _:NewG .
 
     () log:onNegativeSurface {
-        _:Xp log:onNegativeSurface2 _:NewG .
-        _:Yp log:onQuerySurface2 _:Y .
+        _:Xp log:onNegativeSurface _:NewG .
+        _:Yp log:onQuerySurface _:Y .
     } .
 } .
 
