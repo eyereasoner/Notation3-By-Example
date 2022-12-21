@@ -10,7 +10,8 @@
 @prefix ns1: <urn:example.org:>.
 @prefix var: <http://eyereasoner.github.io/.well-known/genid/3917894951695475063#>.
 
-<urn:example.org:Socrates> a <urn:example.org:Human>.
-<urn:example.org:Socrates> a <urn:example.org:Mortal>.
+<urn:example.org:Alice> a <urn:example.org:Human>.
+{q:X a <urn:example.org:Human>} :implies {q:X a <urn:example.org:Mortal>}.
+<urn:example.org:Alice> a <urn:example.org:Mortal>.
 <urn:example.org:test> <urn:example.org:is> true.
 

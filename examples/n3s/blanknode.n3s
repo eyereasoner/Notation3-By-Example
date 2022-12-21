@@ -1,5 +1,7 @@
 @prefix : <urn:example.org:> .
+@prefix q: <https://github.com/eyereasoner/Notation3-By-Example/example/n3q#> .
 @prefix n3s: <https://github.com/eyereasoner/Notation3-By-Example/example/n3s#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 _:x a :Person ; :loves :Food .
 
@@ -27,3 +29,14 @@ n3s:implies
 # Should return [2]
 # [ a :Human2 ]
 # where [1] and [2] are different blank nodes
+
+# Test
+{
+   q:X a :Human .
+   q:Y a :Human2 .
+   q:X log:notEqualTo q:Y . # This should fail
+}
+n3s:implies
+{
+   :test :is true . # If we see this..then something must be fishy
+} .

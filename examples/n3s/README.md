@@ -45,7 +45,6 @@ EYE v22.1219.2214
 
 ## Limitations
 
-- No nesting of graphs
 - Scopeing of blank nodes
   - Blank nodes in antecedent will be turned into universals that are visible in consequent of a rule
 
