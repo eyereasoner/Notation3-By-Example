@@ -1,5 +1,5 @@
 @prefix : <https://github.com/eyereasoner/Notation3-By-Example/example/n3s#>.
-@prefix q: <https://github.com/eyereasoner/Notation3-By-Example/example/n3q/>.
+@prefix q: <https://github.com/eyereasoner/Notation3-By-Example/example/n3q#>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
@@ -12,4 +12,5 @@
 
 _:e_x_1 a <urn:example.org:Human>.
 _:e_x_1 a <urn:example.org:Human2>.
+<urn:example.org:test> <urn:example.org:is> true.
 

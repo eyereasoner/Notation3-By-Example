@@ -1,5 +1,5 @@
 @prefix : <https://github.com/eyereasoner/Notation3-By-Example/example/n3s#> .
-@prefix q: <https://github.com/eyereasoner/Notation3-By-Example/example/n3q/> .
+@prefix q: <https://github.com/eyereasoner/Notation3-By-Example/example/n3q#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
@@ -8,15 +8,23 @@
 @prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
 
-(_:A _:G _:X _:Xp _:Y _:Yp _:Ypp _:NewG) log:onNegativeSurface {
+# Main rule which defined the :implies
+(_:A _:G _:X _:Xp _:Y _:Yp _:Ypbn _:Ypvar _:NewG) log:onNegativeSurface {
     _:A :implies _:G .
+    
+    # Translated qvars to blank nodes 
+    #  Xp will contain a unique list of blank nodes
+    #  X will be the translated formula
     _:A :qvar2bn (_:Xp _:X).
     _:G :qvar2bn (_:Yp _:Y).
 
-    _:Yp :keepFlagged _:Ypp .
+    # Flagged blank nodes are rewritten blank nodes in the original formula
+    # We scope these flagged blank nodes to create the consequent of a rule
+    ( _:Yp :isSkolemBlank true ) :filter _:Ypbn .
 
+    # Ypp is the scoping part of blank nodes
     ( _:X
-      { _:Ypp log:onNegativeSurface _:Y }
+      { _:Ypbn log:onNegativeSurface _:Y }
     ) graph:union _:NewG .
 
     () log:onNegativeSurface {
@@ -25,6 +33,11 @@
     } .
 } .
 
+# X :qvar2 (Y Z)
+# qvars to blank node translation
+#   X a formula
+#   Y a list of blank nodes
+#   Z a formula only containing blank nodes
 (_:X _:Y _:Z _:T1 _:T2 _:L) log:onNegativeSurface {
     () log:onQuerySurface {
         _:X :qvar2bn (_:Y _:Z).
@@ -64,18 +77,21 @@
     _:P :skolemize _:Pv .
     _:O :skolemize _:Ov .
 
+    # If the S changed into a skolem, add it to the list of blank nodes
     (
         { _:S log:equalTo _:Sv }
         { _:Acc2 log:equalTo _:Acc2S }
         { (_:Acc2 (_:Sv)) list:append _:Acc2S }
     ) log:ifThenElseIn _:Scope .
 
+    # If the P changed into a skolem, add it to the list of blank nodes
     (
         { _:P log:equalTo _:Pv }
         { _:Acc2S log:equalTo _:Acc2P }
         { (_:Acc2S (_:Pv)) list:append _:Acc2P }
     ) log:ifThenElseIn _:Scope .
 
+    # If the O changed into a skolem, add it to the list of blank nodes
     (
         { _:O log:equalTo _:Ov }
         { _:Acc2P log:equalTo _:Acc2New }
@@ -87,6 +103,9 @@
     ( _:T _:Acc1New _:Acc2New ) :_qvar2bn _:X .
 } .
 
+# X :skolemize Y
+# Turn a qvar into a skolemized version
+# Turn a blank node into a flagged skolemized version
 (_:Y _:X _:Xn _:Xnp _:Scope) log:onNegativeSurface {
     () log:onQuerySurface {
         _:X :skolemize _:Y .
@@ -95,10 +114,10 @@
     ( 
         {
             _:X log:namespace _:Xn .
-            _:Xn log:equalTo "https://github.com/eyereasoner/Notation3-By-Example/example/n3q/" .
+            _:Xn log:equalTo "https://github.com/eyereasoner/Notation3-By-Example/example/n3q#" .
         }
         {
-            _:X log:skolem _:Y .
+            _:X :skolemVar _:Y .
         }
         {
             # If we got a blank node, write it into a 'flagged' skolem
@@ -109,7 +128,7 @@
                 }
                 {
                     # Rewrite the skolem to trigger creating a universal
-                    [] :flaggedSkolem _:Y .
+                    [] :skolemBlank _:Y .
                 }
                 {
                     _:X log:equalTo _:Y .
@@ -119,6 +138,8 @@
     ) log:ifThenElseIn _:Scope .
 } .
 
+# X :isSkolem true
+# Holds when X is a skolem
 (_:X _:Xn) log:onNegativeSurface {
     () log:onQuerySurface {
         _:X :isSkolem true .
@@ -127,25 +148,43 @@
     _:Xn string:contains ".well-known/genid/" .
 } .
 
+# X :skolemVar Y 
+# Turn X into a var skolem Y
 (_:X _:Y _:T1 _:T2 _:T3) log:onNegativeSurface {
     () log:onQuerySurface {
-        _:X :flaggedSkolem _:Y .
+        _:X :skolemVar _:Y .
     } .
     _:X log:skolem _:T1 .
     _:T1 log:uri _:T2 .
-    ( _:T2 "-flagged" ) string:concatenation _:T3 .
+    ( _:T2 "-var" ) string:concatenation _:T3 .
     _:Y log:uri _:T3 .
 } .
 
+# X :skolemBlank Y 
+# Turn X into a flagged bn skolem Y
+(_:X _:Y _:T1 _:T2 _:T3) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:X :skolemBlank _:Y .
+    } .
+    _:X log:skolem _:T1 .
+    _:T1 log:uri _:T2 .
+    ( _:T2 "-bn" ) string:concatenation _:T3 .
+    _:Y log:uri _:T3 .
+} .
+
+# X :isSkolemBlank Y
+# Test if X is a flagged skolem
+#   X a variable
+#   Y a boolean
 (_:X _:T1 _:Y _:Scope) log:onNegativeSurface {
     () log:onQuerySurface {
-        _:X :isFlagged _:Y .
+        _:X :isSkolemBlank _:Y .
     } .
     _:X log:uri _:T1 .
     (
         {
             _:T1 string:contains ".well-known/genid/" .
-            _:T1 string:endsWith "-flagged" .
+            _:T1 string:endsWith "-bn" .
         }
         {
             _:Y log:equalTo true .
@@ -156,22 +195,27 @@
     ) log:ifThenElseIn _:Scope .
 } .
 
-(_:X _:Y _:T) log:onNegativeSurface {
+# ( X F FV) :filter Y
+# Filter a list X with a built-in value into Y
+#   X a list
+#   F a built-in (or backward rule)
+#   FV a value 
+(_:X _:F _:FV _:Y) log:onNegativeSurface {
     () log:onQuerySurface {
-        _:X :keepFlagged _:Y .
+        (_:X _:F _:FV) :filter _:Y .
     } .
-    (_:X ()) :_keepFlagged _:Y .
+    (_:X _:F _:FV ()) :_filter _:Y .
 } .
 
-(_:Acc) log:onNegativeSurface {
+(_:F _:FV _:Acc) log:onNegativeSurface {
     () log:onQuerySurface {
-        ( () _:Acc ) :_keepFlagged _:Acc .
+        ( () _:F _:FV _:Acc ) :_filter _:Acc .
     } .
 } .
 
-(_:X _:Acc _:Y _:H _:T _:N _:AccNew _:Scope) log:onNegativeSurface {
+(_:X _:F _:FV _:Acc _:Y _:H _:T _:N _:AccNew _:Scope) log:onNegativeSurface {
     () log:onQuerySurface {
-        ( _:X _:Acc ) :_keepFlagged _:Y .
+        ( _:X _:F _:FV _:Acc ) :_filter _:Y .
     } .
 
     _:X log:rawType rdf:List .
@@ -181,7 +225,7 @@
     _:X list:firstRest (_:H _:T) .
 
     (
-        { _:H :isFlagged true }
+        { _:H _:F _:FV }
         {
             ( _:Acc (_:H)) list:append _:AccNew .
         }
@@ -190,14 +234,14 @@
         }
     ) log:ifThenElseIn _:Scope .
 
-    ( _:T _:AccNew ) :_keepFlagged _:Y .
+    ( _:T _:F _:FV _:AccNew ) :_filter _:Y .
 } .
 
 # Debug
 (_:S _:O) log:onQuerySurface {
-    _:S log:onNegativeSurface2 _:O .
+    _:S log:onNegativeSurfaceTest _:O .
 } .
 
 (_:S _:O) log:onQuerySurface {
-    _:S log:onQuerySurface2 _:O .
+    _:S log:onQuerySurfaceTest _:O .
 } .
