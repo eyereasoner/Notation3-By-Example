@@ -8,5 +8,7 @@
 @prefix ns1: <urn:example.org:>.
 
 <urn:example.org:Socrates> a <urn:example.org:Human>.
+<urn:example.org:SubClassRule> a log:RDFSurface.
+<urn:example.org:MyQuery> a log:RDFSurface.
 <urn:example.org:Socrates> a <urn:example.org:Mortal>.
 

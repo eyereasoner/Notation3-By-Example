@@ -5,28 +5,36 @@
 :Alice :says (log:pos :Bob :is :Handsome) .
 
 # Sub list test
-(log:neg (_:S _:P) 
-    _:S :says (log:pos _:P :is :Handsome)
-    (log:neg () 
-        _:S :likes _:P
-    )
-) log:evalAs log:RDFSurface .
+:SubListTest 
+    a log:RDFSurface ;
+    rdf:value (log:neg (_:S _:P) 
+      _:S :says (log:pos _:P :is :Handsome)
+      (log:neg () 
+         _:S :likes _:P
+      )
+    ) .
 
-(log:query (_:S _:O)
-    _:S :likes _:O 
-) log:evalAs log:RDFSurface .
+:SubListQuery 
+    a log:RDFSurface ;
+    rdf:value (log:query (_:S _:O)
+        _:S :likes _:O 
+    ) .
 
 # In case we would allow RDF star
-:Alice :says << :Bob :is :Handsome >>.
+:Alice :says << :Bob :is :Handsome >> .
 
 # RDF Star test
-(log:neg (_:S _:P) 
-    _:S :says << _:P :is :Handsome >>
-    (log:neg () 
-        _:S :likes-star _:P
-    )
-) log:evalAs log:RDFSurface .
+:RDFStarTest
+    a log:RDFSurface ;
+    rdf:value (log:neg (_:S _:P) 
+        _:S :says << _:P :is :Handsome >>
+        (log:neg () 
+            _:S :likes-star _:P
+        )
+    ) .
 
-(log:query (_:S _:O)
-    _:S :likes-star _:O 
-) log:evalAs log:RDFSurface .
+:RDFStarQuery
+    a log:RDFSurface ;
+    rdf:value (log:query (_:S _:O)
+        _:S :likes-star _:O 
+    ) .
