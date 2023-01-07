@@ -64,18 +64,13 @@
     ?y :isThoughtAs :Pretty .
 } .
 
-# When existentials are nested the scope is limited
-# to the contaiment graph. E.g.
+# When existentials are nested in the premis of a rule
+# their scope is the premis and same for the conclusion.
 #
 # There is someone (_:x1) that thinks something other
 # (_:x2) is Pretty.
-#
-# And not
-#
-# There is someone (_:x) that thinks for her/himself
-# that he/she is pretty. 
 {
-    _:x :thinks { _:x :is :Pretty } .
+    _:x1 :thinks { _:x2 :is :Pretty } .
 }
 =>
 {
