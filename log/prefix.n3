@@ -1,0 +1,25 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    # Find the prefix for an IRI 
+    #    ?X an IRI 
+    #    ?Y a stringable
+    ?X log:prefix "log".
+
+    # This should also work
+    <http://www.w3.org/2000/10/swap/log#> log:prefix ?Y . 
+}
+=> 
+{  
+    # E.g. produces <http://www.w3.org/2000/10/swap/log#>
+    ?X :prefix "log" .
+} .
+
+{
+    <http://www.w3.org/2000/10/swap/log#> :prefix "log" .
+}
+=> 
+{
+    :test :is true .
+} .
