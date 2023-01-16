@@ -39,6 +39,41 @@
     } .
 } .
 
+
+# Search for a pol:Rule 
+#  pol:body holds the logic of the rule
+#  ... pol:when select on what conditions the rule should be executed
+#  ... pol:thenNot* describes what should not happen when the condition holds
+(  _:Rule _:Body 
+   _:Param _:WhenBody _:ThenNotBody
+   _:WhenBodyPrime
+) log:onNegativeSurface {
+    # Select all rules with a body
+    _:Rule a pol:Rule , pol:ValidRule ;
+        pol:body _:Body .
+
+    # The body should contain a `when` and possible multiple `thenNot`-s.
+    _:Body log:includes {
+        _:Param pol:when _:WhenBody ;
+                pol:thenNot _:ThenNotBody .
+    } .
+
+    # Create the body of a new negative surface implication. The
+    # `when` triples will be the head and the `then` triples the body
+    # of the implication: HEAD -> BODY
+    ( _:WhenBody {
+        () log:onPositiveSurface {
+            # Write the results on an answer surface
+            () pol:onAnswerSurface _:ThenNotBody .
+        } 
+    }) log:conjunction _:WhenBodyPrime .
+
+    # Execute the new negative surface implication rules
+    () log:onNegativeSurface {
+        _:Param log:onNegativeSurface _:WhenBodyPrime .
+    } .
+} .
+
 # Extract the answer surfaces 
 (_:X _:Answer _:S _:P _:O) log:onQuerySurface {
     _:X pol:onAnswerSurface _:Answer .

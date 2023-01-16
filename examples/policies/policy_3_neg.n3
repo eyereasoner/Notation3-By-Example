@@ -1,0 +1,20 @@
+@prefix : <http://example.org/ns#> .
+@prefix pol:  <https://www.example.org/ns/policy#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+
+:Rule3 a pol:Rule ;
+    pol:body { 
+        (_:Subject _:Object _:Policy) 
+            # When we have a create
+            pol:when {
+                _:Subject a :Create ;
+                    :object _:Object .
+            } ;
+            # ... then never append it to the log
+            pol:thenNot {
+                _:Subject pol:policy _:Policy .
+                _:Policy
+                    a fno:Execution ;
+                    fno:executes :appendToLog .
+            } .
+    } .
