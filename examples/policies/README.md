@@ -11,6 +11,7 @@ message.
 - `data.n3` - an example incoming Event Notification message
 - `policy_1.n3` - a valid example policy document
 - `policy_2_invalid.n3` - a invalid example policy document
+- `policy_3_neg.n3` - a policy that contradicts `policy_1.n3` with sample data
 - `compiler.n3` - a compiler of policies into RDF Surfaces
 - `validation.n3` - a validator for policies that is used by the compiler
 - `util.n3` - utility backward rulesused by the compiler
@@ -21,7 +22,7 @@ message.
 The [EYE](https://github.com/josd/eyehttps://github.com/josd/eye) RDF Surfaces process will load all N3 data, and simultaneously validate and compile
 the policy rules. The output will defined by the policies.
 
-When running `test.sh` you should get as output:
+When running `test_valid.sh` you should get as output:
 
 ```
 @prefix : <http://example.org/ns#>.
