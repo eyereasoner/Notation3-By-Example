@@ -12,26 +12,39 @@
             } ;
             # ... send it to the append log
             pol:then {
-                _:Subject pol:policy [
-                    a fno:Execution ;
-                    fno:executes :appendToLog
-                ] .
+                [
+                    a pol:PolicyExecution ;
+                    pol:defines [
+                        a fno:Execution ;
+                        fno:executes :appendToLog ;
+                        pol:subject _:Subject
+                    ] 
+                ]
             } ;
             # ... and remove all blind copies
             pol:then {
-                _:Subject pol:policy [
-                    a fno:Execution ;
-                    fno:executes :removeBlindCopies
-                ] .
+                [
+                    a pol:PolicyExecution ;
+                    pol:defines [
+                        a fno:Execution ;
+                        fno:executes :removeBlindCopies ;
+                        pol:subject _:Subject
+                    ] 
+                ]
+                
             } ;
             # ... and send a message to Jos
             pol:then {
-                _:Subject pol:policy [
-                    a fno:Execution ;
-                    fno:executes :sendMessage ;
-                    :to <https://somebody.net/profile/card#me> ;
-                    :from  <https://alice.net/card#me> ;
-                    :message _:Object 
-                ] .
+                [
+                    a pol:PolicyExecution ;
+                    pol:defines [
+                        a fno:Execution ;
+                        fno:executes :sendMessage ;
+                        pol:from <https://alice.net/card#me> ;
+                        pol:to <https://somebody.net/profile/card#me> ;
+                        pol:subject _:Subject ;
+                        pol:message _:Object 
+                    ] 
+                ] 
             } .
     } .

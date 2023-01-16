@@ -1,0 +1,15 @@
+@prefix : <http://example.org/ns#> .
+@prefix pol:  <https://www.example.org/ns/policy#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+:appendToLog a fno:Function ;
+    fno:name            "appendToLog"^^xsd:string ;
+    dcterms:description "This function appends the subject parameter to the event log of a Solid pod."^^xsd:string ;
+    fno:expects ( [
+        a fno:Parameter ;
+        fno:predicate pol:subject ;
+        fno:type xsd:anyURI ;
+        fno:required  "true"^^xsd:boolean 
+    ] ) .

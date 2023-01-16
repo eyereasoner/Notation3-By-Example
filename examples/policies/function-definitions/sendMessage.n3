@@ -1,0 +1,33 @@
+@prefix : <http://example.org/ns#> .
+@prefix pol:  <https://www.example.org/ns/policy#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+:sendMessage a fno:Function ;
+    fno:name            "sendMessage"^^xsd:string ;
+    dcterms:description "This function sends a given message to a given recipient about a certain given subject."^^xsd:string ;
+    fno:expects ( 
+        [
+            a fno:Parameter ;
+            fno:predicate pol:from ;
+            fno:type xsd:anyURI ;
+            fno:required  "true"^^xsd:boolean 
+        ] [
+            a fno:Parameter ;
+            fno:predicate pol:to ;
+            fno:type xsd:anyURI ;
+            fno:required  "true"^^xsd:boolean 
+        ] [
+            a fno:Parameter ;
+            fno:predicate pol:subject ;
+            fno:type xsd:anyURI ;
+            fno:required  "true"^^xsd:boolean 
+        ] [ 
+            a fno:Parameter ;
+            fno:predicate pol:message ;
+            # I presume the message parameter is a URI. In case of a string, this interface must be of type xsd:string
+            fno:type xsd:anyURI ;
+            fno:required  "true"^^xsd:boolean 
+        ]
+    ) .

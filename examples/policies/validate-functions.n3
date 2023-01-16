@@ -1,0 +1,63 @@
+@prefix : <http://example.org/ns#> .
+@prefix pol:  <https://www.example.org/ns/policy#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix util: <https://github.com/phochste/util#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+# Function validation
+# .. when we have an fno:Function definition
+# .. with an fno:Parameter
+# .. that is required
+# .. then it must be defined on the fno:Execution 
+(
+    _:Rule
+    _:Body
+    _:FunctionExecution
+    _:FunctionDefinition
+    _:FunctionParameterList
+    _:FunctionParameterDefinition
+    _:FunctionParameterDefinitionPredicate
+    _:FunctionParameterDefinitionRequirement
+    _:FunctionExecutionPredicateValue
+    _:S _:O
+    _:X _:Y
+) log:onNegativeSurface {
+    
+    _:Rule a pol:Rule ;
+        pol:body _:Body .
+
+    # Retrieve the then part of a function definition
+    _:Body log:includes { _:S pol:then _:O }  .
+
+    # Check the then part for any function executions
+    _:O log:includes { 
+        _:FunctionExecution a fno:Execution.
+        _:FunctionExecution fno:executes _:FunctionDefinition .
+        _:FunctionExecution _:FunctionParameterDefinitionPredicate _:FunctionExecutionPredicateValue .
+    } . 
+
+    _:FunctionDefinition fno:expects _:FunctionParameterList .
+    _:FunctionParameterList list:member _:FunctionParameterDefinition .
+    _:FunctionParameterDefinition a fno:Parameter .
+    _:FunctionParameterDefinition fno:predicate _:FunctionParameterDefinitionPredicate .
+    _:FunctionParameterDefinition fno:required _:FunctionParameterDefinitionRequirement .
+
+    # Retrieve the function definition ID
+
+    # For every parameter of the function definition
+    # There must be that parameter defined on the functionExecution
+    () log:onNegativeSurface {
+        _:FunctionExecution a :TEST ;
+            _:X _:Y.
+    } .
+} .
+
+
+(_:S _:P _:O) log:onQuerySurface {
+    _:S _:P _:O .
+} .
+
+
+
