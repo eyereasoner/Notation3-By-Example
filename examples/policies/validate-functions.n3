@@ -33,9 +33,13 @@
 
     # Check the then part for any function executions
     _:O log:includes { 
+        # We have a Function Execution
         _:FunctionExecution a fno:Execution.
+        # That executes a given Function Definition
         _:FunctionExecution fno:executes _:FunctionDefinition .
+        # With a given Function Predicate
         _:FunctionExecution _:FunctionParameterDefinitionPredicate _:FunctionExecutionPredicateValue .
+        _:FunctionExecution _:X _:Y.
     } . 
 
     _:FunctionDefinition fno:expects _:FunctionParameterList .
@@ -51,6 +55,7 @@
     () log:onNegativeSurface {
         _:FunctionExecution a :TEST ;
             _:X _:Y.
+        _:FunctionParameterDefinitionPredicate a :TESTPREDICATE .
     } .
 } .
 
