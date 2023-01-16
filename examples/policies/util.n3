@@ -70,3 +70,19 @@
 } .
 
 ##################################################################
+
+(_:subject _:S _:P _:O) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:subject util:walkGraph << _:subject _:P _:O >> .
+    } .
+    _:subject _:P _:O .
+} .
+
+(_:subject _:X _:Y _:S _:P _:O) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:subject util:walkGraph << _:S _:P _:O >> .
+    } .
+    _:subject _:X _:Y .
+    _:Y util:walkGraph << _:S _:P _:O >> .
+} .
+

@@ -1,5 +1,5 @@
 @prefix : <http://example.org/ns#> .
-@prefix pol: <https://github.com/phochste/policy#> .
+@prefix pol:  <https://www.example.org/ns/policy#> .
 @prefix fno: <https://w3id.org/function/ontology#> .
 
 :Rule1 a pol:Rule ;
@@ -29,8 +29,8 @@
                 _:Subject pol:policy [
                     a fno:Execution ;
                     fno:executes :sendMessage ;
-                    :to <https://github.com/josd/profile.ttl> ;
-                    :from  <https://patrickhochstenbach.net/profile/card#me> ;
+                    :to <https://somebody.net/profile/card#me> ;
+                    :from  <https://alice.net/card#me> ;
                     :message _:Object 
                 ] .
             } .
