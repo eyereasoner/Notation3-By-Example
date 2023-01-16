@@ -12,21 +12,21 @@
             } ;
             # ... send it to the append log
             pol:then {
-                _:Subject pol:policy [
+                [] pol:policy [
                     a fno:Execution ;
                     fno:executes :appendToLog
                 ] .
             } ;
             # ... and remove all blind copies
             pol:then {
-                _:Subject pol:policy [
+                [] pol:policy [
                     a fno:Execution ;
                     fno:executes :removeBlindCopies
                 ] .
             } ;
             # ... and send a message to Jos
             pol:then {
-                _:Subject pol:policy [
+                [] pol:policy [
                     a fno:Execution ;
                     fno:executes :sendMessage ;
                     :to <https://somebody.net/profile/card#me> ;
