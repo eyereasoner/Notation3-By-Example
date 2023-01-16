@@ -34,7 +34,16 @@ When running `test_valid.sh` you should get as output:
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
 @prefix math: <http://www.w3.org/2000/10/swap/math#>.
 
-_:bn_1 pol:onAnswerSurface {:Record1 pol:policy _:bn_2. _:bn_2 a fno:Execution. _:bn_2 fno:executes :appendToLog}.
-_:bn_1 pol:onAnswerSurface {:Record1 pol:policy _:bn_3. _:bn_3 a fno:Execution. _:bn_3 fno:executes :removeBlindCopies}.
-_:bn_1 pol:onAnswerSurface {:Record1 pol:policy _:bn_4. _:bn_4 a fno:Execution. _:bn_4 fno:executes :sendMessage. _:bn_4 :to <https://github.com/josd/profile.ttl>. _:bn_4 :from <https://patrickhochstenbach.net/profile/card#me>. _:bn_4 :message <http://miel.data.pod/publications/mellon.pdf>}.
+:Record1 pol:policy _:bn_1.
+_:bn_1 a fno:Execution.
+_:bn_1 fno:executes :appendToLog.
+:Record1 pol:policy _:bn_2.
+_:bn_2 a fno:Execution.
+_:bn_2 fno:executes :removeBlindCopies.
+:Record1 pol:policy _:bn_3.
+_:bn_3 a fno:Execution.
+_:bn_3 fno:executes :sendMessage.
+_:bn_3 :to <https://somebody.net/profile/card#me>.
+_:bn_3 :from <https://alice.net/card#me>.
+_:bn_3 :message <http://university.us/publications/mellon.pdf>.
 ```
