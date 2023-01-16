@@ -43,18 +43,19 @@
         _:X :qvar2bn (_:Y _:Z).
     } .
     _:X graph:list _:L .
-    ( _:L () () ) :_qvar2bn (_:T1 _:T2) .
+    ( _:X _:L () () ) :_qvar2bn (_:T1 _:T2) .
     _:T2 list:unique _:Y .
     _:Z graph:list _:T1 .
 } .
 
-(_:Acc1 _:Acc2 ) log:onNegativeSurface {
+(_:Formula _:Acc1 _:Acc2 ) log:onNegativeSurface {
     () log:onQuerySurface {
-        (() _:Acc1 _:Acc2) :_qvar2bn (_:Acc1 _:Acc2) .
+        (_:Formula () _:Acc1 _:Acc2) :_qvar2bn (_:Acc1 _:Acc2) .
     } .
 } .
 
 (
+    _:Formula
     _:L _:X _:Acc1 _:Acc2 
     _:Acc1New _:Acc2New _:Acc2S _:Acc2P 
     _:N _:H _:T 
@@ -63,7 +64,7 @@
     _:Scope
 ) log:onNegativeSurface {
     () log:onQuerySurface {
-        (_:L _:Acc1 _:Acc2) :_qvar2bn _:X .
+        (_:Formula _:L _:Acc1 _:Acc2) :_qvar2bn _:X .
     } .
     _:L log:rawType rdf:List .
     _:L list:length _:N .
@@ -73,9 +74,9 @@
 
     _:H log:includes { _:S _:P _:O } .
 
-    _:S :skolemize _:Sv .
-    _:P :skolemize _:Pv .
-    _:O :skolemize _:Ov .
+    (_:Formula _:S) :skolemize _:Sv .
+    (_:Formula _:P) :skolemize _:Pv .
+    (_:Formula _:O) :skolemize _:Ov .
 
     # If the S changed into a skolem, add it to the list of blank nodes
     (
@@ -100,15 +101,18 @@
 
     ( _:Acc1 ({ _:Sv _:Pv _:Ov }) ) list:append _:Acc1New .
 
-    ( _:T _:Acc1New _:Acc2New ) :_qvar2bn _:X .
+    ( _:Formula _:T _:Acc1New _:Acc2New ) :_qvar2bn _:X .
 } .
 
-# X :skolemize Y
+# (Formula X) :skolemize Y
 # Turn a qvar into a skolemized version
 # Turn a blank node into a flagged skolemized version
-(_:Y _:X _:Xn _:Xnp _:Scope) log:onNegativeSurface {
+#    Formula - a context formula for which a variable needs to be skolemized
+#    X - a qvar or blank node variable
+#    Y - the skolemized version of the variable
+(_:Formula _:Y _:X _:Xn _:Xnp _:Scope) log:onNegativeSurface {
     () log:onQuerySurface {
-        _:X :skolemize _:Y .
+        (_:Formula _:X) :skolemize _:Y .
     } .
 
     ( 
@@ -128,7 +132,9 @@
                 }
                 {
                     # Rewrite the skolem to trigger creating a universal
-                    [] :skolemBlank _:Y .
+                    # Add the context formula to trigger a new blank node
+                    # for every new quoted graph..
+                    (_:Formula _:X) :skolemBlank _:Y .
                 }
                 {
                     _:X log:equalTo _:Y .

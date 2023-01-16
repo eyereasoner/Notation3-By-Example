@@ -10,7 +10,4 @@
 @prefix ns1: <urn:example.org:>.
 @prefix var: <http://eyereasoner.github.io/.well-known/genid/3917894951695475063#>.
 
-_:t_1-bn a <urn:example.org:Human>.
-_:t_2-bn a <urn:example.org:Human2>.
-<urn:example.org:test> <urn:example.org:is> true.
 

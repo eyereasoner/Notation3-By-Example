@@ -7,8 +7,9 @@
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
 
 # Find all log:RDFSurface and compile them into blogic
-(_:F _:X) log:onNegativeSurface {
-    _:F log:evalAs log:RDFSurface . 
+(_:N _:F _:X) log:onNegativeSurface {
+    _:N a log:RDFSurface ;
+        rdf:value _:F .
     _:F :asSurface _:X .
     () log:onNegativeSurface _:X . 
 } .

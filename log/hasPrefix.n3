@@ -1,0 +1,25 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    # Test is a prefix is defined for an IRI
+    #    ?X an IRI 
+    #    ?Y a boolean
+    <urn:example:> log:hasPrefix true.
+
+    <https://example.org/ns#> log:hasPrefix false.
+}
+=> 
+{  
+    <urn:example:> :hasPrefix true .
+    <https://example.org/ns#> :hasPrefix false.
+} .
+
+{
+    <urn:example:> :hasPrefix true .
+    <https://example.org/ns#> :hasPrefix false.
+}
+=> 
+{
+    :test :is true .
+} .

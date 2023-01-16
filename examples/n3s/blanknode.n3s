@@ -34,9 +34,9 @@ n3s:implies
 {
    q:X a :Human .
    q:Y a :Human2 .
-   q:X log:notEqualTo q:Y . # This should fail
+   q:X log:notEqualTo q:Y . 
 }
 n3s:implies
 {
-   :test :is true . # If we see this..then something must be fishy
+   :test :is true . 
 } .

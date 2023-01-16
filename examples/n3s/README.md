@@ -41,12 +41,11 @@ This results in :
 
 ## Requires
 
-EYE v22.1219.2214 
+EYE v22.1221.1351
 
 ## Limitations
 
-- Scopeing of blank nodes
-  - Blank nodes in antecedent will be turned into universals that are visible in consequent of a rule
+- Limited support for nested graphs in the antecedent and consequent of a rule
 
 ## Implemented with
 

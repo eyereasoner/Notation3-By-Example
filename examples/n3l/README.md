@@ -10,10 +10,12 @@ N3L is a serialization of [RDF Surfaces](https://w3c-cg.github.io/rdfsurfaces/) 
 N3L scripts can be executed by providing at least a (possible empty) list of parameters and a zero or groups of 3 arguments that constitute the triples:
 
 ```
-( N3L-Fuction (Params) 
-    S1 P1 O1
-    S2 P2 O2
-    .... ) log:evalAs log:RDFSurface .
+:ARuleName
+    a log:RDFSurface ;
+    rdf:value ( N3L-Fuction (Params) 
+        S1 P1 O1
+        S2 P2 O2
+        .... ) .
 ```
 
 The Socrates example can be programmed like:
@@ -27,17 +29,21 @@ The Socrates example can be programmed like:
 :Socrates a :Human .
 :Human rdfs:subClassOf :Mortal .
 
-( log:neg (_:A _:B _:S)
-    _:A rdfs:subClassOf _:B
-    _:S rdf:type _:A
-    ( log:neg () 
-        _:S rdf:type _:B
-    )
-) log:evalAs log:RDFSurface .
+:SubClassRule
+    a log:RDFSurface ;
+    rdf:value ( log:neg (_:A _:B _:S)
+        _:A rdfs:subClassOf _:B
+        _:S rdf:type _:A
+        ( log:neg () 
+            _:S rdf:type _:B
+        )
+    ) .
 
-( log:query (_:S _:O)
-    _:S rdf:type _:O
-) log:evalAs log:RDFSurface .
+:MyQuery
+    a log:RDFSurface ;
+    rdf:value ( log:query (_:S _:O)
+        _:S rdf:type _:O
+    ) .
 ```
 
 This results in :
