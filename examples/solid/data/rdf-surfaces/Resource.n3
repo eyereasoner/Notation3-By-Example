@@ -1,0 +1,18 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>. 
+
+() log:onPositiveSurface {
+    <https://pod.com/card> a :PersonalProfileDocument;
+        :maker <https://pod.com/card#me>.
+
+    <https://pod.com/card#me>
+        a :Person;
+        :name "John Doe".
+
+} {| :partOf <https://pod.com/card> |}.
+
+<https://pod.com/card> a :Resource.
+<https://pod.com/card> :describedby <https://pod.com/card.meta>.
+<https://pod.com/card> :acl <https://pod.com/card.acl>.
+
+

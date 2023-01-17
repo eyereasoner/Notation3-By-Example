@@ -1,0 +1,9 @@
+@prefix : <https://example.org/ns/>.
+@prefix acl: <http://www.w3.org/ns/auth/acl#>.
+
+<https://pod.com/card.acl#owner> a acl:Authorization                        {| :partOf <https://pod.com/card.acl> |}.
+<https://pod.com/card.acl#owner> acl:accessTo <https://pod.com/card>        {| :partOf <https://pod.com/card.acl> |}.
+<https://pod.com/card.acl#owner> acl:mode acl:Read, acl:Write, acl:Control  {| :partOf <https://pod.com/card.acl> |}.
+<https://pod.com/card.acl#owner> acl:agent <https://pod.com/card#me>        {| :partOf <https://pod.com/card.acl> |}.
+
+<https://pod.com/card.acl> a :Resource.

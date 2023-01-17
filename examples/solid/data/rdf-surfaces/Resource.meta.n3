@@ -1,0 +1,11 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>. 
+
+() log:onPositiveSurface {
+    <https://pod.com/card> 
+        :creator <https://pod.com/card#me> ;
+        :issuer <https://my-issuer.com> ;
+        :client <https://my-app.com> .
+} {| :partOf <https://pod.com/card.meta> |}.
+
+<https://pod.com/card.meta> a :Resource .

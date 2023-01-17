@@ -1,0 +1,9 @@
+@prefix : <https://example.org/ns/>.
+
+<https://pod.com/card> a :PersonalProfileDocument;
+    :maker <https://pod.com/card#me>.
+
+<https://pod.com/card#me>
+    a :Person;
+    :name "John Doe".
+

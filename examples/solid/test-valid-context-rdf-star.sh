@@ -1,0 +1,1 @@
+eye --nope --quiet --blogic ./core/* ./context/context_valid.n3 ./data/rdf-star/*
