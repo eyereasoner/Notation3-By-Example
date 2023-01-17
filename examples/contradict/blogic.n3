@@ -1,0 +1,14 @@
+@prefix : <http://example.org/ns#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+
+:City owl:disjointWith :State .
+
+# Comment one of these lines to make the example work
+:Monaco a :State .
+:Monaco a :City .
+
+(_:S _:P _:O) log:onQuerySurface {
+    _:S a _:O .
+} .
+    
