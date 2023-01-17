@@ -1,4 +1,4 @@
-# Notation3 by example
+# Notation3 by Example
 
 This repository contains a growing collection of examples how to use
 [Notation3](https://w3c.github.io/N3/spec/) [built-ins](https://w3c.github.io/N3/files/builtins.html).
@@ -17,3 +17,5 @@ Run the code online by copy and pasting into the online [Notation3 Editor](http:
 ## See also
 
 - https://github.com/eyereasoner/eye/blob/master/reasoning/bi/biP.n3
+- https://docs.google.com/presentation/d/191Dt3ooe8G8o7uP5eI-ePiFGjAFk5s2okzHrsUHH1OI/edit#slide=id.g1163749ccf3_1_830
+- https://n3.restdesc.org
