@@ -6,4 +6,5 @@
 :RequestContext acl:agent <https://pod.com/card#me>;
     acl:issuer <https://my-issuer.com>;
     acl:client <https://my-app.com>;
+    acl:resource <https://pod.com/card>;
     acl:reason "Because I want to steal all your data :)".

@@ -26,7 +26,6 @@ _:ResourceAccess _:MetaResourceAccess
     # If we are allowed by the ACL resource
     _:ACLEntry a acl:Authorization.
 
-
     (
         # if
         {

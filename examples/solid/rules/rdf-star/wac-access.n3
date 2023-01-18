@@ -19,17 +19,25 @@ _:Scope
 _:Access
 _:ResourceAccess _:MetaResourceAccess
 ) log:onNegativeSurface {
+
+    # Bind the requested resource URI in the context
+    :RequestContext acl:resource _:Resource .
+
     _:Resource a :Resource.
     _:Resource :describedby _:MetaResource.
     _:Resource :acl _:ACLResource.
 
-    # If we are allowed by the ACL resource
+    # If we are allowed by the ACL Entry
     _:ACLEntry a acl:Authorization.
+    # That is contained by the ACL Resource linked by our Resource
+    <<_:ACLEntry a acl:Authorization>> :partOf _:ACLResource.
+    
 
 
     (
         # if
         {
+            # And that contains the necessary Read privileges.
             _:ACLEntry acl:accessTo _:Resource.
             _:ACLEntry acl:mode acl:Read.
             _:ACLEntry acl:agent _:WebID.    

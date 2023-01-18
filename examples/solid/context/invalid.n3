@@ -3,7 +3,8 @@
 @prefix acl: <http://www.w3.org/ns/auth/acl#>.
 
 # Context document for a request to a Solid pod.
-:RequestContext acl:agent <https://some-other.com/card#me>;
-    acl:issuer <https://my-issuer.com>;
-    acl:client <https://my-app.com>;
+:RequestContext acl:agent <https://some-pod.com/card#me>;
+    acl:issuer <https://some-issuer.com>;
+    acl:client <https://some-app.com>;
+    acl:resource <https://pod.com/card>;
     acl:reason "Because I want to steal all your data :)".

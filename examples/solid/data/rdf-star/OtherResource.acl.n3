@@ -1,0 +1,11 @@
+@prefix : <https://example.org/ns/>.
+@prefix acl: <http://www.w3.org/ns/auth/acl#>.
+
+# A malicious ACL file trying to get access
+
+<https://some-pod.com/card.acl#owner> a acl:Authorization                        {| :partOf <https://some-pod.com/card.acl> |}.
+<https://some-pod.com/card.acl#owner> acl:accessTo <https://some-pod.com/card>   {| :partOf <https://some-pod.com/card.acl> |}.
+<https://some-pod.com/card.acl#owner> acl:mode acl:Read, acl:Write, acl:Control  {| :partOf <https://some-pod.com/card.acl> |}.
+<https://some-pod.com/card.acl#owner> acl:agent <https://some-pod.com/card#me>   {| :partOf <https://some-pod.com/card.acl> |}.
+
+<https://some-pod.com/card.acl> a :Resource.
