@@ -1,5 +1,5 @@
 format="rdf-star"
-context="./context/valid.n3"
+context="./context/john.n3"
 access="access"
 quiet="--quiet"
 core="core"

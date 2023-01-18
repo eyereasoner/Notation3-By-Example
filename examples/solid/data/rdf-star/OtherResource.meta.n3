@@ -1,0 +1,7 @@
+@prefix : <https://example.org/ns/>.
+
+<https://some-pod.com/card> :creator <https://some-pod.com/card#me> {| :partOf <https://some-pod.com/card.meta> |}.
+<https://some-pod.com/card> :issuer <https://my-issuer.com>         {| :partOf <https://some-pod.com/card.meta> |}.
+<https://some-pod.com/card> :client <https://my-app.com>            {| :partOf <https://some-pod.com/card.meta> |}.
+
+<https://some-pod.com/card.meta> a :Resource.
