@@ -36,20 +36,22 @@ _:FormattedErrorString
     
     # That is contained by the ACL Resource linked by our Resource
     # This is the line that requires adaptation depending on how we handle the resource conversions
-    
-    #_:ACLResourceSurface :partOf _:ACLResource.
+
+
     <<() log:onPositiveSurface _:ACLResourceSurface>> :partOf _:ACLResource. 
+    <<() log:onPositiveSurface _:ResourceSurface>> :partOf _:Resource. 
+    <<() log:onPositiveSurface _:MetaResourceSurface>> :partOf _:MetaResource. 
+
+    // Extract the Authorizations defined in the ACL document of the requested resource
     _:ACLResourceSurface log:includes { _:ACLEntry a acl:Authorization }.
 
     # We take the agent WebID from the request context 
     :RequestContext acl:agent _:RequestWebID.
     
     # We want to return all triples from the resource 
-    <<() log:onPositiveSurface _:ResourceSurface>> :partOf _:Resource. 
     _:ResourceSurface graph:member { _:S_R _:P_R _:O_R }.
 
     # And all triples from the metadata resource
-    <<() log:onPositiveSurface _:MetaResourceSurface>> :partOf _:MetaResource. 
     _:MetaResourceSurface graph:member { _:S_M _:P_M _:O_M }.
     
     (
