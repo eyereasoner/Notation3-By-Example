@@ -2,6 +2,7 @@ format="rdf-star"
 context="./context/valid.n3"
 access="access"
 quiet="--quiet"
+core="core"
 
 while test $# -gt 0; do
     case "$1" in
@@ -33,6 +34,10 @@ while test $# -gt 0; do
             shift
             quiet=""
             ;;
+        -t|--test)
+            shift
+            core="test"
+            ;;
         *)
             echo "$1 is not a recognized flag!"
             exit 1
@@ -40,12 +45,7 @@ while test $# -gt 0; do
     esac
 done
 
-echo $format
-echo $context
-echo $access
-echo $quiet
-
 echo "Running test for - format: $format - context: $context - output data: $output_data"
 echo "Command: eye --nope $quiet --blogic ./core/* $context ./rules/$format/wac-$access.n3 ./data/$format/*"
 echo ""
-eye --nope $quiet --blogic ./core/* $context ./rules/$format/wac-$access.n3 ./data/$format/*
+eye --nope $quiet --blogic ./${core}/* $context ./rules/$format/wac-$access.n3 ./data/$format/*
