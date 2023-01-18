@@ -1,5 +1,6 @@
 @prefix : <https://example.org/ns/>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#>. 
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @prefix acl: <http://www.w3.org/ns/auth/acl#>.
 
 # We want to give access
@@ -14,10 +15,11 @@ _:ACLResource
 _:ACLEntry
 _:S_R _:P_R _:O_R
 _:S_M _:P_M _:O_M
-_:WebID
+_:AgentWebID _:RequestWebID
 _:Scope
 _:Access
 _:ResourceAccess _:MetaResourceAccess
+_:FormattedErrorString
 ) log:onNegativeSurface {
 
     # Bind the requested resource URI in the context
@@ -31,19 +33,20 @@ _:ResourceAccess _:MetaResourceAccess
     _:ACLEntry a acl:Authorization.
     # That is contained by the ACL Resource linked by our Resource
     <<_:ACLEntry a acl:Authorization>> :partOf _:ACLResource.
-    
 
-
+    # We take the agent WebID from the request context 
+    :RequestContext acl:agent _:RequestWebID.
     (
         # if
         {
             # And that contains the necessary Read privileges.
             _:ACLEntry acl:accessTo _:Resource.
             _:ACLEntry acl:mode acl:Read.
-            _:ACLEntry acl:agent _:WebID.    
+            _:ACLEntry acl:agent _:AgentWebID.    
 
-            # We take the agent WebID from the request context 
-            :RequestContext acl:agent _:WebID.
+            # Check Equality
+            _:RequestWebID log:equalTo _:AgentWebID.
+            
         }
         # then
         {  
@@ -51,32 +54,37 @@ _:ResourceAccess _:MetaResourceAccess
                 ()log:onResultSurface {
                     _:ResourceAccess a :AccessGrant; 
                         :forResource _:Resource;
-                        :forAgent _:WebID;
+                        :forAgent _:RequestWebID;
                         :mode acl:read.
-
+                } .
+                ()log:onResultSurface {
                     _:MetaResourceAccess a :AccessGrant;
                         :forResource _:MetaResource;
-                        :forAgent _:WebID;
+                        :forAgent _:RequestWebID;
                         :mode acl:read.
-                }
+                } .
             }
         } 
         # else
         {  
+            # Bind the Error Messages
+            ("No access granted to %s because of the access controls specified in %s." _:Resource _:ACLResource ) string:format  _:FormattedErrorString .
+
             _:Access log:equalTo {
                 ()log:onWarningSurface {
                     _:ResourceAccess a :AccessDenial;
                         :forResource _:Resource;
-                        :forAgent _:WebID;
+                        :forAgent _:RequestWebID;
                         :mode acl:read;
-                        :reason "No access granted in resource WAC resource." .
-
+                        :reason _:FormattedErrorString.
+                } .
+                ()log:onWarningSurface {
                     _:MetaResourceAccess a :AccessDenial;
                         :forResource _:MetaResource;
-                        :forAgent _:WebID;
+                        :forAgent _:RequestWebID;
                         :mode acl:read;
-                        :reason "No access granted in resource WAC resource." .
-                }
+                        :reason _:FormattedErrorString.
+                } .
             }
         }
     ) log:ifThenElseIn _:Scope .

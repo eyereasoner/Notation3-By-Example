@@ -1,7 +1,8 @@
 @prefix : <https://example.org/ns/>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#>. 
-@prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @prefix acl: <http://www.w3.org/ns/auth/acl#>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
 
 # We want to give access
 # to all triples
@@ -19,6 +20,7 @@ _:AgentWebID _:RequestWebID
 _:Scope
 _:Access
 _:ResourceAccess _:MetaResourceAccess
+_:ACLResourceSurface _:ResourceSurface _:MetaResourceSurface
 _:FormattedErrorString
 ) log:onNegativeSurface {
 
@@ -31,17 +33,25 @@ _:FormattedErrorString
 
     # If we are allowed by the ACL Entry
     _:ACLEntry a acl:Authorization.
+    
     # That is contained by the ACL Resource linked by our Resource
-    <<_:ACLEntry a acl:Authorization>> :partOf _:ACLResource.
+    # This is the line that requires adaptation depending on how we handle the resource conversions
+    
+    #_:ACLResourceSurface :partOf _:ACLResource.
+    <<() log:onPositiveSurface _:ACLResourceSurface>> :partOf _:ACLResource. 
+    _:ACLResourceSurface log:includes { _:ACLEntry a acl:Authorization }.
 
     # We take the agent WebID from the request context 
     :RequestContext acl:agent _:RequestWebID.
-
+    
     # We want to return all triples from the resource 
-    <<_:S_R _:P_R _:O_R>> :partOf _:Resource.
+    <<() log:onPositiveSurface _:ResourceSurface>> :partOf _:Resource. 
+    _:ResourceSurface graph:member { _:S_R _:P_R _:O_R }.
 
     # And all triples from the metadata resource
-    <<_:S_M _:P_M _:O_M>> :partOf _:MetaResource.
+    <<() log:onPositiveSurface _:MetaResourceSurface>> :partOf _:MetaResource. 
+    _:MetaResourceSurface graph:member { _:S_M _:P_M _:O_M }.
+    
     (
         # if
         {
@@ -52,7 +62,6 @@ _:FormattedErrorString
 
             # Check Equality
             _:RequestWebID log:equalTo _:AgentWebID.
-            
         }
         # then
         {  
@@ -94,3 +103,4 @@ _:FormattedErrorString
     # Write out the result
     () log:onNegativeSurface _:Access .
 } .
+
