@@ -11,7 +11,7 @@ N3S scripts can be executed by providing `n3s:implies` rules. E.g.
 { Antecedent-Triples } n3s:implies { Consequent-Triples }
 ```
 
-The Socrates example can be programmed like:
+The Socrates example can be written like:
 
 ```
 @prefix : <urn:example.org:> .
