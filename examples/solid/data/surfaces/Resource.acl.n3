@@ -2,7 +2,7 @@
 @prefix acl: <http://www.w3.org/ns/auth/acl#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#>. 
 
-() log:onPositiveSurface {
+() log:onNeutralSurface {
     <https://pod.com/card.acl#owner> a acl:Authorization;
         acl:accessTo <https://pod.com/card>;
         acl:mode acl:Read, acl:Write, acl:Control;

@@ -1,7 +1,7 @@
 @prefix : <https://example.org/ns/>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#>. 
 
-() log:onPositiveSurface {
+() log:onNeutralSurface {
     <https://pod.com/card> a :PersonalProfileDocument;
         :maker <https://pod.com/card#me>.
 
