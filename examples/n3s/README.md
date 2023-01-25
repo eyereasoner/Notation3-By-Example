@@ -41,11 +41,12 @@ This results in :
 
 ## Requires
 
-EYE v22.1221.1351
+EYE v2.3.7 or more recent
 
 ## Limitations
 
-- Limited support for nested graphs in the antecedent and consequent of a rule
+- Limited support for nested graphs in the antecedent of a rule
+    - Scoping of nested graphs in antecedent of a rule in not working. (See `nestes2.n3s`)
 
 ## Implemented with
 
