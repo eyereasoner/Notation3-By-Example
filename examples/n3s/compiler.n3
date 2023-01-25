@@ -238,15 +238,37 @@
 # E.g.
 #       genid:t_1-bn :isSkolemBlank true
 #       genid:t_0-var :isSkolemBlank false
-(_:X _:T1 _:Y _:Scope) log:onNegativeSurface {
+(_:X _:Y ) log:onNegativeSurface {
     () log:onQuerySurface {
         _:X :isSkolemBlank _:Y .
+    } .
+    (_:X "-bn") :isSkolemOfType _:Y .
+} .
+
+# X :isSkolemVar Y
+# Test if X is a bn skolem
+#   X a variable
+#   Y a boolean
+# E.g.
+#       genid:t_1-bn :isSkolemBlank false
+#       genid:t_0-var :isSkolemBlank true
+(_:X _:T1 _:Y _:Scope) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:X :isSkolemVar _:Y .
+    } .
+    (_:X "-var") :isSkolemOfType _:Y .
+} .
+
+# Helper function for :isSkolemBlank :isSkolemVar
+(_:X _:Type _:T1 _:Y _:Scope) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:X _:Type) :isSkolemOfType _:Y .
     } .
     _:X log:uri _:T1 .
     (
         {
             _:T1 string:contains ".well-known/genid/" .
-            _:T1 string:endsWith "-bn" .
+            _:T1 string:endsWith _:Type .
         }
         {
             _:Y log:equalTo true .
