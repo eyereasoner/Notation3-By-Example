@@ -1,6 +1,4 @@
-format="rdf-star"
-context="./context/john.n3"
-access="access"
+context="./context/default.n3"
 quiet="--quiet"
 core="core"
 ruleset="surfaces-language"
@@ -12,24 +10,16 @@ while test $# -gt 0; do
             echo " "
             echo "options:"
             echo "-h, --help                show brief help"
-            echo "-f, --format=format       one of: [rdf-star, n3, surfaces]"
             echo "-c, --context=context     context file. defaults to  ./context/context_valid.n3"
-            echo "-d, --data                output data instead of access rights"
+            echo "-v, --verbose             print engine logs"
+            echo "-t, --test                print whole internal state"
+            echo "-r, --ruleset             use policy-language rules instead of plain RDF surfaces rules"
             exit 0
-            ;;
-        -f|--format)
-            shift
-            format=$1
-            shift
             ;;
         -c|--context)
             shift
             context=$1
             shift
-            ;;
-        -d|--data)
-            shift
-            access="data"
             ;;
         -v|--verbose)
             shift
@@ -39,7 +29,7 @@ while test $# -gt 0; do
             shift
             core="test"
             ;;
-        -r|--rules)
+        -r|--ruleset)
             shift
             ruleset="policy-language"
             ;;
@@ -50,7 +40,7 @@ while test $# -gt 0; do
     esac
 done
 
-echo "Running test for - format: $format - context: $context - output data: $output_data"
-echo "Command: eye --nope $quiet --blogic ./${core}/* $context ./rules/$ruleset/$format/wac-$access.n3 ./data/$format/*"
+
+echo "Command: find data/ -type f | xargs eye --nope $quiet --blogic ./${core}/* $context ./rules/$ruleset/*.n3"
 echo ""
-eye --nope $quiet --blogic ./${core}/* $context ./rules/$ruleset/$format/wac-$access.n3 ./data/$format/*
+find data/ -type f | xargs eye --nope $quiet --blogic ./${core}/* $context ./rules/$ruleset/*.n3
