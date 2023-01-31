@@ -1,0 +1,14 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>. 
+@prefix ldp: <http://www.w3.org/ns/ldp#> .
+
+() log:onNeutralSurface {
+
+    <https://podhosting.com/alice/profile/card> 
+        :creator <https://podhosting.com/alice/profile/card#me> ;
+        :issuer <https://podhosting.com/> ;
+        :client <https://profileApp.com> .
+        
+} {| :partOf <https://podhosting.com/alice/profile/card.meta> |}.
+
+<https://podhosting.com/alice/profile/card.meta> a ldp:Resource, ldp:RDFSource, :MetaSource.

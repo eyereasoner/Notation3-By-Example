@@ -3,6 +3,7 @@ context="./context/john.n3"
 access="access"
 quiet="--quiet"
 core="core"
+ruleset="surfaces-language"
 
 while test $# -gt 0; do
     case "$1" in
@@ -38,6 +39,10 @@ while test $# -gt 0; do
             shift
             core="test"
             ;;
+        -r|--rules)
+            shift
+            ruleset="policy-language"
+            ;;
         *)
             echo "$1 is not a recognized flag!"
             exit 1
@@ -46,6 +51,6 @@ while test $# -gt 0; do
 done
 
 echo "Running test for - format: $format - context: $context - output data: $output_data"
-echo "Command: eye --nope $quiet --blogic ./${core}/* $context ./rules/$format/wac-$access.n3 ./data/$format/*"
+echo "Command: eye --nope $quiet --blogic ./${core}/* $context ./rules/$ruleset/$format/wac-$access.n3 ./data/$format/*"
 echo ""
-eye --nope $quiet --blogic ./${core}/* $context ./rules/$format/wac-$access.n3 ./data/$format/*
+eye --nope $quiet --blogic ./${core}/* $context ./rules/$ruleset/$format/wac-$access.n3 ./data/$format/*

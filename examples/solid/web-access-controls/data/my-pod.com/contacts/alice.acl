@@ -1,0 +1,22 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>. 
+@prefix ldp: <http://www.w3.org/ns/ldp#> .
+@prefix acl: <http://www.w3.org/ns/auth/acl#>.
+
+() log:onNeutralSurface {
+    
+    # Access for the pod owner to the resource for all types
+    <https://my-pod.com/contacts/alice.acl#owner> a acl:Authorization;
+        acl:accessTo <https://my-pod.com/contacts/alice>;
+        acl:mode acl:Read, acl:Write, acl:Control;
+        acl:agent <https://my-pod.com/profile/card#me>.
+
+    # Access for alice specifically to read the resource
+    <https://my-pod.com/contacts/alice.acl#13582931> a acl:Authorization;
+        acl:accessTo <https://my-pod.com/contacts/alice>;
+        acl:mode acl:Read;
+        acl:agent <https://podhosting.org/alice/profile/card#me>.
+
+} {| :partOf <https://my-pod.com/contacts/alice.acl> |}.
+
+<https://my-pod.com/contacts/alice.acl> a ldp:Resource, ldp:RDFSource, :ACLSource.

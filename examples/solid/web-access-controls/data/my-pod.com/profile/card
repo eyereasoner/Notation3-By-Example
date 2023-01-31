@@ -1,0 +1,25 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix solid: <http://www.w3.org/ns/solid/terms#>.
+@prefix space: <http://www.w3.org/ns/pim/space#>.
+@prefix ldp: <http://www.w3.org/ns/ldp#>.
+
+() log:onNeutralSurface {
+
+    <https://my-pod.com/profile/card> a foaf:PersonalProfileDocument;
+        foaf:maker <https://my-pod.com/profile/card#me>;
+        foaf:primaryTopic <https://my-pod.com/profile/card#me>.
+
+    <https://my-pod.com/profile/card#me> a foaf:Person;
+        solid:oidcIssuer <https://my-pod.com/>;
+        space:storage <https://my-pod.com/>;
+        foaf:name "Ruben";
+        foaf:mbox <mailto:ruben@mailprovider.org>;
+        foaf:phone <tel:+32-123-456-789>.
+
+{| :partOf <https://my-pod.com/profile/card> |}.
+
+<https://my-pod.com/profile/card> a ldp:Resource, ldp:RDFSource.
+<https://my-pod.com/profile/card> :describedby <https://my-pod.com/profile/card.meta>.
+<https://my-pod.com/profile/card> :acl <https://my-pod.com/profile/card.acl>.

@@ -1,0 +1,25 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix ldp: <http://www.w3.org/ns/ldp#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+() log:onNeutralSurface {
+
+    <https://my-pod.com/contacts/bob>
+        rdf:type  ldp:RDFSource .
+
+    <https://my-pod.com/contacts/bob#this>
+        rdf:type   vcard:Individual ;
+        vcard:fn   "Bob"^^xsd:string ;
+        vcard:url  <https://my-pod.com/contacts/bob#person> .
+
+    <https://my-pod.com/contacts/bob#person>
+        rdf:type     vcard:WebId ;
+        vcard:value  <https://podhosting.org/bob/profile/card#me> .
+
+} {| :partOf <https://my-pod.com/contacts/bob> |}.
+
+<https://my-pod.com/contacts/bob> a ldp:Resource, ldp:RDFSource.
+<https://my-pod.com/contacts/bob> :describedby <https://my-pod.com/contacts/bob.meta>.

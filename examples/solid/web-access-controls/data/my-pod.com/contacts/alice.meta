@@ -1,0 +1,14 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>. 
+@prefix ldp: <http://www.w3.org/ns/ldp#> .
+
+() log:onNeutralSurface {
+
+    <https://my-pod.com/contacts/alice> 
+        :creator <https://my-pod.com/profile/card#me> ;
+        :issuer <https://my-pod.com> ;
+        :client <https://contactsApp.com> .
+        
+} {| :partOf <https://my-pod.com/contacts/alice.meta> |}.
+
+<https://my-pod.com/contacts/alice.meta> a ldp:Resource, ldp:RDFSource, :MetaSource.
