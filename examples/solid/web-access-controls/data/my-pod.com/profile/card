@@ -18,7 +18,7 @@
         foaf:mbox <mailto:ruben@mailprovider.org>;
         foaf:phone <tel:+32-123-456-789>.
 
-{| :partOf <https://my-pod.com/profile/card> |}.
+} {| :partOf <https://my-pod.com/profile/card> |}.
 
 <https://my-pod.com/profile/card> a ldp:Resource, ldp:RDFSource.
 <https://my-pod.com/profile/card> :describedby <https://my-pod.com/profile/card.meta>.

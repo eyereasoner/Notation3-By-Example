@@ -18,7 +18,7 @@
         foaf:mbox <mailto:bob@mailprovider.org>;
         foaf:phone <tel:+32-321-546-987>.
 
-{| :partOf <https://podhosting.com/bob/profile/card> |}.
+} {| :partOf <https://podhosting.com/bob/profile/card> |}.
 
 <https://podhosting.com/bob/profile/card> a ldp:Resource, ldp:RDFSource.
 <https://podhosting.com/bob/profile/card> :describedby <https://podhosting.com/bob/profile/card.meta>.

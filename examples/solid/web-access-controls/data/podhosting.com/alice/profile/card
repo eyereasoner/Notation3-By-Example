@@ -15,10 +15,10 @@
         solid:oidcIssuer <https://podhosting.com/>;
         space:storage <https://podhosting.com/alice/>;
         foaf:name "Alice";
-        foaf:mbox <mailto:Alice@mailprovider.org>;
+        foaf:mbox <mailto:alice@mailprovider.org>;
         foaf:phone <tel:+32-321-654-789>.
 
-{| :partOf <https://podhosting.com/alice/profile/card> |}.
+} {| :partOf <https://podhosting.com/alice/profile/card> |}.
 
 <https://podhosting.com/alice/profile/card> a ldp:Resource, ldp:RDFSource.
 <https://podhosting.com/alice/profile/card> :describedby <https://podhosting.com/alice/profile/card.meta>.

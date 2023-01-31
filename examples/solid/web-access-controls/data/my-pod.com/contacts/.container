@@ -18,7 +18,7 @@
             <https://my-pod.com/contacts/bob.meta>,
             <https://my-pod.com/contacts/carol>,
             <https://my-pod.com/contacts/carol.acl>,
-            <https://my-pod.com/contacts/carol.meta>,
+            <https://my-pod.com/contacts/carol.meta>.
 
     <https://my-pod.com/contacts/.acl> a ldp:Resource;
         dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
@@ -46,7 +46,6 @@
 
     <https://my-pod.com/contacts/.meta> a ldp:Resource;
         dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
-
 
 } {| :partOf <https://my-pod.com/contacts/> |}.
 

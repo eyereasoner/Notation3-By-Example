@@ -18,7 +18,7 @@
         foaf:mbox <mailto:carol@mailprovider.org>;
         foaf:phone <tel:+32-213-465-789>.
 
-{| :partOf <https://podhosting.com/carol/profile/card> |}.
+} {| :partOf <https://podhosting.com/carol/profile/card> |}.
 
 <https://podhosting.com/carol/profile/card> a ldp:Resource, ldp:RDFSource.
 <https://podhosting.com/carol/profile/card> :describedby <https://podhosting.com/carol/profile/card.meta>.

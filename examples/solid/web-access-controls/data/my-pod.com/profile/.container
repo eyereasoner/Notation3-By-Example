@@ -12,7 +12,7 @@
         ldp:contains
             <https://my-pod.com/profile/card>,
             <https://my-pod.com/profile/card.acl>,
-            <https://my-pod.com/profile/card.meta>
+            <https://my-pod.com/profile/card.meta>.
 
     <https://my-pod.com/profile/card> a ldp:Resource;
         dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
