@@ -1,1 +1,0 @@
-eye --nope --blogic ./core/* ./context/context_valid.n3 ./rules/rdf-star/wac-access.n3 ./data/rdf-star/*

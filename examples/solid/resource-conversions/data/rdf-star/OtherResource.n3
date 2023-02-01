@@ -1,0 +1,10 @@
+@prefix : <https://example.org/ns/>.
+
+<https://some-pod.com/card> a :PersonalProfileDocument              {| :partOf <https://some-pod.com/card> |}.
+<https://some-pod.com/card> :maker <https://some-pod.com/card#me>   {| :partOf <https://some-pod.com/card> |}.
+<https://some-pod.com/card#me> a :Person                            {| :partOf <https://some-pod.com/card> |}.
+<https://some-pod.com/card#me> :name "Jane Jeffrey"                 {| :partOf <https://some-pod.com/card> |}.
+
+<https://some-pod.com/card> a :Resource.
+<https://some-pod.com/card> :describedby <https://some-pod.com/card.meta>.
+<https://some-pod.com/card> :acl <https://some-pod.com/card.acl>.

@@ -1,0 +1,20 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix dc: <http://purl.org/dc/terms/>.
+@prefix ldp: <http://www.w3.org/ns/ldp#>.
+@prefix posix: <http://www.w3.org/ns/posix/stat#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+() log:onNeutralSurface {
+
+    <https://podhosting.com/bob/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
+        dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime;
+        ldp:contains <https://podhosting.com/bob/profile/>.
+
+    <https://podhosting.com/bob/profile/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
+        dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
+
+} {| :partOf <https://podhosting.com/bob/contacts/alice> |}.
+
+<https://podhosting.com/bob/> a ldp:Container, ldp:BasicContainer, ldp:Resource, ldp:RDFSource.
+<https://podhosting.com/bob/> :acl <https://podhosting.com/bob/.acl>.
