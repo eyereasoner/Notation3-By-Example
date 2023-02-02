@@ -2,6 +2,12 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
+[] a log:UnlabeledBlankNode .
+_:x a log:LabeledBlankNode .
+<http://eyereasoner.github.io/.well-known/genid/1354502092304537293#bn_1> a log:SkolemIRI.
+@forSome :x. :x a log:ForSome .
+@forAll :y. :y a log:ForAll .
+
 {
     # Evaluates the string X into a formula Y 
     #    X a variable
@@ -9,7 +15,10 @@
     "Hello world" log:rawType ?Y1 .
     42 log:rawType ?Y2 .
     <http://www.w3c.org> log:rawType ?Y3 .
-    #[] log:rawType ?Y4 .
+
+    ?X4 a log:UnlabeledBlankNode.
+    ?X4 log:rawType ?Y4 .
+    
     { :Socrates a :Human } log:rawType ?Y5 .
     ( 42 43 ) log:rawType ?Y6 .
     # ($ ... $) is a notation for a log:Set (still decidable if this is part of the spec)
@@ -18,31 +27,52 @@
     << :Cats :love :Fish >> log:rawType ?Y8 .
     true log:rawType ?Y9 .
     false log:rawType ?Y10 .
+
+    ?X11 a log:LabeledBlankNode .
+    ?X11 log:rawType ?Y11 .
+
+    ?X12 a log:SkolemIRI .
+    ?X12 log:rawType ?Y12 .
+
+    ?X13 a log:ForSome .
+    ?X13 log:rawType ?Y13 .
+
+    ?X14 a log:ForAll .
+    ?X14 log:rawType ?Y14 .
 }
 => 
 { 
     "Hello world" :rawType ?Y1 .
     42 :rawType ?Y2 .
     <http://www.w3c.org> :rawType ?Y3 .
-    # [] :rawType ?Y4 .
+    ?X4 :rawType ?Y4 .
     { :Socrates a :Human } :rawType ?Y5 .
     ( 42 43 ) :rawType ?Y6 .
     ($ "A" "B" "C" $) :rawType ?Y7 .
     << :Cats :love :Fish >> :rawType ?Y8 .
     true :rawType ?Y9 .
     false :rawType ?Y10 .
+    _:x :rawType ?Y11 .
+    <http://eyereasoner.github.io/.well-known/genid/1354502092304537293#bn_1> :rawType ?Y12 .
+    :x :rawType ?Y13 .
+    :y :rawType ?Y14 .
 } .
 
 {
     "Hello world" :rawType log:Literal .
     42 :rawType log:Literal .
     <http://www.w3c.org> :rawType log:Other . 
+    [] :rawType log:UnlabeledBlankNode.
     { :Socrates a :Human } :rawType log:Formula .
     ( 42 43 ) :rawType rdf:List .
     ($ "A" "B" "C" $) :rawType log:Set .
     << :Cats :love :Fish >> :rawType log:Formula .
     true :rawType log:Literal .
     false :rawType log:Literal .
+    _:x :rawType log:LabeledBlankNode .
+    <http://eyereasoner.github.io/.well-known/genid/1354502092304537293#bn_1> :rawType log:SkolemIRI .
+    ?X :rawType log:ForSome .
+    ?Y :rawType log:ForAll .
 }
 => 
 {
