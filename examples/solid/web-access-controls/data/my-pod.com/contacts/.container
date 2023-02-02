@@ -5,38 +5,39 @@
 @prefix posix: <http://www.w3.org/ns/posix/stat#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
+
 <https://my-pod.com/contacts/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
-dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime;
-ldp:contains
-<https://my-pod.com/contacts/alice>,
-<https://my-pod.com/contacts/alice.acl>,
-<https://my-pod.com/contacts/alice.meta>,
-<https://my-pod.com/contacts/bob>,
-<https://my-pod.com/contacts/bob.meta>,
-<https://my-pod.com/contacts/carol>,
-<https://my-pod.com/contacts/carol.acl>,
-<https://my-pod.com/contacts/carol.meta>.
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime;
+    ldp:contains
+        <https://my-pod.com/contacts/alice>,
+        <https://my-pod.com/contacts/alice.acl>,
+        <https://my-pod.com/contacts/alice.meta>,
+        <https://my-pod.com/contacts/bob>,
+        <https://my-pod.com/contacts/bob.meta>,
+        <https://my-pod.com/contacts/carol>,
+        <https://my-pod.com/contacts/carol.acl>,
+        <https://my-pod.com/contacts/carol.meta>.
 
 <https://my-pod.com/contacts/alice> a ldp:Resource;
-dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
 
 <https://my-pod.com/contacts/alice.acl> a ldp:Resource;
-dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
 
 <https://my-pod.com/contacts/aclice.meta> a ldp:Resource;
-dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
 
 <https://my-pod.com/contacts/bob> a ldp:Resource;
-dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
 
 <https://my-pod.com/contacts/bob.meta> a ldp:Resource;
-dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
 
 <https://my-pod.com/contacts/carol> a ldp:Resource;
-dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
 
 <https://my-pod.com/contacts/carol.acl> a ldp:Resource;
-dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
 
 <https://my-pod.com/contacts/.meta> a ldp:Resource;
-dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.

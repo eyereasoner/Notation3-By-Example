@@ -1,6 +1,6 @@
 context="./context/default.n3"
 quiet="--quiet"
-core="core"
+querySet="default"
 ruleset="surfaces-language"
 
 while test $# -gt 0; do
@@ -13,7 +13,7 @@ while test $# -gt 0; do
             echo "-c, --context=context     context file. defaults to  ./context/context_valid.n3"
             echo "-v, --verbose             print engine logs"
             echo "-t, --test                print whole internal state"
-            echo "-r, --ruleset             use policy-language rules instead of plain RDF surfaces rules"
+            echo "-r, --rules               use policy-language rules instead of plain RDF surfaces rules"
             exit 0
             ;;
         -c|--context)
@@ -27,7 +27,7 @@ while test $# -gt 0; do
             ;;
         -t|--test)
             shift
-            core="test"
+            querySet="test"
             ;;
         -r|--ruleset)
             shift
@@ -41,6 +41,6 @@ while test $# -gt 0; do
 done
 
 
-echo "Command: find data/ -type f | xargs eye --nope $quiet --blogic ./${core}/* $context ./rules/$ruleset/*.n3"
+echo "Command: find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./rules/$ruleset/*.n3"
 echo ""
-find data/ -type f | xargs eye --nope $quiet --blogic ./${core}/* $context ./rules/$ruleset/*.n3
+find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./rules/$ruleset/*.n3

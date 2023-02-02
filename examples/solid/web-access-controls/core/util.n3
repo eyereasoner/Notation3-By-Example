@@ -1,0 +1,88 @@
+@prefix util: <https://github.com/phochste/util#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+@prefix math: <http://www.w3.org/2000/10/swap/math#> .
+
+##################################################################
+
+# (X G) util:cardinality N
+#   X - a triple pattern
+#   G - a formula
+#   N - a numerable or variable
+# Find the cardinality of a pattern X in G as number N
+(_:Pat _:Graph _:L _:N) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:Pat _:Graph) util:cardinality _:N .
+    } .
+    (_:Pat _:L) util:collectAllIn _:Graph . 
+    _:L list:length _:N .
+} .
+
+##################################################################
+
+# (X1 X2) util:collectAllIn G.
+#   X1 - a triple pattern graph
+#   X2 - a list variable
+#   G - a formula
+# Finds all occurenced of the triple X1 in G and creates
+# a list X2 of result
+(_:Pat _:List _:Graph _:GraphL) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:Pat _:List) util:collectAllIn _:Graph .
+    } .
+
+    _:Graph graph:list _:GraphL .
+
+    (_:Pat _:List ()) util:_collectAllIn _:GraphL . 
+} .
+
+(_:Pat _:Result) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:Pat _:Result _:Result) util:_collectAllIn () .
+    } .
+} .
+
+(_:Pat _:List _:Result _:GraphL _:F _:R _:ResultNext _:T1 _:T2 _:N) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:Pat _:List _:Result) util:_collectAllIn _:GraphL .
+    } .
+
+    _:GraphL list:firstRest (_:F _:R) .
+
+    _:F log:includesNotBind _:Pat .
+
+    (_:Result (_:F) ) list:append _:ResultNext .
+
+    (_:Pat _:List _:ResultNext) util:_collectAllIn _:R .
+} .
+
+(_:Pat _:List _:Result _:GraphL _:F _:R) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:Pat _:List _:Result) util:_collectAllIn _:GraphL .
+    } .
+
+    _:GraphL list:firstRest (_:F _:R) .
+
+    _:F log:notIncludes _:Pat .
+
+    (_:Pat _:List _:Result) util:_collectAllIn _:R .
+} .
+
+##################################################################
+
+(_:subject _:S _:P _:O) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:subject util:walkGraph << _:subject _:P _:O >> .
+    } .
+    _:subject _:P _:O .
+} .
+
+(_:subject _:X _:Y _:S _:P _:O) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:subject util:walkGraph << _:S _:P _:O >> .
+    } .
+    _:subject _:X _:Y .
+    _:Y util:walkGraph << _:S _:P _:O >> .
+} .
+

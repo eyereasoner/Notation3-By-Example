@@ -4,6 +4,7 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 @prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
 
 # Search for a pol:Rule 
 #  pol:body holds the logic of the rule
@@ -27,10 +28,7 @@
     # `when` triples will be the head and the `then` triples the body
     # of the implication: HEAD -> BODY
     ( _:WhenBody {
-        () log:onNegativeSurface {
-            # Write the results on an answer surface
-            () pol:onAnswerSurface _:ThenBody .
-        } 
+        () log:onNegativeSurface _:ThenBody .
     }) log:conjunction _:WhenBodyPrime .
 
     # Execute the new negative surface implication rules
@@ -103,3 +101,15 @@
         _:S _:P _:O .
     } .
 } .
+
+
+####################
+# Helper functions #
+####################
+
+( _:Logger _:G ) log:onNegativeSurface {
+    _:Logger pol:log _:G.
+    () log:onNegativeSurface {
+        () log:onLogSurface _:G.
+    }.
+}.

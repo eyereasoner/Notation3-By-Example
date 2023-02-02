@@ -1,0 +1,42 @@
+@prefix : <http://example.org/ns#> .
+@prefix pol:  <https://www.example.org/ns/policy#> .
+@prefix util: <https://github.com/phochste/util#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
+
+# Logging to output results of internal steps easily.
+
+# Rule to store a data graph in a surface with a given context ( could this be a NAMED GRAPH?!?!??!?! D: )
+( _:Context _:G ) log:onNegativeSurface {
+    # Match the pol:store triple
+    _:Context pol:store _:G.
+    () log:onNegativeSurface {
+        # Store the graph unasserted in a certain context
+        << () log:onNeutralSurface _:G >> pol:context _:Context.
+    }.
+}.
+
+# Rule to retrieve a context graph
+(_:G _:GL _:NG _:Scope _:Context _:Binding) log:onNegativeSurface {
+    _:Context pol:retrieve _:Binding.
+    (_:G {<< () log:onNeutralSurface _:G >> pol:context _:Context} _:GL) log:collectAllIn _:Scope.
+    _:GL graph:union _:Binding.
+    () log:onNegativeSurface _:Binding.
+}.
+
+# Data
+
+:SharedContext pol:store { :A :B :C. }.
+:SharedContext pol:store { :D :E :F. }.
+:SharedContext pol:store { :G :H :I. }.
+
+:SharedContext pol:retrieve _:G.
+
+
+(_:S _:P _:O) log:onQuerySurface {
+    _:S _:P _:O.
+}.
+
+# THIS DOESNT WORK YET
