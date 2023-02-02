@@ -53,9 +53,9 @@ _:x a log:LabeledBlankNode .
     true :rawType ?Y9 .
     false :rawType ?Y10 .
     _:x :rawType ?Y11 .
-    <http://eyereasoner.github.io/.well-known/genid/1354502092304537293#bn_1> :rawType ?Y12 .
-    :x :rawType ?Y13 .
-    :y :rawType ?Y14 .
+    ?X12 :rawType ?Y12 .
+    ?X13 :rawType ?Y13 .
+    ?X14 :rawType ?Y14 .
 } .
 
 {
