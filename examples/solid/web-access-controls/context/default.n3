@@ -7,4 +7,5 @@
     acl:agent <https://my-pod.com/profile/card#me>;
     acl:issuer <https://my-pod.com/profile/>;
     acl:client <https://contactsApp.com>;
-    acl:resource <https://my-pod.com/contacts/alice>.
+    acl:resource <https://my-pod.com/contacts/alice>;
+    acl:mode acl:Read.

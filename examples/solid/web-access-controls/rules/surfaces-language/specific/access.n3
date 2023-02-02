@@ -173,6 +173,8 @@
     :RequestContext acl:agent _:RequestContextWebID.
     # Extract the requested Resource
     :RequestContext acl:resource _:Resource.
+    # ...and the requested access mode
+    :RequestContext acl:mode _:Mode.
 
     # We have a resource
     _:Resource a ldp:Resource.
@@ -228,6 +230,8 @@
     :RequestContext acl:agent _:RequestContextWebID.
     # Extract the requested Resource
     :RequestContext acl:resource _:Resource.
+    # ...and the requested access mode
+    :RequestContext acl:mode _:Mode.
 
     # We have a resource
     _:Resource a ldp:Resource.
@@ -286,6 +290,8 @@
     :RequestContext acl:agent _:RequestContextWebID.
     # Extract the requested Resource
     :RequestContext acl:resource _:Resource.
+    # ...and the requested access mode
+    :RequestContext acl:mode _:Mode.
 
     # We have a resource
     _:Resource a ldp:Resource.
@@ -347,6 +353,8 @@
     :RequestContext acl:agent _:RequestContextWebID.
     # Extract the requested Resource
     :RequestContext acl:resource _:Resource.
+    # ...and the requested access mode
+    :RequestContext acl:mode _:Mode.
 
     # We have a resource
     _:Resource a ldp:Resource.
