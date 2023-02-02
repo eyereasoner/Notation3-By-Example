@@ -2,6 +2,7 @@ context="./context/default.n3"
 quiet="--quiet"
 querySet="default"
 ruleset="surfaces-language"
+specific="general"
 
 while test $# -gt 0; do
     case "$1" in
@@ -14,6 +15,7 @@ while test $# -gt 0; do
             echo "-v, --verbose             print engine logs"
             echo "-t, --test                print whole internal state"
             echo "-r, --rules               use policy-language rules instead of plain RDF surfaces rules"
+            echo "--specific                only return results for requested resource in context"
             exit 0
             ;;
         -c|--context)
@@ -33,6 +35,10 @@ while test $# -gt 0; do
             shift
             ruleset="policy-language"
             ;;
+        --specific)
+            shift
+            specific="specific"
+            ;;
         *)
             echo "$1 is not a recognized flag!"
             exit 1
@@ -41,6 +47,6 @@ while test $# -gt 0; do
 done
 
 
-echo "Command: find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./rules/$ruleset/*.n3"
+echo "Command: find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./rules/$ruleset/$specific/*.n3"
 echo ""
-find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./rules/$ruleset/*.n3
+find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./rules/$ruleset/$specific/*.n3

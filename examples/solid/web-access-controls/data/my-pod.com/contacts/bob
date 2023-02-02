@@ -17,7 +17,7 @@
 
     <https://my-pod.com/contacts/bob#person>
         rdf:type     vcard:WebId ;
-        vcard:value  <https://podhosting.org/bob/profile/card#me> .
+        vcard:value  <https://podhosting.com/bob/profile/card#me> .
 
 } {| :partOf <https://my-pod.com/contacts/bob> |}.
 

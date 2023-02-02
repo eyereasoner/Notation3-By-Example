@@ -15,7 +15,7 @@
     <https://my-pod.com/contacts/carol.acl#13582931> a acl:Authorization;
         acl:accessTo <https://my-pod.com/contacts/carol>;
         acl:mode acl:Read;
-        acl:agent <https://podhosting.org/carol/profile/card#me>.
+        acl:agent <https://podhosting.com/carol/profile/card#me>.
 
 } {| :partOf <https://my-pod.com/contacts/carol.acl> |}.
 
