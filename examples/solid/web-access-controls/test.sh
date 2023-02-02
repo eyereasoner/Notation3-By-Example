@@ -49,4 +49,12 @@ done
 
 echo "Command: find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./rules/$ruleset/$specific/*.n3"
 echo ""
+echo "Running test with context:"
+echo "__________________________________________________________________"
+cat $context
+echo ""
+echo "__________________________________________________________________"
+echo ""
+echo "Result:"
+echo ""
 find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./rules/$ruleset/$specific/*.n3
