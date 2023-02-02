@@ -5,24 +5,18 @@
 @prefix posix: <http://www.w3.org/ns/posix/stat#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
-() log:onNeutralSurface {
+<https://my-pod.com/profile/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime;
+    ldp:contains
+        <https://my-pod.com/profile/card>,
+        <https://my-pod.com/profile/card.acl>,
+        <https://my-pod.com/profile/card.meta>.
 
-    <https://my-pod.com/profile/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
-        dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime;
-        ldp:contains
-            <https://my-pod.com/profile/card>,
-            <https://my-pod.com/profile/card.acl>,
-            <https://my-pod.com/profile/card.meta>.
+<https://my-pod.com/profile/card> a ldp:Resource;
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
 
-    <https://my-pod.com/profile/card> a ldp:Resource;
-        dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
+<https://my-pod.com/profile/card.acl> a ldp:Resource;
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
 
-    <https://my-pod.com/profile/card.acl> a ldp:Resource;
-        dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
-
-    <https://my-pod.com/profile/card.meta> a ldp:Resource;
-        dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
-
-} {| :partOf <https://my-pod.com/profile/> |}.
-
-<https://my-pod.com/profile/> a ldp:Container, ldp:BasicContainer, ldp:Resource, ldp:RDFSource.
+<https://my-pod.com/profile/card.meta> a ldp:Resource;
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.

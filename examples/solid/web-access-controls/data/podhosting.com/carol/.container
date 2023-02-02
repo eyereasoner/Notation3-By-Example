@@ -4,17 +4,14 @@
 @prefix ldp: <http://www.w3.org/ns/ldp#>.
 @prefix posix: <http://www.w3.org/ns/posix/stat#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix pim: <http://www.w3.org/ns/pim/space#>.
 
-() log:onNeutralSurface {
+<https://podhosting.com/carol/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime;
+    ldp:contains <https://podhosting.com/carol/profile/>.
 
-    <https://podhosting.com/carol/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
-        dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime;
-        ldp:contains <https://podhosting.com/carol/profile/>.
+<https://podhosting.com/carol/profile/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
 
-    <https://podhosting.com/carol/profile/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
-        dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
-
-} {| :partOf <https://podhosting.com/carol/contacts/alice> |}.
-
-<https://podhosting.com/carol/> a ldp:Container, ldp:BasicContainer, ldp:Resource, ldp:RDFSource.
+# Add acl connection
 <https://podhosting.com/carol/> :acl <https://podhosting.com/carol/.acl>.

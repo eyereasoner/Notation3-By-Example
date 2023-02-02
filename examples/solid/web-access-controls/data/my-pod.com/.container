@@ -4,20 +4,17 @@
 @prefix ldp: <http://www.w3.org/ns/ldp#>.
 @prefix posix: <http://www.w3.org/ns/posix/stat#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix pim: <http://www.w3.org/ns/pim/space#>.
 
-() log:onNeutralSurface {
+<https://my-pod.com/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime;
+    ldp:contains <https://my-pod.com/profile/>, <https://my-pod.com/contacts/>.
 
-    <https://my-pod.com/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
-        dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime;
-        ldp:contains <https://my-pod.com/profile/>, <https://my-pod.com/contacts/>.
+<https://my-pod.com/profile/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
 
-    <https://my-pod.com/profile/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
-        dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
+<https://my-pod.com/contacts/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
+    dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
 
-    <https://my-pod.com/contacts/> a ldp:Container, ldp:BasicContainer, ldp:Resource;
-        dc:modified "2023-01-01T00:00:00.000Z"^^xsd:dateTime.
-        
-} {| :partOf <https://my-pod.com/contacts/alice> |}.
-
-<https://my-pod.com/> a ldp:Container, ldp:BasicContainer, ldp:Resource, ldp:RDFSource.
+# Add the ACL connection
 <https://my-pod.com/> :acl <https://my-pod.com/.acl>.
