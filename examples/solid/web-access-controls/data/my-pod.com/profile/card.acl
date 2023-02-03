@@ -17,7 +17,7 @@
     <https://my-pod.com/profile/card.acl#13582931> a acl:Authorization;
         acl:accessTo <https://my-pod.com/profile/card>;
         acl:mode acl:Read;
-        acl:agentClass foaf:Agent;
+        acl:agentClass foaf:Agent.
 
 } {| :partOf <https://my-pod.com/profile/card.acl> |}.
 

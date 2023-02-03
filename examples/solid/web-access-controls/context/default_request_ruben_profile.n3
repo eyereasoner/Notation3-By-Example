@@ -1,0 +1,11 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>. 
+@prefix acl: <http://www.w3.org/ns/auth/acl#>.
+
+# Context document for a request to a Solid pod.
+:RequestContext 
+    acl:agent <https://my-pod.com/profile/card#me>;
+    acl:issuer <https://my-pod.com/profile/>;
+    acl:client <https://contactsApp.com>;
+    acl:resource <https://my-pod.com/profile/card> ;
+    acl:mode acl:Read.

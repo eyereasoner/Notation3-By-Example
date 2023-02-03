@@ -3,6 +3,8 @@ quiet="--quiet"
 querySet="default"
 ruleset="surfaces-language"
 specific="specific"
+showtest=""
+showlog=""
 
 while test $# -gt 0; do
     case "$1" in
@@ -17,9 +19,9 @@ while test $# -gt 0; do
             echo "-r, --rules               use policy-language rules instead of plain RDF surfaces rules"
             echo "--computeAll              compute results for all available resources"
             echo "--test                    write out all triples"
-            echo "--log                     write out everything on onLogSurface (overwrites test option)"
-            echo "--data                    only write out data (overwrites test, log option)"
-            echo "--metadata                writes out per-triple metadata (overwrites test, log,  data option)"
+            echo "--log                     write out everything on onLogSurface"
+            echo "--data                    write out the resource data to the main surface"
+            echo "--metadata                writes out per-triple metadata (overwrites data option)"
             exit 0
             ;;
         -c|--context)
@@ -41,11 +43,11 @@ while test $# -gt 0; do
             ;;
         --test)
             shift
-            querySet="test"
+            showtest="./query/test/*.n3"
             ;;
         --log)
             shift
-            querySet="log"
+            showlog="./query/log/*.n3"
             ;;
         --data)
             shift
@@ -74,7 +76,7 @@ if [ "$querySet" = "data" ] || [ "$querySet" = "metadata" ]
 then 
     echo "Starting first run to calculate access grants and denials"
     echo ""
-    find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/default/*.n3 $context ./rules/$ruleset/$specific/*.n3 > intermediate_results/output.n3
+    find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/default/*.n3 $showlog $context ./rules/$ruleset/$specific/*.n3 > intermediate_results/output.n3
     # Note: we are asserting the results of the first run for the second run, because I am really not well-versed enough at this point to do it in a more appropriate way.
     # feel free to suggest how we could handle this better
     echo ""
@@ -84,9 +86,9 @@ then
     echo ""
     echo "Result:"
     echo ""
-    find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./meta-policies/*.n3 intermediate_results/output.n3
+    find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $showtest $showlog $context ./meta-policies/*.n3 intermediate_results/output.n3
 else 
     echo "Result:"
     echo ""
-    find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./rules/$ruleset/$specific/*.n3
+    find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $showtest $showlog $context ./rules/$ruleset/$specific/*.n3
 fi
