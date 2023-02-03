@@ -1,4 +1,4 @@
-@prefix : <http://example.org/ns#> .
+@prefix : <https://example.org/ns/> .
 @prefix pol:  <https://www.example.org/ns/policy#> .
 @prefix util: <https://github.com/phochste/util#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
