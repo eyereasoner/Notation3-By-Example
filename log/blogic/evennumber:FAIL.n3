@@ -19,7 +19,7 @@
     #} .
 
     ## And this also (!)
-    (_:x) log:onPositiveSurface {
+    () log:onPositiveSurface {
         _:x a :EvenNumber .
     } .
 } .
