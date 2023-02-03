@@ -58,36 +58,27 @@
 
     # NOTE: We have to do both here, else it tries to find a neutral surface 
     # ... that both contains an Access AND a Denial, which may not Exist as a single surface!
-    <<() log:onNeutralSurface _:AccessStatusGraph>> pol:context :SolidAccessStatus.
-    <<() log:onNeutralSurface _:DenialStatusGraph>> pol:context :SolidAccessStatus.
 
     # We stop the rule if we do not have an access grant for the resource
 
     # Note that here we assume these are on the same neutral surface in this context.!
     # Ideally we should use a built-in that collects all graphs with the same context into one!
-    _:AccessStatusGraph log:includes {
     _:AccessGrant a :AccessGrant;
         acl:accessTo _:Resource;
         acl:mode acl:Read.
-    }.
+
 
     # We put all triples of the resource on the data surface that are not explicitly denied by an access denial
 
     (
         # if
         { 
-            _:DenialStatusGraph log:includes {
-                _:AccessDenial a :AccessDenial;
-                    acl:accessTo _:Resource;
-                    acl:mode acl:Read;
-                    acl:conflict << _:AD_S _:AD_P _:AD_O >>;
-                    acl:comment _:AccessDenialComment.
-            }.
-            # Check if the triple matches
-            { _:S _:P _:O } log:equalTo { _:AD_S _:AD_P _:AD_O }.
-            # _:S log:equalTo _:AD_S.
-            # _:P log:equalTo _:AD_P.
-            # _:O log:equalTo _:AD_O.
+            _:AccessDenial a :AccessDenial;
+                acl:accessTo _:Resource;
+                acl:mode acl:Read;
+                # Check if the triple matches
+                acl:conflict << _:S _:P _:O >>;
+                acl:comment _:AccessDenialComment.
         }
         # then - on a matching triple, we want to NOT write the triple!
         { 
@@ -95,7 +86,10 @@
                 () log:onMetadataSurface {
                     << _:S _:P _:O >> 
                         :status :Denied;
-                        :cause  _:AccessDenialComment.
+                        :cause  _:AccessDenialComment;
+                        :fromResource _:Resource;
+                        :access _:AccessStatusGraph;
+                        :denial _:DenialStatusGraph.
                 }.
             }.
         }
@@ -108,6 +102,9 @@
                 () log:onMetadataSurface {
                     << _:S _:P _:O >> 
                         :status :Returned;
+                        :fromResource _:Resource;
+                        :access _:AccessStatusGraph;
+                        :denial _:DenialStatusGraph.
                 }.
             }.
         }

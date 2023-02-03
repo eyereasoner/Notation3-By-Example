@@ -1,0 +1,42 @@
+@prefix : <https://example.org/ns/>.
+@prefix pol: <https://www.example.org/ns/policy#>.
+@prefix util: <https://github.com/phochste/util#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#>.
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix acl: <http://www.w3.org/ns/auth/acl#>.
+@prefix dc: <http://purl.org/dc/terms/>.
+@prefix ldp: <http://www.w3.org/ns/ldp#>.
+@prefix posix: <http://www.w3.org/ns/posix/stat#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix solid: <http://www.w3.org/ns/solid/terms#>.
+@prefix space: <http://www.w3.org/ns/pim/space#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#>.
+
+_:sk_1678 a :AccessGrant.
+_:sk_1678 acl:agent <https://my-pod.com/profile/card#me>.
+_:sk_1678 acl:accessTo <https://my-pod.com/contacts/alice>.
+_:sk_1678 acl:mode acl:Read.
+_:sk_1679 a :AccessGrant.
+_:sk_1679 acl:agentClass foaf:Agent.
+_:sk_1679 acl:accessTo <https://podhosting.com/alice/profile/card>.
+_:sk_1679 acl:mode acl:Read.
+_:sk_1680 a :AccessDenial.
+_:sk_1680 acl:agentClass foaf:Agent.
+_:sk_1680 acl:accessTo <https://podhosting.com/alice/profile/card>.
+_:sk_1680 acl:mode acl:Read.
+_:sk_1680 acl:managingACLDocument _:e_ResourceACl_1.
+_:sk_1680 acl:conflict <<<https://podhosting.com/alice/profile/card#me> foaf:mbox <mailto:alice@mailprovider.org>>>.
+_:sk_1680 acl:comment "Denial of resource access because of conflict in triple based access.".
+_:sk_1681 a :AccessDenial.
+_:sk_1681 acl:agentClass foaf:Agent.
+_:sk_1681 acl:accessTo <https://podhosting.com/alice/profile/card>.
+_:sk_1681 acl:mode acl:Read.
+_:sk_1681 acl:managingACLDocument _:e_ResourceACl_2.
+_:sk_1681 acl:conflict <<<https://podhosting.com/alice/profile/card#me> foaf:phone <tel:+32-321-654-789>>>.
+_:sk_1681 acl:comment "Denial of resource access because of conflict in triple based access.".
+

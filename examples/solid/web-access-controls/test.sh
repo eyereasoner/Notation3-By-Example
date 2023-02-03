@@ -63,14 +63,30 @@ while test $# -gt 0; do
 done
 
 
-echo "Command: find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./rules/$ruleset/$specific/*.n3"
-echo ""
 echo "Running test with context:"
 echo "__________________________________________________________________"
 cat $context
 echo ""
 echo "__________________________________________________________________"
 echo ""
-echo "Result:"
-echo ""
-find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./rules/$ruleset/$specific/*.n3
+
+if [ "$querySet" = "data" ] || [ "$querySet" = "metadata" ]
+then 
+    echo "Starting first run to calculate access grants and denials"
+    echo ""
+    find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/default/*.n3 $context ./rules/$ruleset/$specific/*.n3 > intermediate_results/output.n3
+    # Note: we are asserting the results of the first run for the second run, because I am really not well-versed enough at this point to do it in a more appropriate way.
+    # feel free to suggest how we could handle this better
+    echo ""
+    echo "Output of first run to: intermediate_results/output.n3"
+    echo ""
+    echo "Starting second run to resolve access-control collisions and calculate data access"
+    echo ""
+    echo "Result:"
+    echo ""
+    find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./meta-policies/*.n3 intermediate_results/output.n3
+else 
+    echo "Result:"
+    echo ""
+    find data/ -type f | xargs eye --nope $quiet --blogic ./core/* ./query/$querySet/*.n3 $context ./rules/$ruleset/$specific/*.n3
+fi
