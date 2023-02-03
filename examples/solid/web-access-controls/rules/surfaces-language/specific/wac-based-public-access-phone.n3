@@ -31,41 +31,43 @@
     _:Person _:PhoneNumberLiteral
     _:ResultGraph
 ) log:onNegativeSurface {
+    () log:onPositiveSurface {
 
-    # Extract the requested Resource
-    :RequestContext acl:resource _:Resource.
-    # ...and the requested access mode
-    :RequestContext acl:mode acl:Read.
+        # Extract the requested Resource
+        :RequestContext acl:resource _:Resource.
+        # ...and the requested access mode
+        :RequestContext acl:mode acl:Read.
 
-    # We have a resource
-    _:Resource a ldp:Resource.
-    # ... with a directly connected ACL
-    _:Resource :hasConnectedACL _:ResourceACL.
-    # ... for which the ACL resource defines rules on that resource ( a double check of validity )
-    # ... note that this is in the context of the neutral surface defined by the ACL document
+        # We have a resource
+        _:Resource a ldp:Resource.
+        # ... with a directly connected ACL
+        _:Resource :hasConnectedACL _:ResourceACL.
+        # ... for which the ACL resource defines rules on that resource ( a double check of validity )
+        # ... note that this is in the context of the neutral surface defined by the ACL document
 
-    # If the resource contains a phone number triple:
-    <<() log:onNeutralSurface _:G >> :partOf _:Resource.
-    _:G log:includes { _:Person foaf:phone _:PhoneNumberLiteral. }.
+        # If the resource contains a phone number triple:
+        <<() log:onNeutralSurface _:G >> :partOf _:Resource.
+        _:G log:includes { _:Person foaf:phone _:PhoneNumberLiteral. }.
 
-    # ... and is set on public read permissions
-    () log:onNeutralSurface _:ResourceACLGraph {| :partOf _:ResourceACL |}.
-    _:ResourceACLGraph log:includes { 
-        _:Authorization a acl:Authorization.
-        _:Authorization acl:accessTo _:Resource.
-        _:Authorization acl:mode acl:Read.
-        # Try to map the agent field on the auth
-        _:Authorization acl:agentClass foaf:Agent.
-    }. 
+        # ... and is set on public read permissions
+        () log:onNeutralSurface _:ResourceACLGraph {| :partOf _:ResourceACL |}.
+        _:ResourceACLGraph log:includes { 
+            _:Authorization a acl:Authorization.
+            _:Authorization acl:accessTo _:Resource.
+            _:Authorization acl:mode acl:Read.
+            # Try to map the agent field on the auth
+            _:Authorization acl:agentClass foaf:Agent.
+        }. 
 
-    _:ResultGraph log:equalTo {
-        _:AccessDenial a :AccessDenial;
-            acl:agentClass foaf:Agent;
-            acl:accessTo _:Resource;
-            acl:mode acl:Read;
-            acl:managingACLDocument _:ResourceACl;
-            acl:conflict << _:Person foaf:phone _:PhoneNumberLiteral >> ;
-            acl:comment "Denial of resource access because of conflict in triple based access."
+        _:ResultGraph log:equalTo {
+            _:AccessDenial a :AccessDenial;
+                acl:agentClass foaf:Agent;
+                acl:accessTo _:Resource;
+                acl:mode acl:Read;
+                acl:managingACLDocument _:ResourceACl;
+                acl:conflict << _:Person foaf:phone _:PhoneNumberLiteral >> ;
+                acl:comment "Denial of resource access because of conflict in triple based access."
+        }.
     }.
 
     () log:onNegativeSurface {

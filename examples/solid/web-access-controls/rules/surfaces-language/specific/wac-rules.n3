@@ -62,41 +62,43 @@
     _:AccessGrant
     _:ResultGraph
 ) log:onNegativeSurface {
+    () log:onPositiveSurface {
+        # Extract the WebID of the requesting party from the context
+        :RequestContext acl:agent _:RequestContextWebID.
+        # Extract the requested Resource
+        :RequestContext acl:resource _:Resource.
+        # ...and the requested access mode
+        :RequestContext acl:mode _:Mode.
 
-    # Extract the WebID of the requesting party from the context
-    :RequestContext acl:agent _:RequestContextWebID.
-    # Extract the requested Resource
-    :RequestContext acl:resource _:Resource.
-    # ...and the requested access mode
-    :RequestContext acl:mode _:Mode.
-
-    # We have a resource
-    _:Resource a ldp:Resource.
-    # ... with a directly connected ACL
-    _:Resource :acl _:ResourceACL.
-    # ... for which the ACL resource defines rules on that resource ( a double check of validity )
-    # ... note that this is in the context of the neutral surface defined by the ACL document
+        # We have a resource
+        _:Resource a ldp:Resource.
+        # ... with a directly connected ACL
+        _:Resource :acl _:ResourceACL.
+        # ... for which the ACL resource defines rules on that resource ( a double check of validity )
+        # ... note that this is in the context of the neutral surface defined by the ACL document
 
 
-    # Extract the information from the ACL document
-    () log:onNeutralSurface _:ResourceACLGraph {| :partOf _:ResourceACL |}.
-    _:ResourceACLGraph log:includes { 
-        _:Authorization a acl:Authorization.
-        _:Authorization acl:accessTo _:Resource.
-        _:Authorization acl:mode _:Mode.
-        # Try to map the agent field on the auth
-        _:Authorization acl:agent _:ACLAgentWebId.
-    }. 
+        # Extract the information from the ACL document
+        () log:onNeutralSurface _:ResourceACLGraph {| :partOf _:ResourceACL |}.
+        _:ResourceACLGraph log:includes { 
+            _:Authorization a acl:Authorization.
+            _:Authorization acl:accessTo _:Resource.
+            _:Authorization acl:mode _:Mode.
+            # Try to map the agent field on the auth
+            _:Authorization acl:agent _:ACLAgentWebId.
+        }. 
 
-    # Check Equality
-    _:RequestContextWebID log:equalTo _:ACLAgentWebId.
-    
-    _:ResultGraph log:equalTo {
-         _:AccessGrant a :AccessGrant;
-                acl:agent _:RequestContextWebID;
-                acl:accessTo _:Resource;
-                acl:mode _:Mode.
+        # Check Equality
+        _:RequestContextWebID log:equalTo _:ACLAgentWebId.
+        
+        _:ResultGraph log:equalTo {
+            _:AccessGrant a :AccessGrant;
+                    acl:agent _:RequestContextWebID;
+                    acl:accessTo _:Resource;
+                    acl:mode _:Mode.
+        }.
     }.
+
     () log:onNegativeSurface {
         {} pol:log _:ResultGraph.
         () log:onResultSurface _:ResultGraph.
@@ -117,38 +119,40 @@
     _:AccessGrant
     _:ResultGraph
 ) log:onNegativeSurface {
+    () log:onPositiveSurface {
+        # Extract the WebID of the requesting party from the context
+        :RequestContext acl:agent _:RequestContextWebID.
+        # Extract the requested Resource
+        :RequestContext acl:resource _:Resource.
+        # ...and the requested access mode
+        :RequestContext acl:mode _:Mode.
 
-    # Extract the WebID of the requesting party from the context
-    :RequestContext acl:agent _:RequestContextWebID.
-    # Extract the requested Resource
-    :RequestContext acl:resource _:Resource.
-    # ...and the requested access mode
-    :RequestContext acl:mode _:Mode.
-
-    # We have a resource
-    _:Resource a ldp:Resource.
-    # ... with a directly connected ACL
-    _:Resource :acl _:ResourceACL.
-    # ... for which the ACL resource defines rules on that resource ( a double check of validity )
-    # ... note that this is in the context of the neutral surface defined by the ACL document
+        # We have a resource
+        _:Resource a ldp:Resource.
+        # ... with a directly connected ACL
+        _:Resource :acl _:ResourceACL.
+        # ... for which the ACL resource defines rules on that resource ( a double check of validity )
+        # ... note that this is in the context of the neutral surface defined by the ACL document
 
 
-    # Extract the information from the ACL document
-    () log:onNeutralSurface _:ResourceACLGraph {| :partOf _:ResourceACL |}.
-    _:ResourceACLGraph log:includes { 
-        _:Authorization a acl:Authorization.
-        _:Authorization acl:accessTo _:Resource.
-        _:Authorization acl:mode _:Mode.
-        # Try to map the agent field on the auth
-        _:Authorization acl:agentClass foaf:Agent.
-    }. 
-    
-    _:ResultGraph log:equalTo {
-        _:AccessGrant a :AccessGrant;
-                acl:agentClass foaf:Agent;
-                acl:accessTo _:Resource;
-                acl:mode _:Mode.
+        # Extract the information from the ACL document
+        () log:onNeutralSurface _:ResourceACLGraph {| :partOf _:ResourceACL |}.
+        _:ResourceACLGraph log:includes { 
+            _:Authorization a acl:Authorization.
+            _:Authorization acl:accessTo _:Resource.
+            _:Authorization acl:mode _:Mode.
+            # Try to map the agent field on the auth
+            _:Authorization acl:agentClass foaf:Agent.
+        }. 
+        
+        _:ResultGraph log:equalTo {
+            _:AccessGrant a :AccessGrant;
+                    acl:agentClass foaf:Agent;
+                    acl:accessTo _:Resource;
+                    acl:mode _:Mode.
+        }.
     }.
+
     () log:onNegativeSurface {
         {} pol:log _:ResultGraph.
         () log:onResultSurface _:ResultGraph.
@@ -172,46 +176,48 @@
     _:SomeParentResource
     _:ResultGraph
 ) log:onNegativeSurface {
+    () log:onPositiveSurface {
+        # Extract the WebID of the requesting party from the context
+        :RequestContext acl:agent _:RequestContextWebID.
+        # Extract the requested Resource
+        :RequestContext acl:resource _:Resource.
+        # ...and the requested access mode
+        :RequestContext acl:mode _:Mode.
 
-    # Extract the WebID of the requesting party from the context
-    :RequestContext acl:agent _:RequestContextWebID.
-    # Extract the requested Resource
-    :RequestContext acl:resource _:Resource.
-    # ...and the requested access mode
-    :RequestContext acl:mode _:Mode.
-
-    # We have a resource
-    _:Resource a ldp:Resource.
-    # ... with a directly connected ACL
-    _:Resource :inheritsACL _:ResourceACL.
-    # ... for which the ACL resource defines rules on that resource ( a double check of validity )
-    # ... note that this is in the context of the neutral surface defined by the ACL document
+        # We have a resource
+        _:Resource a ldp:Resource.
+        # ... with a directly connected ACL
+        _:Resource :inheritsACL _:ResourceACL.
+        # ... for which the ACL resource defines rules on that resource ( a double check of validity )
+        # ... note that this is in the context of the neutral surface defined by the ACL document
 
 
-    # Extract the information from the ACL document
-    () log:onNeutralSurface _:ResourceACLGraph {| :partOf _:ResourceACL |}.
-    _:ResourceACLGraph log:includes { 
-        _:Authorization a acl:Authorization.
-        _:Authorization acl:accessTo _:SomeParentResource.
-        _:Authorization acl:default _:SomeParentResource.
-        _:Authorization acl:mode _:Mode.
-        # Try to map the agent field on the auth
-        _:Authorization acl:agent _:ACLAgentWebId.
-    }. 
+        # Extract the information from the ACL document
+        () log:onNeutralSurface _:ResourceACLGraph {| :partOf _:ResourceACL |}.
+        _:ResourceACLGraph log:includes { 
+            _:Authorization a acl:Authorization.
+            _:Authorization acl:accessTo _:SomeParentResource.
+            _:Authorization acl:default _:SomeParentResource.
+            _:Authorization acl:mode _:Mode.
+            # Try to map the agent field on the auth
+            _:Authorization acl:agent _:ACLAgentWebId.
+        }. 
 
-    # Check Equality
-    _:RequestContextWebID log:equalTo _:ACLAgentWebId.
-    
-    # This is already handled by another rule
-    _:Resource log:notEqualTo _:SomeParentResource.
+        # Check Equality
+        _:RequestContextWebID log:equalTo _:ACLAgentWebId.
+        
+        # This is already handled by another rule
+        _:Resource log:notEqualTo _:SomeParentResource.
 
-    _:ResultGraph log:equalTo {
-        _:AccessGrant a :AccessGrant;
-            acl:agent _:RequestContextWebID;
-            acl:accessTo _:Resource;
-            acl:mode _:Mode;
-            :inheritedFrom _:ResourceACL.
+        _:ResultGraph log:equalTo {
+            _:AccessGrant a :AccessGrant;
+                acl:agent _:RequestContextWebID;
+                acl:accessTo _:Resource;
+                acl:mode _:Mode;
+                :inheritedFrom _:ResourceACL.
+        }.
     }.
+
     () log:onNegativeSurface {
         {} pol:log _:ResultGraph.
         () log:onResultSurface _:ResultGraph.
@@ -232,40 +238,41 @@
     _:AccessGrant
     _:ResultGraph
 ) log:onNegativeSurface {
+    () log:onPositiveSurface {
+        # Extract the WebID of the requesting party from the context
+        :RequestContext acl:agent _:RequestContextWebID.
+        # Extract the requested Resource
+        :RequestContext acl:resource _:Resource.
+        # ...and the requested access mode
+        :RequestContext acl:mode _:Mode.
 
-    # Extract the WebID of the requesting party from the context
-    :RequestContext acl:agent _:RequestContextWebID.
-    # Extract the requested Resource
-    :RequestContext acl:resource _:Resource.
-    # ...and the requested access mode
-    :RequestContext acl:mode _:Mode.
-
-    # We have a resource
-    _:Resource a ldp:Resource.
-    # ... with a directly connected ACL
-    _:Resource :inheritsACL _:ResourceACL.
-    # ... for which the ACL resource defines rules on that resource ( a double check of validity )
-    # ... note that this is in the context of the neutral surface defined by the ACL document
+        # We have a resource
+        _:Resource a ldp:Resource.
+        # ... with a directly connected ACL
+        _:Resource :inheritsACL _:ResourceACL.
+        # ... for which the ACL resource defines rules on that resource ( a double check of validity )
+        # ... note that this is in the context of the neutral surface defined by the ACL document
 
 
-    # Extract the information from the ACL document
-    () log:onNeutralSurface _:ResourceACLGraph {| :partOf _:ResourceACL |}.
-    _:ResourceACLGraph log:includes { 
-        _:Authorization a acl:Authorization.
-        _:Authorization acl:accessTo _:Resource.
-        _:Authorization acl:mode _:Mode.
-        # Try to map the agent field on the auth
-        _:Authorization acl:agentClass foaf:Agent.
-    }. 
+        # Extract the information from the ACL document
+        () log:onNeutralSurface _:ResourceACLGraph {| :partOf _:ResourceACL |}.
+        _:ResourceACLGraph log:includes { 
+            _:Authorization a acl:Authorization.
+            _:Authorization acl:accessTo _:Resource.
+            _:Authorization acl:mode _:Mode.
+            # Try to map the agent field on the auth
+            _:Authorization acl:agentClass foaf:Agent.
+        }. 
 
-    _:ResultGraph log:equalTo {
-        _:AccessGrant a :AccessGrant;
-                acl:agentClass foaf:Agent;
-                acl:accessTo _:Resource;
-                acl:mode _:Mode;
-                :inheritedFrom _:ResourceACL.
+        _:ResultGraph log:equalTo {
+            _:AccessGrant a :AccessGrant;
+                    acl:agentClass foaf:Agent;
+                    acl:accessTo _:Resource;
+                    acl:mode _:Mode;
+                    :inheritedFrom _:ResourceACL.
+        }.
     }.
-
+    
     () log:onNegativeSurface {
         {} pol:log _:ResultGraph.
         () log:onResultSurface _:ResultGraph.

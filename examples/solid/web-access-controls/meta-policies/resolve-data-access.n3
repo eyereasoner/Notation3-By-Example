@@ -44,64 +44,65 @@
     _:RequestContextWebID
 
 ) log:onNegativeSurface {
+    () log:onPositiveSurface {
+        # Extract the requested Resource
+        :RequestContext acl:resource _:Resource.
+        # ...and the requested access mode
+        :RequestContext acl:mode acl:Read.
+        # ...and the requested access mode
+        :RequestContext acl:agent _:RequestContextWebID.
 
-    # Extract the requested Resource
-    :RequestContext acl:resource _:Resource.
-    # ...and the requested access mode
-    :RequestContext acl:mode acl:Read.
-    # ...and the requested access mode
-    :RequestContext acl:agent _:RequestContextWebID.
+        # If the resource contains a phone number triple:
+        <<() log:onNeutralSurface _:G>> :partOf _:Resource.
+        _:G log:includes { _:S _:P _:O }.
 
-    # If the resource contains a phone number triple:
-    <<() log:onNeutralSurface _:G>> :partOf _:Resource.
-    _:G log:includes { _:S _:P _:O }.
+        # Our agent has a read access grant for the resource
+        _:AccessGrant a :AccessGrant;
+            acl:accessTo _:Resource;
+            acl:agent _:RequestContextWebID;
+            acl:mode acl:Read.
 
-    # Our agent has a read access grant for the resource
-    _:AccessGrant a :AccessGrant;
-        acl:accessTo _:Resource;
-        acl:agent _:RequestContextWebID;
-        acl:mode acl:Read.
+        # We put all triples of the resource on the data surface that are not explicitly denied by an access denial
 
-    # We put all triples of the resource on the data surface that are not explicitly denied by an access denial
-
-    (
-        # if
-        { 
-            _:AccessDenial a :AccessDenial;
-                acl:accessTo _:Resource;
-                acl:mode acl:Read;
-                acl:agent _:RequestContextWebID;
-                # Check if the triple matches
-                acl:conflict << _:S _:P _:O >>;
-                acl:comment _:AccessDenialComment.
-        }
-        # then - on a matching triple, we want to NOT write the triple!
-        { 
-            _:AssertSurface log:equalTo {
-                () log:onMetadataSurface {
-                    << _:S _:P _:O >> 
-                        :status :Denied;
-                        :cause  _:AccessDenialComment;
-                        :fromResource _:Resource;
-                        :requestedBy _:RequestContextWebID;
+        (
+            # if
+            { 
+                _:AccessDenial a :AccessDenial;
+                    acl:accessTo _:Resource;
+                    acl:mode acl:Read;
+                    acl:agent _:RequestContextWebID;
+                    # Check if the triple matches
+                    acl:conflict << _:S _:P _:O >>;
+                    acl:comment _:AccessDenialComment.
+            }
+            # then - on a matching triple, we want to NOT write the triple!
+            { 
+                _:AssertSurface log:equalTo {
+                    () log:onMetadataSurface {
+                        << _:S _:P _:O >> 
+                            :status :Denied;
+                            :cause  _:AccessDenialComment;
+                            :fromResource _:Resource;
+                            :requestedBy _:RequestContextWebID;
+                    }.
                 }.
-            }.
-        }
-        # else
-        { 
-            _:AssertSurface log:equalTo {
-                () log:onDataSurface {
-                    _:S _:P _:O .
+            }
+            # else
+            { 
+                _:AssertSurface log:equalTo {
+                    () log:onDataSurface {
+                        _:S _:P _:O .
+                    }.
+                    () log:onMetadataSurface {
+                        << _:S _:P _:O >> 
+                            :status :Returned;
+                            :fromResource _:Resource;
+                            :requestedBy _:RequestContextWebID;
+                    }.
                 }.
-                () log:onMetadataSurface {
-                    << _:S _:P _:O >> 
-                        :status :Returned;
-                        :fromResource _:Resource;
-                        :requestedBy _:RequestContextWebID;
-                }.
-            }.
-        }
-    ) log:ifThenElseIn _:Scope.
+            }
+        ) log:ifThenElseIn _:Scope.
+    }.
 
     # Run output
     () log:onNegativeSurface _:AssertSurface.
@@ -129,65 +130,67 @@
     _:RequestContextWebID
 
 ) log:onNegativeSurface {
+    () log:onPositiveSurface {
 
-    # Extract the requested Resource
-    :RequestContext acl:resource _:Resource.
-    # ...and the requested access mode
-    :RequestContext acl:mode acl:Read.
-    # ...and the requested access mode
-    :RequestContext acl:agent _:RequestContextWebID.
+        # Extract the requested Resource
+        :RequestContext acl:resource _:Resource.
+        # ...and the requested access mode
+        :RequestContext acl:mode acl:Read.
+        # ...and the requested access mode
+        :RequestContext acl:agent _:RequestContextWebID.
 
-    # If the resource contains a phone number triple:
-    <<() log:onNeutralSurface _:G>> :partOf _:Resource.
-    _:G log:includes { _:S _:P _:O }.
+        # If the resource contains a phone number triple:
+        <<() log:onNeutralSurface _:G>> :partOf _:Resource.
+        _:G log:includes { _:S _:P _:O }.
 
-    # Our agent has a read access grant for the resource
-    _:AccessGrant a :AccessGrant;
-        acl:accessTo _:Resource;
-        acl:agentClass foaf:Agent;
-        acl:mode acl:Read.
+        # Our agent has a read access grant for the resource
+        _:AccessGrant a :AccessGrant;
+            acl:accessTo _:Resource;
+            acl:agentClass foaf:Agent;
+            acl:mode acl:Read.
 
-    # We put all triples of the resource on the data surface that are not explicitly denied by an access denial
+        # We put all triples of the resource on the data surface that are not explicitly denied by an access denial
 
-    (
-        # if
-        { 
-            _:AccessDenial a :AccessDenial;
-                acl:accessTo _:Resource;
-                acl:mode acl:Read;
-                acl:agentClass foaf:Agent;
-                # Check if the triple matches
-                acl:conflict << _:S _:P _:O >>;
-                acl:comment _:AccessDenialComment.
-        }
-        # then - on a matching triple, we want to NOT write the triple!
-        { 
-            _:AssertSurface log:equalTo {
-                () log:onMetadataSurface {
-                    << _:S _:P _:O >> 
-                        :status :Denied;
-                        :cause  _:AccessDenialComment;
-                        :fromResource _:Resource;
-                        :requestedBy _:RequestContextWebID;
+        (
+            # if
+            { 
+                _:AccessDenial a :AccessDenial;
+                    acl:accessTo _:Resource;
+                    acl:mode acl:Read;
+                    acl:agentClass foaf:Agent;
+                    # Check if the triple matches
+                    acl:conflict << _:S _:P _:O >>;
+                    acl:comment _:AccessDenialComment.
+            }
+            # then - on a matching triple, we want to NOT write the triple!
+            { 
+                _:AssertSurface log:equalTo {
+                    () log:onMetadataSurface {
+                        << _:S _:P _:O >> 
+                            :status :Denied;
+                            :cause  _:AccessDenialComment;
+                            :fromResource _:Resource;
+                            :requestedBy _:RequestContextWebID;
+                    }.
                 }.
-            }.
-        }
-        # else
-        { 
-            _:AssertSurface log:equalTo {
-                () log:onDataSurface {
-                    _:S _:P _:O .
+            }
+            # else
+            { 
+                _:AssertSurface log:equalTo {
+                    () log:onDataSurface {
+                        _:S _:P _:O .
+                    }.
+                    () log:onMetadataSurface {
+                        << _:S _:P _:O >> 
+                            :status :Returned;
+                            :fromResource _:Resource;
+                            :requestedBy _:RequestContextWebID;
+                    }.
                 }.
-                () log:onMetadataSurface {
-                    << _:S _:P _:O >> 
-                        :status :Returned;
-                        :fromResource _:Resource;
-                        :requestedBy _:RequestContextWebID;
-                }.
-            }.
-        }
-    ) log:ifThenElseIn _:Scope.
-
+            }
+        ) log:ifThenElseIn _:Scope.
+    }.
+    
     # Run output
     () log:onNegativeSurface _:AssertSurface.
 
