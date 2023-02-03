@@ -1,0 +1,115 @@
+# @prefix : <https://example.org/ns/>.
+# @prefix log: <http://www.w3.org/2000/10/swap/log#>.
+# @prefix acl: <http://www.w3.org/ns/auth/acl#>.
+# @prefix string: <http://www.w3.org/2000/10/swap/string#>.
+# @prefix dc: <http://purl.org/dc/terms/>.
+# @prefix ldp: <http://www.w3.org/ns/ldp#>.
+# @prefix posix: <http://www.w3.org/ns/posix/stat#>.
+# @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+# @prefix foaf: <http://xmlns.com/foaf/0.1/>.
+# @prefix solid: <http://www.w3.org/ns/solid/terms#>.
+# @prefix space: <http://www.w3.org/ns/pim/space#>.
+# @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+# @prefix vcard: <http://www.w3.org/2006/vcard/ns#>.
+# @prefix pim: <http://www.w3.org/ns/pim/space#>.
+
+# @prefix string: <http://www.w3.org/2000/10/swap/string#> .
+# @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+
+# @prefix pol:  <https://www.example.org/ns/policy#> .
+
+# # This rule looks at which data can be returned
+
+
+# (
+#     _:Resource _:ResourceACL
+#     _:ResourceACLGraph
+#     _:Authorization
+#     _:G
+#     _:S _:P _:O
+
+#     _:AccessStatusGraph
+#     _:AccessGrant _:AccessDenial
+#     _:AccessDenialComment
+#     _:AD_S _:AD_P _:AD_O
+#     _:Scope
+#     _:AssertSurface
+# ) log:onNegativeSurface {
+
+#     # Extract the requested Resource
+#     :RequestContext acl:resource _:Resource.
+#     # ...and the requested access mode
+#     :RequestContext acl:mode acl:Read.
+
+#     # If the resource contains a phone number triple:
+#     <<() log:onNeutralSurface _:G>> :partOf _:Resource.
+#     _:G log:includes { _:S _:P _:O }.
+
+
+#     # () log:onNeutralSurface {
+#     #     _:AccessDenial a :AccessDenial;
+#     #         acl:agentClass foaf:Agent;
+#     #         acl:accessTo _:Resource;
+#     #         acl:mode acl:Read;
+#     #         acl:managingACLDocument _:ResourceACl;
+#     #         acl:conflict << _:Person foaf:phone _:PhoneNumberLiteral >> ;
+#     #         acl:comment "Denial of resource access because of conflict in triple based access."
+#     # } {| pol:context :SolidAccessDenial|}
+
+#     <<() log:onNeutralSurface _:AccessStatusGraph>> pol:context :SolidAccessStatus.
+
+#     # We stop the rule if we do not have an access grant for the resource
+
+#     # Note that here we assume these are on the same neutral surface in this context.!
+#     # Ideally we should use a built-in that collects all graphs with the same context into one!
+#     _:AccessStatusGraph log:includes {
+#     _:AccessGrant a :AccessGrant;
+#         acl:accessTo _:Resource;
+#         acl:mode acl:Read.
+#     }.
+
+#     # We put all triples of the resource on the data surface that are not explicitly denied by an access denial
+
+
+#     (
+#         # if
+#         { 
+#             _:AccessStatusGraph log:includes {
+#                 _:AccessDenial a :AccessDenial;
+#                     acl:accessTo _:Resource;
+#                     acl:mode acl:Read;
+#                     acl:conflict << _:AD_S _:AD_P _:AD_O >>;
+#                     acl:comment _:AccessDenialComment.
+#             }.
+#         }
+#         # then
+#         { 
+#             _:AssertSurface log:equalTo {
+#                 () log:onDataSurface {
+#                     << _:S _:P _:O >> a :A1.
+#                     << _:AD_S _:AD_P _:AD_O >> a :A1.
+#                 }
+#             }.
+#         }
+#         # else
+#         { 
+#             _:AssertSurface log:equalTo {
+#                 () log:onDataSurface {
+#                     << _:S _:P _:O >> a :A2.
+#                     << _:AD_S _:AD_P _:AD_O >> a :A2.
+#                 }
+#             }.
+#             _:AssertSurface log:equalTo _:AccessStatusGraph.
+#         }
+#     ) log:ifThenElseIn _:Scope.
+
+
+#     () log:onNegativeSurface _:AssertSurface.
+
+#     # () log:onNegativeSurface {
+#     #     () log:onDataSurface {
+#     #         _:S _:P _:O.
+#     #     }
+#     # }.
+
+# }.

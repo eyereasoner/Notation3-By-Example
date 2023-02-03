@@ -2,7 +2,7 @@ context="./context/default.n3"
 quiet="--quiet"
 querySet="default"
 ruleset="surfaces-language"
-specific="general"
+specific="specific"
 
 while test $# -gt 0; do
     case "$1" in
@@ -15,7 +15,11 @@ while test $# -gt 0; do
             echo "-v, --verbose             print engine logs"
             echo "-t, --test                print whole internal state"
             echo "-r, --rules               use policy-language rules instead of plain RDF surfaces rules"
-            echo "--specific                only return results for requested resource in context"
+            echo "--computeAll              compute results for all available resources"
+            echo "--test                    write out all triples"
+            echo "--log                     write out everything on onLogSurface (overwrites test option)"
+            echo "--data                    only write out data (overwrites test, log option)"
+            echo "--metadata                writes out per-triple metadata (overwrites test, log,  data option)"
             exit 0
             ;;
         -c|--context)
@@ -27,17 +31,29 @@ while test $# -gt 0; do
             shift
             quiet=""
             ;;
-        -t|--test)
-            shift
-            querySet="test"
-            ;;
         -r|--ruleset)
             shift
             ruleset="policy-language"
             ;;
-        --specific)
+        --computeAll)
             shift
-            specific="specific"
+            specific="general"
+            ;;
+        --test)
+            shift
+            querySet="test"
+            ;;
+        --log)
+            shift
+            querySet="log"
+            ;;
+        --data)
+            shift
+            querySet="data"
+            ;;
+        --metadata)
+            shift
+            querySet="metadata"
             ;;
         *)
             echo "$1 is not a recognized flag!"

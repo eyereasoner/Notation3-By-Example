@@ -1,0 +1,76 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix acl: <http://www.w3.org/ns/auth/acl#>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#>.
+@prefix dc: <http://purl.org/dc/terms/>.
+@prefix ldp: <http://www.w3.org/ns/ldp#>.
+@prefix posix: <http://www.w3.org/ns/posix/stat#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix solid: <http://www.w3.org/ns/solid/terms#>.
+@prefix space: <http://www.w3.org/ns/pim/space#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#>.
+@prefix pim: <http://www.w3.org/ns/pim/space#>.
+
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+
+@prefix pol:  <https://www.example.org/ns/policy#> .
+
+# Check ACL rules for a directly connected ACL document
+# To see if the public has any rights!!!
+# This does not precompute for everyone!!!
+
+(
+    _:Resource _:ResourceACL
+    _:ResourceACLGraph
+    _:Authorization
+    _:AccessDenial
+    _:G
+    _:Person _:MBoxLiteral
+    _:ResultGraph
+) log:onNegativeSurface {
+
+    # Extract the requested Resource
+    :RequestContext acl:resource _:Resource.
+    # ...and the requested access mode
+    :RequestContext acl:mode acl:Read.
+
+    # We have a resource
+    _:Resource a ldp:Resource.
+    # ... with a directly connected ACL
+    _:Resource :hasConnectedACL _:ResourceACL.
+    # ... for which the ACL resource defines rules on that resource ( a double check of validity )
+    # ... note that this is in the context of the neutral surface defined by the ACL document
+
+    # If the resource contains a phone number triple:
+    <<() log:onNeutralSurface _:G >> :partOf _:Resource.
+    _:G log:includes { _:Person foaf:mbox _:MBoxLiteral. }.
+
+    # ... and is set on public read permissions
+    () log:onNeutralSurface _:ResourceACLGraph {| :partOf _:ResourceACL |}.
+    _:ResourceACLGraph log:includes { 
+        _:Authorization a acl:Authorization.
+        _:Authorization acl:accessTo _:Resource.
+        _:Authorization acl:mode acl:Read.
+        # Try to map the agent field on the auth
+        _:Authorization acl:agentClass foaf:Agent.
+    }. 
+    
+    _:ResultGraph log:equalTo {
+        _:AccessDenial a :AccessDenial;
+            acl:agentClass foaf:Agent;
+            acl:accessTo _:Resource;
+            acl:mode acl:Read;
+            acl:managingACLDocument _:ResourceACl;
+            acl:conflict << _:Person foaf:mbox _:MBoxLiteral >> ;
+            acl:comment "Denial of resource access because of conflict in triple based access."
+    }.
+
+    () log:onNegativeSurface {
+        {} pol:log _:ResultGraph.
+        () log:onResultSurface _:ResultGraph.
+        () log:onNeutralSurface _:ResultGraph {| pol:context :SolidAccessStatus|}.
+    }.
+}.

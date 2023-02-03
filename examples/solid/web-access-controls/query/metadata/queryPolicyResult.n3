@@ -1,0 +1,9 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Print output data to main surface
+(_:G) log:onQuerySurface {
+    () log:onMetadataSurface _:G.
+    () log:onConstructSurface _:G.
+} .
+

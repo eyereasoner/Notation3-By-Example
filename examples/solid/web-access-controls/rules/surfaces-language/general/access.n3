@@ -308,14 +308,14 @@
 
     () log:onNegativeSurface {
         {} pol:log { 
-            _:AccessGrant a :InheritedAccessGrant;
+            _:AccessGrant a :AccessGrant;
                 acl:agent _:RequestContextWebID;
                 acl:accessTo _:Resource;
                 acl:mode _:Mode;
                 :inheritedFrom _:ResourceACL.
         }.
         () log:onResultSurface {
-            _:AccessGrant a :InheritedAccessGrant;
+            _:AccessGrant a :AccessGrant;
                 acl:agent _:RequestContextWebID;
                 acl:accessTo _:Resource;
                 acl:mode _:Mode;

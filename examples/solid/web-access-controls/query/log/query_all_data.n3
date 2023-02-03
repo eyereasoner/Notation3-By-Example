@@ -2,5 +2,7 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 (_:S _:P _:O) log:onQuerySurface {
-    _:S _:P _:O .    
+    () log:onLogSurface {
+        _:S _:P _:O .    
+    }
 } .
