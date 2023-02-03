@@ -27,23 +27,45 @@ The most important takeaway here is THAT WE NEVER ASSERT TRIPLES FROM A DOCUMENT
 
 ## Executing the test
 
-Run the test using
+The default test runs a data access on two resources using `context/default.n3` as request context.
 
 ```
 bash test.sh
 ```
 
 If you want to add your own request context to mess around, use the `-c` flag.
-You can base yourself on the context that is given in the `context/` folder.
+You can base yourself on the context files in the `context/` folder.
 
 ```
 bash test -c path/to/context
 ```
 
-If you want results for the resource indicated in your request, use the `--specific` flag
+### Ouput selection
+
+The default ouptu is handled by the query surface at `query/default/queryPolicyResult.n3`. It only shows the access grants and denials.
+
+If you want to see the data that is returned for these policies, use the following: (Note: only do this for `acl:Read` requests!)
 
 ```
-bash test --specific
+bash test --data
 ```
 
-(Don't use the -r flag atm. It's not yet implemented)
+If you want to see for each triple the metadata for its origin and why it has or has not been emitted, use the following: (Note: only do this for `acl:Read` requests!)
+
+```
+bash test --metadata
+```
+
+### Logging methods
+
+use the `--log` flag to output all intermediate logging information.
+
+```
+bash test --log
+```
+
+use the `--test` flag to output ALL triples on the main surface.
+
+```
+bash test --all
+```
