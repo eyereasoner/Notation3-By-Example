@@ -5,6 +5,9 @@
 # Skip this when reasoning only allows disjunction via contrapositives
 
 :A a :B .
+() log:onNegativeSurface {
+    :A a :B2 .
+} .
 
 # ∀S : (S a B) -> (S a B1) ∨ (S a B2)
 (_:S) log:onNegativeSurface {

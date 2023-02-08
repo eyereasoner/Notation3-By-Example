@@ -5,6 +5,9 @@
 # we see it is failing when activating line 35 (_:S a :Person)
 
 :Alice a :Person .
+() log:onNegativeSurface {
+    :Alice a :DogLover .
+} .
 
 # For all S a Person : 
 #  (S a DogLover) OR

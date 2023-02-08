@@ -6,8 +6,10 @@
 # 2 Then we say that students are from Ghent or Leuven
 # 3 Then we say that Ghent and Leuven students are smart
 
-:Alice a :PhdStudent .
-:Bob a :MasterStudent .
+:Alice a :PhdStudent ;
+    a :GhentStudent .
+:Bob a :MasterStudent ;
+    a :LeuvenStudent .
 
 # [1]
 (_:S) log:onNegativeSurface {
