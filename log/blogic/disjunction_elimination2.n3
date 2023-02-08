@@ -4,6 +4,25 @@
 :A a :B .
 :C a :B .
 :D a :B .
+() log:onNegativeSurface {
+    :A a :B2 .
+} .
+() log:onNegativeSurface {
+    :A a :B3 .
+} .
+() log:onNegativeSurface {
+    :C a :B1 .
+} .
+() log:onNegativeSurface {
+    :C a :B3 .
+} .
+() log:onNegativeSurface {
+    :D a :B1 .
+} .
+() log:onNegativeSurface {
+    :D a :B2 .
+} .
+
 
 # This is an extension of disjunction_elimination.n3 which should conclude 
 # that A ,C ,D are all :C-s.

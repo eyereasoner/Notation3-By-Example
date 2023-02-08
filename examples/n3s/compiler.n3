@@ -9,35 +9,61 @@
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
 
 # Main rule which defined the :implies
-(_:A _:G _:X _:Xp _:Y _:Yp _:Ypbn _:Ypvar _:NewG) log:onNegativeSurface {
-    _:A :implies _:G .
+(_:A _:C _:X _:Xp _:Y _:Yp _:Ypbn _:Ypvar _:CNew) log:onNegativeSurface {
+    _:A :implies _:C .
     
     # Translated qvars to blank nodes 
     #  Xp will contain a unique list of blank nodes
     #  X will be the translated formula
     _:A :qvar2bn (_:Xp _:X).
-    _:G :qvar2bn (_:Yp _:Y).
+    _:C :qvar2bn (_:Yp _:Y).
 
-    # Flagged blank nodes are rewritten blank nodes in the original formula
+    # Bn blank nodes are rewritten blank nodes in the original formula
     # We scope these flagged blank nodes to create the consequent of a rule
+    # E.g. when
+    #      { _:X a :Cat } :implies { _:X a :Feline }
+    # we need to construct something like
+    #    (genid:t_0-bn) log:onNegativeSurface  {
+    #          genid_:t_0-bn a :Cat .
+    #          ( genid:t_1-bn ) log:onNegativeSurface {
+    #               genid:t_1-bn a :Feline .
+    #           }
+    #     } .
+    # All var-skolems are removed from the consequent graffiti the
+    # var-skolem references in the consequent should refer to the 
+    # var-skolem graffiti in the outermost negative surface.
+    # E.g. when
+    #     { q:X a :Cat } :implies { q:X a :Feline } 
+    # we need to construct something like
+    #    (genid:t_0-var) log:onNegativeSurface  {
+    #        genid:t_0-var a :Cat .
+    #        () log:onNegativeSurface {
+    #            genid:t_0-var a :Feline .
+    #        } .
+    #    } .
     ( _:Yp :isSkolemBlank true ) :filter _:Ypbn .
 
     # Ypp is the scoping part of blank nodes
     ( _:X
       { _:Ypbn log:onNegativeSurface _:Y }
-    ) graph:union _:NewG .
+    ) graph:union _:CNew .
 
     () log:onNegativeSurface {
-        _:Xp log:onNegativeSurface _:NewG .
+        _:Xp log:onNegativeSurface _:CNew .
         _:Yp log:onQuerySurface _:Y .
     } .
 } .
 
+##################################################################
+
 # X :qvar2 (Y Z)
 # qvars to blank node translation
-#   X a formula
+#   X a formula with possible n3q 'variables' (q:)
 #   Y a list of blank nodes
 #   Z a formula only containing blank nodes
+#
+# E.g.
+#    { q:X a q:Y } :qvar2 ( (genid:t0 genid:t1) { genid:t0 a genid:t1} ) .
 (_:X _:Y _:Z _:T1 _:T2 _:L) log:onNegativeSurface {
     () log:onQuerySurface {
         _:X :qvar2bn (_:Y _:Z).
@@ -104,9 +130,11 @@
     ( _:Formula _:T _:Acc1New _:Acc2New ) :_qvar2bn _:X .
 } .
 
+##################################################################
+
 # (Formula X) :skolemize Y
 # Turn a qvar into a skolemized version
-# Turn a blank node into a flagged skolemized version
+# Turn a blank node into a 'flagged' skolemized version
 #    Formula - a context formula for which a variable needs to be skolemized
 #    X - a qvar or blank node variable
 #    Y - the skolemized version of the variable
@@ -116,15 +144,18 @@
     } .
 
     ( 
+        # If we get a n3q variable, equivalent of a qvar (?x) in notation3....
         {
             _:X log:namespace _:Xn .
             _:Xn log:equalTo "https://github.com/eyereasoner/Notation3-By-Example/example/n3q#" .
         }
+        # ... then turn it into a skolem variable
         {
             _:X :skolemVar _:Y .
         }
+        # ... otherwise
         {
-            # If we got a blank node, write it into a 'flagged' skolem
+            # If we got a blank node, write it into a bn skolem
             # to trigger generating a universal in :_qvar2bn
             (
                 {
@@ -144,8 +175,16 @@
     ) log:ifThenElseIn _:Scope .
 } .
 
+##################################################################
+
 # X :isSkolem true
 # Holds when X is a skolem
+#   X - a resource
+#   Y - true when X a skolem, var skolem or bn skolem
+# E.g.
+#       genid:t_0 :isSkolem true
+#       genid:t_1-var :isSkolem true
+#       genid:t_1-dn :isSkolem true
 (_:X _:Xn) log:onNegativeSurface {
     () log:onQuerySurface {
         _:X :isSkolem true .
@@ -154,8 +193,14 @@
     _:Xn string:contains ".well-known/genid/" .
 } .
 
+##################################################################
+
 # X :skolemVar Y 
-# Turn X into a var skolem Y
+# Turn X into a var skolem Y (qvar equivalent ?Y)
+#   X a resource
+#   Y a var skolem
+# E.g. 
+#      q:X :skolemVar genid:t_0-var
 (_:X _:Y _:T1 _:T2 _:T3) log:onNegativeSurface {
     () log:onQuerySurface {
         _:X :skolemVar _:Y .
@@ -166,8 +211,14 @@
     _:Y log:uri _:T3 .
 } .
 
+##################################################################
+
 # X :skolemBlank Y 
-# Turn X into a flagged bn skolem Y
+# Turn X into a flagged bn skolem Y (blank node equivalent _:Y)
+#   X a resource
+#   Y a bn skolem
+# E.g.
+#       _:X :skolemBlank genid:t_1-bn
 (_:X _:Y _:T1 _:T2 _:T3) log:onNegativeSurface {
     () log:onQuerySurface {
         _:X :skolemBlank _:Y .
@@ -178,19 +229,46 @@
     _:Y log:uri _:T3 .
 } .
 
+##################################################################
+
 # X :isSkolemBlank Y
-# Test if X is a flagged skolem
+# Test if X is a bn skolem
 #   X a variable
 #   Y a boolean
-(_:X _:T1 _:Y _:Scope) log:onNegativeSurface {
+# E.g.
+#       genid:t_1-bn :isSkolemBlank true
+#       genid:t_0-var :isSkolemBlank false
+(_:X _:Y ) log:onNegativeSurface {
     () log:onQuerySurface {
         _:X :isSkolemBlank _:Y .
+    } .
+    (_:X "-bn") :isSkolemOfType _:Y .
+} .
+
+# X :isSkolemVar Y
+# Test if X is a bn skolem
+#   X a variable
+#   Y a boolean
+# E.g.
+#       genid:t_1-bn :isSkolemBlank false
+#       genid:t_0-var :isSkolemBlank true
+(_:X _:T1 _:Y _:Scope) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:X :isSkolemVar _:Y .
+    } .
+    (_:X "-var") :isSkolemOfType _:Y .
+} .
+
+# Helper function for :isSkolemBlank :isSkolemVar
+(_:X _:Type _:T1 _:Y _:Scope) log:onNegativeSurface {
+    () log:onQuerySurface {
+        (_:X _:Type) :isSkolemOfType _:Y .
     } .
     _:X log:uri _:T1 .
     (
         {
             _:T1 string:contains ".well-known/genid/" .
-            _:T1 string:endsWith "-bn" .
+            _:T1 string:endsWith _:Type .
         }
         {
             _:Y log:equalTo true .
@@ -201,11 +279,17 @@
     ) log:ifThenElseIn _:Scope .
 } .
 
+##################################################################
+
 # ( X F FV) :filter Y
-# Filter a list X with a built-in value into Y
-#   X a list
-#   F a built-in (or backward rule)
-#   FV a value 
+# Filter a list X with a built-in value into Y using 
+#     Xi element X : triple Xi F FV holds
+# with
+#     F  a built-in (or backward rule)
+#     FV a 
+#
+# E.g.
+#       ( (1 2 4 8 16) math:greaterThan 4) :filter (8 16)
 (_:X _:F _:FV _:Y) log:onNegativeSurface {
     () log:onQuerySurface {
         (_:X _:F _:FV) :filter _:Y .
@@ -243,6 +327,8 @@
     ( _:T _:F _:FV _:AccNew ) :_filter _:Y .
 } .
 
+##################################################################
+
 # Debug
 (_:S _:O) log:onQuerySurface {
     _:S log:onNegativeSurfaceTest _:O .
@@ -251,3 +337,5 @@
 (_:S _:O) log:onQuerySurface {
     _:S log:onQuerySurfaceTest _:O .
 } .
+
+##################################################################

@@ -13,6 +13,9 @@
 # |- (P v R)->Q . (P v R)
 # Here follows Q
 :Beetle a :Car .
+() log:onNegativeSurface {
+    :Beetle :is :blue . 
+} .
 
 (_:S) log:onNegativeSurface {
     # P

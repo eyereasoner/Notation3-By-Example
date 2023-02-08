@@ -1,0 +1,22 @@
+@prefix : <urn:example.org:> .
+@prefix q: <https://github.com/eyereasoner/Notation3-By-Example/example/n3q#> .
+@prefix n3s: <https://github.com/eyereasoner/Notation3-By-Example/example/n3s#> .
+
+:Test1 a :Test.
+
+{
+    q:A a :Test .
+}
+n3s:implies
+{
+    :Test1 :has q:Witness .
+} .
+
+{
+    :Test1 :has q:A .
+    q:A n3s:isSkolemVar true .
+}
+n3s:implies
+{
+    :test :is true .
+} .

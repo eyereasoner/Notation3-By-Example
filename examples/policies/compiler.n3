@@ -3,6 +3,7 @@
 @prefix util: <https://github.com/phochste/util#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
 @prefix string: <http://www.w3.org/2000/10/swap/string#> .
 
 # Search for a pol:Rule 
@@ -11,7 +12,7 @@
 #  ... pol:then* describes what should happen when the condition holds
 (  _:Rule _:Body 
    _:Param _:WhenBody _:ThenBody
-   _:WhenBodyPrime
+   _:WhenBodyPrime  _:ThenBodyPrime
 ) log:onNegativeSurface {
     # Select all rules with a body
     _:Rule a pol:Rule , pol:ValidRule ;
@@ -23,13 +24,15 @@
                 pol:then _:ThenBody .
     } .
 
+    _:ThenBody util:policyParam _:ThenBodyPrime .
+
     # Create the body of a new negative surface implication. The
     # `when` triples will be the head and the `then` triples the body
     # of the implication: HEAD -> BODY
     ( _:WhenBody {
         () log:onNegativeSurface {
             # Write the results on an answer surface
-            () pol:onAnswerSurface _:ThenBody .
+            () pol:onAnswerSurface _:ThenBodyPrime .
         } 
     }) log:conjunction _:WhenBodyPrime .
 
@@ -38,7 +41,6 @@
         _:Param log:onNegativeSurface _:WhenBodyPrime .
     } .
 } .
-
 
 # Search for a pol:Rule 
 #  pol:body holds the logic of the rule

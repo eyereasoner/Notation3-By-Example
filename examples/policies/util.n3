@@ -3,6 +3,7 @@
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
 @prefix math: <http://www.w3.org/2000/10/swap/math#> .
+@prefix pol:  <https://www.example.org/ns/policy#> .
 
 ##################################################################
 
@@ -71,6 +72,10 @@
 
 ##################################################################
 
+# X util:walkGraph << S P O >>
+#    X - a resource
+#    << S P O >> - a triple pattern
+# Turn all triple patterns for the graph with subject X
 (_:subject _:S _:P _:O) log:onNegativeSurface {
     () log:onQuerySurface {
         _:subject util:walkGraph << _:subject _:P _:O >> .
@@ -86,3 +91,29 @@
     _:Y util:walkGraph << _:S _:P _:O >> .
 } .
 
+##################################################################
+
+# X util:policyParam Y
+#   X - a policy formula { Name pol:policy Data }
+#   Y - a renamed policy formula { Skolem(Name) pol:policy Data }
+(_:A _:B _:X1 _:X2 _:X3 _:X4 _:X5 _:NewName) log:onNegativeSurface {
+    () log:onQuerySurface {
+        _:A util:policyParam _:B .
+    } .
+
+    _:A log:includes {
+        _:X1 pol:policy _:X2
+    } .
+
+    _:A graph:list _:X3 .
+
+    ( _:X3 { _:X1 pol:policy _:X2 } ) list:remove _:X4 .
+
+    _:X1 log:skolem _:NewName .
+
+    ( ( { _:NewName pol:policy _:X2 } ) _:X4 ) list:append _:X5 .
+
+    _:B graph:list _:X5 .
+}.
+
+##################################################################
