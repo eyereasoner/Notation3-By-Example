@@ -5,6 +5,7 @@
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 @prefix string: <http://www.w3.org/2000/10/swap/string#> .
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 
 # Search for a pol:Rule 
 #  pol:body holds the logic of the rule
@@ -33,7 +34,7 @@
 
     # Execute the new negative surface implication rules
     () log:onNegativeSurface {
-        _:Param log:onNegativeSurface _:WhenBodyPrime .
+        _:Param log:onNegativeSurface _:WhenBodyPrime.
     } .
 } .
 
@@ -60,10 +61,7 @@
     # `when` triples will be the head and the `then` triples the body
     # of the implication: HEAD -> BODY
     ( _:WhenBody {
-        () log:onPositiveSurface {
-            # Write the results on an answer surface
-            () pol:onAnswerSurface _:ThenNotBody .
-        } 
+        () log:onPositiveSurface _:ThenNotBody .
     }) log:conjunction _:WhenBodyPrime .
 
     # Execute the new negative surface implication rules
@@ -72,44 +70,33 @@
     } .
 } .
 
-# Extract the answer surfaces 
-(_:X _:Answer _:S _:P _:O) log:onQuerySurface {
-    _:X pol:onAnswerSurface _:Answer .
-    () log:onConstructSurface _:Answer .
-} .
-
-# Extract the original data without the rules
-(_:e _:id _:S _:P _:O) log:onQuerySurface {
-    _:e pol:mainSubject _:id .
-    _:id util:walkGraph << _:S _:P _:O >> .
-
-    () log:onConstructSurface {
-        _:S _:P _:O .
-    } .
-} .
-
-# Extract the policy metadata
-(_:S _:P _:O) log:onQuerySurface {
-    _:S _:P _:O .
-
-    _:P list:in ( 
-        <https://www.example.org/ns/policy#mainSubject>
-        <https://www.example.org/ns/policy#origin>
-    ) .
-
-    () log:onConstructSurface {
-        _:S _:P _:O .
-    } .
-} .
-
 
 ####################
 # Helper functions #
 ####################
 
-( _:Logger _:G ) log:onNegativeSurface {
+# ( _:Logger _:G _:Rule ) log:onNegativeSurface {
+#     _:Logger pol:rule _:Rule.
+#     _:Logger pol:log _:G.
+#     () log:onNegativeSurface {
+#         () log:onLogSurface _:G .# {| pol:fromRule _:Rule |}.
+#     }.
+# }.
+
+
+# Logging Rule
+( _:Logger _:G _:Rule _:Label ) log:onNegativeSurface {
+    _:Logger a pol:Logger.
     _:Logger pol:log _:G.
+    _:Logger pol:rule _:Rule.
+    _:Rule rdfs:label _:Label.
     () log:onNegativeSurface {
-        () log:onLogSurface _:G.
+        () log:onLogSurface {
+            _:Logger a pol:Logger.
+            _:Logger pol:rule _:Rule.
+            _:Rule rdfs:label _:Label.
+            _:Logger pol:log _:G.
+        }.
     }.
 }.
+

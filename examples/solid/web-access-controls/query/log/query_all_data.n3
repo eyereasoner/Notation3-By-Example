@@ -1,8 +1,8 @@
 @prefix : <https://example.org/ns/>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix pol:  <https://www.example.org/ns/policy#> .
+
 
 (_:S _:P _:O) log:onQuerySurface {
-    () log:onLogSurface {
-        _:S _:P _:O .    
-    }
+    () log:onLogSurface { _:S _:P _:O }.
 } .
