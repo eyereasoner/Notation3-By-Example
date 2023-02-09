@@ -1,0 +1,10 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+
+# The museum
+
+# This is known information, no surface needed?
+<https://ghent-museum.be/#institution>
+    a :Museum;
+    :name "Ghent Museum";
+    :location <https://places.com/belgium/ghent>.

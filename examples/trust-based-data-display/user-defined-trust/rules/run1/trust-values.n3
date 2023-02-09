@@ -1,0 +1,8 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Define the authoritative mapping
+
+<https://ghent-museum.be/#institution> :trustWorthynessScore "70"^^xsd:int.
+<https://yale-museum.us/#institution> :trustWorthynessScore "50"^^xsd:int.

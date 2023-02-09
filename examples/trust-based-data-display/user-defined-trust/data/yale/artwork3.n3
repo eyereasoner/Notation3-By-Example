@@ -1,0 +1,49 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix ldp: <http://www.w3.org/ns/ldp#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+# The artwork
+() log:onNeutralSurface {
+    <https://yale-museum.us/collection/artworks/artwork2.n3#artwork>
+        a :Artwork, :Painting;
+        :style :Surrealism;
+        :title "Quest for the Green Shoe!";
+        :universalIdentifier <id:artworks:21315412>.
+} {| :containedBy <https://yale-museum.us/collection/artworks/artwork2.n3> |}.
+<https://yale-museum.us/collection/artworks/artwork2.n3> :exposedBy <https://yale-museum.us/#institution>.
+
+# The painter
+() log:onNeutralSurface {
+    <https://yale-museum.us/collection/people/person2.n3#person>
+        a :Person;
+        :name "Russel from Brussels";
+        :birthPlace <https://places.com/belgium/brussels#place>;
+        :universalIdentifier <id:people:131515732>.
+} {| :containedBy <https://yale-museum.us/collection/people/person2.n3> |}.
+<https://yale-museum.us/collection/people/person2.n3> :exposedBy <https://yale-museum.us/#institution>.
+
+# The painting of the artwork
+() log:onNeutralSurface {
+    <https://yale-museum.us/collection/actions/creation/24152.n3#action>
+        a :Action, :CreationAction;
+        :subject <https://yale-museum.us/collection/artworks/artwork2.n3#artwork>;
+        :creator <https://yale-museum.us/collection/people/person2.n3#person>;
+        :startDate "1648"^^xsd:date;
+        :endDate "1652"^^xsd:date;
+        :location <https://places.com/usa/conneticut#place>.
+} {| :containedBy <https://yale-museum.us/collection/actions/creation/24152.n3> |}.
+<https://yale-museum.us/collection/actions/creation/24152.n3> :exposedBy <https://yale-museum.us/#institution>.
+
+# The storage of the artwork
+() log:onNeutralSurface {
+    <https://yale-museum.us/collection/actions/storage/13679.n3#action>
+        a :Action, :StorageAction;
+        :subject <https://yale-museum.us/collection/artworks/artwork2.n3#artwork>;
+        :target <https://yale-museum.us/#institution>;
+        :startDate "2017"^^xsd:date.
+} {| :containedBy <https://yale-museum.us/collection/actions/storage/13679.n3> |}.
+<https://yale-museum.us/collection/actions/storage/13679.n3> :exposedBy <https://yale-museum.us/#institution>.

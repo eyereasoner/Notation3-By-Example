@@ -1,0 +1,94 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+# Replace URIs by unique identifiers if possible in objects
+(
+    _:S _:P _:O
+    _:Surface _:Surface2
+    _:Identifier
+    _:Document _:Document2
+    _:Institution
+    _:ResultGraph
+    _:Scope
+    _:IdMappingOutput
+) log:onNegativeSurface {
+    << () log:onNeutralSurface _:Surface >> :containedBy _:Document.
+    _:Document :exposedBy _:Institution.
+    _:Surface log:includes { _:S _:P _:O }.
+
+    << () log:onNeutralSurface _:Surface2 >> :containedBy _:Document2.
+    _:Document2 :exposedBy _:Institution.
+    _:Surface2 log:includes { _:O :universalIdentifier _:Identifier }.
+    
+    () log:onNegativeSurface {
+        # We define this triple ourselves on a surface
+        # ... and add the necessary metadata for further in the chain
+        <<() log:onNeutralSurface {
+            _:S _:P _:Identifier.
+        }>> :containedBy :IdMappingOutpuDocument.
+        :IdMappingOutpuDocument :exposedBy _:Institution.
+
+        () log:onLogSurface {
+            <<() log:onNeutralSurface {
+                _:S _:P _:Identifier.
+            }>> :containedBy _:IdMappingOutput.
+            _:IdMappingOutput :fromDoc1 _:Document.
+            _:IdMappingOutput :fromDoc2 _:Document2.
+            _:IdMappingOutput :exposedBy _:Institution.
+        }
+    }.
+}.
+
+# Replace URIs by unique identifiers if possible in subjects
+(
+    _:S _:P _:O
+    _:Surface
+    _:Identifier
+    _:Document
+    _:Institution
+    _:ResultGraph
+    _:Scope
+) log:onNegativeSurface {
+    << () log:onNeutralSurface _:Surface >> :containedBy _:Document.
+    _:Document :exposedBy _:Institution.
+    _:Surface log:includes { _:S _:P _:O }.
+    
+    (
+        # if
+        {
+            _:Surface log:includes { _:S :universalIdentifier _:Identifier }.
+        }
+
+        # then
+        {
+            _:ResultGraph log:equalTo {
+                () log:onDataSurface {
+                    <<_:Identifier _:P _:O>> :exposedBy _:Institution.
+                    <<_:Identifier :equalTo _:S>> :exposedBy _:Institution.
+                }.
+                () log:onLogSurface {
+                    <<_:Identifier _:P _:O>> :exposedBy _:Institution.
+                    <<_:Identifier :equalTo _:S>> :exposedBy _:Institution.
+                }.
+            }
+        }
+        
+        # else 
+        {
+            _:ResultGraph log:equalTo {
+                () log:onDataSurface {
+                    <<_:S _:P _:O>> :exposedBy _:Institution.
+                }.
+                () log:onLogSurface {
+                    <<_:S _:P _:O>> :exposedBy _:Institution.
+                }.
+            }.
+        }
+
+    ) log:ifThenElseIn _:Scope.
+
+    () log:onNegativeSurface _:ResultGraph.
+}.
+

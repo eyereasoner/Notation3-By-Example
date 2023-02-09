@@ -1,0 +1,50 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix ldp: <http://www.w3.org/ns/ldp#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+# The artwork
+() log:onNeutralSurface {
+    <https://ghent-museum.be/artworks/artwork2.n3#artwork>
+        a :Artwork, :Painting;
+        :style :Expressionism;
+        :title "Is this an Apple?";
+        :universalIdentifier <id:artworks:14623252141>.
+} {| :containedBy <https://ghent-museum.be/artworks/artwork2.n3> |}.
+<https://ghent-museum.be/artworks/artwork2.n3> :exposedBy <https://ghent-museum.be/#institution>.
+
+# The painter
+() log:onNeutralSurface {
+    <https://ghent-museum.be/people/person2.n3#person>
+        a :Person;
+        :name "Kayle Von Yale";
+        :birthPlace <https://places.com/usa#place>;
+        :universalIdentifier <id:people:2131526252>.
+} {| :containedBy <https://ghent-museum.be/people/person2.n3> |}.
+<https://ghent-museum.be/people/person2.n3> :exposedBy <https://ghent-museum.be/#institution>.
+
+# The painting of the artwork
+() log:onNeutralSurface {
+    <https://ghent-museum.be/actions/actions/creation/13523.n3#action>
+        a :Action, :CreationAction;
+        :subject <https://ghent-museum.be/artworks/artwork2.n3#artwork>;
+        :creator <https://ghent-museum.be/people/person2.n3#person>;
+        :startDate "1600"^^xsd:date;
+        :endDate "1700"^^xsd:date;
+        :location <https://places.com/usa#place>.
+} {| :containedBy <https://ghent-museum.be/actions/actions/creation/13523.n3> |}.
+<https://ghent-museum.be/actions/actions/creation/13523.n3> :exposedBy <https://ghent-museum.be/#institution>.
+
+
+# The storage of the artwork
+() log:onNeutralSurface {
+    <https://ghent-museum.be/actions/actions/storage/21974.n3#action>
+        a :Action, :StorageAction;
+        :subject <https://ghent-museum.be/artworks/artwork2.n3#artwork>;
+        :target <https://ghent-museum.be/#institution>;
+        :startDate "2015"^^xsd:date.
+} {| :containedBy <https://ghent-museum.be/actions/actions/storage/21974.n3> |}.
+<https://ghent-museum.be/actions/actions/storage/21974.n3> :exposedBy <https://ghent-museum.be/#institution>.

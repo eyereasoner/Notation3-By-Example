@@ -1,0 +1,127 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix ldp: <http://www.w3.org/ns/ldp#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#>.
+
+<<<id:artworks:231151512> a :Artwork>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:artworks:231151512> :equalTo <https://ghent-museum.be/artworks/artwork1.n3#artwork>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:artworks:231151512> a :Painting>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:artworks:231151512> :style :Impressionism>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:artworks:231151512> :title "Is this the Magic Pear?">> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:artworks:231151512> :universalIdentifier <id:artworks:231151512>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:people:12315153512> a :Person>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:people:12315153512> :equalTo <https://ghent-museum.be/people/person1.n3#person>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:people:12315153512> :name "Brent Van Gent">> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:people:12315153512> :birthPlace <https://places.com/belgium/ghent#place>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:people:12315153512> :universalIdentifier <id:people:12315153512>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/creation/12345.n3#action> a :Action>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/creation/12345.n3#action> a :CreationAction>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/creation/12345.n3#action> :subject <https://ghent-museum.be/artworks/artwork1.n3#artwork>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/creation/12345.n3#action> :creator <https://ghent-museum.be/people/person1.n3#person>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/creation/12345.n3#action> :startDate "1448"^^xsd:date>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/creation/12345.n3#action> :endDate "1450"^^xsd:date>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/creation/12345.n3#action> :location <https://places.com/belgium/ghent#place>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21234.n3#action> a :Action>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21234.n3#action> a :StorageAction>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21234.n3#action> :subject <https://ghent-museum.be/artworks/artwork1.n3#artwork>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21234.n3#action> :target <https://ghent-museum.be/#institution>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21234.n3#action> :startDate "2012"^^xsd:date>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:artworks:14623252141> a :Artwork>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:artworks:14623252141> :equalTo <https://ghent-museum.be/artworks/artwork2.n3#artwork>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:artworks:14623252141> a :Painting>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:artworks:14623252141> :style :Expressionism>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:artworks:14623252141> :title "Is this an Apple?">> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:artworks:14623252141> :universalIdentifier <id:artworks:14623252141>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:people:2131526252> a :Person>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:people:2131526252> :equalTo <https://ghent-museum.be/people/person2.n3#person>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:people:2131526252> :name "Kayle Von Yale">> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:people:2131526252> :birthPlace <https://places.com/usa#place>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:people:2131526252> :universalIdentifier <id:people:2131526252>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/creation/13523.n3#action> a :Action>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/creation/13523.n3#action> a :CreationAction>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/creation/13523.n3#action> :subject <https://ghent-museum.be/artworks/artwork2.n3#artwork>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/creation/13523.n3#action> :creator <https://ghent-museum.be/people/person2.n3#person>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/creation/13523.n3#action> :startDate "1600"^^xsd:date>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/creation/13523.n3#action> :endDate "1700"^^xsd:date>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/creation/13523.n3#action> :location <https://places.com/usa#place>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21974.n3#action> a :Action>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21974.n3#action> a :StorageAction>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21974.n3#action> :subject <https://ghent-museum.be/artworks/artwork2.n3#artwork>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21974.n3#action> :target <https://ghent-museum.be/#institution>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21974.n3#action> :startDate "2015"^^xsd:date>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<id:artworks:21315412> a :Artwork>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:artworks:21315412> :equalTo <https://yale-museum.us/collection/artworks/artwork2.n3#artwork>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:artworks:21315412> a :Painting>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:artworks:21315412> :style :Surrealism>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:artworks:21315412> :title "Quest for the Green Shoe!">> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:artworks:21315412> :universalIdentifier <id:artworks:21315412>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:people:131515732> a :Person>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:people:131515732> :equalTo <https://yale-museum.us/collection/people/person2.n3#person>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:people:131515732> :name "Russel from Brussels">> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:people:131515732> :birthPlace <https://places.com/belgium/brussels#place>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:people:131515732> :universalIdentifier <id:people:131515732>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> a :Action>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> a :CreationAction>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> :subject <https://yale-museum.us/collection/artworks/artwork2.n3#artwork>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> :creator <https://yale-museum.us/collection/people/person2.n3#person>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> :startDate "1648"^^xsd:date>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> :endDate "1652"^^xsd:date>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> :location <https://places.com/usa/conneticut#place>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/storage/13679.n3#action> a :Action>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/storage/13679.n3#action> a :StorageAction>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/storage/13679.n3#action> :subject <https://yale-museum.us/collection/artworks/artwork2.n3#artwork>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/storage/13679.n3#action> :target <https://yale-museum.us/#institution>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/storage/13679.n3#action> :startDate "2017"^^xsd:date>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:artworks:14623252141> a :Artwork>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:artworks:14623252141> :equalTo <https://yale-museum.us/collection/artworks/artwork2.n3#artwork>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:artworks:14623252141> a :Painting>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:artworks:14623252141> :style :Surrealism>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:artworks:14623252141> :title "Is this The Magic Apple?">> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:artworks:14623252141> :universalIdentifier <id:artworks:14623252141>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:people:2131526252> a :Person>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:people:2131526252> :equalTo <https://yale-museum.us/collection/people/person2.n3#person>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:people:2131526252> :name "Kayle Von Yale">> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:people:2131526252> :birthPlace <https://places.com/usa/conneticut#place>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<id:people:2131526252> :universalIdentifier <id:people:2131526252>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> a :Action>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> a :CreationAction>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> :subject <https://yale-museum.us/collection/artworks/artwork2.n3#artwork>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> :creator <https://yale-museum.us/collection/people/person2.n3#person>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> :startDate "1648"^^xsd:date>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> :endDate "1652"^^xsd:date>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> :location <https://places.com/usa/conneticut#place>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://ghent-museum.be/actions/creation/12345.n3#action> :subject <id:artworks:231151512>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/creation/12345.n3#action> :subject <id:artworks:231151512>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://ghent-museum.be/actions/creation/12345.n3#action> :creator <id:people:12315153512>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/creation/12345.n3#action> :creator <id:people:12315153512>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21234.n3#action> :subject <id:artworks:231151512>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21234.n3#action> :subject <id:artworks:231151512>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://ghent-museum.be/actions/actions/creation/13523.n3#action> :subject <id:artworks:14623252141>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/creation/13523.n3#action> :subject <id:artworks:14623252141>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://ghent-museum.be/actions/actions/creation/13523.n3#action> :creator <id:people:2131526252>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/creation/13523.n3#action> :creator <id:people:2131526252>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21974.n3#action> :subject <id:artworks:14623252141>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://ghent-museum.be/actions/actions/storage/21974.n3#action> :subject <id:artworks:14623252141>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> :subject <id:artworks:21315412>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> :subject <id:artworks:21315412>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> :subject <id:artworks:14623252141>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> :subject <id:artworks:14623252141>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> :creator <id:people:131515732>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> :creator <id:people:131515732>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> :creator <id:people:2131526252>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/24152.n3#action> :creator <id:people:2131526252>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/storage/13679.n3#action> :subject <id:artworks:21315412>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://yale-museum.us/collection/actions/storage/13679.n3#action> :subject <id:artworks:21315412>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/storage/13679.n3#action> :subject <id:artworks:14623252141>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://yale-museum.us/collection/actions/storage/13679.n3#action> :subject <id:artworks:14623252141>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> :subject <id:artworks:21315412>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> :subject <id:artworks:21315412>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> :subject <id:artworks:14623252141>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> :subject <id:artworks:14623252141>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> :creator <id:people:131515732>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> :creator <id:people:131515732>>> :exposedBy <https://yale-museum.us/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> :creator <id:people:2131526252>>> :exposedBy <https://ghent-museum.be/#institution>.
+<<<https://yale-museum.us/collection/actions/creation/13523.n3#action> :creator <id:people:2131526252>>> :exposedBy <https://yale-museum.us/#institution>.
+

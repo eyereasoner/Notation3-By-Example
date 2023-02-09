@@ -1,0 +1,31 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix ldp: <http://www.w3.org/ns/ldp#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+(
+    _:Surface1 _:Surface2
+    _:Institution1 _:Institution2
+    _:S1 _:S2 
+    _:Identifier1 _:Identifier2
+) log:onNegativeSurface {
+    () log:onNeutralSurface _:Surface1 {| :exposedBy _:Institution1 |}.
+    () log:onNeutralSurface _:Surface2 {| :exposedBy _:Institution2 |}.
+
+    _:Surface1 log:includes {
+        _:S1 :universalIdentifier _:Identifier1
+    }.
+    
+    _:Surface2 log:includes {
+        _:S2 :universalIdentifier _:Identifier1
+    }.
+
+    # Stop matching the same URL
+    _:S1 log:notEqualTo _:S2.
+
+    () log:onNegativeSurface {
+        _:S1 :matches _:S2.
+    }.
+}.

@@ -1,0 +1,48 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix ldp: <http://www.w3.org/ns/ldp#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# The artwork
+() log:onNeutralSurface {
+    <https://ghent-museum.be/artworks/artwork1.n3#artwork>
+        a :Artwork, :Painting;
+        :style :Impressionism;
+        :title "Is this the Magic Pear?";
+        :universalIdentifier <id:artworks:231151512>.
+} {| :containedBy <https://ghent-museum.be/artworks/artwork1.n3> |}.
+<https://ghent-museum.be/artworks/artwork1.n3> :exposedBy <https://ghent-museum.be/#institution>.
+
+# The painter
+() log:onNeutralSurface {
+    <https://ghent-museum.be/people/person1.n3#person>
+        a :Person;
+        :name "Brent Van Gent";
+        :birthPlace <https://places.com/belgium/ghent#place>;
+        :universalIdentifier <id:people:12315153512>.
+} {| :containedBy <https://ghent-museum.be/people/person1.n3> |}.
+<https://ghent-museum.be/people/person1.n3> :exposedBy <https://ghent-museum.be/#institution>.
+
+# The painting of the artwork
+() log:onNeutralSurface {
+    <https://ghent-museum.be/actions/creation/12345.n3#action>
+        a :Action, :CreationAction;
+        :subject <https://ghent-museum.be/artworks/artwork1.n3#artwork>;
+        :creator <https://ghent-museum.be/people/person1.n3#person>;
+        :startDate "1448"^^xsd:date;
+        :endDate "1450"^^xsd:date;
+        :location <https://places.com/belgium/ghent#place>.
+} {| :containedBy <https://ghent-museum.be/actions/creation/12345.n3> |}.
+<https://ghent-museum.be/actions/creation/12345.n3> :exposedBy <https://ghent-museum.be/#institution>.
+
+# The storage of the artwork
+() log:onNeutralSurface {
+    <https://ghent-museum.be/actions/actions/storage/21234.n3#action>
+        a :Action, :StorageAction;
+        :subject <https://ghent-museum.be/artworks/artwork1.n3#artwork>;
+        :target <https://ghent-museum.be/#institution>;
+        :startDate "2012"^^xsd:date.
+} {| :containedBy <https://ghent-museum.be/actions/actions/storage/21234.n3> |}.
+<https://ghent-museum.be/actions/actions/storage/21234.n3> :exposedBy <https://ghent-museum.be/#institution>.

@@ -1,0 +1,39 @@
+@prefix : <https://example.org/ns/>.
+@prefix pol: <https://www.example.org/ns/policy#>.
+@prefix util: <https://github.com/phochste/util#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#>.
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix acl: <http://www.w3.org/ns/auth/acl#>.
+@prefix dc: <http://purl.org/dc/terms/>.
+@prefix ldp: <http://www.w3.org/ns/ldp#>.
+@prefix posix: <http://www.w3.org/ns/posix/stat#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix solid: <http://www.w3.org/ns/solid/terms#>.
+@prefix space: <http://www.w3.org/ns/pim/space#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#>.
+
+_:sk_39 a :AccessGrant.
+_:sk_39 acl:agentClass foaf:Agent.
+_:sk_39 acl:accessTo <https://my-pod.com/profile/card>.
+_:sk_39 acl:mode acl:Read.
+_:sk_40 a :AccessDenial.
+_:sk_40 acl:agentClass foaf:Agent.
+_:sk_40 acl:accessTo <https://my-pod.com/profile/card>.
+_:sk_40 acl:mode acl:Read.
+_:sk_40 acl:managingACLDocument _:e_ResourceACl_1.
+_:sk_40 acl:conflict <<<https://my-pod.com/profile/card#me> foaf:mbox <mailto:ruben@mailprovider.org>>>.
+_:sk_40 acl:comment "Denial of resource access because of conflict in triple based access.".
+_:sk_41 a :AccessDenial.
+_:sk_41 acl:agentClass foaf:Agent.
+_:sk_41 acl:accessTo <https://my-pod.com/profile/card>.
+_:sk_41 acl:mode acl:Read.
+_:sk_41 acl:managingACLDocument _:e_ResourceACl_2.
+_:sk_41 acl:conflict <<<https://my-pod.com/profile/card#me> foaf:phone <tel:+32-123-456-789>>>.
+_:sk_41 acl:comment "Denial of resource access because of conflict in triple based access.".
+

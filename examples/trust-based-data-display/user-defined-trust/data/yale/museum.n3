@@ -1,0 +1,10 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+
+# The museum
+
+# This is known information, no surface needed?
+<https://yale-museum.us/#institution>
+    a :Museum;
+    :name "Yale Museum";
+    :location <https://places.com/usa/conneticut#place>.

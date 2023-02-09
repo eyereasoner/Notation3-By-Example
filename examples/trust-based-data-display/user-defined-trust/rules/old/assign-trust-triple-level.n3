@@ -1,0 +1,64 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix ldp: <http://www.w3.org/ns/ldp#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+(
+    _:Surface
+    _:Institution
+    _:S _:P _:O
+    _:S2 _:O2
+    _:U1 _:U2
+    _:Scope
+    _:x _:SubjectList
+
+) log:onNegativeSurface {
+    
+    () log:onNeutralSurface {
+        _:S _:P _:O.
+    }.
+
+    ( 
+        _:S2 
+        { 
+            () log:onNeutralSurface {
+                _:S2 _:P _:O2.
+            }.
+            () log:onNegativeSurface {
+                () log:onNegativeSurface {
+                    _:S log:equalTo _:S2.
+                }.
+                () log:onNegativeSurface {
+                    _:S :universalIdentifier _:U1.
+                    _:S2 :universalIdentifier _:U1.
+                }.
+            }.
+        }
+        _:SubjectList 
+    ) log:collectAllIn _:Scope .
+
+    () log:onNegativeSurface {
+        () log:onLogSurface {
+            <<_:S _:P _:O >> :as :SPO.
+            <<_:S2 _:P _:O2 >> :as :S2PO2.
+            :list :is _:SubjectList.
+        }.
+    }.
+}.
+
+
+# (
+#     #if
+#     {
+#     }
+#     #then
+#     {
+
+#     }
+#     #else
+#     {
+
+#     } 
+# ) log:ifThenElseIn _:Scope.

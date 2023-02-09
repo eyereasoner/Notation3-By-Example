@@ -1,0 +1,7 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+
+(_:G) log:onQuerySurface {
+    () log:onDataSurface _:G.
+    () log:onConstructSurface _:G.
+}.
