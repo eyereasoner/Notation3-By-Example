@@ -1,13 +1,15 @@
 @prefix : <urn:example.org:> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
+# ∀x : Beetle a Car
 (_:x) log:onNegativeSurface {
     :Beetle a :Car .
 } .
 
-(_:s _:o) log:onQuerySurface {
+(_:S _:O) log:onQuerySurface {
+    # ∀S,O : S a O
     () log:onNegativeSurface {
-        _:s a _:o .
+        _:S a _:O .
     } .
     () log:onConstructSurface {
         :test :is true .
