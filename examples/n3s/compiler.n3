@@ -65,7 +65,7 @@
 # E.g.
 #    { q:X a q:Y } :qvar2 ( (genid:t0 genid:t1) { genid:t0 a genid:t1} ) .
 (_:X _:Y _:Z _:T1 _:T2 _:L) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:onConstructSurface {
         _:X :qvar2bn (_:Y _:Z).
     } .
     _:X graph:list _:L .
@@ -75,7 +75,7 @@
 } .
 
 (_:Formula _:Acc1 _:Acc2 ) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:onConstructSurface {
         (_:Formula () _:Acc1 _:Acc2) :_qvar2bn (_:Acc1 _:Acc2) .
     } .
 } .
@@ -89,7 +89,7 @@
     _:Sv _:Pv _:Ov
     _:Scope
 ) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:onConstructSurface {
         (_:Formula _:L _:Acc1 _:Acc2) :_qvar2bn _:X .
     } .
     _:L log:rawType rdf:List .
@@ -139,7 +139,7 @@
 #    X - a qvar or blank node variable
 #    Y - the skolemized version of the variable
 (_:Formula _:Y _:X _:Xn _:Xnp _:Scope) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:onConstructSurface {
         (_:Formula _:X) :skolemize _:Y .
     } .
 
@@ -186,7 +186,7 @@
 #       genid:t_1-var :isSkolem true
 #       genid:t_1-dn :isSkolem true
 (_:X _:Xn) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:onConstructSurface {
         _:X :isSkolem true .
     } .
     _:X log:namespace _:Xn .
@@ -202,7 +202,7 @@
 # E.g. 
 #      q:X :skolemVar genid:t_0-var
 (_:X _:Y _:T1 _:T2 _:T3) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:onConstructSurface {
         _:X :skolemVar _:Y .
     } .
     _:X log:skolem _:T1 .
@@ -220,7 +220,7 @@
 # E.g.
 #       _:X :skolemBlank genid:t_1-bn
 (_:X _:Y _:T1 _:T2 _:T3) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:onConstructSurface {
         _:X :skolemBlank _:Y .
     } .
     _:X log:skolem _:T1 .
@@ -239,7 +239,7 @@
 #       genid:t_1-bn :isSkolemBlank true
 #       genid:t_0-var :isSkolemBlank false
 (_:X _:Y ) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:onConstructSurface {
         _:X :isSkolemBlank _:Y .
     } .
     (_:X "-bn") :isSkolemOfType _:Y .
@@ -253,7 +253,7 @@
 #       genid:t_1-bn :isSkolemBlank false
 #       genid:t_0-var :isSkolemBlank true
 (_:X _:T1 _:Y _:Scope) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:onConstructSurface {
         _:X :isSkolemVar _:Y .
     } .
     (_:X "-var") :isSkolemOfType _:Y .
@@ -261,7 +261,7 @@
 
 # Helper function for :isSkolemBlank :isSkolemVar
 (_:X _:Type _:T1 _:Y _:Scope) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:onConstructSurface {
         (_:X _:Type) :isSkolemOfType _:Y .
     } .
     _:X log:uri _:T1 .
@@ -291,20 +291,20 @@
 # E.g.
 #       ( (1 2 4 8 16) math:greaterThan 4) :filter (8 16)
 (_:X _:F _:FV _:Y) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:onConstructSurface {
         (_:X _:F _:FV) :filter _:Y .
     } .
     (_:X _:F _:FV ()) :_filter _:Y .
 } .
 
 (_:F _:FV _:Acc) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:onConstructSurface {
         ( () _:F _:FV _:Acc ) :_filter _:Acc .
     } .
 } .
 
 (_:X _:F _:FV _:Acc _:Y _:H _:T _:N _:AccNew _:Scope) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:onConstructSurface {
         ( _:X _:F _:FV _:Acc ) :_filter _:Y .
     } .
 
