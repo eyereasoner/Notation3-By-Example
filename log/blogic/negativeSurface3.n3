@@ -1,0 +1,15 @@
+@prefix : <urn:example.org:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+(_:x) log:onNegativeSurface {
+    :Beetle a :Car .
+} .
+
+(_:s _:o) log:onQuerySurface {
+    () log:onNegativeSurface {
+        _:s a _:o .
+    } .
+    () log:onConstructSurface {
+        :test :is true .
+    }
+} .
