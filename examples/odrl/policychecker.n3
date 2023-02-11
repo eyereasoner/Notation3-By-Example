@@ -38,7 +38,7 @@
 
 # Implementation of an odrl:lt checker for dates
 (_:Blank _:CurrentDate _:Date) log:onNegativeSurface {
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         odrl:dateTime odrl:lt _:Date .
     } .
     _:Blank :currentDate _:CurrentDate  .
@@ -47,7 +47,7 @@
 
 # Implementation of an odrl:gt checker for dates
 (_:Blank _:CurrentDate _:Date) log:onNegativeSurface {
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         odrl:dateTime odrl:gt _:Date .
     } .
     _:Blank :currentDate _:CurrentDate  .
@@ -83,7 +83,7 @@
     _:S _:P _:O .
     _:P log:notEqualTo log:onNegativeSurface .
     _:P log:notEqualTo log:onQuerySurface .
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         _:S _:P _:O .
     } .
 } .

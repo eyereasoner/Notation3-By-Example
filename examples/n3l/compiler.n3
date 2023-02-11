@@ -17,7 +17,7 @@
 # List :asSurface Blogic
 #  returns the List as Blogic graph
 (_:F _:G) log:onNegativeSurface {
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         _:F :asSurface _:G .
     } .
     # We use an accumulator to construct the graph
@@ -26,14 +26,14 @@
 
 # When the list is empty we are done with accumulating and return the result
 (_:Acc) log:onNegativeSurface {
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         (() _:Acc) :_asSurface _:Acc .
     } .
 } .
 
 # Peak into the list if we see a blogic type list, that gathering the subgraph defined in it
 (_:F _:Acc _:N _:G _:A _:B _:Type _:Rest _:Graph) log:onNegativeSurface {
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         (_:F _:Acc) :_asSurface _:G .
     } .
     
@@ -55,37 +55,37 @@
 
 # Construct the graphs we need..
 (_:Param _:Graph _:Blogic) log:onNegativeSurface {
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         (log:neg _:Param _:Graph) :makeSurface _:Blogic .
     } .
     ( () { _:Param log:onNegativeSurface _:Graph }) :_asSurface _:Blogic .
 } .
 
 (_:Param _:Graph _:Blogic) log:onNegativeSurface {
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         (log:pos _:Param _:Graph) :makeSurface _:Blogic .
     } .
     ( () { _:Param log:onPositiveSurface _:Graph }) :_asSurface _:Blogic .
 } .
 
 (_:Param _:Graph _:Blogic) log:onNegativeSurface {
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         (log:query _:Param _:Graph) :makeSurface _:Blogic .
     } .
     ( () { _:Param log:onQuerySurface _:Graph }) :_asSurface _:Blogic .
 } .
 
 (_:Param _:Graph _:Blogic) log:onNegativeSurface {
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         (log:construct _:Param _:Graph) :makeSurface _:Blogic .
     } .
-    ( () { _:Param log:onConstructSurface _:Graph }) :_asSurface _:Blogic .
+    ( () { _:Param log:onQuerySurface _:Graph }) :_asSurface _:Blogic .
 } .
 
 # List :asGraph Formula
 #  given a list of 3 return a graph
 (_:L _:Graph _:Temp) log:onNegativeSurface {
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         _:L :asGraph _:Graph .
     } .
     (_:L ()) :_asGraph _:Temp .
@@ -93,7 +93,7 @@
 } .
 
 (_:Acc) log:onNegativeSurface {
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         ( () _:Acc) :_asGraph _:Acc .
     } .
 } .
@@ -104,7 +104,7 @@
    _:N _:S _:P _:O _:Rest _:AccNew _:Surface
    _:Scope
 ) log:onNegativeSurface {
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         (_:L _:Acc) :_asGraph _:Graph .
     } .
 
