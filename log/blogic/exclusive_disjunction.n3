@@ -24,7 +24,7 @@
 #     ( P -> ~Q ) AND (~Q -> P) AND ( ~P -> Q ) AND ( Q -> ~ P )
 
 # [1]
-(_:S) log:onNegativeSurface {
+() log:onNegativeSurface {
 
     :Alice a :Winner .
 
@@ -36,7 +36,7 @@
 }.
 
 # [2]
-(_:S) log:onNegativeSurface {
+() log:onNegativeSurface {
     () log:onNegativeSurface {
         :Bob a :Winner .
     } .
@@ -49,7 +49,7 @@
 # [3] 
 # Remark [2] and [3] are the same only with the order switched. One
 # could keep only one of these rules
-(_:S) log:onNegativeSurface {
+() log:onNegativeSurface {
     () log:onNegativeSurface {
         :Alice a :Winner .
     } .
@@ -60,7 +60,7 @@
 }.
 
 # [4]
-(_:S) log:onNegativeSurface {
+() log:onNegativeSurface {
     :Bob a :Winner .
 
     () log:onNegativeSurface {
