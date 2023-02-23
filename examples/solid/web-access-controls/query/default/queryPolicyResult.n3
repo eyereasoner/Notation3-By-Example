@@ -6,7 +6,7 @@
 # Print output result to main surface
 (_:G) log:onQuerySurface {
     () log:onResultSurface _:G.
-    () log:onConstructSurface _:G.
+    () log:onQuerySurface _:G.
 } .
 
 # Log warnings separately
