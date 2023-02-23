@@ -1,0 +1,17 @@
+@prefix : <urn:example.org:> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Alice a :Person .
+
+[ rdf:first _:S ; rdf:rest rdf:nil ] log:onNegativeSurface {
+    :Alice a :Person .
+    rdf:nil log:onNegativeSurface {
+        :Alice a :Human .
+    }
+} .
+
+#(_:S) log:onQuerySurface {
+[ rdf:first _:S ; rdf:rest [ rdf:first _:O ; rdf:rest rdf:nil ]] log:onQuerySurface {
+    _:S a _:O .
+} .
