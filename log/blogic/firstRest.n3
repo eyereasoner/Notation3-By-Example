@@ -15,3 +15,17 @@
 [ rdf:first _:S ; rdf:rest [ rdf:first _:O ; rdf:rest rdf:nil ]] log:onQuerySurface {
     _:S a _:O .
 } .
+
+# Test 
+
+rdf:nil log:onNegativeSurface {
+    :Alice a :Human .
+
+    rdf:nil log:onNegativeSurface {
+        :test :is true .
+    } . 
+} .
+
+rdf:nil log:onQuerySurface {
+    :test :is true .
+} .
