@@ -15,29 +15,29 @@
 } .
 
 # The rule below is
-# ( ∀ x1 : ( x1 a Wine ) -> ( x1 contains Alcohol ) ) ->
-#   ( ∀ x2 : ( x2 a French ) -> ( x2 needs ImportTax ) ) 
+# ( ∀ x : ( x a Wine ) -> ( x contains Alcohol ) ) ->
+#   ( ∀ x : ( x contains Alcohol & x a French ) -> ( x needs ImportTax ) ) 
 #
 # Question: how to write (what we actually need in this test)
 #  ∀ x : ( 
 #         ( ( x a Wine ) -> ( x contains Alcohol ) )  ->
 #         ( ( x a French ) -> ( x needs ImportTax ) )
 #  ) 
-(_:X1 _:X2) log:onNegativeSurface {
-    () log:onNegativeSurface {
-        _:X1 a :Wine .
+() log:onNegativeSurface {
+    (_:X) log:onNegativeSurface {
+        _:X a :Wine .
 
         () log:onNegativeSurface {
-            _:X1 :contains :Alcohol .
+            _:X :contains :Alcohol .
         } .
     } . 
     () log:onNegativeSurface {
-        (_:X2) log:onNegativeSurface {
-            _:X2 :contains :Alcohol . # This is the extra rule that makes the Question work (josd)
-            _:X2 a :French .
+        (_:X) log:onNegativeSurface {
+            _:X :contains :Alcohol . # This is the extra rule that makes the Question work (josd)
+            _:X a :French .
 
             () log:onNegativeSurface {
-                _:X2 :needs :ImportTax .
+                _:X :needs :ImportTax .
             } .
         } . 
     } .
