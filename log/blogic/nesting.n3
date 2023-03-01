@@ -10,10 +10,10 @@ _:x a :Person .
 (_:x) log:onPositiveSurface {
     _:x :likes :Music .
 
-    (_:x) log:onPositiveSurface {
+    () log:onPositiveSurface {
         _:x :plays :Piano .
 
-            (_:x) log:onPositiveSurface {
+            () log:onPositiveSurface {
                 _:x :listensTo :JoeyAlexander .
             } .
     } . 
