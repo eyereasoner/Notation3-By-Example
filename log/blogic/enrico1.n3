@@ -24,6 +24,11 @@
     } .
 } .
 
-(_:S _:P _:O) log:onQuerySurface {
-    _:S _:P _:O .
+# queries
+(_:S _:O) log:onQuerySurface {
+    _:S :child _:O .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
 } .
