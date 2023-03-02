@@ -1,0 +1,58 @@
+@prefix : <urn:example.org:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:jozef a :father.
+
+:franklin a :father .
+
+#\forall x \exists y \forall z : (x a Father) -> y child x & (z pet y -> x likes z) 
+(_:x) log:onNegativeSurface {
+    _:x a :father .
+    () log:onNegativeSurface {
+        (_:y) log:onPositiveSurface {
+            _:y :child _:x .
+
+            (_:z) log:onNegativeSurface {
+                _:z :pet _:y .
+                () log:onNegativeSurface {
+                    _:x :likes _:z .
+                } .
+            } . 
+        } .
+    } .
+} .
+
+# Test
+(_:x _:y) log:onNegativeSurface {
+    _:x :child :jozef .
+    _:y :child :franklin .
+
+    _:x log:notEqualTo _:y .
+
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+# Todo add test for the pets
+
+# Queries
+(_:s _:o) log:onQuerySurface {
+    _:s a _:o . 
+} .
+
+(_:s _:o _:q) log:onQuerySurface {
+    _:s :pet _:o . 
+} .
+
+(_:s _:o _:q) log:onQuerySurface {
+    _:s :child _:o . 
+} .
+
+(_:s _:o _:q) log:onQuerySurface {
+    _:s :likes _:o . 
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .

@@ -19,6 +19,9 @@
 (_:x _:y) log:onNegativeSurface {
     _:x :child :jozef .
     _:y :child :franklin .
+
+    _:x log:notEqualTo _:y .
+
     () log:onNegativeSurface {
         :test :is true .
     } .
