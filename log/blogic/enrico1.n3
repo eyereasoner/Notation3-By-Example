@@ -8,10 +8,8 @@
 # \forall x: ( (x ref:type :father) -> \exists y (y :child x) )
 (_:x) log:onNegativeSurface {
     _:x a :father .
-    () log:onNegativeSurface {
-        (_:y) log:onPositiveSurface {
-            _:y :child _:x .
-        } .
+    (_:y) log:onNegativeSurface {
+        _:y :child _:x .
     } .
 } .
 
