@@ -1,0 +1,20 @@
+@prefix : <urn:example.org:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# \exists x : x a Cat
+(_:x) log:onPositiveSurface {
+    _:x a :Cat .
+} .
+
+# \forall x : not(x a Cat)
+(_:x) log:onNegativeSurface {
+    () log:onNegativeSurface {
+        () log:onNegativeSurface {
+            _:x a :Cat .
+        } .
+    } .
+} .
+
+(_:S _:O) log:onQuerySurface {
+    _:S a _:O .
+} .
