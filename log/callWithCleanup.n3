@@ -1,0 +1,41 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:pers001 :familyName "Garcia".
+
+:Let :query1 { ?Person :familyName "Garcia" . } .
+:Let :query2 {} .
+
+{
+    :Let :query1 ?Query .
+    # The subject should contain a formula, this will be executed.
+    # When subject finishes with succes or failure the object formula
+    # will be called.
+    ?Query log:callWithCleanup true . # Just ignore all failed formulas
+}
+=>
+{
+    :result1 :is true .
+} .
+
+{
+    :Let :query2 ?Query .
+    # The subject should contain a formula, this will be executed.
+    # When subject finishes with succes or failure the object formula
+    # will be called.
+    ?Query log:callWithCleanup true . # Just ignore all failed formulas
+}
+=>
+{
+    :result2 :is true .
+} .
+
+
+{
+    :result1 :is true .
+    :result2 :is true .
+}
+=> 
+{
+    :test :is true .
+} .

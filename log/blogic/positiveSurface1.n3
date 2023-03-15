@@ -10,11 +10,12 @@ _:x a :PastaEater .
     (_:x) log:onNegativeSurface {
         _:x a :RiceEater .
 
-        () log:onNegativeSurface {
-            _:x a :PastaEater , :RiceEater .
+        (_:x _:y) log:onNegativeSurface {
+            _:x a :PastaEater . 
+            _:y a :RiceEater .
 
-            () log:onNegativeSurface {
-                _:x a :RisottoEater .
+            (_:z) log:onNegativeSurface {
+                _:z a :RisottoEater .
             } .
         } .
     } .
@@ -26,8 +27,8 @@ _:x a :PastaEater .
 
 # Test
 
-() log:onNegativeSurface {
-    _:x a :PastaEater, :RiceEater , :RisottoEater .
+(_:x) log:onNegativeSurface {
+    _:x a :RisottoEater .
     () log:onNegativeSurface {
         :test :is true .
     } .

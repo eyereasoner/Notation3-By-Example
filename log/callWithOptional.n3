@@ -1,0 +1,32 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# sample data
+:pers001 :familyName "Garcia".
+:pers001 :givenName "Claudia".
+
+{
+    # The subject contains a mandatory query the object
+    # should contain an optional query
+    { 
+        # Must have this in the data
+        ?person :familyName "Garcia"  .
+    }
+    log:callWithOptional
+    {
+        # May have this in the data 
+        ?person :givenName "Alex" .
+    } .
+}
+=>
+{
+    :result :is ?person .
+}.
+
+{
+    :result :is :pers001 .
+}
+=> 
+{
+    :test :is true .
+} .
