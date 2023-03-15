@@ -176,13 +176,9 @@ rdfs:subPropertyOf
 
 # Test 
 () log:onNegativeSurface {
-    # The positive surface is added here to optimize the execution speed
-    # it doesn't have any other effect
-    () log:onPositiveSurface {
-        :Alice :consumes :NasiGoreng , :ChickenTikkaMasala , :Water .
-        :Bob :consumes :NasiGoreng , :ChickenTikkaMasala , :CoqAuVin , :Brisket , :Water , :Wine .
-        :Charly :consumes :Brisket , :Water .
-    } .
+    :Alice :consumes :NasiGoreng , :ChickenTikkaMasala , :Water .
+    :Bob :consumes :NasiGoreng , :ChickenTikkaMasala , :CoqAuVin , :Brisket , :Water , :Wine .
+    :Charly :consumes :Brisket , :Water .
     () log:onNegativeSurface {
         :test :is true .
     } .

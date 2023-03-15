@@ -1,0 +1,35 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:jozef a :father.
+
+:franklin a :father .
+
+# \forall x: ( (x ref:type :father) -> \exists y (y :child x) )
+(_:x) log:onNegativeSurface {
+    _:x a :father .
+    (_:y) log:onNegativeSurface {
+        _:y :child _:x .
+    } .
+} .
+
+# Test
+(_:x _:y) log:onNegativeSurface {
+    _:x :child :jozef .
+    _:y :child :franklin .
+
+    _:x log:notEqualTo _:y .
+
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+# queries
+(_:S _:O) log:onQuerySurface {
+    _:S :child _:O .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
