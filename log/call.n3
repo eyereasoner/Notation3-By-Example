@@ -1,0 +1,36 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:person1 a :Person ;
+    :name "Alice" .
+
+:person2 a :Person ;
+    :name "Bob" ;
+    :age 23 .
+
+{
+    # The subject of log:call with be executed first the object of the
+    # log:call will be executed second.
+
+    # In the example below, we will search a graph of type Person which
+    # optional has an age. Then, in the object we check if this age is
+    # not bound. We can find in this way Persons without an age property.
+    { 
+        { ?person a :Person } log:callWithOptional { ?person :age ?age } .
+    } 
+    log:call {
+        ?age log:bound false  .
+    } .
+}
+=>
+{
+    :result :is ?person .
+} .
+
+{
+    :result :is :person1.
+}
+=>
+{
+    :test :is true .
+} .
