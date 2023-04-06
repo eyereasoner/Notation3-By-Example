@@ -7,7 +7,7 @@ _:x a :Person .
 
 # Nesting of postive surfaces adds to the implicit positive default
 # surface
-(_:x) log:onPositiveSurface {
+() log:onPositiveSurface {
     _:x :likes :Music .
 
     () log:onPositiveSurface {

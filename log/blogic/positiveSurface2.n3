@@ -5,7 +5,7 @@ _:x a :PastaEater .
 
 # The positive surface is the equivalent of a negative of a negative
 # surface. See positiveSurface1.n3
-(_:x) log:onPositiveSurface {
+() log:onPositiveSurface {
     # The _:x on this positiveSurface binds to the _:x on the
     # implicit default surface
     _:x a :RiceEater .
