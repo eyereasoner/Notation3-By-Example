@@ -1,0 +1,52 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# q -> (r & s)  /  q -> r
+# q -> (r & s)  /  q -> s
+() log:onNegativeSurface {
+    :q a :verb .
+    () log:onNegativeSurface {
+        :r a :verb . 
+        :s a :verb . 
+    } .
+} .
+
+# (q -> r) -> t
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
+        :q a :verb .
+        () log:onNegativeSurface {
+            :r a :verb .
+        } .
+    } .
+    () log:onNegativeSurface {
+        :t a :verb .
+    } .
+} .
+
+# (q -> s) -> u
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
+        :q a :verb .
+        () log:onNegativeSurface {
+            :s a :verb .
+        } .
+    } .
+    () log:onNegativeSurface {
+        :u a :verb .
+    } .
+} .
+
+# we must have a t
+# we must have a u
+() log:onNegativeSurface {
+    :t a :verb .
+    :u a :verb .
+    () log:onNegativeSurface {
+        :test :is true .  
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true . 
+} .
