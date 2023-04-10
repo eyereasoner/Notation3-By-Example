@@ -1,0 +1,29 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+{
+    # Evaluate if two RDF nodes are the isomorphic
+    #    X a any 
+    #    Y a any
+    1 log:isomorphic 1 .
+
+    _:x log:isomorphic _:y .
+    ?x  log:isomorphic ?y .
+
+    { _:x a :Cat } log:isomorphic { _:y a :Cat } .
+    { [] a :Cat }  log:isomorphic { _:y a :Cat } .
+    { ?x a :Cat }  log:isomorphic { ?y a :Cat } .
+
+    { _:x a _:y . _:y a _:x } log:isomorphic { _:foo a _:bar . _:bar a _:foo } .
+
+    { _:x :surface { _:x :is :ok } } log:isomorphic { _:x :surface { _:y :is _:z  } }.
+
+    { _:x :knows :p. :p :says {_:x a :genius}. } log:isomorphic { _:y :knows :p. :p :says {_:z a :genius} . }  .
+
+    { _:x :knows :p. :p :says {_:x a :genius}. } log:isomorphic { _:y :knows :p. :p :says {_:x a _:z}. } .
+}
+=> 
+{   
+    :test :is true .
+} .
