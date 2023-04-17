@@ -1,0 +1,35 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# A neutral surface with a contradiction
+() log:onNeutralSurface {
+    :A a :B .
+    () log:onNegativeSurface {
+        :A a :B .
+    } .
+} .
+
+# Test if we can match the neutral surface
+() log:onNegativeSurface {
+    () log:onNeutralSurface {
+        :A a :B .
+        () log:onNegativeSurface {
+            :A a :B .
+        } .
+    } .
+    () log:onNegativeSurface {
+        :Neutral :contains :Contradiction .
+    } .
+} .
+
+# test
+() log:onNegativeSurface {
+    :Neutral :contains :Contradiction .
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .    
+} .

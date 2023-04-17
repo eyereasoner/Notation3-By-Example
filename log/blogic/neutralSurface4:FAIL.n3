@@ -1,0 +1,24 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# A neutral surface with a contradiction
+(_:x) log:onNeutralSurface {
+    _:x a :B .
+    () log:onNegativeSurface {
+        _:x a :B .
+    } .
+} .
+
+# Test if we can match the neutral surface 
+(_:S _:B) log:onNegativeSurface {
+    _:S log:onNeutralSurface _:B .
+
+    # This must blow a fuse .. the question is if we can prevent this while reasoning
+    _:S log:onNegativeSurface _:B .
+} .
+
+:test :is true .
+
+() log:onQuerySurface {
+    :test :is true .    
+} .
