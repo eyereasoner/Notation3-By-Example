@@ -6,20 +6,21 @@
 (_:x) log:onNegativeSurface {
     # The negative surface below is just an RDF structure (not a negation)
     # The surface below will not be double-cut because the subject is not a list
-    # The surface below will not be deiterated because [2] 
+    # The surface below will be deiterated because [2] matches when _:x = (_:a)
     _:x log:onNegativeSurface {
         :Alice :hates :Quiche
     } .
 } .
 
 # [2]
-# \Every a : :Alices :hates :Quiche 
-# This is a negation not a structure
+# \Every a : not ( :Alices :hates :Quiche )
+# This is a negation and the structure
+# (_:a) log:onNegativeSurface { :Alice :hates :Quiche } .
 (_:a) log:onNegativeSurface {
     :Alice :hates :Quiche .
 } .
 
-# There will be no contradiction
+# There will be no contradiction (?)
 :test :is true .
 
 () log:onQuerySurface {
