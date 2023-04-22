@@ -2,7 +2,8 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # If there is a negative surface (including this surface)
-# then this surface is false
+# then this surface is false?
+# No, the inner surfaces are not logical but pure syntax
 (_:G _:F) log:onNegativeSurface {
    _:G log:onNegativeSurface _:F .
 
@@ -11,3 +12,8 @@
    } . 
 } .
 
+:test :is true .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
