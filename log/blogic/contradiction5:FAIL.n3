@@ -1,0 +1,27 @@
+@prefix : <http://example.org/ns#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# [1]
+# \Every x : not( x log:onNegativeSurface { :Alice :hates :Quiche } )
+(_:x) log:onNegativeSurface {
+    # The negative surface below is just an RDF structure (not a negation)
+    # The surface below will not be double-cut because the subject is not a list
+    # The surface below will not be deiterated because [2] 
+    _:x log:onNegativeSurface {
+        :Alice :hates :Quiche
+    } .
+} .
+
+# [2]
+# \Every a : :Alices :hates :Quiche 
+# This is a negation not a structure
+(_:a) log:onNegativeSurface {
+    :Alice :hates :Quiche .
+} .
+
+# There will be no contradiction
+:test :is true .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
