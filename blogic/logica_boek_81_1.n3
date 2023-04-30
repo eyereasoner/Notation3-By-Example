@@ -1,0 +1,37 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Premises
+
+# p & ~q
+
+:p a :verb .
+
+() log:onNegativeSurface {
+    :q a :verb .
+} .
+
+# r -> q
+() log:onNegativeSurface {
+    :r a :verb .
+    () log:onNegativeSurface {
+        :q a :verb . 
+    } .
+} .
+
+# Consequent
+
+# ~r
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
+        :r a :verb . 
+    } .
+    () log:onNegativeSurface {
+        :test :is true . 
+    } .
+} .
+
+# query
+() log:onQuerySurface {
+    :test :is true .
+} .

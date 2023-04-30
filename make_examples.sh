@@ -24,7 +24,7 @@ for n3 in *.n3 crypto/*.n3 graph/*.n3 list/*.n3 log/*.n3 math/*.n3 string/*.n3 ;
     fi
 done
 
-for n3 in log/blogic/*.n3 ; do 
+for n3 in blogic/*.n3 ; do 
     if [[ "$n3" =~ SKIP ]] ; then
         echo "(skipping $n3)" | tee $n3.out
     else
