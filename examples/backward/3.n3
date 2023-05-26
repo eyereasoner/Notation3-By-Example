@@ -14,20 +14,20 @@
 } .
 
 (_:A _:B) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         _:A :reverse _:B .
     } .
     (_:A () ) :reverse_ _:B .
 } .     
 
 (_:Acc) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         ( () _:Acc ) :reverse_ _:Acc . 
     } .
 } .
 
 (_:A _:B _:Acc _:AccN _:H _:T) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         ( _:A _:Acc ) :reverse_ _:B . 
     } .
     _:A list:firstRest (_:H _:T) .

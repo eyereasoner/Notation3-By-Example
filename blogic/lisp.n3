@@ -46,7 +46,7 @@
 } .
 
 (_:L1 _:L2 _:H _:R) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         _:L1 :eval _:L2 .
     } .
 
@@ -62,7 +62,7 @@
 } .
 
 (_:L1 _:L2 _:Type) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         _:L1 :eval _:L2 .
     } .
     _:L1 log:rawType _:Type .
@@ -71,7 +71,7 @@
 } .
 
 (_:L1 _:L2 _:H _:R _:Type) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         _:L1 :eval _:L2 .
     } .
 
@@ -93,7 +93,7 @@
 
 # :quote
 (_:L1 _:L2) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         (_:L1) :quote _:L2 .
     } .
     _:L1 log:equalTo _:L2 .
@@ -101,7 +101,7 @@
 
 # :atom
 (_:L1 _:X) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         _:L1 :atom true .
     } .
     _:L1 :eval _:X .
@@ -109,7 +109,7 @@
 } .
 
 (_:L1 _:X _:Y) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         (_:L1) :atom false .
     } .
     _:L1 :eval _:X .
@@ -119,7 +119,7 @@
 
 # :eq
 (_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         (_:L1 _:L2) :eq true .
     } .
     _:L1 :eval _:X .
@@ -129,7 +129,7 @@
 } .
 
 (_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         (_:L1 _:L2) :eq false .
     } .
     _:L1 :eval _:X .
@@ -138,7 +138,7 @@
 } .
 
 (_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         (_:L1 _:L2) :eq false .
     } .
     _:L1 :eval _:X .
@@ -148,7 +148,7 @@
 
 # :car
 (_:L1 _:L2 _:X) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         (_:L1) :car _:L2 .
     } .
     _:L1 :eval _:X .
@@ -157,7 +157,7 @@
 
 # :cdr
 (_:L1 _:X _:Y _:L2) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         (_:L1) :cdr _:L2 .
     } .
     _:L1 :eval _:X .
@@ -167,7 +167,7 @@
 
 # :cons
 (_:L1 _:X _:Y _:L2 _:L3) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         (_:L1 _:L2) :cons _:L3 .
     } .
     _:L1 :eval _:X .

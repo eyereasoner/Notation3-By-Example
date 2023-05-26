@@ -76,7 +76,7 @@
     _:G log:includes { _:S a :Cat } .
 
     () log:onNegativeSurface {
-        () log:onQuerySurface {
+        () log:negativeTriple {
             () log:onMySurface5 _:G .
         } .
     } .

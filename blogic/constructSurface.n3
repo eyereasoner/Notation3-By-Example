@@ -31,7 +31,7 @@
 # second spo is from the querySurface
 (_:S _:O) log:onQuerySurface {
     _:S :nested _:O .
-    () log:onQuerySurface _:O .
+    () log:negativeTriple _:O .
 } .
 
 # This will not work. A construct surface can only be used in a nested

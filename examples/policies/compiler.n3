@@ -79,7 +79,7 @@
 # Extract the answer surfaces 
 (_:X _:Answer _:S _:P _:O) log:onQuerySurface {
     _:X pol:onAnswerSurface _:Answer .
-    () log:onQuerySurface _:Answer .
+    () log:negativeTriple _:Answer .
 } .
 
 # Extract the original data without the rules
@@ -87,7 +87,7 @@
     _:e pol:mainSubject _:id .
     _:id util:walkGraph << _:S _:P _:O >> .
 
-    () log:onQuerySurface {
+    () log:negativeTriple {
         _:S _:P _:O .
     } .
 } .
@@ -101,7 +101,7 @@
         <https://www.example.org/ns/policy#origin>
     ) .
 
-    () log:onQuerySurface {
+    () log:negativeTriple {
         _:S _:P _:O .
     } .
 } .
