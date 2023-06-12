@@ -1,0 +1,7 @@
+@prefix ex: <http://www.example.org/rdf#> .
+
+ex:ABCMembership 
+    a ex:PMPMembership ;
+    ex:isActive true ;
+    ex:hasOrganization ex:ABC ;
+    ex:hasMember ex:user1 .

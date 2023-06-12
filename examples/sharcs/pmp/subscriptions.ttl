@@ -1,0 +1,7 @@
+@prefix ex: <http://www.example.org/rdf#> .
+
+ex:ABCSubscription 
+    a ex:Subscription ;
+    ex:isActive true ;
+    ex:hasMembership ex:ABCMembership ;
+    ex:hasClient ex:DataConsumerClient01 .

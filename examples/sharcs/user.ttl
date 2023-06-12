@@ -1,0 +1,5 @@
+@prefix : <http://www.example.org/rdf#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# Set a test user
+:Login :as :user1 .

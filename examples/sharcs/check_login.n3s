@@ -1,0 +1,101 @@
+@prefix : <http://www.example.org/rdf#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# WHEN:
+# ( Login as <User>) &
+# ( <Session> a LoginSession) &&
+# ( <Session> user <User>) &&
+# ( <Session> status LoggedIn) 
+# THEN:
+#   ( Login isValue true)        
+(_:Session _:User) log:onNegativeSurface {
+    :Login :as _:User .
+
+    _:Session a :LoginSession ;
+        :user _:User ;
+        :status :LoggedIn .
+
+     () log:onNegativeSurface {
+        :Login :isValidLogin true .
+    } .
+} .
+
+# WHEN:
+# (Login as <User>) &&
+# (Login isValidLogin true ) &&
+# (<Membership> a PMPMembership) &&
+# (<Membership> isActive true) &&
+# (<Membership> hasOrganization <Organization>) &&
+# (<Membership> hasMember <User>) &&
+# (<Organization> a Organization) &&
+# (<Organization> isActive true) &&
+# (<Organization> hasMember <User>)
+# THEN:
+#   (Login organization <Organization>) &&
+#   (Login isValidMembership true)
+(_:Membership _:Organization _:User) log:onNegativeSurface {
+    :Login :as _:User .
+    :Login :isValidLogin true .
+
+    _:Membership 
+        a :PMPMembership ;
+        :isActive true ;
+        :hasOrganization _:Organization ;
+        :hasMember _:User .
+
+    () log:onNegativeSurface {
+        :Login :membership _:Membership .
+        :Login :organization _:Organization .
+        :Login :isValidMembership true .
+    } .
+} .
+
+# WHEN:
+# (<Organization> a Organization) &&
+# (<Organization> isActive true) &&
+# (<Organization> hasMember <User>)
+# THEN:
+#   (Login isValidOrganization true)
+(_:Organization _:User) log:onNegativeSurface {
+    :Login :as _:User .
+    :Login :organization _:Organization.
+    :Login :isValidMembership true .
+
+    _:Organization 
+        a :Organization ;
+        :isActive true ;
+        :hasMember _:User .
+    () log:onNegativeSurface {
+        :Login :isValidOrganization true .
+    }
+} .
+
+# WHEN:
+# (Login membership <Membership>) &&
+# (Login isValidMembership true) &&
+# (<Subscription> a Subscription) &&
+# (<Subscription> isActive true) &&
+# (<Subscription> hasMembership <Membership>) &&
+# (<Subscription> hasClient <Client>
+# THEN:
+#   (Login clientSubcription <Client>) &&
+#   (Login isValidSubscription true)
+(_:Membership _:Client _:Subscription) log:onNegativeSurface {
+    :Login :membership _:Membership .
+    :Login :isValidMembership true .    
+
+    _:Subscription 
+        a :Subscription ;
+        :isActive true ;
+        :hasMembership _:Membership ;
+        :hasClient _:Client .
+
+    () log:onNegativeSurface {
+        :Login :clientSubcription _:Client .
+        :Login :isValidSubscription true .
+    } .  
+} .
+
+#(_:P _:O) log:onQuerySurface {
+#    :Login _:P _:O .
+#} .
