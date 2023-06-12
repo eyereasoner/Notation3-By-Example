@@ -11,7 +11,7 @@
     () log:onNegativeSurface {
         _:S a _:O .
     } .
-    () log:onQuerySurface {
+    () log:onAnswerSurface {
         :test :is true .
     }
 } .

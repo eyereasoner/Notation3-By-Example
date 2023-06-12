@@ -16,20 +16,20 @@
 } .
 
 (_:L _:R) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         _:L :rev _:R .
     } .
     (_:L ()) :revAcc _:R .
 } .
 
 (_:R) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         (() _:R) :revAcc _:R .
     } .
 } .
 
 (_:L _:Acc _:AccNew _:H _:T _:R) log:onNegativeSurface {
-    () log:onQuerySurface {
+    () log:negativeTriple {
         (_:L _:Acc) :revAcc _:R .
     } .
     _:L list:firstRest (_:H _:T) .
