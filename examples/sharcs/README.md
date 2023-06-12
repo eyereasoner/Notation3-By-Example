@@ -19,4 +19,17 @@
 
 ```
 ./test.sh
+@prefix ex: <http://www.example.org/rdf#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+
+ex:Login ex:as ex:user1.
+ex:Login ex:isValidLogin true.
+ex:Login ex:membership ex:ABCMembership.
+ex:Login ex:organization ex:ABC.
+ex:Login ex:isValidMembership true.
+ex:Login ex:isValidOrganization true.
+ex:Login ex:clientSubcription ex:DataConsumerClient01.
+ex:Login ex:isValidSubscription true.
+ex:Login ex:permission ex:ABCPermission.
+ex:Login ex:isValidPermission true.
 ```
