@@ -2,10 +2,10 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # WHEN:
-# ( Login as <User>) &
-# ( <Session> a LoginSession) &&
-# ( <Session> user <User>) &&
-# ( <Session> status LoggedIn) 
+# (Login as <User>) &
+# (<Session> a LoginSession) &&
+# (<Session> user <User>) &&
+# (<Session> status LoggedIn) 
 # THEN:
 #   ( Login isValue true)        
 (_:Session _:User) log:onNegativeSurface {
