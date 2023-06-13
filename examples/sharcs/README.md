@@ -7,13 +7,13 @@
 - `organizations/` : known organizations
 - `pmp/client.ttl` : known client applications
 - `pmp/memberships.ttl` : allowed organization memberships for the PMP
-- `pmp/permissions.ttl` : allowed permissions for the PMP
 - `pmp/subscriptions.ttl` : allowed subscriptions for the PMP
+- `pmp/subscriptions/permissions.ttl` : allowed permissions for the subscriptions
 
 ## Rules
 
 - `check_login.n3s` : check `user.ttl` against login rules
-- `check_permissions.n3s` : checl `user.ttl` against the permissions
+- `check_session_context_policy_evaluation.n3s` : check `user.ttl` against the subscriptionz permissions
   
 ## Demo
 
