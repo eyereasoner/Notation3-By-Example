@@ -1,6 +1,7 @@
 @prefix : <http://www.example.org/rdf#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-(_:P _:O) log:onQuerySurface {
-    :Login _:P _:O .
+(_:S _:P _:O) log:onQuerySurface {
+    _:S a :Login; 
+        _:P _:O .
 } .
