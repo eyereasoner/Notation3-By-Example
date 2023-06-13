@@ -22,7 +22,6 @@
 
 # WHEN:
 # (Login as <User>) &&
-# (Login isValidLogin true ) &&
 # (<Membership> a PMPMembership) &&
 # (<Membership> isActive true) &&
 # (<Membership> hasOrganization <Organization>) &&
@@ -35,7 +34,6 @@
 #   (Login isValidMembership true)
 (_:Membership _:Organization _:User) log:onNegativeSurface {
     :Login :as _:User .
-    :Login :isValidLogin true .
 
     _:Membership 
         a :PMPMembership ;
@@ -51,6 +49,7 @@
 } .
 
 # WHEN:
+# (Login as <User>) && 
 # (<Organization> a Organization) &&
 # (<Organization> isActive true) &&
 # (<Organization> hasMember <User>)
@@ -58,13 +57,12 @@
 #   (Login isValidOrganization true)
 (_:Organization _:User) log:onNegativeSurface {
     :Login :as _:User .
-    :Login :organization _:Organization.
-    :Login :isValidMembership true .
 
     _:Organization 
         a :Organization ;
         :isActive true ;
         :hasMember _:User .
+
     () log:onNegativeSurface {
         :Login :isValidOrganization true .
     }
@@ -72,17 +70,15 @@
 
 # WHEN:
 # (Login membership <Membership>) &&
-# (Login isValidMembership true) &&
 # (<Subscription> a Subscription) &&
 # (<Subscription> isActive true) &&
 # (<Subscription> hasMembership <Membership>) &&
-# (<Subscription> hasClient <Client>
+# (<Subscription> hasClient <Client>)
 # THEN:
 #   (Login clientSubcription <Client>) &&
 #   (Login isValidSubscription true)
 (_:Membership _:Client _:Subscription) log:onNegativeSurface {
     :Login :membership _:Membership .
-    :Login :isValidMembership true .    
 
     _:Subscription 
         a :Subscription ;
@@ -95,7 +91,3 @@
         :Login :isValidSubscription true .
     } .  
 } .
-
-#(_:P _:O) log:onQuerySurface {
-#    :Login _:P _:O .
-#} .

@@ -12,7 +12,6 @@
 #   (<Login> isValidPermission true)
 (_:Membership _:Permission) log:onNegativeSurface {
     :Login :membership _:Membership .
-    :Login :isValidMembership true .
 
     _:Permission
         a :Permission;
