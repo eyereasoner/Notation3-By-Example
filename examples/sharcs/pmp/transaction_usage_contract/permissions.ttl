@@ -4,13 +4,13 @@
 # - isActive : [1] true | false
 # - hasMembership : [1] membership identifier
 # - allows : [0...] allowances
-#      - subscription : [1] subscription identifier
+#      - contract: [1] contract identifier
 #      - usedBy : [0...] user identifier
-ex:ABCSubscriptionPermission
+ex:ABCContractPermission
     a ex:Permission ;
     ex:isActive true ;
     ex:hasMembership ex:ABCMembership ;
     ex:allows [
-        ex:subscription ex:ABCSubscription ;
+        ex:contract ex:ABCContract ;
         ex:usedBy ex:user1 
     ] .
