@@ -1,0 +1,24 @@
+@prefix : <http://www.example.org/rdf#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+
+# WHEN:
+# (Login as <User>) &&
+# (Login isValidLogin true) &&
+# (Login isValidMembership true) &&
+# (Login isValidOrganization true) &&
+# (Login isValidSubscription true) &&
+# (Login isValidPermission true) 
+# THEN:
+#   (Login isValid true)
+(_:User) log:onNegativeSurface {
+    :Login :as _:User .
+    :Login :isValidLogin true .
+    :Login :isValidMembership true .
+    :Login :isValidOrganization true .
+    :Login :isValidSubscription true .
+    :Login :isValidPermission true .
+    () log:onNegativeSurface {
+        :Login :isValid true .
+    } .
+} .
+
