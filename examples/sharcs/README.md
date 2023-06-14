@@ -1,7 +1,6 @@
 # SHARCS Example
 
-SHARCS example is a collection of data, rules and validation steps to
-simulate at data clearning house use-case.
+SHARCS example is a collection of data, rules and validation steps to simulate a data clearning house use-case.
 
 The **Knowledge Base** collection contains zero or more data resources that are 
 available in the context of the clearning house.
@@ -35,21 +34,23 @@ The SHARCS implementation has two reasoning runs: one for applying the policies 
 
 ## Policies
 
-- `policies/check_login.n3s` : check `user.ttl` against login rules
-- `policies/check_session_context_policy_evaluation.n3s` : check `user.ttl` against the subscriptionz permissions
-- `policies/query.n3s` : a template which data from the knowledge base can be send to the validation step
+### Data Consumer
+
+- `policies/data_consumer/check_login.n3s` : check `user.ttl` against login rules
+- `policies/data_consumer/check_session_context_policy_evaluation.n3s` : check `user.ttl` against the subscriptionz permissions
+- `policies/data_consumer/query.n3s` : a template which data from the knowledge base can be send to the validation step
 
 ## Validation 
 - `validation/valid_classes.n3s` : check if all required classes are available in the Login session
 - `validation/policies/check_consistency.n3s` : consistency checks
 - `validation/query.n3s` : a template which data can be sent to the output
 
-## Demo
+## Demo Data Consumer 
 
-Run all the reasoning steps as described above:
+Run all the reasoning steps as described above using a simulated Data Consumer session
 
 ```
-$ ./test.sh
+$ ./data_consumer_session.sh
 @prefix ex: <http://www.example.org/rdf#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix list: <http://www.w3.org/2000/10/swap/list#>.
@@ -73,7 +74,7 @@ ex:MyTest ex:action ex:AllowService.
 As test one can inactive one of the data sources. E.g. set `pmp/subscription/permissions.ttl` the `ex:ABCSubscriptionPermission ex:isActive false` and run the test again:
 
 ```
-$ ./test.sh
+$ ./data_consumer_session.sh
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix list: <http://www.w3.org/2000/10/swap/list#>.
 
