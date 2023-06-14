@@ -10,7 +10,7 @@
 # (<Permission> hasMembership <Membership>) &
 # (<Permission> allows <Allows>) &
 # (<Allows> subscription <Subscription>) &
-# (<Allows> usedBy <User>)
+# (<Allows> subscriber <User>)
 # IMPLIES:
 #   (<Login> permission <Permission>) &
 #   (<Login> a ValidPermission)
