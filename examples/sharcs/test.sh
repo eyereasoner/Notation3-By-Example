@@ -2,5 +2,7 @@
 
 DATA=$(find . -name "*.ttl")
 
-# login
-eye --nope --quiet --blogic ${DATA} check_*.n3s query.n3s
+# Run 1: reasoning part
+eye --nope --quiet --blogic ${DATA} policies/check_*.n3s policies/query.n3s |\
+    # Run 2: validation part (allows SNAF queries)
+    eye --nope --quiet --blogic - validation/valid_*.n3s validation/query.n3s
