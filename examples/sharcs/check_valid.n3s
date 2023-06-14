@@ -10,18 +10,18 @@
 # (<Login> isValidSubscription true) &&
 # (<Login> isValidPermission true) 
 # THEN:
-#   (<Login> isValid true)
+#   (<Login> a ValidAll)
 (_:Login) log:onNegativeSurface {
     _:Login 
         a :Login ;
-        :isValidLogin true ;
-        :isValidMembership true ;
-        :isValidOrganization true ;
-        :isValidSubscription true ;
-        :isValidPermission true .
+        a :ValidLogin ;
+        a :ValidMembership ;
+        a :ValidOrganization ;
+        a :ValidSubscription ;
+        a :ValidPermission .
 
     () log:onNegativeSurface {
-        _:Login :isValid true .
+        _:Login a :ValidAll .
     } .
 } .
 

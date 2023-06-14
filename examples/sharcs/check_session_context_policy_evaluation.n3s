@@ -1,19 +1,19 @@
 @prefix : <http://www.example.org/rdf#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-# WHEN:
-# (<Login> a Login) &&
-# (<Login> user <User>) &&
-# (<Login> membership <Membership>) &&
-# (<Permission> a Permission) &&
-# (<Permission> isActive true) &&
-# (<Permission> hasMembership <Membership>) &&
-# (<Permission> allows <Allows>) &&
-# (<Allows> subscription <Subcription>) &&
+# ForAll Login, User, Membership, Subscription, Permission, Allows:
+# (<Login> a Login) &
+# (<Login> user <User>) &
+# (<Login> membership <Membership>) &
+# (<Permission> a Permission) &
+# (<Permission> isActive true) &
+# (<Permission> hasMembership <Membership>) &
+# (<Permission> allows <Allows>) &
+# (<Allows> subscription <Subscription>) &
 # (<Allows> usedBy <User>)
-# THEN:
-#   (<Login> permission <Permission>) &&
-#   (<Login> isValidPermission true)
+# IMPLIES:
+#   (<Login> permission <Permission>) &
+#   (<Login> a ValidPermission)
 (_:Login _:User _:Membership _:Subscription _:Permission _:Allows) log:onNegativeSurface {
     _:Login 
         a :Login ;
@@ -34,7 +34,7 @@
         :usedBy _:User .
 
     () log:onNegativeSurface {
-        _:Login :permission _:Permission.
-        _:Login :isValidPermission true .
+        _:Login :permission _:Permission .
+        _:Login a :ValidPermission .
     } .
 } .
