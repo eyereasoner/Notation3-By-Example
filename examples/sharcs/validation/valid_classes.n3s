@@ -26,7 +26,7 @@
     _:Required list:setEqualTo _:HasClasses .
 
     () log:onNegativeSurface {
-        _:Login :valid true .
+        _:Login :action :AllowService .
     } .
 } .
 
@@ -46,7 +46,7 @@
     } .
 
     () log:onNegativeSurface {
-        _:Login :valid false .
+        _:Login :action :DenyService .
         _:Login :missing _:Class .
     } .
 } .

@@ -66,7 +66,7 @@ ex:MyTest ex:membership ex:ABCMembership.
 ex:MyTest ex:organization ex:ABC.
 ex:MyTest ex:clientSubscription ex:DataConsumerClient01.
 ex:MyTest ex:permission ex:ABCSubscriptionPermission.
-ex:MyTest ex:valid true.
+ex:MyTest ex:action ex:AllowService.
 ```
 
 As test one can inactive one of the data sources. E.g. set `pmp/subscription/permissions.ttl` the `ex:ABCSubscriptionPermission ex:isActive false` and run the test again:
@@ -87,6 +87,6 @@ ex:MyTest ex:subscription ex:ABCSubscription.
 ex:MyTest ex:membership ex:ABCMembership.
 ex:MyTest ex:organization ex:ABC.
 ex:MyTest ex:clientSubscription ex:DataConsumerClient01.
-ex:MyTest ex:valid false.
+ex:MyTest ex:action ex:DenyService.
 ex:MyTest ex:missing ex:ValidPermission.
 ```
