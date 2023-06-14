@@ -41,6 +41,7 @@ The SHARCS implementation has two reasoning runs: one for applying the policies 
 
 ## Validation 
 - `validation/valid_classes.n3s` : check if all required classes are available in the Login session
+- `validation/policies/check_consistency.n3s` : consistency checks
 - `validation/query.n3s` : a template which data can be sent to the output
 
 ## Demo
