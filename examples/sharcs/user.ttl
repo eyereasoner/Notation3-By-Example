@@ -2,6 +2,12 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Set a test user
-:MyTest
+:MyTestLogin
     a :Login ;
     :as :user1 .
+
+:MyTestProvider
+    a :ProviderSession ;
+    :user :user1 ;
+    :client :DataProviderClient01 ;
+    :membership  :ABCMembership.

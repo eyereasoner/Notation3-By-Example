@@ -1,0 +1,9 @@
+@prefix ex: <http://www.example.org/rdf#> .
+
+# Define Access Grants for a client to read data from some Pod
+# - isActive : true | false
+# - client : the identifier of a client
+ex:AccessGrant123
+    a ex:AccessGrant ;
+    ex:isActive true ;
+    ex:client ex:DataProviderClient01 .
