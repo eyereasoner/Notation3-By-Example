@@ -37,8 +37,13 @@ The SHARCS implementation has two reasoning runs: one for applying the policies 
 ### Data Consumer
 
 - `policies/data_consumer/check_login.n3s` : check `user.ttl` against login rules
-- `policies/data_consumer/check_session_context_policy_evaluation.n3s` : check `user.ttl` against the subscriptionz permissions
+- `policies/data_consumer/check_session_context_policy_evaluation.n3s` : check `user.ttl` against the subscription permissions
 - `policies/data_consumer/query.n3s` : a template which data from the knowledge base can be send to the validation step
+
+### Data Provider
+
+- `policies/data_provider/check_access_grant_policy_evaluation.n3s` : check `user.ttl` against the grant policy evaluation
+- `policies/data_provider/query.n3s` : a template which data from the knowledge base can be send to the validation step
 
 ## Validation 
 - `validation/valid_classes.n3s` : check if all required classes are available in the Login session
@@ -92,3 +97,5 @@ ex:MyTest ex:clientSubscription ex:DataConsumerClient01.
 ex:MyTest ex:action ex:DenyService.
 ex:MyTest ex:missing ex:ValidPermission.
 ```
+
+## Demo Data Provider
