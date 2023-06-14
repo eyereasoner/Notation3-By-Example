@@ -51,6 +51,7 @@ Run all the reasoning steps as described above:
 $ ./test.sh
 @prefix ex: <http://www.example.org/rdf#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
 
 ex:MyTest a ex:Login.
 ex:MyTest a ex:ValidLogin.
@@ -58,7 +59,6 @@ ex:MyTest a ex:ValidMembership.
 ex:MyTest a ex:ValidOrganization.
 ex:MyTest a ex:ValidSubscription.
 ex:MyTest a ex:ValidPermission.
-ex:MyTest a ex:ValidAll.
 ex:MyTest ex:as ex:user1.
 ex:MyTest ex:user ex:user1.
 ex:MyTest ex:subscription ex:ABCSubscription.
@@ -66,4 +66,27 @@ ex:MyTest ex:membership ex:ABCMembership.
 ex:MyTest ex:organization ex:ABC.
 ex:MyTest ex:clientSubscription ex:DataConsumerClient01.
 ex:MyTest ex:permission ex:ABCSubscriptionPermission.
+ex:MyTest ex:valid true.
+```
+
+As test one can inactive one of the data sources. E.g. set `pmp/subscription/permissions.ttl` the `ex:ABCSubscriptionPermission ex:isActive false` and run the test again:
+
+```
+$ ./test.sh
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+
+ex:MyTest a ex:Login.
+ex:MyTest a ex:ValidLogin.
+ex:MyTest a ex:ValidMembership.
+ex:MyTest a ex:ValidOrganization.
+ex:MyTest a ex:ValidSubscription.
+ex:MyTest ex:as ex:user1.
+ex:MyTest ex:user ex:user1.
+ex:MyTest ex:subscription ex:ABCSubscription.
+ex:MyTest ex:membership ex:ABCMembership.
+ex:MyTest ex:organization ex:ABC.
+ex:MyTest ex:clientSubscription ex:DataConsumerClient01.
+ex:MyTest ex:valid false.
+ex:MyTest ex:missing ex:ValidPermission.
 ```
