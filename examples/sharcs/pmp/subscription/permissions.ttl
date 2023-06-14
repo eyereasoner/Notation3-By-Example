@@ -12,5 +12,5 @@ ex:ABCSubscriptionPermission
     ex:hasMembership ex:ABCMembership ;
     ex:allows [
         ex:subscription ex:ABCSubscription ;
-        ex:usedBy ex:user1 
+        ex:subscriber ex:user1 
     ] .
