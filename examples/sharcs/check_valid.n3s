@@ -2,23 +2,26 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 
 # WHEN:
-# (Login as <User>) &&
-# (Login isValidLogin true) &&
-# (Login isValidMembership true) &&
-# (Login isValidOrganization true) &&
-# (Login isValidSubscription true) &&
-# (Login isValidPermission true) 
+# (<Login> a Login) &&
+# (<Login> as <User>) &&
+# (<Login> isValidLogin true) &&
+# (<Login> isValidMembership true) &&
+# (<Login> isValidOrganization true) &&
+# (<Login> isValidSubscription true) &&
+# (<Login> isValidPermission true) 
 # THEN:
-#   (Login isValid true)
-(_:User) log:onNegativeSurface {
-    :Login :as _:User .
-    :Login :isValidLogin true .
-    :Login :isValidMembership true .
-    :Login :isValidOrganization true .
-    :Login :isValidSubscription true .
-    :Login :isValidPermission true .
+#   (<Login> isValid true)
+(_:Login) log:onNegativeSurface {
+    _:Login 
+        a :Login ;
+        :isValidLogin true ;
+        :isValidMembership true ;
+        :isValidOrganization true ;
+        :isValidSubscription true ;
+        :isValidPermission true .
+
     () log:onNegativeSurface {
-        :Login :isValid true .
+        _:Login :isValid true .
     } .
 } .
 

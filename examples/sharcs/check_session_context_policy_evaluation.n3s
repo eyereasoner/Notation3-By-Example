@@ -2,6 +2,7 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # WHEN:
+# (<Login> a Login) &&
 # (<Login> user <User>) &&
 # (<Login> membership <Membership>) &&
 # (<Permission> a Permission) &&
@@ -13,10 +14,12 @@
 # THEN:
 #   (<Login> permission <Permission>) &&
 #   (<Login> isValidPermission true)
-(_:User _:Membership _:Subscription _:Permission _:Allows) log:onNegativeSurface {
-    :Login :user _:User .
-    :Login :membership _:Membership .
-    :Login :subscription _:Subscription .
+(_:Login _:User _:Membership _:Subscription _:Permission _:Allows) log:onNegativeSurface {
+    _:Login 
+        a :Login ;
+        :user _:User ;
+        :membership _:Membership ;
+        :subscription _:Subscription .
 
     _:Permission
         a :Permission;
@@ -31,7 +34,7 @@
         :usedBy _:User .
 
     () log:onNegativeSurface {
-        :Login :permission _:Permission.
-        :Login :isValidPermission true .
+        _:Login :permission _:Permission.
+        _:Login :isValidPermission true .
     } .
 } .
