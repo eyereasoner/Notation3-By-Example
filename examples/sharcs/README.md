@@ -23,6 +23,7 @@ The SHARCS implementation has two reasoning runs: one for applying the policies 
 ## Knowledge Base
 
 - `user.ttl` : a user that wants to login
+- `grant/` : data provider client grants
 - `login/` : the context of a logged user
 - `organizations/` : known organizations
 - `pmp/client.ttl` : known client applications
@@ -34,6 +35,19 @@ The SHARCS implementation has two reasoning runs: one for applying the policies 
 
 ## Policies
 
+The policies are written in the first-order logic from of [RDF Surfaces](https://w3c-cg.github.io/rdfsurfaces/). Each policy has access to all
+the data in the knowledge base (all `.ttl` files in this example). Based
+on this data implications can be written:
+
+```
+ForAll X : X has property IMPLIES X a ValidSubject
+```
+
+Policies can be written independent from eachother. Each policy adds a
+`Valid*` class to the login session when the policy holds.
+
+A validation run will check if a login session contains all the required `Valid*` classes and proposes a next action: e.g. `AllowService` or `DenyService`.
+
 ### Data Consumer
 
 - `policies/data_consumer/check_login.n3s` : check `user.ttl` against login rules
@@ -42,6 +56,7 @@ The SHARCS implementation has two reasoning runs: one for applying the policies 
 
 ### Data Provider
 
+- `policies/data_provider/checl_login.n3s` : check `user.ttl` against login rules
 - `policies/data_provider/check_access_grant_policy_evaluation.n3s` : check `user.ttl` against the grant policy evaluation
 - `policies/data_provider/check_transaction_usage_contract_policy_evaluation.n3s` : check the `user.ttl` against the transaction usage contract
 - `policies/data_provider/query.n3s` : a template which data from the knowledge base can be send to the validation step

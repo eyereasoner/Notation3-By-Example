@@ -6,11 +6,14 @@
 # (<Login> as <User>) &
 # (<Session> a LoginSession) &
 # (<Session> user <User>) &
-# (<Session> status LoggedIn) 
+# (<Session> status LoggedIn) &
+# (<Session> client <Client>) &
+# (<Client> a DataConsumer) &
+# (<Client> isActive true)
 # IMPLIES
 #   (<Login> user <User>) &
 #   (<Login> a ValidLogin)        
-(_:Login _:Session _:User) log:onNegativeSurface {
+(_:Login _:Client _:Session _:User) log:onNegativeSurface {
     
     _:Login 
         a :Login ;
@@ -18,9 +21,14 @@
 
     _:Session a :LoginSession ;
         :user _:User ;
+        :client _:Client ;
         :status :LoggedIn .
 
-     () log:onNegativeSurface {
+    _:Client 
+        a :DataConsumer ;
+        :isActive true .
+
+    () log:onNegativeSurface {
         _:Login :user _:User .
         _:Login a :ValidLogin .
     } .

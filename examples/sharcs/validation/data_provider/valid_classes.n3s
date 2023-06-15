@@ -5,6 +5,7 @@
 # All required classes for a valid login
 :ValidCheck :requires (
     :ProviderSession 
+    :ValidLogin
     :ValidAccessGrant
     :ValidTransactionUsageContract
     :ValidPermission

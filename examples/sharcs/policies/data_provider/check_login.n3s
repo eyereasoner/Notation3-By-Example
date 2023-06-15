@@ -1,0 +1,26 @@
+@prefix : <http://www.example.org/rdf#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# ForAll Session, Client :
+# (<Session> a ProviderSession) &
+# (<Session> client <Client>) &
+# (<Client> a DataProvider) &
+# (<Client> isActive true)
+# IMPLIES
+#   (<Session> a ValidLogin) &
+#   (<Session> client <Client>)
+(_:Session _:Client) log:onNegativeSurface {
+    _:Session 
+        a :ProviderSession ;
+        :client _:Client .
+
+    _:Client 
+        a :DataProvider ;
+        :isActive true .
+
+    () log:onNegativeSurface {
+        _:Session
+            a :ValidLogin ;
+            :client _:Client .
+    } .
+} .
