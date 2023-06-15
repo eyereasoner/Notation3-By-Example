@@ -132,6 +132,7 @@ $ ./data_provider_session.sh
 
 ex:MyTestProvider a ex:ProviderSession.
 ex:MyTestProvider a ex:ValidAccessGrant.
+ex:MyTestProvider a ex:ValidLogin.
 ex:MyTestProvider a ex:ValidTransactionUsageContract.
 ex:MyTestProvider a ex:ValidPermission.
 ex:MyTestProvider ex:user ex:user1.
