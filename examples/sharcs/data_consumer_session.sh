@@ -9,6 +9,6 @@ eye --nope --quiet --blogic ${DATA} \
     |\
     # Run 2: validation part (allows SNAF queries)
     eye --nope --quiet --blogic - \
-        validation/valid_*.n3s \
-        validation/policies/check_*.n3s \
-        validation/query.n3s
+        validation/data_consumer/valid_*.n3s \
+        validation/data_consumer/policies/check_*.n3s \
+        validation/data_consumer/query.n3s
