@@ -141,3 +141,22 @@ ex:MyTestProvider ex:membership ex:ABCMembership.
 ex:MyTestProvider ex:contract ex:ABCContract.
 ex:MyTestProvider ex:action ex:AllowService.
 ```
+
+We can invalide this process by, for instance, commenting out the access grant in `grant/client1.ttl` and run the `data_provider_session.sh` again:
+
+```
+$ ./data_provider_session.sh
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+
+ex:MyTestProvider a ex:ProviderSession.
+ex:MyTestProvider a ex:ValidLogin.
+ex:MyTestProvider a ex:ValidTransactionUsageContract.
+ex:MyTestProvider a ex:ValidPermission.
+ex:MyTestProvider ex:user ex:user1.
+ex:MyTestProvider ex:client ex:DataProviderClient01.
+ex:MyTestProvider ex:membership ex:ABCMembership.
+ex:MyTestProvider ex:contract ex:ABCContract.
+ex:MyTestProvider ex:action ex:DenyService.
+ex:MyTestProvider ex:missing ex:ValidAccessGrant.
+```
