@@ -139,6 +139,7 @@ ex:MyTestProvider ex:user ex:user1.
 ex:MyTestProvider ex:client ex:DataProviderClient01.
 ex:MyTestProvider ex:membership ex:ABCMembership.
 ex:MyTestProvider ex:contract ex:ABCContract.
+ex:MyTestProvider ex:grant ex:AccessGrant123.
 ex:MyTestProvider ex:action ex:AllowService.
 ```
 
