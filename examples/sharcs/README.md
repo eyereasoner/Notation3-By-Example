@@ -43,16 +43,24 @@ The SHARCS implementation has two reasoning runs: one for applying the policies 
 ### Data Provider
 
 - `policies/data_provider/check_access_grant_policy_evaluation.n3s` : check `user.ttl` against the grant policy evaluation
+- `policies/data_provider/check_transaction_usage_contract_policy_evaluation.n3s` : check the `user.ttl` against the transaction usage contract
 - `policies/data_provider/query.n3s` : a template which data from the knowledge base can be send to the validation step
 
 ## Validation 
-- `validation/valid_classes.n3s` : check if all required classes are available in the Login session
-- `validation/policies/check_consistency.n3s` : consistency checks
-- `validation/query.n3s` : a template which data can be sent to the output
+
+### Data Consumer
+- `validation/data_consumer/valid_classes.n3s` : check if all required classes are available in the Login session
+- `validation/data_consumer/policies/check_consistency.n3s` : consistency checks
+- `validation/data_consumer/query.n3s` : a template which data can be sent to the output
+
+### Data Provider
+- `validation/data_provider/valid_classes.n3s` : check if all required classes are available in the Login session
+- `validation/data_provider/policies/check_consistency.n3s` : consistency checks
+- `validation/data_provider/query.n3s` : a template which data can be sent to the output
 
 ## Demo Data Consumer 
 
-Run all the reasoning steps as described above using a simulated Data Consumer session
+Run all the reasoning steps as described above using a simulated Data Consumer session:
 
 ```
 $ ./data_consumer_session.sh
@@ -99,3 +107,21 @@ ex:MyTest ex:missing ex:ValidPermission.
 ```
 
 ## Demo Data Provider
+
+Run all the reasoning steps as described above using a simulated Data Provider session:
+
+```
+$ ./data_provider_session.sh
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+
+ex:MyTestProvider a ex:ProviderSession.
+ex:MyTestProvider a ex:ValidAccessGrant.
+ex:MyTestProvider a ex:ValidTransactionUsageContract.
+ex:MyTestProvider a ex:ValidPermission.
+ex:MyTestProvider ex:user ex:user1.
+ex:MyTestProvider ex:client ex:DataProviderClient01.
+ex:MyTestProvider ex:membership ex:ABCMembership.
+ex:MyTestProvider ex:contract ex:ABCContract.
+ex:MyTestProvider ex:action ex:AllowService.
+```
