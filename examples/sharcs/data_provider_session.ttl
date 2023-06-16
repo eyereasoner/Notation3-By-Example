@@ -11,6 +11,5 @@
     a :LoginSession ;
     :user :user1 ;
     :status :LoggedIn ;
-    :client :DataProviderClient01 ;
-    :membership :ABCMembership
+    :client :DataProviderClient01 
 ] .
