@@ -1,0 +1,17 @@
+@prefix ex: <http://www.example.org/rdf#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+
+ex:MyTestLogin a ex:Login.
+ex:MyTestLogin a ex:ValidLogin.
+ex:MyTestLogin a ex:ValidMembership.
+ex:MyTestLogin a ex:ValidOrganization.
+ex:MyTestLogin a ex:ValidSubscription.
+ex:MyTestLogin a ex:ValidPermission.
+ex:MyTestLogin ex:subscription ex:ABCSubscription.
+ex:MyTestLogin ex:as ex:user1.
+ex:MyTestLogin ex:user ex:user1.
+ex:MyTestLogin ex:membership ex:ABCMembership.
+ex:MyTestLogin ex:organization ex:ABC.
+ex:MyTestLogin ex:clientSubscription ex:DataConsumerClient01.
+ex:MyTestLogin ex:permission ex:ABCSubscriptionPermission.
+
