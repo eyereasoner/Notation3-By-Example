@@ -22,6 +22,8 @@ The SHARCS implementation has two reasoning runs: one for applying the policies 
 
 ## Knowledge Base
 
+The data files in the knowledge base are organized for ease of administation. The exact names or locations of the these files is of no significance for the experiment (as long as the reasoner has some way to have access to all these resources). 
+
 - `grant/` : data provider client grants
 - `organizations/` : known organizations
 - `pmp/client.ttl` : known client applications
@@ -100,6 +102,11 @@ ex:MyTest ex:permission ex:ABCSubscriptionPermission.
 ex:MyTest ex:action ex:AllowService.
 ```
 
+The output of both reasoning steps are also written in file files:
+
+- `data_consumer_session.step1.ttl`
+- `data_consumer_session.step2.ttl`
+
 As test one can inactive one of the data sources. E.g. set `pmp/subscription/permissions.ttl` the `ex:ABCSubscriptionPermission ex:isActive false` and run the test again:
 
 ```
@@ -142,6 +149,11 @@ ex:MyTestProvider ex:membership ex:ABCMembership.
 ex:MyTestProvider ex:contract ex:ABCContract.
 ex:MyTestProvider ex:action ex:AllowService.
 ```
+
+The output of both reasoning steps are also written in file files:
+
+- `data_provider_session.step1.ttl`
+- `data_provider_session.step2.ttl`
 
 We can invalide this process by, for instance, commenting out the access grant in `grant/client1.ttl` and run the `data_provider_session.sh` again:
 
