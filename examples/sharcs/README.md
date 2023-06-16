@@ -22,7 +22,6 @@ The SHARCS implementation has two reasoning runs: one for applying the policies 
 
 ## Knowledge Base
 
-- `user.ttl` : a user that wants to login
 - `grant/` : data provider client grants
 - `organizations/` : known organizations
 - `pmp/client.ttl` : known client applications
