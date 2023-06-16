@@ -47,30 +47,33 @@ Policies can be written independent from eachother. Each policy adds a
 
 A validation run will check if a login session contains all the required `Valid*` classes and proposes a next action: e.g. `AllowService` or `DenyService`.
 
+- `policies/query.n3s` : a template which data from the knowledge base can be send to the validation step
+
 ### Data Consumer
 
 - `policies/data_consumer/check_login.n3s` : check `user.ttl` against login rules
 - `policies/data_consumer/check_session_context_policy_evaluation.n3s` : check `user.ttl` against the subscription permissions
-- `policies/data_consumer/query.n3s` : a template which data from the knowledge base can be send to the validation step
 
 ### Data Provider
 
 - `policies/data_provider/checl_login.n3s` : check `user.ttl` against login rules
 - `policies/data_provider/check_access_grant_policy_evaluation.n3s` : check `user.ttl` against the grant policy evaluation
 - `policies/data_provider/check_transaction_usage_contract_policy_evaluation.n3s` : check the `user.ttl` against the transaction usage contract
-- `policies/data_provider/query.n3s` : a template which data from the knowledge base can be send to the validation step
 
 ## Validation 
 
+- `validation/validator.n3s` : rules to execute valid_classes
+- `validation/query.n3s` : a template which data can be sent to the output
+
 ### Data Consumer
+
 - `validation/data_consumer/valid_classes.n3s` : check if all required classes are available in the Login session
 - `validation/data_consumer/policies/check_consistency.n3s` : consistency checks
-- `validation/data_consumer/query.n3s` : a template which data can be sent to the output
 
 ### Data Provider
+
 - `validation/data_provider/valid_classes.n3s` : check if all required classes are available in the Login session
 - `validation/data_provider/policies/check_consistency.n3s` : consistency checks
-- `validation/data_provider/query.n3s` : a template which data can be sent to the output
 
 ## Demo Data Consumer 
 
