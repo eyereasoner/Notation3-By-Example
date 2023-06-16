@@ -1,17 +1,30 @@
 @prefix : <http://www.example.org/rdf#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-# ForAll Session, Client :
+# ForAll Login,Session, Client, Membership :
+# (<Login> a Login) &
+# (<Login> as <User>) &
 # (<Session> a ProviderSession) &
+# (<Session> user <User>) &
+# (<Session> status LoggedIn) &
+# (<Session> membership <Membership>) &
 # (<Session> client <Client>) &
 # (<Client> a DataProvider) &
 # (<Client> isActive true)
 # IMPLIES
-#   (<Session> a ValidLogin) &
-#   (<Session> client <Client>)
-(_:Session _:Client) log:onNegativeSurface {
+#   (<Login> a ValidLogin) &
+#   (<Login> membership <Membership>) &
+#   (<Login> client <Client>)
+(_:Login _:Session _:User _:Client _:Membership) log:onNegativeSurface {
+    _:Login 
+        a :Login ;
+        :as _:User .
+
     _:Session 
-        a :ProviderSession ;
+        a :LoginSession ;
+        :user _:User ;
+        :status :LoggedIn ;
+        :membership _:Membership ;
         :client _:Client .
 
     _:Client 
@@ -19,8 +32,10 @@
         :isActive true .
 
     () log:onNegativeSurface {
-        _:Session
+        _:Login
             a :ValidLogin ;
+            :user _:User ;
+            :membership _:Membership ;
             :client _:Client .
     } .
 } .

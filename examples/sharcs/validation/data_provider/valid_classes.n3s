@@ -4,7 +4,7 @@
 
 # All required classes for a valid login
 :ValidCheck :requires (
-    :ProviderSession 
+    :Login
     :ValidLogin
     :ValidAccessGrant
     :ValidTransactionUsageContract
@@ -16,7 +16,7 @@
 # When check if Required is equal to HasClasses.
 (_:Login _:Class _:HasClasses _:Required _:SCOPE) log:onNegativeSurface {
     _:Login 
-        a :ProviderSession .
+        a :Login.
 
     :ValidCheck :requires _:Required .
 
@@ -35,7 +35,7 @@
 # If false, report the missing classes.
 (_:Login _:Requires _:Class _:SCOPE) log:onNegativeSurface {
     _:Login
-        a :ProviderSession .
+        a :Login.
 
     :ValidCheck :requires _:Requires .
     _:Requires list:member _:Class .

@@ -5,6 +5,6 @@
 #   (<S> a ProviderSession) &&
 #   (<S> <P> <O>) 
 (_:S _:P _:O) log:onQuerySurface {
-    _:S a :ProviderSession; 
+    _:S a :Login; 
         _:P _:O .
 } .

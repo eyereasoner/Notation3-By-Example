@@ -1,9 +1,9 @@
 #!/bin/bash
 
-DATA=$(find . -name "*.ttl")
+DATA=$(find grant organizations pmp policies validation -name "*.ttl")
 
 # Run 1: reasoning part
-eye --nope --quiet --blogic ${DATA} \
+eye --nope --quiet --blogic ${DATA} data_provider_session.ttl \
     policies/data_provider/check_*.n3s \
     policies/data_provider/query.n3s \
     |\
