@@ -12,6 +12,13 @@ This experiment contains a core knowledge base `data.ttl` which can be accessed 
   
 These policies can contain zero or more constraints that are checked with an Notation3 constraint checker `constraint_checker.n3`.
 
+Execution steps:
+
+- Compile `data_consumer_policy.ttl` into `data_consumer_policy.n3s` .
+- Reason over `data.ttl` with `data_consumer_policy.n3s`.
+  - Result in a `<urn:odrl-compiler:Result>` output with zero or more constraints if the policy conditions are met.
+- Check if reasoning ouput satisfies the contraints.
+
 ## Data Content
 
 - `data.ttl` : a sample instance of the data model
