@@ -11,7 +11,11 @@
     odrl:permission [
         odrl:assignee [
             a odrlp:User;
+<<<<<<< HEAD
             odrlp:worksFor [	
+=======
+            odrlp:worksFor [  
+>>>>>>> 1c3650d417fa4d15292e57dffa885b2029cc6fad
                a foaf:Organization
             ] ;
             odrlp:isMemberOf [
@@ -20,6 +24,7 @@
             odrlp:isPartOf [
                a odrlp:Subscription
             ] ; 
+<<<<<<< HEAD
         ];
         odrl:action odrlp:grantAccess ;
         odrl:constraint [
@@ -32,6 +37,10 @@
             odrl:operator odrl:gt;
             odrl:rightOperand "2022-01-01"^^xsd:date 
         ] ;
+=======
+      ];
+        odrl:action  odrlp:grantAccess ;
+>>>>>>> 1c3650d417fa4d15292e57dffa885b2029cc6fad
         odrl:target  [
             a odrl:Session
         ] 
