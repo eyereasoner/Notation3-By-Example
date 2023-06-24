@@ -11,11 +11,7 @@
     odrl:permission [
         odrl:assignee [
             a odrlp:User;
-<<<<<<< HEAD
             odrlp:worksFor [	
-=======
-            odrlp:worksFor [  
->>>>>>> 1c3650d417fa4d15292e57dffa885b2029cc6fad
                a foaf:Organization
             ] ;
             odrlp:isMemberOf [
