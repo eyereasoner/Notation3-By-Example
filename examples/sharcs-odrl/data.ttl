@@ -51,7 +51,7 @@ ex:usageContract
     odrlp:partyA ex:providerDPV ;
     odrlp:partyB ex:organizationABC.
 
-# Data Subjecy
+# Data Subject
 ex:bob  
     a odrlp:DataSubject ;    
     cert:key <https://bob.solid.me/profile/card#me> .
