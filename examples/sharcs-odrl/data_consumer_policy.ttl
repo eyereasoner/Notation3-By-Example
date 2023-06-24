@@ -27,6 +27,11 @@
             odrl:operator odrl:lt;
             odrl:rightOperand "2024-01-01"^^xsd:date 
         ] ;
+        odrl:constraint [
+            odrl:leftOperand odrl:dateTime ;
+            odrl:operator odrl:gt;
+            odrl:rightOperand "2022-01-01"^^xsd:date 
+        ] ;
         odrl:target  [
             a odrl:Session
         ] 

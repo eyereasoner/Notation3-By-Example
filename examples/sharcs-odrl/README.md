@@ -29,7 +29,26 @@ Run the experiment:
 
 ```
 $ ./run.sh
-<urn:odrl-compiler:MyResult> <urn:odrl-compiler:is> odrlp:grantAccess.
+<urn:odrl-compiler:Result> odrl:action odrlp:grantAccess.
+<urn:odrl-compiler:Result> odrl:assignee ex:alice.
+<urn:odrl-compiler:Result> odrl:target ex:Session2300.
+<urn:odrl-compiler:Result> <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
+<urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _:sk_24.
+<urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _:sk_26.
+_:sk_24 a <urn:odrl-compiler:Constraint>.
+_:sk_24 <urn:odrl-compiler:value> {
+    _:sk_25 odrl:leftOperand odrl:dateTime.
+    _:sk_25 odrl:operator odrl:lt.
+    _:sk_25 odrl:rightOperand "2024-01-01"^^xsd:date.
+}.
+_:sk_26 a <urn:odrl-compiler:Constraint>.
+_:sk_26 <urn:odrl-compiler:value> {
+    _:sk_27 odrl:leftOperand odrl:dateTime.
+    _:sk_27 odrl:operator odrl:gt.
+    _:sk_27 odrl:rightOperand "2022-01-01"^^xsd:date.
+}.
+_:sk_24 <urn:odrl-compiler:is> <urn:odrl-compiler:Satisfied>.
+_:sk_26 <urn:odrl-compiler:is> <urn:odrl-compiler:Satisfied>.
 ```
 
 As experiment change some fields in the `data.ttl` (e.g. change  `ex:login` into `ex:bob`) and check the the access will not be granted.

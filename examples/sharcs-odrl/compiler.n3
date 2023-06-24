@@ -89,7 +89,10 @@
     }
     {
       () log:onNegativeSurface {
-        :Result :constraint ?ConstraintGraph .
+        :Result :constraint [
+          a :Constraint;
+          :value ?ConstraintGraph 
+        ] .
       } .
     }
   ) graph:union ?RDFSurface .
