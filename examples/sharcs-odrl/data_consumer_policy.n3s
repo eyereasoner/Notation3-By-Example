@@ -8,10 +8,12 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix string: <http://www.w3.org/2000/10/swap/string#>.
 
-(_:sk_0 _:sk_1 _:sk_2 _:bn_2 _:bn_3 _:bn_4 _:bn_5 _:bn_6) log:onNegativeSurface {
-    _:sk_0 a odrl:Set.
-    _:sk_0 odrl:permission _:sk_1.
-    _:sk_1 odrl:assignee _:sk_2.
+(_:sk_0 _:bn_2 _:sk_1 _:sk_2 _:sk_3 _:bn_3 _:bn_4 _:bn_5 _:bn_6) log:onNegativeSurface {
+    _:sk_0 a odrl:Session.
+    _:sk_0 ex:login _:bn_2.
+    _:sk_1 a odrl:Set.
+    _:sk_1 odrl:permission _:sk_2.
+    _:sk_2 odrl:assignee _:sk_3.
     _:bn_2 a odrlp:User.
     _:bn_2 odrlp:worksFor _:bn_3.
     _:bn_3 a foaf:Organization.

@@ -31,4 +31,4 @@ $ ./run.sh
 <urn:odrl-compiler:MyResult> <urn:odrl-compiler:is> odrlp:grantAccess.
 ```
 
-As experiment change some fields in the `data_consumer_policy.ttl` (e.g. change  `foaf:Organization` into `foaf:Organization123`) and check the the access will not be granted.
+As experiment change some fields in the `data.ttl` (e.g. change  `ex:login` into `ex:bob`) and check the the access will not be granted.

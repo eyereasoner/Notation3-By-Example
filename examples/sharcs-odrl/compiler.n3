@@ -33,12 +33,17 @@
   # Create the RDF Surface
   ( 
     { 
+      # Find a Session in the data
+      _:Session 
+        a odrl:Session ;
+        ex:login ?TheAssignee .
+
       # Match the policy
       _:Policy  
         a odrl:Set ;
         odrl:permission _:Permission .
       _:Permission
-        odrl:assignee _:Assignee . 
+        odrl:assignee _:Assignee .
     }
     ?AssigneeGraph ?TargetGraph
     { 

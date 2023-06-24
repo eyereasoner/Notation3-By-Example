@@ -16,8 +16,15 @@ ex:alice
     odrlp:worksFor  ex:organizationABC ;
     odrlp:isMemberOf ex:membershipABC ;
     odrlp:isPartOf ex:subscriptionABC ;
-    odrlp:hasSession ex:Session2300 ;
     odrlp:linkedTo ex:usageContractABC .
+
+ex:bob
+    a odrlp:User ;
+    cert:key <https://bob.databox.me/profile/card#me> ;
+    odrlp:worksFor  ex:organizationABC ;
+    odrlp:isMemberOf ex:membershipABC ;
+    odrlp:isPartOf ex:subscriptionDEF ;
+    odrlp:linkedTo ex:usageContractDEF .
 
 # Organization
 ex:organizationABC 
@@ -52,7 +59,7 @@ ex:usageContract
     odrlp:partyB ex:organizationABC.
 
 # Data Subject
-ex:bob  
+ex:charly 
     a odrlp:DataSubject ;    
     cert:key <https://bob.solid.me/profile/card#me> .
 
@@ -60,9 +67,10 @@ ex:bob
 ex:consentBobToDP  
     a odrlp:Consent ;   
     odrl:action odrl:obtainConsent ;   
-    odrl:consentingParty ex:bob ;                 
+    odrl:consentingParty ex:charly ;                 
     odrl:consentedParty ex:providerDPV  .
 
+# Login Session
 ex:Session2300 
     a odrl:Session ;
-    ex:login :alice . 
+    ex:login ex:alice . 
