@@ -3,15 +3,16 @@
 @prefix list: <http://www.w3.org/2000/10/swap/list#>.
 
 ex:MyTestProvider a ex:Login.
+ex:MyTestProvider a ex:ValidAccessGrant.
 ex:MyTestProvider a ex:ValidLogin.
 ex:MyTestProvider a ex:ValidMembership.
 ex:MyTestProvider a ex:ValidTransactionUsageContract.
 ex:MyTestProvider a ex:ValidPermission.
-ex:MyTestProvider a ex:ValidAccessGrant.
 ex:MyTestProvider ex:client ex:DataProviderClient01.
 ex:MyTestProvider ex:contract ex:ABCContract.
 ex:MyTestProvider ex:as ex:user1.
 ex:MyTestProvider ex:user ex:user1.
+ex:MyTestProvider ex:grant ex:AccessGrant123.
 ex:MyTestProvider ex:membership ex:ABCMembership.
 ex:MyTestProvider ex:organization ex:ABC.
 ex:MyTestProvider ex:action ex:AllowService.
