@@ -5,21 +5,16 @@
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
 # Check if the ODRL results are valid. This is true when all constrains are valid 
-(_:Permission _:Constraint _:ConstraintValue _:Some _:LO _:O _:RO _:Validity _:Scope) log:onNegativeSurface {
+(_:Permission _:Constraint _:LO _:O _:RO _:Validity _:Scope) log:onNegativeSurface {
 
     # Gather all the metadata of the policy
     :Result :constraint _:Constraint .
 
     _:Constraint 
         a :Constraint ;
-        :value _:ConstraintValue .
-
-    _:ConstraintValue log:includes {
-        _:Some 
-            odrl:leftOperand _:LO ;
-            odrl:operator _:O ;
-            odrl:rightOperand _:RO .
-    } .
+        odrl:leftOperand _:LO ;
+        odrl:operator _:O ;
+        odrl:rightOperand _:RO .
 
     # Using the experimental ifThenElseIn built-in to
     # execute the logical contraint (see below for an

@@ -38,11 +38,9 @@
     () log:onNegativeSurface {
         <urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _:sk_5.
         _:sk_5 a <urn:odrl-compiler:Constraint>.
-        _:sk_5 <urn:odrl-compiler:value> {
-            _:bn_7 odrl:leftOperand odrl:dateTime.
-            _:bn_7 odrl:operator odrl:lt.
-            _:bn_7 odrl:rightOperand "2024-01-01"^^xsd:date.
-        }.
+        _:sk_5 odrl:leftOperand odrl:dateTime.
+        _:sk_5 odrl:operator odrl:lt.
+        _:sk_5 odrl:rightOperand "2024-01-01"^^xsd:date.
     }.
 }.
 
@@ -51,11 +49,9 @@
     () log:onNegativeSurface {
         <urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _:sk_7.
         _:sk_7 a <urn:odrl-compiler:Constraint>.
-        _:sk_7 <urn:odrl-compiler:value> {
-            _:bn_8 odrl:leftOperand odrl:dateTime.
-            _:bn_8 odrl:operator odrl:gt.
-            _:bn_8 odrl:rightOperand "2022-01-01"^^xsd:date.
-        }.
+        _:sk_7 odrl:leftOperand odrl:dateTime.
+        _:sk_7 odrl:operator odrl:gt.
+        _:sk_7 odrl:rightOperand "2022-01-01"^^xsd:date.
     }.
 }.
 

@@ -79,7 +79,13 @@
   
   ?Constraint :graphList ?ConstraintList .
   ?ConstraintGraph graph:list ?ConstraintList .
-  ?ConstraintGraph :mainSubject ?TheConstraint .
+
+  ?ConstraintGraph log:includes {
+    ?Some 
+      odrl:leftOperand ?Left ;
+      odrl:operator ?Operator ;
+      odrl:rightOperand ?Right 
+  } .
 
   # Create RDF Surface
   (
@@ -91,7 +97,9 @@
       () log:onNegativeSurface {
         :Result :constraint [
           a :Constraint;
-          :value ?ConstraintGraph 
+          odrl:leftOperand ?Left ;
+          odrl:operator ?Operator ;
+          odrl:rightOperand ?Right
         ] .
       } .
     }
