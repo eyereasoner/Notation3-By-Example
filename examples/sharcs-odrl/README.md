@@ -6,11 +6,17 @@ This code is an expansion of the [sharcs example](https://github.com/eyereasoner
 
 ## Architecture
 
-This experiment contains a core knowledge base `data.ttl` which can be accessed RDF Surfaces policies (`.n3s` files). These policies are compiled from their Turtle source files:
+This experiment contains the core knowledge base `data.ttl` which can be accessed using RDF Surfaces policies (the `.n3s` files). These policies are compiled from their Turtle source files:
 
-- `data_consumer_policy.n3s` is the RDF Surfaces compiled version of the Turtle source `data_consumer_policy.ttl`
+- `data_consumer_policy.n3s` is compiled version of the Turtle source `data_consumer_policy.ttl`
   
 ODRL policies can contain zero or more constraints that are checked using a Notation3 constraint checker `constraint_checker.n3`.
+
+```
+[ User ] <-> [ Notation3 agent ] <-> [RDF Surfaces agent] <-> [Data]
+```
+
+In this setup, the RDF Surfaces contain only existential rules, executing basic graph pattern queries over the data. The Notation3 contains the logic to create the existential rules and evaluate constrains that require side-effects (e.g. read a date/time).
 
 ### Execution steps
 
