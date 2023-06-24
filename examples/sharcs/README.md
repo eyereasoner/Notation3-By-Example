@@ -22,9 +22,9 @@ The SHARCS implementation has two reasoning runs: one for applying the policies 
 
 ## Knowledge Base
 
-- `user.ttl` : a user that wants to login
+The data files in the knowledge base are organized for ease of administation. The exact names or locations of the these files is of no significance for the experiment (as long as the reasoner has some way to have access to all these resources). 
+
 - `grant/` : data provider client grants
-- `login/` : the context of a logged user
 - `organizations/` : known organizations
 - `pmp/client.ttl` : known client applications
 - `pmp/memberships.ttl` : allowed organization memberships for the PMP
@@ -48,30 +48,33 @@ Policies can be written independent from eachother. Each policy adds a
 
 A validation run will check if a login session contains all the required `Valid*` classes and proposes a next action: e.g. `AllowService` or `DenyService`.
 
+- `policies/query.n3s` : a template which data from the knowledge base can be send to the validation step
+
 ### Data Consumer
 
 - `policies/data_consumer/check_login.n3s` : check `user.ttl` against login rules
 - `policies/data_consumer/check_session_context_policy_evaluation.n3s` : check `user.ttl` against the subscription permissions
-- `policies/data_consumer/query.n3s` : a template which data from the knowledge base can be send to the validation step
 
 ### Data Provider
 
 - `policies/data_provider/checl_login.n3s` : check `user.ttl` against login rules
 - `policies/data_provider/check_access_grant_policy_evaluation.n3s` : check `user.ttl` against the grant policy evaluation
 - `policies/data_provider/check_transaction_usage_contract_policy_evaluation.n3s` : check the `user.ttl` against the transaction usage contract
-- `policies/data_provider/query.n3s` : a template which data from the knowledge base can be send to the validation step
 
 ## Validation 
 
+- `validation/validator.n3s` : rules to execute valid_classes
+- `validation/query.n3s` : a template which data can be sent to the output
+
 ### Data Consumer
+
 - `validation/data_consumer/valid_classes.n3s` : check if all required classes are available in the Login session
 - `validation/data_consumer/policies/check_consistency.n3s` : consistency checks
-- `validation/data_consumer/query.n3s` : a template which data can be sent to the output
 
 ### Data Provider
+
 - `validation/data_provider/valid_classes.n3s` : check if all required classes are available in the Login session
 - `validation/data_provider/policies/check_consistency.n3s` : consistency checks
-- `validation/data_provider/query.n3s` : a template which data can be sent to the output
 
 ## Demo Data Consumer 
 
@@ -98,6 +101,11 @@ ex:MyTest ex:clientSubscription ex:DataConsumerClient01.
 ex:MyTest ex:permission ex:ABCSubscriptionPermission.
 ex:MyTest ex:action ex:AllowService.
 ```
+
+The output of both reasoning steps are also written in file files:
+
+- `data_consumer_session.step1.ttl`
+- `data_consumer_session.step2.ttl`
 
 As test one can inactive one of the data sources. E.g. set `pmp/subscription/permissions.ttl` the `ex:ABCSubscriptionPermission ex:isActive false` and run the test again:
 
@@ -142,6 +150,11 @@ ex:MyTestProvider ex:contract ex:ABCContract.
 ex:MyTestProvider ex:grant ex:AccessGrant123.
 ex:MyTestProvider ex:action ex:AllowService.
 ```
+
+The output of both reasoning steps are also written in file files:
+
+- `data_provider_session.step1.ttl`
+- `data_provider_session.step2.ttl`
 
 We can invalide this process by, for instance, commenting out the access grant in `grant/client1.ttl` and run the `data_provider_session.sh` again:
 

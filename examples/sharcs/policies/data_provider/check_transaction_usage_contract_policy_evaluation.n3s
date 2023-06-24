@@ -2,19 +2,19 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # ForAll Session, Client, Membership , TransactionUsageContract:
-# (<Session> a ProviderSession) &
-# (<Session> client <Client>) &
-# (<Session> membership <Membership>) &
+# (<Login> a Login) &
+# (<Login> client <Client>) &
+# (<Login> membership <Membership>) &
 # (<TransactionUsageContract> a TransactionUsageContract) &
 # (<TransactionUsageContract> isActive true) & 
 # (<TransactionUsageContract> hasMembership <Membership>) &
 # (<TransactionUsageContract> hasClient <Client>)
 # IMPLIES
-#    (<Session> a ValidTransactionUsageContract) &
-#    (<Session> contract <TransactionUsageContract>)
-(_:Session _:Client _:Membership _:TransactionUsageContract) log:onNegativeSurface {
-    _:Session
-         a :ProviderSession ;
+#    (<Login> a ValidTransactionUsageContract) &
+#    (<Login> contract <TransactionUsageContract>)
+(_:Login _:Client _:Membership _:TransactionUsageContract) log:onNegativeSurface {
+    _:Login
+         a :Login;
          :client _:Client ;
          :membership _:Membership .
 
@@ -25,17 +25,17 @@
         :hasClient _:Client .
         
     () log:onNegativeSurface {
-        _:Session 
+        _:Login
             a :ValidTransactionUsageContract ;
             :contract _:TransactionUsageContract .
     } .
 } .
 
-# ForAll Session, Contract, User, Membership, Permission, Allows
-# (<Session> a ProviderSession) &
-# (<Session> user <User>) &
-# (<Session> membership <Membership>) &
-# (<Session> contract <Contract>) &
+# ForAll Login, Contract, User, Membership, Permission, Allows
+# (<Login> a Login) &
+# (<Login> user <User>) &
+# (<Login> membership <Membership>) &
+# (<Login> contract <Contract>) &
 # (<Permission> a Permission) &
 # (<Permission> isActive true) &
 # (<Permission> hasMembership <Membership>) &
@@ -43,10 +43,10 @@
 # (<Allows> contract <Contract>) &
 # (<Allows> subscriber <User>)
 # IMPLIES
-#   (<Session> a ValidPermission)
-(_:Session _:Contract _:User _:Membership _:Permission _:Allows) log:onNegativeSurface {
-    _:Session 
-        a :ProviderSession ;
+#   (<Login> a ValidPermission)
+(_:Login _:Contract _:User _:Membership _:Permission _:Allows) log:onNegativeSurface {
+    _:Login 
+        a :Login ;
         :user _:User ;
         :membership _:Membership ;
         :contract _:Contract . 
@@ -63,7 +63,7 @@
         :subscriber _:User .
 
     () log:onNegativeSurface {
-        _:Session
+        _:Login
             a :ValidPermission .
     } .
 } .

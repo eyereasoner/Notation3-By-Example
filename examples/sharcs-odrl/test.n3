@@ -1,0 +1,40 @@
+@prefix : <urn:odrl-compiler:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+
+:Test
+  a :Query ;
+  :query [
+    a :Person ;
+    :likes :Food ;
+    :loves [
+        a :Cat ;
+        :that [
+            a :Naughty
+        ]
+    ]
+  ] .
+
+{
+  ?Query 
+    a :Query ;
+    :query ?Q .
+  ?Q :graphList ?L .
+  ?G graph:list ?L .
+  ?G :mainSubject ?S.
+}
+=>
+{
+  :result :is ?G , ?S .
+} .
+
+{
+  ?A :mainSubject ?B .
+}
+<=
+{
+  ?A graph:list ?L .
+  ?L list:first ?H .
+  ?H log:equalTo { ?B ?P ?O } .
+} .

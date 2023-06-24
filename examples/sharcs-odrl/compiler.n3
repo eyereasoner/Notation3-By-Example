@@ -1,0 +1,56 @@
+@prefix : <urn:odrl-compiler:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix odrlp: <http://example.org/odrl:profile:01/> .
+@prefix ex: <http://example.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+{
+  ?Policy 
+    a odrl:Set ;
+    odrl:permission ?Permission .
+  
+  ?Permission
+    odrl:assignee ?Assignee .
+
+  ?Assignee :graphList ?L .
+  ?G graph:list ?L .
+
+  ?G :mainSubject ?Main .
+
+  ( 
+    { _:Policy  
+        a odrl:Set ;
+        odrl:permission _:Permission .
+      _:Permission
+        odrl:assignee _:Assignee ;
+        odrl:action _:Action .
+    }
+    ?G 
+    { 
+      ?Main log:rawType log:Other .
+      () log:onNegativeSurface {
+        :MyResult :is _:Action .
+      } .
+    } 
+  ) graph:union ?H .
+
+  ?H :blankNodeList ?LB .
+}
+=>
+{
+  ?LB log:onNegativeSurface ?H .
+} .   
+
+{
+  ?A :mainSubject ?B .
+}
+<=
+{
+  ?A graph:list ?L .
+  ?L list:first ?H .
+  ?H log:equalTo { ?B ?P ?O } .
+} .
+

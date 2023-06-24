@@ -1,17 +1,27 @@
 @prefix : <http://www.example.org/rdf#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-# ForAll Session, Client :
+# ForAll Login,Session, Client, Membership :
+# (<Login> a Login) &
+# (<Login> as <User>) &
 # (<Session> a ProviderSession) &
+# (<Session> user <User>) &
+# (<Session> status LoggedIn) &
 # (<Session> client <Client>) &
 # (<Client> a DataProvider) &
 # (<Client> isActive true)
 # IMPLIES
-#   (<Session> a ValidLogin) &
-#   (<Session> client <Client>)
-(_:Session _:Client) log:onNegativeSurface {
+#   (<Login> a ValidLogin) &
+#   (<Login> client <Client>)
+(_:Login _:Session _:User _:Client) log:onNegativeSurface {
+    _:Login 
+        a :Login ;
+        :as _:User .
+
     _:Session 
-        a :ProviderSession ;
+        a :LoginSession ;
+        :user _:User ;
+        :status :LoggedIn ;
         :client _:Client .
 
     _:Client 
@@ -19,8 +29,40 @@
         :isActive true .
 
     () log:onNegativeSurface {
-        _:Session
+        _:Login
             a :ValidLogin ;
+            :user _:User ;
             :client _:Client .
+    } .
+} .
+
+# ForAll Login, Membership, Organization, User:
+# (<Login> a Login) &
+# (<Login> user <User>) &
+# (<Membership> a PMPMembership) &
+# (<Membership> isActive true) &
+# (<Membership> hasOrganization <Organization>) &
+# (<Membership> hasMember <User>) &
+# (<Organization> a Organization) &
+# (<Organization> isActive true) &
+# (<Organization> hasMember <User>)
+# IMPLIES
+#   (<Login> organization <Organization>) &
+#   (<Login> a ValidMembership)
+(_:Login _:Membership _:Organization _:User) log:onNegativeSurface {
+    _:Login 
+        a :Login ;
+        :user _:User .
+
+    _:Membership 
+        a :PMPMembership ;
+        :isActive true ;
+        :hasOrganization _:Organization ;
+        :hasMember _:User .
+
+    () log:onNegativeSurface {
+        _:Login :membership _:Membership .
+        _:Login :organization _:Organization .
+        _:Login a :ValidMembership .
     } .
 } .

@@ -1,18 +1,18 @@
 @prefix : <http://www.example.org/rdf#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-# ForAll Session, Client, AccessGrant :
-# (<Session> a <ProviderSession>) &
-# (<Session> client <Client>) &
-# (<Session> membership <Membership>) &
+# ForAll Login, Client, AccessGrant :
+# (<Login> a <ProviderSession>) &
+# (<Login> client <Client>) &
+# (<Login> membership <Membership>) &
 # (<AccessGrant> a AccessGrant) &
 # (<AccessGrant> isActive true) & 
 # (<AccessGrant> client <Client>) 
 # IMPLIES
-#    (<Session> a ValidAccessGrant)
-(_:Session _:Client _:AccessGrant) log:onNegativeSurface {
-    _:Session 
-        a :ProviderSession ;
+#    (<Login> a ValidAccessGrant)
+(_:Login _:Client _:AccessGrant) log:onNegativeSurface {
+    _:Login 
+        a :Login ;
         :client _:Client .
 
     _:AccessGrant

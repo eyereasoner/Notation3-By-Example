@@ -2,12 +2,14 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Set a test user
-:MyTestLogin
+:MyTestProvider
     a :Login ;
     :as :user1 .
 
-:MyTestProvider
-    a :ProviderSession ;
+# Do a fake login 
+[
+    a :LoginSession ;
     :user :user1 ;
-    :client :DataProviderClient01 ;
-    :membership  :ABCMembership.
+    :status :LoggedIn ;
+    :client :DataProviderClient01 
+] .
