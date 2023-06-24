@@ -7,43 +7,65 @@
 @prefix ex: <http://example.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
+# ODRL compiler
 {
+  # Match a policy
   ?Policy 
     a odrl:Set ;
     odrl:permission ?Permission .
-  
+
+  # Find the assignee, action and target 
   ?Permission
-    odrl:assignee ?Assignee .
+    odrl:assignee ?Assignee ;
+    odrl:action ?Action ;
+    odrl:target ?Target .
 
-  ?Assignee :graphList ?L .
-  ?G graph:list ?L .
+  # Find the sub-graph that defines the assignee 
+  ?Assignee :graphList ?AssigneeList .
+  ?AssigneeGraph graph:list ?AssigneeList .
+  ?AssigneeGraph :mainSubject ?TheAssignee .
 
-  ?G :mainSubject ?Main .
+  # Find the sub-grag that defined the target
+  ?Target :graphList ?TargetList .
+  ?TargetGraph graph:list ?TargetList .
+  ?TargetGraph :mainSubject ?TheTarget .
 
+  # Create the RDF Surface
   ( 
-    { _:Policy  
+    { 
+      # Match the policy
+      _:Policy  
         a odrl:Set ;
         odrl:permission _:Permission .
       _:Permission
-        odrl:assignee _:Assignee ;
-        odrl:action _:Action .
+        odrl:assignee _:Assignee . 
     }
-    ?G 
+    ?AssigneeGraph ?TargetGraph
     { 
-      ?Main log:rawType log:Other .
+      ?TheAssignee log:rawType log:Other .
+      ?TheTarget log:rawType log:Other .
       () log:onNegativeSurface {
-        :MyResult :is _:Action .
+        :Result 
+          odrl:assignee ?TheAssignee ;
+          odrl:action ?Action ;
+          odrl:target ?TheTarget .
       } .
     } 
-  ) graph:union ?H .
+  ) graph:union ?RDFSurface .
 
-  ?H :blankNodeList ?LB .
+  # Find the blank node graffiti for the RDF Surface
+  ?RDFSurface :blankNodeList ?Graffiti .
 }
 =>
 {
-  ?LB log:onNegativeSurface ?H .
-} .   
+  ?Graffiti log:onNegativeSurface ?RDFSurface .
+} . 
 
+# Find the main subject (first triple subject node)
+#  $A+ :mainSubject $B-
+# where:
+#  - A : a node
+#  - B : a graph term
 {
   ?A :mainSubject ?B .
 }

@@ -9,18 +9,18 @@
     odrl:profile   <http://example.org/odrl:profile:01/>;
     odrl:permission [
         odrl:assignee [
-		    a odrlp:User;
-		    odrlp:worksFor [	
+            a odrlp:User;
+            odrlp:worksFor [	
                a foaf:Organization
             ] ;
-		    odrlp:isMemberOf [
+            odrlp:isMemberOf [
                 a odrlp:Membership
             ];
-		    odrlp:isPartOf [
+            odrlp:isPartOf [
                a odrlp:Subscription
             ] ; 
-	    ];
-        odrl:action  odrlp:grantAccess ;
+        ];
+        odrl:action odrlp:grantAccess ;
         odrl:target  [
             a odrl:Session
         ] 
