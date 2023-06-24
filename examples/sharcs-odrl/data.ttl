@@ -1,13 +1,18 @@
+@prefix : <urn:odrl-compiler:> .
 @prefix cert: <http://www.w3.org/ns/auth/cert>.
-@prefix cc:      <http://creativecommons.org/ns#> .
-@prefix dct:     <http://purl.org/dc/terms/> .
-@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix odrl:    <http://www.w3.org/ns/odrl/2/> .
-@prefix odrlp:    <http://example.org/odrl:profile:01/> .
-@prefix ex:    <http://example.org/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix odrlp: <http://example.org/odrl:profile:01/> .
+@prefix ex: <http://example.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix dpv: <http://www.w3.org/ns/dpv/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Date
+[ :currentDate "2022-12-11"^^xsd:date ] .
 
 # User
 ex:alice 

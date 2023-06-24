@@ -1,0 +1,53 @@
+@prefix : <urn:odrl-compiler:> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+# Check if the ODRL results are valid. This is true when all constrains are valid 
+(_:Permission _:Constraint _:Some _:LO _:O _:RO _:Validity _:Scope) log:onNegativeSurface {
+
+    # Gather all the metadata of the policy
+    :Result :constraint _:Constraint .
+
+    _:Constraint log:includes {
+        _:Some 
+            odrl:leftOperand _:LO ;
+            odrl:operator _:O ;
+            odrl:rightOperand _:RO .
+    } .
+
+    # Using the experimental ifThenElseIn built-in to
+    # execute the logical contraint (see below for an
+    # implementation using backward rules)
+    ( 
+      # if 
+      {_:LO _:O _:RO} 
+      # then
+      {_:Validity log:equalTo :Satisfied} 
+      # else 
+      {_:Validity log:equalTo :NotSatisfied}
+    ) log:ifThenElseIn _:Scope.
+
+    () log:onNegativeSurface {
+        :Result :is _:Validity .
+    } .
+} .
+
+# Implementation of an odrl:lt checker for dates
+(_:Blank _:CurrentDate _:Date) log:onNegativeSurface {
+    () log:negativeTriple {
+        odrl:dateTime odrl:lt _:Date .
+    } .
+    _:Blank :currentDate _:CurrentDate  .
+    _:CurrentDate string:lessThan _:Date .
+} .
+
+# Implementation of an odrl:gt checker for dates
+(_:Blank _:CurrentDate _:Date) log:onNegativeSurface {
+    () log:negativeTriple {
+        odrl:dateTime odrl:gt _:Date .
+    } .
+    _:Blank :currentDate _:CurrentDate  .
+    _:CurrentDate string:greaterThan _:Date .
+} .

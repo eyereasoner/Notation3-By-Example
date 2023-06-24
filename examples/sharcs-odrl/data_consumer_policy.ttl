@@ -2,6 +2,7 @@
 @prefix odrlp:    <http://example.org/odrl:profile:01/> .
 @prefix ex:    <http://example.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # Sample policy
 <http://example.org/policy/policy-authorization> 
@@ -21,6 +22,11 @@
             ] ; 
         ];
         odrl:action odrlp:grantAccess ;
+        odrl:constraint [
+            odrl:leftOperand odrl:dateTime ;
+            odrl:operator odrl:lt;
+            odrl:rightOperand "2024-01-01"^^xsd:date 
+        ] ;
         odrl:target  [
             a odrl:Session
         ] 

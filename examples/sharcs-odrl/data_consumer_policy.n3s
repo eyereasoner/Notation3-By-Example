@@ -7,8 +7,9 @@
 @prefix ex: <http://example.org/>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix string: <http://www.w3.org/2000/10/swap/string#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
-(_:sk_0 _:bn_2 _:sk_1 _:sk_2 _:sk_3 _:bn_3 _:bn_4 _:bn_5 _:bn_6) log:onNegativeSurface {
+(_:sk_0 _:bn_2 _:sk_1 _:sk_2 _:sk_3 _:bn_3 _:bn_4 _:bn_5 _:bn_7) log:onNegativeSurface {
     _:sk_0 a odrl:Session.
     _:sk_0 ex:login _:bn_2.
     _:sk_1 a odrl:Set.
@@ -21,13 +22,25 @@
     _:bn_4 a odrlp:Membership.
     _:bn_2 odrlp:isPartOf _:bn_5.
     _:bn_5 a odrlp:Subscription.
-    _:bn_6 a odrl:Session.
+    _:bn_7 a odrl:Session.
     _:bn_2 log:rawType log:Other.
-    _:bn_6 log:rawType log:Other.
+    _:bn_7 log:rawType log:Other.
     () log:onNegativeSurface {
+        <urn:odrl-compiler:Result> <urn:odrl-compiler:policy> _:sk_1.
         <urn:odrl-compiler:Result> odrl:assignee _:bn_2.
         <urn:odrl-compiler:Result> odrl:action odrlp:grantAccess.
-        <urn:odrl-compiler:Result> odrl:target _:bn_6.
+        <urn:odrl-compiler:Result> odrl:target _:bn_7.
+    }.
+}.
+
+(_:sk_4) log:onNegativeSurface {
+    _:sk_4 <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
+    () log:onNegativeSurface {
+        <urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> {
+            _:bn_6 odrl:leftOperand odrl:dateTime.
+            _:bn_6 odrl:operator odrl:lt.
+            _:bn_6 odrl:rightOperand "2024-01-01"^^xsd:date.
+        }.
     }.
 }.
 

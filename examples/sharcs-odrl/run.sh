@@ -5,4 +5,5 @@ eye --nope --quiet --pass-only-new \
 
 eye --nope --quiet --blogic \
             data.ttl data_consumer_policy.ttl \
-            data_consumer_policy.n3s data_consumer_policy.q
+            data_consumer_policy.n3s constraint_checker.n3s \
+            data_consumer_policy.q 

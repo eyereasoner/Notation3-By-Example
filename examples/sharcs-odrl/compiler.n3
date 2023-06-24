@@ -51,6 +51,7 @@
       ?TheTarget log:rawType log:Other .
       () log:onNegativeSurface {
         :Result 
+          :policy _:Policy ;
           odrl:assignee ?TheAssignee ;
           odrl:action ?Action ;
           odrl:target ?TheTarget .
@@ -65,6 +66,41 @@
 {
   ?Graffiti log:onNegativeSurface ?RDFSurface .
 } . 
+
+{
+  # Match a policy
+  ?Policy 
+    a odrl:Set ;
+    odrl:permission ?Permission .
+  
+  # Match 
+  ?Permission
+    odrl:constraint ?Constraint .
+  
+  ?Constraint :graphList ?ConstraintList .
+  ?ConstraintGraph graph:list ?ConstraintList .
+  ?ConstraintGraph :mainSubject ?TheConstraint .
+
+  # Create RDF Surface
+  (
+    {
+      # Match a result
+      _:Result :policy ?Policy .
+    }
+    {
+      () log:onNegativeSurface {
+        :Result :constraint ?ConstraintGraph .
+      } .
+    }
+  ) graph:union ?RDFSurface .
+
+  # Find the blank node graffiti for the RDF Surface
+  ?RDFSurface :blankNodeList ?Graffiti . 
+}
+=>
+{
+  ?Graffiti log:onNegativeSurface ?RDFSurface .
+} .
 
 # Find the main subject (first triple subject node)
 #  $A+ :mainSubject $B-
