@@ -1,0 +1,122 @@
+@prefix : <urn:odrl-compiler:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+
+# Find all blank nodes in a graph.
+#   $A+ :blankNodeList $B- .
+# Where:
+#   - A : a graph term
+#   - B : a list of blanknodes
+{
+    ?A :blankNodeList ?B .
+}
+<=
+{
+    ?A graph:list ?Al .
+    ( ?Al () ) :blankNodeList_ ?Temp .
+    ?Temp list:unique ?B .
+}.
+
+{
+    ( () ?Acc ) :blankNodeList_ ?Acc .
+}
+<= true .
+
+{
+    ( ?Al ?Acc) :blankNodeList_ ?B .
+}
+<=
+{
+    ?Al list:firstRest (?Head ?Tail) .
+
+    ?Head log:equalTo { ?S ?P ?O } .
+
+    ( 
+        { ?S :isBlankNode true . }
+        { (?Acc (?S)) list:append ?Acc1 . }
+        { ?Acc log:equalTo ?Acc1 . }
+    ) log:ifThenElseIn _:x .
+
+    ( 
+        { ?P :isBlankNode true . }
+        { (?Acc1 (?P)) list:append ?Acc2 .  }
+        { ?Acc1 log:equalTo ?Acc2 .}
+    ) log:ifThenElseIn _:y .  
+
+    ( 
+        { ?O :isBlankNode true . }
+        { (?Acc2 (?O)) list:append ?Acc3 }
+        { ?Acc2 log:equalTo ?Acc3 }
+    ) log:ifThenElseIn _:z .  
+
+    ( ?Tail ?Acc3) :blankNodeList_ ?B .
+} .
+
+# Find for a (blank) node all triples.
+# Return a list of graph terms for these blank nodes.
+#  $A+ :graphList ?B-
+# Where:
+#  - A : a (blank) node
+#  - B : a list of graph terms matching the subgraph of A
+{
+    ?A :graphList ?B .
+}
+<=
+{
+    # Collect for the blank node Node all predicate/objects into a list ?F
+    # The list F contains items like:
+    #   ( ( _:bn1 :name "Patrick" ) ( _:bn1 :likes "Cats" ) )
+    ( (?A ?P ?O) { ?A ?P ?O } ?F ) log:collectAllIn ?Scope .
+    # Expand this list (the objects could also contain blank nodes)
+    (?F ()) :graphList_ ?B .
+} .
+
+{
+    (() ?Acc) :graphList_ ?Acc .
+}
+<= true .
+
+{
+    (?L ?Acc) :graphList_ ?G .
+}
+<= 
+{
+    # Read the Head and Tail of the list
+    ?L list:firstRest (?Head ?Tail).
+
+    # Read the (S)ubject (P)redicate (O)bject from the head
+    ?Head log:equalTo (?S ?P ?O) .
+
+    # If the object is a blank node    
+    (
+        { ?O :isBlankNode true . }
+        # Recurse and find also its triples...
+        { 
+            ?O :graphList ?LTemp .
+            ( ({ ?S ?P ?O }) ?LTemp ) list:append ?Result .
+        }
+        # Just add the SPO as a graph term
+        { ({ ?S ?P ?O }) log:equalTo ?Result . }
+    ) log:ifThenElseIn _:x .
+
+    # Add the result to the accumulator
+    ( ?Acc ?Result ) list:append ?AccNew .
+
+    # Recurse
+    (?Tail ?AccNew) :graphList_ ?G .
+} .
+
+# Check if N is a blank node.
+#   $A+ :isBlankNode true 
+# Where:
+#   - A : a blank node
+{
+    ?N :isBlankNode true .
+}
+<=
+{
+    ?N log:rawType ?T .
+    (log:UnlabeledBlankNode log:LabeledBlankNode log:ForAll) list:member ?T .
+} .

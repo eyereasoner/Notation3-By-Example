@@ -1,0 +1,28 @@
+@prefix : <urn:odrl-compiler:>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
+@prefix odrl: <http://www.w3.org/ns/odrl/2/>.
+@prefix odrlp: <http://example.org/odrl:profile:01/>.
+@prefix ex: <http://example.org/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix string: <http://www.w3.org/2000/10/swap/string#>.
+
+(_:sk_0 _:sk_1 _:sk_2 _:sk_3 _:bn_2 _:bn_3 _:bn_4 _:bn_5) log:onNegativeSurface {
+    _:sk_0 a odrl:Set.
+    _:sk_0 odrl:permission _:sk_1.
+    _:sk_1 odrl:assignee _:sk_2.
+    _:sk_1 odrl:action _:sk_3.
+    _:bn_2 a odrlp:User.
+    _:bn_2 odrlp:worksFor _:bn_3.
+    _:bn_3 a foaf:Organization.
+    _:bn_2 odrlp:isMemberOf _:bn_4.
+    _:bn_4 a odrlp:Membership.
+    _:bn_2 odrlp:isPartOf _:bn_5.
+    _:bn_5 a odrlp:Subscription.
+    () log:onNegativeSurface {
+        <urn:odrl-compiler:MyResult> <urn:odrl-compiler:is> _:sk_3.
+    }.
+}.
+
+
