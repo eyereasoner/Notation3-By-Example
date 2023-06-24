@@ -14,6 +14,7 @@ This code is an expansion of the [sharcs example](https://github.com/eyereasoner
 
 - `compiler.n3` : an [Notation3](https://w3c.github.io/N3/spec/) ODRL to RDF Surfaces compiler
 - `util.n3` : Notation3 utility user defined built-ins
+- `constraint_checker.n3s` : a RDF Surfaces constraint checker
 - `data_consumer_policy.q` : a query surface for the data consumer policy experiment
 - `data_consumer_policy.n3s` : generated RDF Surfaces when running `run.sh`
 
