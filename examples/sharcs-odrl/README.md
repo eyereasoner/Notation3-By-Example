@@ -6,18 +6,18 @@ This code is an expansion of the [sharcs example](https://github.com/eyereasoner
 
 ## Architecture
 
-This experiment contains a core knowledge base `data.ttl` which can be accessed only by RDF Surfaces policies (`.n3s` files). The policies are compiled from their Notation3 equivalents:
+This experiment contains a core knowledge base `data.ttl` which can be accessed RDF Surfaces policies (`.n3s` files). These policies are compiled from their Turtle source files:
 
-- `data_consumer_policy.n3s` is the RDF Surfaces compiled version of the Notation3 source `data_consumer_policy.ttl`
+- `data_consumer_policy.n3s` is the RDF Surfaces compiled version of the Turtle source `data_consumer_policy.ttl`
   
-These policies can contain zero or more constraints that are checked with an Notation3 constraint checker `constraint_checker.n3`.
+ODRL policies can contain zero or more constraints that are checked using a Notation3 constraint checker `constraint_checker.n3`.
 
-Execution steps:
+### Execution steps
 
-- Compile `data_consumer_policy.ttl` into `data_consumer_policy.n3s` .
-- Reason over `data.ttl` with `data_consumer_policy.n3s`.
-  - Result in a `<urn:odrl-compiler:Result>` output with zero or more constraints if the policy conditions are met.
-- Check if reasoning ouput satisfies the contraints.
+1. Compile `data_consumer_policy.ttl` into `data_consumer_policy.n3s` .
+2. Reason over `data.ttl` using `data_consumer_policy.n3s`.
+  - Results in a `<urn:odrl-compiler:Result>` output with zero or more constraints when all policy conditions are met.
+3. Check if the reasoning ouput `<urn:odrl-compiler:Result>`  satisfies all constraints.
 
 ## Data Content
 
@@ -27,17 +27,17 @@ Execution steps:
 
 ## Compiler Content
 
-- `compiler.n3` : an [Notation3](https://w3c.github.io/N3/spec/) ODRL to RDF Surfaces compiler
-- `util.n3` : Notation3 utility user defined built-ins
+- `compiler.n3` : an [Notation3](https://w3c.github.io/N3/spec/) ODRL Turtle to RDF Surfaces compiler
+- `util.n3` : a set of Notation3 utility built-ins 
 - `constraint_checker.n3` : a Notation3 constraint checker
-- `date.ttl` : setting of the current date
-- `data_consumer_policy.q` : a query surface for the data consumer policy experiment
-- `data_consumer_policy.n3s` : generated RDF Surfaces when running `run.sh`
+- `date.ttl` : a data file containing the current date
+- `data_consumer_policy.q` : a query surface that defines which result data to expose to the world
+- `data_consumer_policy.n3s` : compiled RDF Surfaces  of `data_consumer_policy.ttl`
 
 ## Scripts
 
-- `run.sh` : compile `data_consumer_policy.ttl` into `data_consumer_policy.n3s` and run the reasoner on the `data.ttl`
-- `test.sh` : testing the utility functions
+- `run.sh` : run all the execution steps as explained above
+- `test.sh` : testing script for the utility functions
 
 ## Demo
 
@@ -64,4 +64,4 @@ _:e_sk_12_1 <urn:odrl-compiler:is> <urn:odrl-compiler:Satisfied>.
 _:e_sk_13_1 <urn:odrl-compiler:is> <urn:odrl-compiler:Satisfied>.
 ```
 
-As experiment change some fields in the `data.ttl` (e.g. change  `ex:login` into `ex:bob`) and check the the access will not be granted.
+As experiment, change some fields in the `data.ttl` (e.g. change  `ex:login` into `ex:bob`) and check that the access will not be granted. Or, change the date in `date.ttl` into the past to see the constraints fail.
