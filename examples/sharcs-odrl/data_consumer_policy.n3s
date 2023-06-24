@@ -20,6 +20,7 @@
     _:bn_4 a odrlp:Membership.
     _:bn_2 odrlp:isPartOf _:bn_5.
     _:bn_5 a odrlp:Subscription.
+    _:bn_2 log:rawType log:Other.
     () log:onNegativeSurface {
         <urn:odrl-compiler:MyResult> <urn:odrl-compiler:is> _:sk_3.
     }.

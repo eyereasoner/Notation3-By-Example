@@ -18,6 +18,8 @@
   ?Assignee :graphList ?L .
   ?G graph:list ?L .
 
+  ?G :mainSubject ?Main .
+
   ( 
     { _:Policy  
         a odrl:Set ;
@@ -28,6 +30,7 @@
     }
     ?G 
     { 
+      ?Main log:rawType log:Other .
       () log:onNegativeSurface {
         :MyResult :is _:Action .
       } .
@@ -40,4 +43,14 @@
 {
   ?LB log:onNegativeSurface ?H .
 } .   
+
+{
+  ?A :mainSubject ?B .
+}
+<=
+{
+  ?A graph:list ?L .
+  ?L list:first ?H .
+  ?H log:equalTo { ?B ?P ?O } .
+} .
 

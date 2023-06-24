@@ -54,11 +54,11 @@
     ( ?Tail ?Acc3) :blankNodeList_ ?B .
 } .
 
-# Find for a (blank) node all triples.
+# Find for a node all triples.
 # Return a list of graph terms for these blank nodes.
 #  $A+ :graphList ?B-
 # Where:
-#  - A : a (blank) node
+#  - A : a node
 #  - B : a list of graph terms matching the subgraph of A
 {
     ?A :graphList ?B .
@@ -89,17 +89,9 @@
     # Read the (S)ubject (P)redicate (O)bject from the head
     ?Head log:equalTo (?S ?P ?O) .
 
-    # If the object is a blank node    
-    (
-        { ?O :isBlankNode true . }
-        # Recurse and find also its triples...
-        { 
-            ?O :graphList ?LTemp .
-            ( ({ ?S ?P ?O }) ?LTemp ) list:append ?Result .
-        }
-        # Just add the SPO as a graph term
-        { ({ ?S ?P ?O }) log:equalTo ?Result . }
-    ) log:ifThenElseIn _:x .
+    # Recurse and find also its triples...
+    ?O :graphList ?LTemp .
+    ( ({ ?S ?P ?O }) ?LTemp ) list:append ?Result .
 
     # Add the result to the accumulator
     ( ?Acc ?Result ) list:append ?AccNew .
