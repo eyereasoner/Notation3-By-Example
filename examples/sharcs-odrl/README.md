@@ -4,6 +4,14 @@ SHARCS example is a collection of data, rules and validation steps to simulate a
 
 This code is an expansion of the [sharcs example](https://github.com/eyereasoner/Notation3-By-Example/tree/main/examples/sharcs). Instead of writing the policy rules in [RDF Surfaces](https://w3c-cg.github.io/rdfsurfaces/) language we use the [ODRL2](https://www.w3.org/ns/odrl/2/) ontology examples provided by [Inès Akaichi](https://github.com/Ines-Akaichi/SHARCS-Use-Case).
 
+## Architecture
+
+This experiment contains a core knowledge base `data.ttl` which can be accessed only by RDF Surfaces policies (`.n3s` files). The policies are compiled from their Notation3 equivalents:
+
+- `data_consumer_policy.n3s` is the RDF Surfaces compiled version of the Notation3 source `data_consumer_policy.ttl`
+  
+These policies can contain zero or more constraints that are checked with an Notation3 constraint checker `constraint_checker.n3`.
+
 ## Data Content
 
 - `data.ttl` : a sample instance of the data model
@@ -14,7 +22,8 @@ This code is an expansion of the [sharcs example](https://github.com/eyereasoner
 
 - `compiler.n3` : an [Notation3](https://w3c.github.io/N3/spec/) ODRL to RDF Surfaces compiler
 - `util.n3` : Notation3 utility user defined built-ins
-- `constraint_checker.n3s` : a RDF Surfaces constraint checker
+- `constraint_checker.n3` : a Notation3 constraint checker
+- `date.ttl` : setting of the current date
 - `data_consumer_policy.q` : a query surface for the data consumer policy experiment
 - `data_consumer_policy.n3s` : generated RDF Surfaces when running `run.sh`
 

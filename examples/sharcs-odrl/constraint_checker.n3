@@ -1,0 +1,52 @@
+@prefix : <urn:odrl-compiler:> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+{
+    # Gather all the metadata of the policy
+    ?Result :constraint ?Constraint .
+
+    ?Constraint 
+        a :Constraint ;
+        odrl:leftOperand ?LO ;
+        odrl:operator ?O ;
+        odrl:rightOperand ?RO .
+
+    # Using the experimental ifThenElseIn built-in to
+    # execute the logical contraint (see below for an
+    # implementation using backward rules)
+    ( 
+      # if 
+      {?LO ?O ?RO} 
+      # then
+      {?Validity log:equalTo :Satisfied} 
+      # else 
+      {?Validity log:equalTo :NotSatisfied}
+    ) log:ifThenElseIn ?Scope.
+}
+=>
+{
+    ?Constraint :is ?Validity .
+} .
+
+# Implementation of an odrl:lt checker for dates
+{
+    odrl:dateTime odrl:lt ?Date .
+} 
+<=
+{
+    ?Blank :currentDate ?CurrentDate  .
+    ?CurrentDate string:lessThan ?Date .
+} .
+
+# Implementation of an odrl:gt checker for dates
+{
+    odrl:dateTime odrl:gt ?Date .
+}
+<=
+{
+    ?Blank :currentDate ?CurrentDate  .
+    ?CurrentDate string:greaterThan ?Date .
+} .

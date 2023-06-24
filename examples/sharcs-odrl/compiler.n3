@@ -39,11 +39,8 @@
         ex:login ?TheAssignee .
 
       # Match the policy
-      _:Policy  
-        a odrl:Set ;
-        odrl:permission _:Permission .
-      _:Permission
-        odrl:assignee _:Assignee .
+      _:Policy log:equalTo ?Policy .
+      _:Assignee log:equalTo ?Assignee .
     }
     ?AssigneeGraph ?TargetGraph
     { 

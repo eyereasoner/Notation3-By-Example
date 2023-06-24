@@ -9,12 +9,11 @@
 @prefix string: <http://www.w3.org/2000/10/swap/string#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
-(_:sk_0 _:bn_3 _:sk_1 _:sk_2 _:sk_3 _:bn_4 _:bn_5 _:bn_6 _:bn_9) log:onNegativeSurface {
+(_:sk_0 _:bn_3 _:sk_1 _:sk_2 _:bn_4 _:bn_5 _:bn_6 _:bn_9) log:onNegativeSurface {
     _:sk_0 a odrl:Session.
     _:sk_0 ex:login _:bn_3.
-    _:sk_1 a odrl:Set.
-    _:sk_1 odrl:permission _:sk_2.
-    _:sk_2 odrl:assignee _:sk_3.
+    _:sk_1 log:equalTo <http://example.org/policy/policy-authorization>.
+    _:sk_2 log:equalTo _:bn_3.
     _:bn_3 a odrlp:User.
     _:bn_3 odrlp:worksFor _:bn_4.
     _:bn_4 a foaf:Organization.
@@ -33,25 +32,25 @@
     }.
 }.
 
-(_:sk_4) log:onNegativeSurface {
-    _:sk_4 <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
+(_:sk_3) log:onNegativeSurface {
+    _:sk_3 <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
     () log:onNegativeSurface {
-        <urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _:sk_5.
-        _:sk_5 a <urn:odrl-compiler:Constraint>.
-        _:sk_5 odrl:leftOperand odrl:dateTime.
-        _:sk_5 odrl:operator odrl:lt.
-        _:sk_5 odrl:rightOperand "2024-01-01"^^xsd:date.
+        <urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _:sk_4.
+        _:sk_4 a <urn:odrl-compiler:Constraint>.
+        _:sk_4 odrl:leftOperand odrl:dateTime.
+        _:sk_4 odrl:operator odrl:lt.
+        _:sk_4 odrl:rightOperand "2024-01-01"^^xsd:date.
     }.
 }.
 
-(_:sk_6) log:onNegativeSurface {
-    _:sk_6 <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
+(_:sk_5) log:onNegativeSurface {
+    _:sk_5 <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
     () log:onNegativeSurface {
-        <urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _:sk_7.
-        _:sk_7 a <urn:odrl-compiler:Constraint>.
-        _:sk_7 odrl:leftOperand odrl:dateTime.
-        _:sk_7 odrl:operator odrl:gt.
-        _:sk_7 odrl:rightOperand "2022-01-01"^^xsd:date.
+        <urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _:sk_6.
+        _:sk_6 a <urn:odrl-compiler:Constraint>.
+        _:sk_6 odrl:leftOperand odrl:dateTime.
+        _:sk_6 odrl:operator odrl:gt.
+        _:sk_6 odrl:rightOperand "2022-01-01"^^xsd:date.
     }.
 }.
 
