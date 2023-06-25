@@ -32,7 +32,7 @@
     # Test the constraint 
     ( 
       # if 
-      { ?LOV ?O ?ROV .} 
+      { ?LOV ?O ?ROV . } 
       # then
       { ?Validity log:equalTo :Satisfied . } 
       # else 
