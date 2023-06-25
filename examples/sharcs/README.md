@@ -22,16 +22,7 @@ The SHARCS implementation has two reasoning runs: one for applying the policies 
 
 ## Knowledge Base
 
-The data files in the knowledge base are organized for ease of administation. The exact names or locations of the these files is of no significance for the experiment (as long as the reasoner has some way to have access to all these resources). 
-
-- `grant/` : data provider client grants
-- `organizations/` : known organizations
-- `pmp/client.ttl` : known client applications
-- `pmp/memberships.ttl` : allowed organization memberships for the PMP
-- `pmp/subscriptions.ttl` : allowed subscriptions for the PMP
-- `pmp/subscriptions/permissions.ttl` : allowed permissions for the subscriptions
-- `pmp/transaction_usage_contract.ttl` : allowed transaction usage contracts for the PMP
-- `pmp/transaction_usage_contract/permissions.ttl` : allowed permissions for the transaction usage contracts
+The data file `data.ttl` contains the knowledge base. When a PMP session is started it is imagined that the service can get access to the grants, organizations, client information, memberships, subscriptions and transaction usage contracts. How this information is gathered is out of scope for this experiment.
 
 ## Policies
 

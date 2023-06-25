@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DATA=$(find grant organizations pmp policies validation -name "*.ttl")
+DATA=data.ttl
 
 # Run 1: reasoning part
 eye --nope --quiet --blogic ${DATA} data_consumer_session.ttl \

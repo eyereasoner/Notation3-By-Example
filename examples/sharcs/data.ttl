@@ -1,0 +1,91 @@
+@prefix ex: <http://www.example.org/rdf#> .
+
+# Define Access Grants for a client to read data from some Pod
+# - isActive : true | false
+# - client : the identifier of a client
+ex:AccessGrant123
+    a ex:AccessGrant ;
+    ex:isActive true ;
+    ex:client ex:DataProviderClient01 .
+
+# Define organizations
+#
+# - isActive : [1] true | false
+# - hasMember : [0..] user identities
+ex:ABC 
+    a ex:Organization ;
+    ex:isActive true ;
+    ex:hasMember ex:user1 , ex:user2, ex:user3 . 
+
+# Definition of know application identities
+# - isActive : [1] true | false
+
+ex:DataConsumerClient01 
+    a ex:DataConsumer ;
+    ex:isActive true .
+
+ex:DataProviderClient01
+    a ex:DataProvider ;
+    ex:isActive true .
+
+# Define known memberships of the pmp
+# - isActive : [1] true | false
+# - hasOrganization : [1] an organisazation identifier
+# - hasMember : [0..] user identifiers
+ex:ABCMembership 
+    a ex:PMPMembership ;
+    ex:isActive true ;
+    ex:hasOrganization ex:ABC ;
+    ex:hasMember ex:user1 .
+
+# Define known subscriptions
+#
+# - isActive : true | false
+# - hasMembership : a membership identifier
+# - hasClient : a client application identifier
+ex:ABCSubscription 
+    a ex:Subscription ;
+    ex:isActive true ;
+    ex:hasMembership ex:ABCMembership ;
+    ex:hasClient ex:DataConsumerClient01 .
+
+# Define known transaction usage contracts
+#
+# - isActive : true | false
+# - hasMembership : a membership identifier
+# - hasClient : a client application identifier
+ex:ABCContract
+    a ex:TransactionUsageContract ;
+    ex:isActive true ;
+    ex:hasMembership ex:ABCMembership ;
+    ex:hasClient ex:DataProviderClient01 .
+
+# Define known permissions
+# - isActive : [1] true | false
+# - hasMembership : [1] membership identifier
+# - allows : [0...] allowances
+#      - subscription : [1] subscription identifier
+#      - usedBy : [0...] user identifier
+ex:ABCSubscriptionPermission
+    a ex:Permission ;
+    ex:isActive true ;
+    ex:hasMembership ex:ABCMembership ;
+    ex:allows [
+        ex:subscription ex:ABCSubscription ;
+        ex:subscriber ex:user1 
+    ] .
+
+# Define known permissions
+# - isActive : [1] true | false
+# - hasMembership : [1] membership identifier
+# - allows : [0...] allowances
+#      - contract: [1] contract identifier
+#      - usedBy : [0...] user identifier
+ex:ABCContractPermission
+    a ex:Permission ;
+    ex:isActive true ;
+    ex:hasMembership ex:ABCMembership ;
+    ex:allows [
+        ex:contract ex:ABCContract ;
+        ex:subscriber ex:user1 
+    ] .
