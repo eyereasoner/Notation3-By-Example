@@ -20,13 +20,13 @@
     (
         { ?LO log:rawType log:Other . }
         { ?Some ?LO ?LOV . }
-        { ?LO log:equalTo ?LOV .}
+        { ?LO log:equalTo ?LOV . }
     ) log:ifThenElseIn _:x .
 
     (
         { ?RO log:rawType log:Other . }
         { ?Some ?RO ?ROV . }
-        { ?RO log:equalTo ?ROV .}
+        { ?RO log:equalTo ?ROV . }
     ) log:ifThenElseIn _:y .
 
     # Test the constraint 
