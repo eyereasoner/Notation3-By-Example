@@ -32,11 +32,11 @@
     # Test the constraint 
     ( 
       # if 
-      {?LOV ?O ?ROV} 
+      { ?LOV ?O ?ROV .} 
       # then
-      {?Validity log:equalTo :Satisfied} 
+      { ?Validity log:equalTo :Satisfied . } 
       # else 
-      {?Validity log:equalTo :NotSatisfied}
+      { ?Validity log:equalTo :NotSatisfied . }
     ) log:ifThenElseIn _:z.
 }
 =>
