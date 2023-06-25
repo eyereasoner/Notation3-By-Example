@@ -147,7 +147,7 @@ The output of both reasoning steps are also written in file files:
 - `data_provider_session.step1.ttl`
 - `data_provider_session.step2.ttl`
 
-We can invalide this process by, for instance, commenting out the access grant in `grant/client1.ttl` and run the `data_provider_session.sh` again:
+We can invalide this process by, for instance, commenting out the access grant in `data.ttl` and run the `data_provider_session.sh` again:
 
 ```
 $ ./data_provider_session.sh
