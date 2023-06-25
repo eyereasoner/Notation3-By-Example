@@ -1,5 +1,0 @@
-@prefix : <urn:odrl-compiler:> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-# Date
-[ :currentDate "2022-12-11"^^xsd:date ] .

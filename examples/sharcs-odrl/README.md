@@ -40,7 +40,6 @@ In this setup, the RDF Surfaces policies contain only existential rules, executi
 - `compiler.n3` : an [Notation3](https://w3c.github.io/N3/spec/) ODRL Turtle to RDF Surfaces compiler
 - `util.n3` : a set of Notation3 utility built-ins 
 - `constraint_checker.n3` : a Notation3 constraint checker
-- `date.ttl` : a data file containing the current date
 - `data_consumer_policy.q` : a query surface that defines which result data to expose to the world
 - `data_consumer_policy.n3s` : compiled RDF Surfaces  of `data_consumer_policy.ttl`
 
@@ -74,4 +73,4 @@ _:e_sk_12_1 <urn:odrl-compiler:is> <urn:odrl-compiler:Satisfied>.
 _:e_sk_13_1 <urn:odrl-compiler:is> <urn:odrl-compiler:Satisfied>.
 ```
 
-As experiment, change some fields in the `data.ttl` (e.g. change  `ex:login` into `ex:bob`) and check that the access will not be granted. Or, change the date in `date.ttl` into the past to see the constraints fail.
+As experiment, change some fields in the `data.ttl` (e.g. change  `ex:login` into `ex:bob`) and check that the access will not be granted. 

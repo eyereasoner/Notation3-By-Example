@@ -10,4 +10,4 @@ eye --nope --quiet --blogic \
             data_consumer_policy.n3s \
             data_consumer_policy.q |\
     # Execute the constaint checks
-    eye --nope --quiet --pass - date.ttl constraint_checker.n3
+    eye --nope --quiet --pass - constraint_checker.n3
