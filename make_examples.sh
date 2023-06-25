@@ -6,7 +6,7 @@ SKIPPED=0
 
 if [ "$1" == "clean" ]; then
     rm *.out 2> /dev/null
-    for n3 in crypto graph list log log/blogic math string ; do
+    for n3 in crypto graph list log math string ; do
         rm $n3/*.out 2> /dev/null
     done
     exit 0
@@ -24,12 +24,12 @@ for n3 in *.n3 crypto/*.n3 graph/*.n3 list/*.n3 log/*.n3 math/*.n3 string/*.n3 ;
     fi
 done
 
-for n3 in blogic/*.n3 ; do 
-    if [[ "$n3" =~ SKIP ]] ; then
-        echo "(skipping $n3)" | tee $n3.out
+for n3s in blogic/*.n3s ; do 
+    if [[ "$n3s" =~ SKIP ]] ; then
+        echo "(skipping $n3s)" | tee $n3s.out
     else
-        echo "eye --nope --quiet --blogic $n3 > $n3.out 2> /dev/null"
-        eye --nope --quiet --blogic $n3 > $n3.out 2> /dev/null
+        echo "eye --nope --quiet --blogic $n3s > $n3s.out 2> /dev/null"
+        eye --nope --quiet --blogic $n3s > $n3s.out 2> /dev/null
     fi
 done
 
