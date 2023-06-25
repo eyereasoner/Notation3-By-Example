@@ -13,10 +13,14 @@ This experiment contains the core knowledge base `data.ttl` which can be accesse
 ODRL policies can contain zero or more constraints that are checked using a Notation3 constraint checker `constraint_checker.n3`.
 
 ```
-[ User ] <-> [ Notation3 agent ] <-> [RDF Surfaces agent] <-> [Data]
+[KnowledgeBase] --> 
+  {Compile .ttl policies into .n3s (surfaces)} -->
+  {Surface Reasoning with [KnowledgeBase] + [.n3s Policies] + [.q Query]} --> 
+  {Notation3 Reasoning with [.n3 Constraints]} -->
+  [Output]
 ```
 
-In this setup, the RDF Surfaces contain only existential rules, executing basic graph pattern queries over the data. The Notation3 contains the logic to create the existential rules and evaluate constrains that require side-effects (e.g. read a date/time).
+In this setup, the RDF Surfaces policies contain only existential rules, executing basic graph pattern queries over the data.
 
 ### Execution steps
 
