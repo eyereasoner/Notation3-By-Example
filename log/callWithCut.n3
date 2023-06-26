@@ -2,48 +2,37 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix math: <http://www.w3.org/2000/10/swap/math#> .
 
-:person1 a :Musician ;
-    :age 18 ;
-    :plays :Guitar .
+# callWithCut is a built-in most useful in backward rules.
+# When a backward rules has more than one possible match (e.g.
+# when a backward rule is repeated with the same head), the
+# `callWithCut` can 'cut' away execution possibilities.
 
-:person2 a :Musician ;
-    :age 78 ;
-    :plays :Violin .
+# In the examples below we will implement a if-then-else 
+# using callWithCut. We will check if something is humanLike or
+# catLike.
 
-:person3 a :Musician ;
-    :age 24 ;
-    :plays :Piano .
+:Alice a :Person .
 
+:Mika a :Cat .
 
 {  
-    ?person :youngMusician true .
+    ?A :isHumanLike true .
 }
 <=
 {
-    ?person a :Musician .  
-    # Subject should contain a formula
-    # This formula could have 1 or more 'hits', but after every failed match
-    # the processor will 'cut' away all other possible hits
-    #
-    # ..In our case person1 will be found, person2 will fail, thus person3 will 
-    # but 'cut' from the possible matches
     {
-        ?person :age ?X .
-        ?X math:notGreaterThan 25 .
-    } log:callWithCut true .
+        ?A a :Person . # When we have a hit here...
+    } log:callWithCut true . # ...then this branch is 'cut' away
 } .
 
 {
-    # Test the new backward rule
-    ?person :youngMusician true .
+    ?A :isHumanLike false .
 }
-=>
-{
-    :result :is ?person .
-} .
+<= true .
 
 {
-    :result :is :person1 .
+    :Alice :isHumanLike true .
+    :Mike :isHumanLike false .
 }
 => 
 {
