@@ -14,36 +14,36 @@
     odrl:permission [
         ##odrl:assigner [a odrlp:DataConsumer] ;
         odrl:assignee [
-		    a odrlp:User;
-		    odrlp:worksFor [	
+            a odrlp:User;
+            odrlp:worksFor [	
                 a foaf:Organization ;
-				foaf:name "organizationABC" ;
-				cert:key <https://example-organization-ABC.com> ;
-				odrlp:offers [	
+                foaf:name "organizationABC" ;
+                cert:key <https://example-organization-ABC.com> ;
+                odrlp:offers [	
                     a odrlp:Membership ;
-					foaf:name "membershipABC" ;
-					cert:key <https://example-membership-ABC.com> 
-                ] 
-			] ;
-		    odrlp:isMemberOf [	
-                a odrlp:Membership ;
-				foaf:name "membershipABC" ;
-				cert:key <https://example-membership-ABC.com> 
-            ];
-		    odrlp:isPartOf [
-                a odrlp:Subscription ;
-			    odrlp:hasSubscriber [	
-                    a foaf:Organization ;
-					foaf:name "organizationABC" ;
-					cert:key <https://example-organization-ABC.com>
-                ] ;
-			    odrlp:hasProvider [	
-                    a odrlp:DataProvider ;
-					foaf:name "providerDPV" ;
-					cert:key <https://example-app-provider.com> 
+                    foaf:name "membershipABC" ;
+                    cert:key <https://example-membership-ABC.com> 
                 ] 
             ] ;
-	    ];
+            odrlp:isMemberOf [	
+                a odrlp:Membership ;
+                foaf:name "membershipABC" ;
+                cert:key <https://example-membership-ABC.com> 
+            ];
+            odrlp:isPartOf [
+                a odrlp:Subscription ;
+                odrlp:hasSubscriber [	
+                    a foaf:Organization ;
+                    foaf:name "organizationABC" ;
+                    cert:key <https://example-organization-ABC.com>
+                ] ;
+                odrlp:hasProvider [	
+                    a odrlp:DataProvider ;
+                    foaf:name "providerDPV" ;
+                    cert:key <https://example-app-provider.com> 
+                ] 
+            ] ;
+        ];
         odrl:action odrlp:grantAccess ;
         odrl:target [
             a odrl:Session
