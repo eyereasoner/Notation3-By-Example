@@ -1,42 +1,36 @@
-@prefix : <urn:odrl-compiler:> .
 @prefix cert: <http://www.w3.org/ns/auth/cert>.
-@prefix cc: <http://creativecommons.org/ns#> .
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
-@prefix odrlp: <http://example.org/odrl:profile:01/> .
-@prefix ex: <http://example.org/> .
+@prefix cc:      <http://creativecommons.org/ns#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix odrl:    <http://www.w3.org/ns/odrl/2/> .
+@prefix odrlp:    <http://example.org/odrl:profile:01/> .
+@prefix ex:    <http://example.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix dpv: <http://www.w3.org/ns/dpv/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
 
 # User
-ex:alice 
-    a odrlp:User ;
+ex:alice a odrlp:User;
     cert:key <https://alice.databox.me/profile/card#me> ;
     odrlp:worksFor ex:organizationABC ;
     odrlp:isMemberOf ex:membershipABC ;
     odrlp:isPartOf ex:subscriptionABC ;
+    odrlp:hasSession ex:Session2300 ;
     odrlp:linkedTo ex:usageContractABC .
-
-ex:bob
-    a odrlp:User ;
-    cert:key <https://bob.databox.me/profile/card#me> ;
-    odrlp:worksFor  ex:organizationABC ;
-    odrlp:isMemberOf ex:membershipABC ;
-    odrlp:isPartOf ex:subscriptionDEF ;
-    odrlp:linkedTo ex:usageContractDEF .
 
 # Organization
 ex:organizationABC 
     a foaf:Organization ;
-    cert:key <https://example-organitation-ABC.com> ;
-    odrlp:offers ex:membershipABC .
+    foaf:name "organizationABC" ;
+    cert:key <https://example-organization-ABC.com> ;
+    odrlp:offers  ex:membershipABC .
 
 # Membership
 ex:membershipABC
-    a odrlp:Membership .
+    a odrlp:Membership ;
+    foaf:name "membershipABC" ;
+    cert:key <https://example-membership-ABC.com> .
 
 # Subscription
 ex:subscriptionABC 
@@ -47,6 +41,7 @@ ex:subscriptionABC
 # Data Provider
 ex:providerDPV 
     a odrlp:DataProvider ;
+    foaf:name "providerDPV" ;
     cert:key <https://example-app-provider.com> .
 
 # Data Consumer
@@ -58,21 +53,21 @@ ex:consumerDPV
 ex:usageContract 
     a odrlp:UsageContract ;
     odrlp:partyA ex:providerDPV ;
-    odrlp:partyB ex:organizationABC.
+odrlp:partyB ex:organizationABC.
 
 # Data Subject
-ex:charly 
+ex:bob 
     a odrlp:DataSubject ;    
     cert:key <https://bob.solid.me/profile/card#me> .
 
-# Consent
+# Concent
 ex:consentBobToDP  
     a odrlp:Consent ;   
     odrl:action odrl:obtainConsent ;   
-    odrl:consentingParty ex:charly ;                 
-    odrl:consentedParty ex:providerDPV  .
+    odrl:consentingParty  ex:bob ;                 
+    odrl:consentedParty   ex:providerDPV  .
 
-# Login Session
+# Session
 ex:Session2300 
     a odrl:Session ;
     ex:login ex:alice . 
