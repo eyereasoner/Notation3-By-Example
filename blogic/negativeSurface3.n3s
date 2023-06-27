@@ -6,7 +6,7 @@
     :Beetle a :Car .
 } .
 
-(_:S _:O) log:onQuerySurface {
+(_:S _:O) log:onQuestionSurface {
     # ∀S,O : ~(S a O)
     () log:onNegativeSurface {
         _:S a _:O .
