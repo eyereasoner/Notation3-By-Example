@@ -7,7 +7,7 @@
     () log:onNegativeSurface {
         :bob :likes :spinach .
         () log:onNegativeSurface {
-          :alice a :Person .
+          :alice a :person .
         }.
     } .
     () log:onAnswerSurface {
