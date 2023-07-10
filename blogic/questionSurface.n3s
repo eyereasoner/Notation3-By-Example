@@ -1,0 +1,16 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:alice a :person .
+:alice :likes :cat .
+
+() log:onQuestionSurface {
+    () log:onNegativeSurface {
+      (_:X) log:onNegativeSurface {
+         :alice :likes _:X .
+      } .
+    } .
+    () log:onAnswerSurface {
+        :test :is true .
+    } .
+} .
