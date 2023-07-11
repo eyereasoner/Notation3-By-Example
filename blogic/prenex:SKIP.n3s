@@ -1,0 +1,41 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# (\Every x: (x a Cat)) v (:Hector a :Dog)
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
+        (_:X) log:onNegativeSurface {
+           () log:onNegativeSurface {
+              _:X a :Cat .
+           } .
+        } .
+    } .
+
+    () log:onNegativeSurface {
+        :Hector a :Dog .
+    } . 
+} .
+
+() log:onQuestionSurface {
+
+   # \Every x: ( (x a Cat) v (:Hector a :Dog) )
+   (_:X) log:onNegativeSurface {
+     () log:onNegativeSurface {
+
+      # The disjunction
+      () log:onNegativeSurface {
+        () log:onNegativeSurface {
+            _:X a :Cat .
+        } .
+        () log:onNegativeSurface {
+            :Hector a :Dog .
+        } . 
+      } .
+
+     }.
+    }.
+    
+    () log:onAnswerSurface {
+        :test :is true .
+    } .
+} .
