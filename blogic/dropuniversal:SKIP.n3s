@@ -1,0 +1,28 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# From 
+#  \ForAll x,y : p(x,y) => q(x) 
+# Follows:
+#  \ForAll x : (\Some y: p(x,y) => q(x) 
+
+(_:X) log:onNegativeSurface {
+   _:X :p _:Y .
+
+   () log:onNegativeSurface {
+      _:X :q true .
+   } .
+} .
+
+() log:onQuestionSurface {
+    (_:X _:Y) log:onNegativeSurface {
+        _:X :p _:Y .
+        () log:onNegativeSurface {
+            _:X :q true .
+        } .
+    } .
+
+    () log:onAnswerSurface {
+        :result :is true .
+    } .
+} .
