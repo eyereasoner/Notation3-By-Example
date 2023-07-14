@@ -52,7 +52,7 @@
 # Test 
 # See the noGod example why this works...
 () log:onPositiveSurface {
-    [] :hates [] .
+    _:X :hates _:X .
 
     (_:Counter _:S _:O) log:onNegativeSurface {
         :Alice :isKnowable true .
@@ -61,7 +61,7 @@
 
         # There shouldn't be any extra hates
         _:Counter a log:GraphCounter .
-        { _:S :hates _:O } _:Counter 1.
+        { _:S :hates _:O } _:Counter 3.
 
         () log:onNegativeSurface {
             :test :is true .

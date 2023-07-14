@@ -5,9 +5,11 @@
 :Socrates a :Man.
 :Man rdfs:subClassOf :Mortal.
 
-(_:A _:B _:S) log:onNegativeSurface {
-    _:A rdfs:subClassOf _:B.
-    _:S a _:A.
+(_:B _:S) log:onNegativeSurface {
+    (_:A) log:onPositiveSurface {
+        _:A rdfs:subClassOf _:B.
+        _:S a _:A.
+    }.
     () log:onNegativeSurface {
         _:S a _:B.
     }.
