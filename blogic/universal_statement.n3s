@@ -1,0 +1,21 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# From 
+#  \Every x: ~(x is Perfect) 
+# Follows:
+#  ~(bob is Perfect) 
+
+(_:X) log:onNegativeSurface {
+    _:X :is :Perfect .
+} .
+
+() log:onQuestionSurface {
+    () log:onNegativeSurface {
+       :bob :is :Perfect .
+    } .
+
+    () log:onAnswerSurface {
+        :test :is true .
+    } .
+} .
