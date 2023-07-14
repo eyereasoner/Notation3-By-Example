@@ -36,8 +36,8 @@
 # Here we implement a broken rule, we add graffiti
 # on the positive surface to block the scope of the variables
 (_:S _:O) log:onNegativeSurface {
-    # Write for _:S new grafiti ..
-    (_:S) log:onPositiveSurface {
+    # Write for _:S and _:O new grafiti ..
+    (_:S _:O) log:onPositiveSurface {
         _:S :knows _:O .
     } .
     () log:onNegativeSurface {
@@ -52,7 +52,7 @@
 # Test 
 # See the noGod example why this works...
 () log:onPositiveSurface {
-    _:X :hates _:X .
+    [] :hates [] .
 
     (_:Counter _:S _:O) log:onNegativeSurface {
         :Alice :isKnowable true .
@@ -61,7 +61,7 @@
 
         # There shouldn't be any extra hates
         _:Counter a log:GraphCounter .
-        { _:S :hates _:O } _:Counter 3.
+        { _:S :hates _:O } _:Counter 1.
 
         () log:onNegativeSurface {
             :test :is true .
