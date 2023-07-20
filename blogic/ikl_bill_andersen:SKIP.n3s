@@ -29,11 +29,12 @@ _:A2 :seenIn :Austria .
 
     _:A :seenIn :Austria .
 
-    # This could be the case unless we explicitly state that all the planes are different
-    _:A log:equalTo _:A1 .
+    # It could still be the case that all planes are equal
+    _:A log:isomorphic _:A1 .
 
     () log:onNegativeSurface {
         :test :is true .
+        # Here I want to say something that _:A is not equal to _:A3
     } .
 } .
 
