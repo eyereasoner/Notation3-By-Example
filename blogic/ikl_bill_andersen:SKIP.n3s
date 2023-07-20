@@ -1,6 +1,11 @@
 @prefix : <urn:example:> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
+# Inspired from https://www.jfsowa.com/ikl/iklguide.htm
+
+# We have bill that believes something, he knows that an iranian have three planes
+# or has some information about it..but doesn't know if these planes are the same
+# (this is what an existential quantified \Exists: x,y,z does
 :BillAndersen :believes {
     _:S a :Iranian .
     _:S :customer "Bank Melli Iran" .
@@ -12,6 +17,8 @@
 
 _:A2 :seenIn :Austria .
 
+#_:A1 log:equalTo _:A2.
+
 (_:X _:Y _:S _:A) log:onNegativeSurface {
     _:X :believes _:Y .
 
@@ -22,7 +29,7 @@ _:A2 :seenIn :Austria .
 
     _:A :seenIn :Austria .
 
-    # This could be the case
+    # This could be the case unless we explicitly state that all the planes are different
     _:A log:equalTo _:A1 .
 
     () log:onNegativeSurface {
