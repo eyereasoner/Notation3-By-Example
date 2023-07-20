@@ -1,0 +1,115 @@
+@prefix : <urn:example:> .
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# TPTP format
+#
+# fof(p3,axiom,(
+#    ? [X,Y,Z] :
+#      ( type(X,plane) &
+#        type(Y,plane) & 
+#        type(Z,plane) & 
+#        id(X,1) & id(Y,2) & id(Z,3) &
+#        X!=Y & X!=Z & Y!=Z 
+#      )
+# )).
+#
+# ## There is no plane with id(1) and id(2) where both are the same
+# fof(test,conjecture,(
+#    ? [X,Y] : ~( type(X,plane) & type(Y,plane) & id(X,1) & id(Y,2) & X=Y)
+# )).
+#
+
+_:A1 a :Airplane .
+_:A2 a :Airplane .
+_:A3 a :Airplane .
+
+_:A1 :id 1 .
+_:A2 :id 2 .
+_:A3 :id 3 .
+
+_:A1 owl:differentFrom _:A2 .
+_:A1 owl:differentFrom _:A3 .
+_:A2 owl:differentFrom _:A3 .
+
+# Comment this out..this is should blow a fuse (and it does!)
+#() log:onNegativeSurface {
+#    (_:X _:Y) log:onNegativeSurface {
+#        _:X a :Airplane .
+#        _:Y a :Airplane .
+#        _:X :id 1 .
+#        _:Y :id 2 .
+#        _:X owl:sameAs _:Y .
+#    } .
+#} .
+
+() log:onNegativeSurface {
+    # So this must be true
+    (_:X _:Y) log:onNegativeSurface {
+        _:X a :Airplane .
+        _:Y a :Airplane .
+        _:X :id 1 .
+        _:Y :id 2 .
+        _:X owl:sameAs _:Y .
+    } .
+    () log:onNegativeSurface {
+        :test :is true .
+    }
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
+
+# OWL
+
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:differentFrom _:B .
+    () log:onNegativeSurface {
+        _:B owl:differentFrom _:A .
+    } . 
+} . 
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:A owl:differentFrom _:B .
+} .  
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:A _:C _:D .
+    () log:onNegativeSurface {
+        _:B _:C _:D .
+    } .
+} .
+    
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:C _:A _:D .
+    () log:onNegativeSurface {
+        _:C _:B _:D .
+    } .
+} . 
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:D _:C _:A .
+    () log:onNegativeSurface {
+        _:D _:C _:B .
+    } .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    () log:onNegativeSurface {
+        _:B owl:sameAs _:A .
+    } .
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:B owl:sameAs _:C .
+    () log:onNegativeSurface {
+        _:A owl:sameAs _:C .
+    } .
+} .

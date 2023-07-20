@@ -1,4 +1,5 @@
 @prefix : <urn:example:> .
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Inspired from https://www.jfsowa.com/ikl/iklguide.htm
@@ -32,10 +33,51 @@ _:A2 :seenIn :Austria .
 
     () log:onNegativeSurface {
         :test :is true .
-        # Here I want to say something that _:A is not equal to _:A3
     } .
 } .
 
 () log:onQuerySurface {
     :test :is true .
+} .
+
+# sameAs: all properties of A are in B
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:A _:C _:D .
+    () log:onNegativeSurface {
+        _:B _:C _:D .
+    } .
+} .
+
+# sameAs: all subjects and objects of A as property also go for B as property
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:C _:A _:D .
+    () log:onNegativeSurface {
+        _:C _:B _:D .
+    } .
+} . 
+
+# sameAs: interchanging A and B as object has no effect 
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:D _:C _:A .
+    () log:onNegativeSurface {
+        _:D _:C _:B .
+    } .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    () log:onNegativeSurface {
+        _:B owl:sameAs _:A .
+    } .
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:B owl:sameAs _:C .
+    () log:onNegativeSurface {
+        _:A owl:sameAs _:C .
+    } .
 } .
