@@ -3,7 +3,7 @@
 
 # Inspired from https://www.jfsowa.com/ikl/iklguide.htm
 
-# We have bill that believes something, he knows that an iranian have three planes
+# We have bill that believes something, he knows that an iranian has three planes
 # or has some information about it..but doesn't know if these planes are the same
 # (this is what an existential quantified \Exists: x,y,z does
 :BillAndersen :believes {
@@ -16,8 +16,6 @@
 } .
 
 _:A2 :seenIn :Austria .
-
-#_:A1 log:equalTo _:A2.
 
 (_:X _:Y _:S _:A) log:onNegativeSurface {
     _:X :believes _:Y .
