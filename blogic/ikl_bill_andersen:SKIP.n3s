@@ -1,0 +1,35 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:BillAndersen :believes {
+    _:S a :Iranian .
+    _:S :customer "Bank Melli Iran" .
+    _:S :owns _:A1 , _:A2 , _:A3 .
+    _:A1 a :Airplane .
+    _:A2 a :Airplane .
+    _:A3 a :Airplane .
+} .
+
+_:A2 :seenIn :Austria .
+
+(_:X _:Y _:S _:A) log:onNegativeSurface {
+    _:X :believes _:Y .
+
+    # Make Bill's believe true
+    _:Y log:includes {
+        _:S :owns _:A 
+    } .
+
+    _:A :seenIn :Austria .
+
+    # This could be the case
+    _:A log:equalTo _:A1 .
+
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+() log:onQuerySurface {
+    :test :is true .
+} .
