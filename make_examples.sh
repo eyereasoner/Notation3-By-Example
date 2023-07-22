@@ -1,5 +1,10 @@
 #!/bin/bash
 
+RED="\033[31m"
+PINK="\033[35m"
+GREEN="\033[32m"
+NORMAL="\033[0;39m"
+
 OK=0
 FAILED=0
 SKIPPED=0
@@ -41,24 +46,24 @@ for f in $(find . -name "*.out" | sort) ; do
     echo -n "Testing $f ... "
 
     if [[ $f =~ blogic ]] && [[ $f =~ FAIL ]] && [[ ! -s $f ]]; then
-        echo "OK"
+        echo -e "${GREEN}OK${NORMAL}"
         ((OK++))
     elif [[ $f =~ SKIP ]]; then
-        echo "SKIPPED"
+        echo -e "${PINK}SKIPPED${NORMAL}"
         ((SKIPPED++))
     elif [[ $(grep '<urn:example:test> <urn:example:is> true' $f) ]]; then
-        echo "OK"
+        echo -e "${GREEN}OK${NORMAL}"
         ((OK++))
     elif [[ $(grep '() log:onAnswerSurface true' $f) ]]; then
         echo "OK"
         ((OK++))
     else
-        echo "FAILED"
+        echo -e "${RED}FAILED${NORMAL}"
         ((FAILED++))
     fi
 done
 
-echo "Results: ${OK} OK , ${FAILED} FAILED, ${SKIPPED} SKIPPED"
+echo -e "Results: ${GREEN}${OK} OK${NORMAL}, ${RED}${FAILED} FAILED${NORMAL}, ${PINK}${SKIPPED} SKIPPED${NORMAL}"
 
 if [[ ${FAILED} -eq 0 ]]; then 
     exit 0
