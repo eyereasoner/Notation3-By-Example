@@ -45,7 +45,7 @@ for f in $(find . -name "*.out" | sort) ; do
 
     echo -n "Testing $f ... "
 
-    if [[ $f =~ blogic ]] && [[ $f =~ FAIL ]] && [[ ! -s $f ]]; then
+    if [[ $f =~ FAIL ]] && [[ ! -s $f ]]; then
         echo -e "${GREEN}OK${NORMAL}"
         ((OK++))
     elif [[ $f =~ SKIP ]]; then
