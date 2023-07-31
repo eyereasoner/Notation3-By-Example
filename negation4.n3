@@ -1,0 +1,15 @@
+@prefix : <urn:example:> .
+
+:Alice a :Human .
+
+# ~(~(~(X a Human)) & ~(test is true) |= (X a Human) => (test is true)
+{
+    {
+        {
+            _:X a :Human .
+        } => false.
+    } => false .
+    {
+        :test :is true .
+    } => false .
+} => false .
