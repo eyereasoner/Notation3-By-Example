@@ -1,0 +1,13 @@
+@prefix : <urn:example:> .
+
+{ :Alice a :Cat } => false .
+
+{
+   # If this is true, then it has to be false
+   { ?S ?P ?O } => false .
+}
+=>
+{
+    # In standard => interpretation this test should be true.
+    :test :is true .
+} .

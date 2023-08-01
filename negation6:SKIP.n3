@@ -1,0 +1,15 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# ( T => ( T => F) ) |= F 
+{
+   # So semantically this should be true
+   {  true => { true => false } } => { :Alice a :Cat } .
+}
+=>
+{
+    :test :is true .
+} .
+
+# But BGP matching works: uncomment this
+#{  true => { true => false } } => { :Alice a :Cat } .
