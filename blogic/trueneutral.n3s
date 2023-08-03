@@ -1,0 +1,136 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix : <urn:example:> .
+
+# user defined neutral surface which is a subproperty of log:neutral
+:neutral rdfs:subPropertyOf log:neutral.
+
+#--------
+
+# Neutral & ~Neutral |= Neutral
+() :neutral { :a :b :c . } .
+
+() log:nand {
+    () :neutral { :a :b :c . } .
+} . 
+
+#--------
+
+() log:nand {
+    # Neutral v True |= True
+    () log:nand {
+        () log:nand {
+            () :neutral { :a2 :b2 :c2 . } .
+        } .
+        () log:nand true.
+    } .
+    () log:nand {
+        :test2 :is true .
+    } .
+} .
+
+#--------
+
+# Neutral v False |= Neutral
+
+() log:nand {
+   () log:nand {
+      () :neutral { :a3 :b3 :c3 . } .
+   } .
+   () log:nand {
+      () log:nand true .
+   } .
+} .
+
+() log:nand {
+   () :neutral { :a3 :b3 :c3 . } .
+   () log:nand {
+       :test3 :is true .
+   } .
+} . 
+
+#--------
+
+# Neutral v Neutral |= Neutral 
+
+() log:nand {
+   () log:nand {
+      () :neutral { :a4 :b4 :c4 . } .
+   } .
+   () log:nand {
+      () :neutral { :a4 :b4 :c4 . } .
+   } .
+} .
+
+() log:nand {
+   () :neutral { :a4 :b4 :c4 . } .
+   () log:nand {
+       :test4 :is true .
+   } .
+} . 
+
+#--------
+
+# Neutral => True |= True
+
+() log:nand {
+    () log:nand {
+        () :neutral { :a5 :b5 :c5 . } .
+        () log:nand true .
+    } .
+    () log:nand {
+        :test5 :is true .
+    } .
+} .
+
+#--------
+
+# Neutral => False |= Neutral
+
+() log:nand {
+    () :neutral { :a6 :b6 :c6 . } .
+    () log:nand {
+        () log:nand true .
+    } .
+} .
+
+() log:nand {
+    () log:nand { () :neutral { :a6 :b6 :c6 . } . } .
+    () log:nand {
+        :test6 :is true .
+    } .
+} .
+
+#--------
+
+# Neutral => Neutral |= Neutral .
+
+() :neutral { :a7 :b7 :c7 . } .
+() log:nand {
+   () :neutral { :a7 :b7 :c7 . } .
+   () log:nand {
+      () :neutral { :a8 :b8 :c8 . } .
+   } .
+} .
+
+() log:nand {
+   () :neutral { :a8 :b8 :c8 . } .
+    () log:nand {
+        :test7 :is true .
+    } .
+} .
+
+#--------
+
+() log:nand {
+    :test2 :is true .
+    :test3 :is true .
+    :test4 :is true .
+    :test5 :is true .
+    :test6 :is true .
+    :test7 :is true .
+    () log:output {
+        :test :is true .
+    } .
+} .
+
