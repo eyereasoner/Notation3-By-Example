@@ -14,7 +14,7 @@
 # Compile the syntactic sugar for implies into blogic
 ( _:X _:G1 _:G2 _:G3 ) log:onNegativeSurface {
     ( _:X _:G1 ) :implies _:G2 .
-    ( _:G1 { () log:nand _:G2 } ) log:conjunction _:G3 .
+    ( _:G1 { () log:nands _:G2 } ) log:conjunction _:G3 .
 
     () log:onNegativeSurface {
         _:X log:onNegativeSurface _:G3 .
