@@ -1,0 +1,109 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# 1
+(_:X) log:nand {
+    () log:nand {
+        :test1 a :Test .
+    } .
+    # 2
+    () log:nand {
+      # 3
+      () log:nand {
+        # 4
+        () log:nand {
+           :A a :X .
+           # 5
+           () log:nand true .
+        } .
+      } .
+    } .
+}.
+
+# 1
+() log:nand {
+    () log:nand {
+        :test2 a :Test .
+    } .
+    # 2
+    (_:X) log:nand {
+      # 3
+      () log:nand {
+        # 4
+        () log:nand {
+           :A a :X .
+           # 5
+           () log:nand true .
+        } .
+      } .
+    } .
+}.
+
+# 1
+() log:nand {
+    () log:nand {
+        :test3 a :Test .
+    } .
+    # 2
+    () log:nand {
+      # 3
+      (_:X) log:nand {
+        # 4
+        () log:nand {
+           :A a :X .
+           # 5
+           () log:nand true .
+        } .
+      } .
+    } .
+}.
+
+# 1
+() log:nand {
+    () log:nand {
+        :test4 a :Test .
+    } .
+    # 2
+    () log:nand {
+      # 3
+      () log:nand {
+        # 4
+        (_:X) log:nand {
+           :A a :X .
+           # 5
+           () log:nand true .
+        } .
+      } .
+    } .
+}.
+
+# 1
+() log:nand {
+    () log:nand {
+        :test5 a :Test .
+    } .
+    # 2
+    () log:nand {
+      # 3
+      () log:nand {
+        # 4
+        () log:nand {
+           :A a :X .
+           # 5
+           (_:X) log:nand true .
+        } .
+      } .
+    } .
+}.
+
+# Test
+() log:nand {
+    :test1 a :Test .
+    :test2 a :Test .
+    :test3 a :Test .
+    :test4 a :Test .
+    :test5 a :Test .
+    () log:output {
+        :test :is true .
+    } .
+} .
