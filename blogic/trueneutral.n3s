@@ -105,19 +105,33 @@
 
 #--------
 
-# Neutral => Neutral |= True .
+# ~Neutral v Neutral |\= True .
 
 () log:nand {
     () log:nand {
-        () :neutral { :a7 :b7 :c7 . } .
+        () log:nand {
+            () log:nand {
+                () :neutral { :a7 :b7 :c7 . } .
+            } .
+        } .
         () log:nand {
             () :neutral { :a7 :b7 :c7 . } .
         } .
     } .
+
+    () log:nand {
+        :test7 :is false .
+    } .
+} .
+
+(_:SCOPE) log:nand {
+    (1 { :test7 :is false } ()) log:collectAllIn _:SCOPE .
+
     () log:nand {
         :test7 :is true .
     } .
 } .
+
 
 #--------
 
