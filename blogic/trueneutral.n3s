@@ -34,19 +34,19 @@
 # Neutral v False |= Neutral
 
 () log:nand {
-   () log:nand {
-      () :neutral { :a3 :b3 :c3 . } .
-   } .
-   () log:nand {
-      () log:nand true .
-   } .
+    () log:nand {
+        () :neutral { :a3 :b3 :c3 . } .
+    } .
+    () log:nand {
+        () log:nand true .
+    } .
 } .
 
 () log:nand {
-   () :neutral { :a3 :b3 :c3 . } .
-   () log:nand {
-       :test3 :is true .
-   } .
+    () :neutral { :a3 :b3 :c3 . } .
+    () log:nand {
+        :test3 :is true .
+    } .
 } . 
 
 #--------
@@ -54,19 +54,19 @@
 # Neutral v Neutral |= Neutral 
 
 () log:nand {
-   () log:nand {
-      () :neutral { :a4 :b4 :c4 . } .
-   } .
-   () log:nand {
-      () :neutral { :a4 :b4 :c4 . } .
-   } .
+    () log:nand {
+        () :neutral { :a4 :b4 :c4 . } .
+    } .
+    () log:nand {
+        () :neutral { :a4 :b4 :c4 . } .
+    } .
 } .
 
 () log:nand {
-   () :neutral { :a4 :b4 :c4 . } .
-   () log:nand {
-       :test4 :is true .
-   } .
+    () :neutral { :a4 :b4 :c4 . } .
+    () log:nand {
+        :test4 :is true .
+    } .
 } . 
 
 #--------
@@ -132,6 +132,27 @@
     } .
 } .
 
+#--------
+
+# ~Neutral v Neutral |= Neutral
+
+() log:nand {
+    () log:nand {
+        () log:nand {
+            () :neutral { :a8 :b8 :c8 . } .
+        } .
+    } .
+    () log:nand {
+        () :neutral { :a8 :b8 :c8 . } .
+    } .
+} .
+
+() log:nand {
+    () :neutral { :a8 :b8 :c8 . } .
+    () log:nand {
+        :test8 :is true .
+    } .
+} .
 
 #--------
 
@@ -142,6 +163,7 @@
     :test5 :is true .
     :test6 :is true .
     :test7 :is true .
+    :test8 :is true .
     () log:output {
         :test :is true .
     } .
