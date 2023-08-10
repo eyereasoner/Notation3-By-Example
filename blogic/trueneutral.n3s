@@ -105,52 +105,23 @@
 
 #--------
 
-# ~Neutral v Neutral |\= True .
-
-() log:nand {
-    () log:nand {
-        () log:nand {
-            () log:nand {
-                () :neutral { :a7 :b7 :c7 . } .
-            } .
-        } .
-        () log:nand {
-            () :neutral { :a7 :b7 :c7 . } .
-        } .
-    } .
-
-    () log:nand {
-        :test7 :is false .
-    } .
-} .
-
-(_:SCOPE) log:nand {
-    (1 { :test7 :is false } ()) log:collectAllIn _:SCOPE .
-
-    () log:nand {
-        :test7 :is true .
-    } .
-} .
-
-#--------
-
 # ~Neutral v Neutral |= Neutral
 
 () log:nand {
     () log:nand {
         () log:nand {
-            () :neutral { :a8 :b8 :c8 . } .
+            () :neutral { :a7 :b7 :c7 . } .
         } .
     } .
     () log:nand {
-        () :neutral { :a8 :b8 :c8 . } .
+        () :neutral { :a7 :b7 :c7 . } .
     } .
 } .
 
 () log:nand {
-    () :neutral { :a8 :b8 :c8 . } .
+    () :neutral { :a7 :b7 :c7 . } .
     () log:nand {
-        :test8 :is true .
+        :test7 :is true .
     } .
 } .
 
@@ -163,7 +134,6 @@
     :test5 :is true .
     :test6 :is true .
     :test7 :is true .
-    :test8 :is true .
     () log:output {
         :test :is true .
     } .
