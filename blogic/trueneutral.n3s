@@ -105,21 +105,21 @@
 
 #--------
 
-# ~Neutral v Neutral |= Neutral
+# Neutral => ~Neutral |= ~Neutral
 
 () log:nand {
+    () :neutral { :a7 :b7 :c7 . } .
     () log:nand {
         () log:nand {
             () :neutral { :a7 :b7 :c7 . } .
         } .
     } .
-    () log:nand {
-        () :neutral { :a7 :b7 :c7 . } .
-    } .
 } .
 
 () log:nand {
-    () :neutral { :a7 :b7 :c7 . } .
+    () log:nand {
+        () :neutral { :a7 :b7 :c7 . } .
+    } .
     () log:nand {
         :test7 :is true .
     } .
