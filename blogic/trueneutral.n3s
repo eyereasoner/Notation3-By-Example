@@ -71,7 +71,7 @@
 
 #--------
 
-# Neutral => False |= ~Neutral
+# Neutral => False |= Neutral
 
 () log:nand {
     () :neutral { :a6 :b6 :c6 } .
@@ -100,6 +100,7 @@
 #--------
 
 () log:nand {
+    () :neutral { :a :b :c } .
     :test2 :is true .
     () :neutral { :a3 :b3 :c3 } .
     () :neutral { :a4 :b4 :c4 } .
