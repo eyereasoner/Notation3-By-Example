@@ -1,17 +1,13 @@
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix : <urn:example:> .
-
-# user defined neutral surface which is a subproperty of log:neutral
-:neutral rdfs:subPropertyOf log:neutral.
 
 #--------
 
 # Neutral & ~Neutral |= Neutral
-() :neutral { :a :b :c } .
+() log:neutral { :a :b :c } .
 
 () log:nand {
-    () :neutral { :a :b :c } .
+    () log:neutral { :a :b :c } .
 } . 
 
 #--------
@@ -20,7 +16,7 @@
     # Neutral v True |= True
     () log:nand {
         () log:nand {
-            () :neutral { :a2 :b2 :c2 } .
+            () log:neutral { :a2 :b2 :c2 } .
         } .
         () log:nand true.
     } .
@@ -35,7 +31,7 @@
 
 () log:nand {
     () log:nand {
-        () :neutral { :a3 :b3 :c3 } .
+        () log:neutral { :a3 :b3 :c3 } .
     } .
     () log:nand {
         () log:nand true .
@@ -48,10 +44,10 @@
 
 () log:nand {
     () log:nand {
-        () :neutral { :a4 :b4 :c4 } .
+        () log:neutral { :a4 :b4 :c4 } .
     } .
     () log:nand {
-        () :neutral { :a4 :b4 :c4 } .
+        () log:neutral { :a4 :b4 :c4 } .
     } .
 } .
 
@@ -61,7 +57,7 @@
 
 () log:nand {
     () log:nand {
-        () :neutral { :a5 :b5 :c5 } .
+        () log:neutral { :a5 :b5 :c5 } .
         () log:nand true .
     } .
     () log:nand {
@@ -74,7 +70,7 @@
 # Neutral => False |= Neutral
 
 () log:nand {
-    () :neutral { :a6 :b6 :c6 } .
+    () log:neutral { :a6 :b6 :c6 } .
     () log:nand {
         () log:nand true .
     } .
@@ -87,12 +83,12 @@
 () log:nand {
     () log:nand {
         () log:nand {
-            () :neutral { :a7 :b7 :c7 } .
+            () log:neutral { :a7 :b7 :c7 } .
         } .
     } .
     () log:nand {
         () log:nand {
-            () :neutral { :a7 :b7 :c7 } .
+            () log:neutral { :a7 :b7 :c7 } .
         } .
     } .
 } .
@@ -100,13 +96,13 @@
 #--------
 
 () log:nand {
-    () :neutral { :a :b :c } .
+    () log:neutral { :a :b :c } .
     :test2 :is true .
-    () :neutral { :a3 :b3 :c3 } .
-    () :neutral { :a4 :b4 :c4 } .
+    () log:neutral { :a3 :b3 :c3 } .
+    () log:neutral { :a4 :b4 :c4 } .
     :test5 :is true .
-    () :neutral { :a6 :b6 :c6 } .
-    () :neutral { :a7 :b7 :c7 } .
+    () log:neutral { :a6 :b6 :c6 } .
+    () log:neutral { :a7 :b7 :c7 } .
     () log:output {
         :test :is true .
     } .
