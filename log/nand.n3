@@ -2,102 +2,102 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # 1
-(_:X) log:nand {
-    () log:nand {
+(_:X) log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test1 a :Test .
     } .
     # 2
-    () log:nand {
+    () log:onNegativeSurface {
       # 3
-      () log:nand {
+      () log:onNegativeSurface {
         # 4
-        () log:nand {
+        () log:onNegativeSurface {
            :A a :X .
            # 5
-           () log:nand true .
+           () log:onNegativeSurface true .
         } .
       } .
     } .
 }.
 
 # 1
-() log:nand {
-    () log:nand {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test2 a :Test .
     } .
     # 2
-    (_:X) log:nand {
+    (_:X) log:onNegativeSurface {
       # 3
-      () log:nand {
+      () log:onNegativeSurface {
         # 4
-        () log:nand {
+        () log:onNegativeSurface {
            :A a :X .
            # 5
-           () log:nand true .
+           () log:onNegativeSurface true .
         } .
       } .
     } .
 }.
 
 # 1
-() log:nand {
-    () log:nand {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test3 a :Test .
     } .
     # 2
-    () log:nand {
+    () log:onNegativeSurface {
       # 3
-      (_:X) log:nand {
+      (_:X) log:onNegativeSurface {
         # 4
-        () log:nand {
+        () log:onNegativeSurface {
            :A a :X .
            # 5
-           () log:nand true .
+           () log:onNegativeSurface true .
         } .
       } .
     } .
 }.
 
 # 1
-() log:nand {
-    () log:nand {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test4 a :Test .
     } .
     # 2
-    () log:nand {
+    () log:onNegativeSurface {
       # 3
-      () log:nand {
+      () log:onNegativeSurface {
         # 4
-        (_:X) log:nand {
+        (_:X) log:onNegativeSurface {
            :A a :X .
            # 5
-           () log:nand true .
+           () log:onNegativeSurface true .
         } .
       } .
     } .
 }.
 
 # 1
-() log:nand {
-    () log:nand {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test5 a :Test .
     } .
     # 2
-    () log:nand {
+    () log:onNegativeSurface {
       # 3
-      () log:nand {
+      () log:onNegativeSurface {
         # 4
-        () log:nand {
+        () log:onNegativeSurface {
            :A a :X .
            # 5
-           (_:X) log:nand true .
+           (_:X) log:onNegativeSurface true .
         } .
       } .
     } .
 }.
 
 # Test
-() log:nand {
+() log:onNegativeSurface {
     :test1 a :Test .
     :test2 a :Test .
     :test3 a :Test .

@@ -6,21 +6,21 @@
 # Neutral & ~Neutral |= Neutral
 () log:neutral { :a :b :c } .
 
-() log:nand {
+() log:onNegativeSurface {
     () log:neutral { :a :b :c } .
 } . 
 
 #--------
 
-() log:nand {
+() log:onNegativeSurface {
     # Neutral v True |= True
-    () log:nand {
-        () log:nand {
+    () log:onNegativeSurface {
+        () log:onNegativeSurface {
             () log:neutral { :a2 :b2 :c2 } .
         } .
-        () log:nand true.
+        () log:onNegativeSurface true.
     } .
-    () log:nand {
+    () log:onNegativeSurface {
         :test2 :is true .
     } .
 } .
@@ -29,12 +29,12 @@
 
 # Neutral v False |= Neutral
 
-() log:nand {
-    () log:nand {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         () log:neutral { :a3 :b3 :c3 } .
     } .
-    () log:nand {
-        () log:nand true .
+    () log:onNegativeSurface {
+        () log:onNegativeSurface true .
     } .
 } .
 
@@ -42,11 +42,11 @@
 
 # Neutral v Neutral |= Neutral 
 
-() log:nand {
-    () log:nand {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         () log:neutral { :a4 :b4 :c4 } .
     } .
-    () log:nand {
+    () log:onNegativeSurface {
         () log:neutral { :a4 :b4 :c4 } .
     } .
 } .
@@ -55,12 +55,12 @@
 
 # Neutral => True |= True
 
-() log:nand {
-    () log:nand {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         () log:neutral { :a5 :b5 :c5 } .
-        () log:nand true .
+        () log:onNegativeSurface true .
     } .
-    () log:nand {
+    () log:onNegativeSurface {
         :test5 :is true .
     } .
 } .
@@ -69,10 +69,10 @@
 
 # Neutral => False |= Neutral
 
-() log:nand {
+() log:onNegativeSurface {
     () log:neutral { :a6 :b6 :c6 } .
-    () log:nand {
-        () log:nand true .
+    () log:onNegativeSurface {
+        () log:onNegativeSurface true .
     } .
 } .
 
@@ -80,14 +80,14 @@
 
 # ~Neutral v Neutral |= Neutral
 
-() log:nand {
-    () log:nand {
-        () log:nand {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
+        () log:onNegativeSurface {
             () log:neutral { :a7 :b7 :c7 } .
         } .
     } .
-    () log:nand {
-        () log:nand {
+    () log:onNegativeSurface {
+        () log:onNegativeSurface {
             () log:neutral { :a7 :b7 :c7 } .
         } .
     } .
@@ -95,7 +95,7 @@
 
 #--------
 
-() log:nand {
+() log:onNegativeSurface {
     () log:neutral { :a :b :c } .
     :test2 :is true .
     () log:neutral { :a3 :b3 :c3 } .
