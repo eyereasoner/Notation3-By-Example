@@ -1,0 +1,17 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+# alice likes cats
+:Alice :likes :Cats .
+
+() log:onQuestionSurface {
+    # is it possible that alice likes cats?
+    () log:onModalSurface {
+        () log:onNegativeSurface {
+            :Alice :likes :Cats .
+        } .
+    } .
+    () log:onAnswerSurface {
+        :modal2 :is true .
+    } .
+} .
