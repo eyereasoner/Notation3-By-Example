@@ -24,7 +24,7 @@ Examples:
 ```
 
 ```
-# It is probably that Alice hates dogs 
+# It is probable that Alice hates dogs 
 () log:onModalSurface {
     () log:onNegativeSurface {
         :Alice :hates :Dogs .
