@@ -3,7 +3,7 @@
 First attempt to express modal logic in RDF Surfaces. We introduce a new surface 'onModalSurface' with properties:
 
 - Nesting a modal surface in a negative surface creates a necessity
-- Nesting a negative surface in a modal surfaces creates a probability
+- Nesting a negative surface in a modal surfaces creates a possability
 
 
 Usage:
@@ -24,7 +24,7 @@ Examples:
 ```
 
 ```
-# It is probable that Alice hates dogs 
+# It is possible that Alice hates dogs 
 () log:onModalSurface {
     () log:onNegativeSurface {
         :Alice :hates :Dogs .
