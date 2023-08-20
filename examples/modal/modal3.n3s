@@ -1,6 +1,8 @@
 @prefix : <urn:example:> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
+# necessary(A) v necessary(B) <=> necessary(A & B)
+
 () log:onNegativeSurface {
 
     () log:onNegativeSurface {
