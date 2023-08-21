@@ -9,7 +9,7 @@ First attempt to express modal logic in RDF Surfaces. We introduce a new surface
 Usage:
 
 ```
-eye --nope --quiet *.n3s
+./test.sh
 ```
 
 Examples:
