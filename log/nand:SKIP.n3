@@ -97,13 +97,13 @@
 }.
 
 # Test
-() log:onNegativeSurface {
+() log:onQuestionSurface {
     :test1 a :Test .
     :test2 a :Test .
     :test3 a :Test .
     :test4 a :Test .
     :test5 a :Test .
-    () log:output {
+    () log:onAnswerSurface {
         :test :is true .
     } .
 } .
