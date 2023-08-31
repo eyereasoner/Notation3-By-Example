@@ -1,0 +1,25 @@
+@prefix : <urn:example:> .
+@prefix time: <http://www.w3.org/2000/10/swap/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+{
+    # Parse the month part out of a date string
+    #    X a stringable or variable
+    #    Y a stringable or variable
+    "1970-05-06"^^xsd:month time:month ?month .
+
+    # This should evaluate to true 
+    "2001-09-11" time:month "09" .
+}
+=>
+{
+    "1970-05-06"^^xsd:date :month ?month .
+} .
+
+{
+   "1970-05-06"^^xsd:date :month "05" .
+}
+=>
+{
+    :test :is true .
+} .
