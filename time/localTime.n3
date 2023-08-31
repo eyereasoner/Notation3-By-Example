@@ -19,5 +19,5 @@
 }
 =>
 {
-    :result :is true .
+    :test :is true .
 } .
