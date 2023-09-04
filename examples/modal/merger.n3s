@@ -1,0 +1,66 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+# A :asMergedModal B
+# Merge all modal surfaces in A resulting in B
+#   - A a graph term
+#   - B a graph term
+(_:G1 _:G2 _:G1L _:G2L) log:onNegativeSurface {
+    () log:onNegativeSurface <<_:G1 :asMergedModal _:G2>> .
+
+    _:G1 graph:list _:G1L .
+
+    (_:G1L () ()) :asMergedModal_ _:G2L .
+
+    _:G2 graph:list _:G2L .
+} .
+
+# At the end of the process we merge all modals and append it to the rest of the triples
+(_:Acc _:Modals _:G _:Answer) log:onNegativeSurface {
+    () log:onNegativeSurface <<(() _:Acc _:Modals) :asMergedModal_ _:Answer>> .
+
+    _:Modals log:notEqualTo () .
+
+    _:Modals graph:union _:G .
+
+     ( ( { () log:onModalSurface _:G } ) _:Acc) list:append _:Answer .
+} .
+
+(_:Acc _:AccNew _:Modals _:ModalsNew _:Lin _:Lout _:H _:T _:X _:Y _:Z _:Scope) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:Lin _:Acc _:Modals) :asMergedModal_ _:Lout>> .
+
+    _:Lin list:firstRest (_:H _:T) .
+
+    (
+        # If we have a modal surface
+        {
+            _:H log:equalTo { _:X log:onModalSurface _:Y } .
+        }
+        # Then append to the modals
+        {
+            _:Y graph:list _:Z .
+
+            # TODO What to do about the modal graffiti (?!)
+            ( _:Modals _:Z ) list:append _:ModalsNew .
+            _:AccNew log:equalTo _:Acc .
+        }
+        # Else append to the accumulator
+        {
+            ( _:Acc (_:H) ) list:append _:AccNew .
+            _:ModalsNew log:equalTo _:Modals .
+        }
+    ) log:ifThenElseIn _:Scope .
+
+    ( _:T _:AccNew _:ModalsNew) :asMergedModal_ _:Lout .
+} .
+
+# Merge nested modal surfaces on negative surfaces
+(_:A _:B _:X) log:onNegativeSurface {
+    _:X log:onNegativeSurface _:A .
+    _:A :asMergedModal _:B .
+    () log:onNegativeSurface {
+        () log:onNegativeSurface _:B .
+    } .
+} .
