@@ -5,8 +5,8 @@
 :Alice a :Person .
 
 # Create a dynamic query surface
-(_:X _:Y) :is { _:X a _:Y }.
-(_:X _:Y) :is { _:X :is _:Y }.
+| _:X _:Y | :is { _:X a _:Y }.
+| _:X _:Y | :is { _:X :is _:Y }.
 
 (_:P _:Q) log:onNegativeSurface {
     _:P :is _:Q .
