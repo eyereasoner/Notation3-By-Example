@@ -3,50 +3,50 @@
 
 # q -> (r & s)  /  q -> r
 # q -> (r & s)  /  q -> s
-() log:onNegativeSurface {
+|| log:onNegativeSurface {
     :q a :verb .
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :r a :verb . 
         :s a :verb . 
     } .
 } .
 
 # (q -> r) -> t
-() log:onNegativeSurface {
-    () log:onNegativeSurface {
+|| log:onNegativeSurface {
+    || log:onNegativeSurface {
         :q a :verb .
-        () log:onNegativeSurface {
+        || log:onNegativeSurface {
             :r a :verb .
         } .
     } .
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :t a :verb .
     } .
 } .
 
 # (q -> s) -> u
-() log:onNegativeSurface {
-    () log:onNegativeSurface {
+|| log:onNegativeSurface {
+    || log:onNegativeSurface {
         :q a :verb .
-        () log:onNegativeSurface {
+        || log:onNegativeSurface {
             :s a :verb .
         } .
     } .
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :u a :verb .
     } .
 } .
 
 # we must have a t
 # we must have a u
-() log:onNegativeSurface {
+|| log:onNegativeSurface {
     :t a :verb .
     :u a :verb .
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :test :is true .  
     } .
 } .
 
-() log:onQuerySurface {
+|| log:onQuerySurface {
     :test :is true . 
 } .

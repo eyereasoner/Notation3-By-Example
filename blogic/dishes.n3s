@@ -2,16 +2,16 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Bob doesn't do the dishes
-() log:onNegativeSurface {
+|| log:onNegativeSurface {
     :Bob :does :Dishes .
 } .
 
 # When anyone cant do dishes, it is because the sink doens't contain water
-(_:X) log:onNegativeSurface {
-    () log:onNegativeSurface {
+|_:X| log:onNegativeSurface {
+    || log:onNegativeSurface {
         _:X :does :Dishes .
     } .
-    () log:onPositiveSurface {
+    || log:onPositiveSurface {
         :Sink :contains :Water .
     } .
 } .
@@ -23,24 +23,24 @@
 # Internally these rules are active:
 #    A -> B
 #    B <- A
-() log:onNegativeSurface {
+|| log:onNegativeSurface {
     :Faucet :is :Open.
     
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :Sink :contains :Water .
     } .
 } .
 
 # Test that we don't have an open faucet
-() log:onNegativeSurface {
-    () log:onNegativeSurface {
+|| log:onNegativeSurface {
+    || log:onNegativeSurface {
         :Faucet :is :Open.
     } .
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-() log:onQuerySurface {
+|| log:onQuerySurface {
     :test :is true .
 } .

@@ -2,15 +2,15 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 :Alice a :Person , :Cyclist .
-() log:onNegativeSurface {
+|| log:onNegativeSurface {
     :Alice a :IceSkater .
 } .
 
 # All persons are cyclist and iceskater
-(_:X) log:onNegativeSurface {
+|_:X| log:onNegativeSurface {
     _:X a :Person .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         _:X a :Cyclist , :IceSkater .
     } .
 } .

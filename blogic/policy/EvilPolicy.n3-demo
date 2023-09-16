@@ -2,15 +2,15 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
-(_:S _:P _:O) log:onNegativeSurface {
+|_:S _:P _:O| log:onNegativeSurface {
 
     _:S _:P _:O .
     
     _:P log:notEqualTo log:onResultSurface .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         # We write the triples on a result surface
-        () log:onResultSurface {
+        || log:onResultSurface {
             _:S _:P _:O .
         } .
     } .

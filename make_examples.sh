@@ -54,7 +54,7 @@ for f in $(find . -name "*.out" | sort) ; do
     elif [[ $(grep '<urn:example:test> <urn:example:is> true' $f) ]]; then
         echo -e "${GREEN}OK${NORMAL}"
         ((OK++))
-    elif [[ $(grep '() log:onAnswerSurface true' $f) ]]; then
+    elif [[ $(grep '|| log:onAnswerSurface true' $f) ]]; then
         echo "OK"
         ((OK++))
     else

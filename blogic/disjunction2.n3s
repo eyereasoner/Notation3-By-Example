@@ -12,82 +12,82 @@
     a :LeuvenStudent .
 
 # [1]
-(_:S) log:onNegativeSurface {
+|_:S| log:onNegativeSurface {
     _:S a :MasterStudent .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         _:S a :Student .
     } .
 } .
 
-(_:S) log:onNegativeSurface {
+|_:S| log:onNegativeSurface {
     _:S a :PhdStudent .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         _:S a :Student .
     } .
 } .
 
 # [2]
-(_:S) log:onNegativeSurface {
+|_:S| log:onNegativeSurface {
     _:S a :Student .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         _:S a :GhentStudent .
     } .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         _:S a :LeuvenStudent .
     } .
 } .
 
 # [3]
-(_:S) log:onNegativeSurface {
+|_:S| log:onNegativeSurface {
     _:S a :GhentStudent .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         _:S a :SmartPerson .
     } .
 } .
 
-(_:S) log:onNegativeSurface {
+|_:S| log:onNegativeSurface {
     _:S a :LeuvenStudent .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         _:S a :SmartPerson .
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
+|_:S _:O| log:onQuerySurface {
     _:S a _:O .
 } .
 
 # Test
-() log:onNegativeSurface {
+|| log:onNegativeSurface {
 
     :Alice a :SmartPerson .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :testAlice :is true .
     } .
 } .
 
-() log:onNegativeSurface {
+|| log:onNegativeSurface {
     :Bob a :SmartPerson .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :testBob :is true .
     } .
 } .
 
-() log:onNegativeSurface {
+|| log:onNegativeSurface {
     :testAlice :is true .
     :testBob :is true .
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
+|_:S _:O| log:onQuerySurface {
     _:S :is _:O .
 } .

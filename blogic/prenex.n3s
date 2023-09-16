@@ -2,33 +2,33 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # (\Every x: (x a Cat)) v (:Hector a :Dog)
-() log:onNegativeSurface {
-    () log:onNegativeSurface {
-        (_:X) log:onNegativeSurface {
-           () log:onNegativeSurface {
+|| log:onNegativeSurface {
+    || log:onNegativeSurface {
+        |_:X| log:onNegativeSurface {
+           || log:onNegativeSurface {
               _:X a :Cat .
            } .
         } .
     } .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :Hector a :Dog .
     } . 
 } .
 
-() log:onQuestionSurface {
+|| log:onQuestionSurface {
 
     # \Every x: ( (x a Cat) v (:Hector a :Dog) )
-    (_:X) log:onNegativeSurface {
-        () log:onNegativeSurface {
+    |_:X| log:onNegativeSurface {
+        || log:onNegativeSurface {
             _:X a :Cat .
         } .
-        () log:onNegativeSurface {
+        || log:onNegativeSurface {
             :Hector a :Dog .
         } . 
     } .
 
-    () log:onAnswerSurface {
+    || log:onAnswerSurface {
         :test :is true .
     } .
 } .

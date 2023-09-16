@@ -15,19 +15,19 @@
     ) .
 
 # This is to display the output of your program
-(_:S _:O) log:onQuerySurface {
+|_:S _:O| log:onQuerySurface {
     _:S :result _:O .
 } .
 
 # Test
-( _:S) log:onNegativeSurface {
+| _:S| log:onNegativeSurface {
     _:S :result { :a a :c } .
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-() log:onQuerySurface {
+|| log:onQuerySurface {
     :test :is true .
 } .
 
@@ -35,17 +35,17 @@
 # This is still work in progress
 
 # Compile
-(_:Name _:Prog _:Answer) log:onNegativeSurface {
+|_:Name _:Prog _:Answer| log:onNegativeSurface {
     _:Name :value _:Prog .
 
     _:Prog :eval _:Answer .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         _:Name :result _:Answer .
     } .
 } .
 
-(_:L1 _:L2 _:H _:R) log:onNegativeSurface {
+|_:L1 _:L2 _:H _:R| log:onNegativeSurface {
     () log:negativeTriple {
         _:L1 :eval _:L2 .
     } .
@@ -61,7 +61,7 @@
     _:R _:H _:L2 .
 } .
 
-(_:L1 _:L2 _:Type) log:onNegativeSurface {
+|_:L1 _:L2 _:Type| log:onNegativeSurface {
     () log:negativeTriple {
         _:L1 :eval _:L2 .
     } .
@@ -70,7 +70,7 @@
     _:L1 log:equalTo _:L2 .
 } .
 
-(_:L1 _:L2 _:H _:R _:Type) log:onNegativeSurface {
+|_:L1 _:L2 _:H _:R _:Type| log:onNegativeSurface {
     () log:negativeTriple {
         _:L1 :eval _:L2 .
     } .
@@ -92,7 +92,7 @@
 #############################################################
 
 # :quote
-(_:L1 _:L2) log:onNegativeSurface {
+|_:L1 _:L2| log:onNegativeSurface {
     () log:negativeTriple {
         (_:L1) :quote _:L2 .
     } .
@@ -100,7 +100,7 @@
 } .
 
 # :atom
-(_:L1 _:X) log:onNegativeSurface {
+|_:L1 _:X| log:onNegativeSurface {
     () log:negativeTriple {
         _:L1 :atom true .
     } .
@@ -108,7 +108,7 @@
     _:X log:rawType log:Formula . 
 } .
 
-(_:L1 _:X _:Y) log:onNegativeSurface {
+|_:L1 _:X _:Y| log:onNegativeSurface {
     () log:negativeTriple {
         (_:L1) :atom false .
     } .
@@ -118,7 +118,7 @@
 } .
 
 # :eq
-(_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
+|_:L1 _:L2 _:X _:Y| log:onNegativeSurface {
     () log:negativeTriple {
         (_:L1 _:L2) :eq true .
     } .
@@ -128,7 +128,7 @@
     _:X log:equalTo _:Y .
 } .
 
-(_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
+|_:L1 _:L2 _:X _:Y| log:onNegativeSurface {
     () log:negativeTriple {
         (_:L1 _:L2) :eq false .
     } .
@@ -137,7 +137,7 @@
     _:X :atom false .
 } .
 
-(_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
+|_:L1 _:L2 _:X _:Y| log:onNegativeSurface {
     () log:negativeTriple {
         (_:L1 _:L2) :eq false .
     } .
@@ -147,7 +147,7 @@
 } .
 
 # :car
-(_:L1 _:L2 _:X) log:onNegativeSurface {
+|_:L1 _:L2 _:X| log:onNegativeSurface {
     () log:negativeTriple {
         (_:L1) :car _:L2 .
     } .
@@ -156,7 +156,7 @@
 } .
 
 # :cdr
-(_:L1 _:X _:Y _:L2) log:onNegativeSurface {
+|_:L1 _:X _:Y _:L2| log:onNegativeSurface {
     () log:negativeTriple {
         (_:L1) :cdr _:L2 .
     } .
@@ -166,7 +166,7 @@
 } .
 
 # :cons
-(_:L1 _:X _:Y _:L2 _:L3) log:onNegativeSurface {
+|_:L1 _:X _:Y _:L2 _:L3| log:onNegativeSurface {
     () log:negativeTriple {
         (_:L1 _:L2) :cons _:L3 .
     } .

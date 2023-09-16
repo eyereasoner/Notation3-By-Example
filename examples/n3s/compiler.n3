@@ -9,7 +9,7 @@
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
 
 # Main rule which defined the :implies
-(_:A _:C _:X _:Xp _:Y _:Yp _:Ypbn _:Ypvar _:CNew) log:onNegativeSurface {
+|_:A _:C _:X _:Xp _:Y _:Yp _:Ypbn _:Ypvar _:CNew| log:onNegativeSurface {
     _:A :implies _:C .
     
     # Translated qvars to blank nodes 
@@ -23,9 +23,9 @@
     # E.g. when
     #      { _:X a :Cat } :implies { _:X a :Feline }
     # we need to construct something like
-    #    (genid:t_0-bn) log:onNegativeSurface  {
+    #    |genid:t_0-bn| log:onNegativeSurface  {
     #          genid_:t_0-bn a :Cat .
-    #          ( genid:t_1-bn ) log:onNegativeSurface {
+    #          | genid:t_1-bn | log:onNegativeSurface {
     #               genid:t_1-bn a :Feline .
     #           }
     #     } .
@@ -35,9 +35,9 @@
     # E.g. when
     #     { q:X a :Cat } :implies { q:X a :Feline } 
     # we need to construct something like
-    #    (genid:t_0-var) log:onNegativeSurface  {
+    #    |genid:t_0-var| log:onNegativeSurface  {
     #        genid:t_0-var a :Cat .
-    #        () log:onNegativeSurface {
+    #        || log:onNegativeSurface {
     #            genid:t_0-var a :Feline .
     #        } .
     #    } .
@@ -48,7 +48,7 @@
       { _:Ypbn log:onNegativeSurface _:Y }
     ) graph:union _:CNew .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         _:Xp log:onNegativeSurface _:CNew .
         _:Yp log:onQuerySurface _:Y .
     } .
@@ -64,7 +64,7 @@
 #
 # E.g.
 #    { q:X a q:Y } :qvar2 ( (genid:t0 genid:t1) { genid:t0 a genid:t1} ) .
-(_:X _:Y _:Z _:T1 _:T2 _:L) log:onNegativeSurface {
+|_:X _:Y _:Z _:T1 _:T2 _:L| log:onNegativeSurface {
     () log:negativeTriple {
         _:X :qvar2bn (_:Y _:Z).
     } .
@@ -74,7 +74,7 @@
     _:Z graph:list _:T1 .
 } .
 
-(_:Formula _:Acc1 _:Acc2 ) log:onNegativeSurface {
+|_:Formula _:Acc1 _:Acc2 | log:onNegativeSurface {
     () log:negativeTriple {
         (_:Formula () _:Acc1 _:Acc2) :_qvar2bn (_:Acc1 _:Acc2) .
     } .
@@ -88,7 +88,7 @@
     _:S _:P _:O
     _:Sv _:Pv _:Ov
     _:Scope
-) log:onNegativeSurface {
+| log:onNegativeSurface {
     () log:negativeTriple {
         (_:Formula _:L _:Acc1 _:Acc2) :_qvar2bn _:X .
     } .
@@ -138,7 +138,7 @@
 #    Formula - a context formula for which a variable needs to be skolemized
 #    X - a qvar or blank node variable
 #    Y - the skolemized version of the variable
-(_:Formula _:Y _:X _:Xn _:Xnp _:Scope) log:onNegativeSurface {
+|_:Formula _:Y _:X _:Xn _:Xnp _:Scope| log:onNegativeSurface {
     () log:negativeTriple {
         (_:Formula _:X) :skolemize _:Y .
     } .
@@ -185,7 +185,7 @@
 #       genid:t_0 :isSkolem true
 #       genid:t_1-var :isSkolem true
 #       genid:t_1-dn :isSkolem true
-(_:X _:Xn) log:onNegativeSurface {
+|_:X _:Xn| log:onNegativeSurface {
     () log:negativeTriple {
         _:X :isSkolem true .
     } .
@@ -201,7 +201,7 @@
 #   Y a var skolem
 # E.g. 
 #      q:X :skolemVar genid:t_0-var
-(_:X _:Y _:T1 _:T2 _:T3) log:onNegativeSurface {
+|_:X _:Y _:T1 _:T2 _:T3| log:onNegativeSurface {
     () log:negativeTriple {
         _:X :skolemVar _:Y .
     } .
@@ -219,7 +219,7 @@
 #   Y a bn skolem
 # E.g.
 #       _:X :skolemBlank genid:t_1-bn
-(_:X _:Y _:T1 _:T2 _:T3) log:onNegativeSurface {
+|_:X _:Y _:T1 _:T2 _:T3| log:onNegativeSurface {
     () log:negativeTriple {
         _:X :skolemBlank _:Y .
     } .
@@ -238,7 +238,7 @@
 # E.g.
 #       genid:t_1-bn :isSkolemBlank true
 #       genid:t_0-var :isSkolemBlank false
-(_:X _:Y ) log:onNegativeSurface {
+|_:X _:Y | log:onNegativeSurface {
     () log:negativeTriple {
         _:X :isSkolemBlank _:Y .
     } .
@@ -252,7 +252,7 @@
 # E.g.
 #       genid:t_1-bn :isSkolemBlank false
 #       genid:t_0-var :isSkolemBlank true
-(_:X _:T1 _:Y _:Scope) log:onNegativeSurface {
+|_:X _:T1 _:Y _:Scope| log:onNegativeSurface {
     () log:negativeTriple {
         _:X :isSkolemVar _:Y .
     } .
@@ -260,7 +260,7 @@
 } .
 
 # Helper function for :isSkolemBlank :isSkolemVar
-(_:X _:Type _:T1 _:Y _:Scope) log:onNegativeSurface {
+|_:X _:Type _:T1 _:Y _:Scope| log:onNegativeSurface {
     () log:negativeTriple {
         (_:X _:Type) :isSkolemOfType _:Y .
     } .
@@ -290,20 +290,20 @@
 #
 # E.g.
 #       ( (1 2 4 8 16) math:greaterThan 4) :filter (8 16)
-(_:X _:F _:FV _:Y) log:onNegativeSurface {
+|_:X _:F _:FV _:Y| log:onNegativeSurface {
     () log:negativeTriple {
         (_:X _:F _:FV) :filter _:Y .
     } .
     (_:X _:F _:FV ()) :_filter _:Y .
 } .
 
-(_:F _:FV _:Acc) log:onNegativeSurface {
+|_:F _:FV _:Acc| log:onNegativeSurface {
     () log:negativeTriple {
         ( () _:F _:FV _:Acc ) :_filter _:Acc .
     } .
 } .
 
-(_:X _:F _:FV _:Acc _:Y _:H _:T _:N _:AccNew _:Scope) log:onNegativeSurface {
+|_:X _:F _:FV _:Acc _:Y _:H _:T _:N _:AccNew _:Scope| log:onNegativeSurface {
     () log:negativeTriple {
         ( _:X _:F _:FV _:Acc ) :_filter _:Y .
     } .
@@ -330,11 +330,11 @@
 ##################################################################
 
 # Debug
-(_:S _:O) log:onQuerySurface {
+|_:S _:O| log:onQuerySurface {
     _:S log:onNegativeSurfaceTest _:O .
 } .
 
-(_:S _:O) log:onQuerySurface {
+|_:S _:O| log:onQuerySurface {
     _:S log:onQuerySurfaceTest _:O .
 } .
 

@@ -2,15 +2,15 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # A neutral surface with a contradiction
-() log:onNeutralSurface {
+|| log:onNeutralSurface {
     :A a :B .
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :A a :B .
     } .
 } .
 
 # Test if we can match the neutral surface
-(_:S _:B) log:onNegativeSurface {
+|_:S _:B| log:onNegativeSurface {
     _:S log:onNeutralSurface _:B .
 
     # Are we allowed to find contradictional information ?
@@ -18,22 +18,22 @@
     _:B log:includes { :A a :B } .
 
     _:B log:includes { 
-        () log:onNegativeSurface { :A a :B } .
+        || log:onNegativeSurface { :A a :B } .
     } .
 
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :Neutral :contains :Contradiction .
     } .
 } .
 
 # test
-() log:onNegativeSurface {
+|| log:onNegativeSurface {
     :Neutral :contains :Contradiction .
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-() log:onQuerySurface {
+|| log:onQuerySurface {
     :test :is true .    
 } .

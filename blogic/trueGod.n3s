@@ -6,43 +6,43 @@
 
 # On the positive surface we introduce a 'True God'. Any god that is
 # different from this 'True God' is a 'False God'.
-(_:x) log:onPositiveSurface {
+|_:x| log:onPositiveSurface {
     _:x a :God .
 
-    (_:y) log:onNegativeSurface { 
+    |_:y| log:onNegativeSurface { 
         _:y a :God .
 
         _:x log:equalTo _:y .
 
-        () log:onNegativeSurface {
+        || log:onNegativeSurface {
             _:y a :TrueGod .
         } .
     } .
 
-    (_:y) log:onNegativeSurface { 
+    |_:y| log:onNegativeSurface { 
         _:y a :God .
 
         _:x log:notEqualTo _:y .
 
-        () log:onNegativeSurface {
+        || log:onNegativeSurface {
             _:y a :FalseGod .
         } .
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
+|_:S _:O| log:onQuerySurface {
     _:S a _:O .
 } .
 
 # Test 
-(_:x) log:onNegativeSurface {
+|_:x| log:onNegativeSurface {
     :Moradin a :FalseGod .
     _:x a :TrueGod .
-    () log:onNegativeSurface {
+    || log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-() log:onQuerySurface {
+|| log:onQuerySurface {
     :test :is true .
 } .
