@@ -3,14 +3,14 @@
 
 :alice a :person .
 
-|| log:onQuestionSurface {
-    || log:onNegativeSurface {
+() log:onQuestionSurface {
+    () log:onNegativeSurface {
         :bob :likes :spinach .
-        || log:onNegativeSurface {
+        () log:onNegativeSurface {
           :alice a :person .
         }.
     } .
-    || log:onAnswerSurface {
+    () log:onAnswerSurface {
         :test :is true .
     }
 } .

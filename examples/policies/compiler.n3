@@ -13,7 +13,7 @@
 (  _:Rule _:Body 
    _:Param _:WhenBody _:ThenBody
    _:WhenBodyPrime  _:ThenBodyPrime
-| log:onNegativeSurface {
+) log:onNegativeSurface {
     # Select all rules with a body
     _:Rule a pol:Rule , pol:ValidRule ;
         pol:body _:Body .
@@ -30,14 +30,14 @@
     # `when` triples will be the head and the `then` triples the body
     # of the implication: HEAD -> BODY
     ( _:WhenBody {
-        || log:onNegativeSurface {
+        () log:onNegativeSurface {
             # Write the results on an answer surface
             () pol:onAnswerSurface _:ThenBodyPrime .
         } 
     }) log:conjunction _:WhenBodyPrime .
 
     # Execute the new negative surface implication rules
-    || log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:Param log:onNegativeSurface _:WhenBodyPrime .
     } .
 } .
@@ -49,7 +49,7 @@
 (  _:Rule _:Body 
    _:Param _:WhenBody _:ThenNotBody
    _:WhenBodyPrime
-| log:onNegativeSurface {
+) log:onNegativeSurface {
     # Select all rules with a body
     _:Rule a pol:Rule , pol:ValidRule ;
         pol:body _:Body .
@@ -64,26 +64,26 @@
     # `when` triples will be the head and the `then` triples the body
     # of the implication: HEAD -> BODY
     ( _:WhenBody {
-        || log:onPositiveSurface {
+        () log:onPositiveSurface {
             # Write the results on an answer surface
             () pol:onAnswerSurface _:ThenNotBody .
         } 
     }) log:conjunction _:WhenBodyPrime .
 
     # Execute the new negative surface implication rules
-    || log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:Param log:onNegativeSurface _:WhenBodyPrime .
     } .
 } .
 
 # Extract the answer surfaces 
-|_:X _:Answer _:S _:P _:O| log:onQuerySurface {
+(_:X _:Answer _:S _:P _:O) log:onQuerySurface {
     _:X pol:onAnswerSurface _:Answer .
     () log:negativeTriple _:Answer .
 } .
 
 # Extract the original data without the rules
-|_:e _:id _:S _:P _:O| log:onQuerySurface {
+(_:e _:id _:S _:P _:O) log:onQuerySurface {
     _:e pol:mainSubject _:id .
     _:id util:walkGraph << _:S _:P _:O >> .
 
@@ -93,7 +93,7 @@
 } .
 
 # Extract the policy metadata
-|_:S _:P _:O| log:onQuerySurface {
+(_:S _:P _:O) log:onQuerySurface {
     _:S _:P _:O .
 
     _:P list:in ( 

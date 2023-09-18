@@ -12,10 +12,10 @@
     } {
         <urn:example.org:NotSatisfied> log:equalTo <urn:example.org:NotSatisfied>.
     }) log:ifThenElseIn ((<file:///Users/patrickhochstenbach/github.com/phochste/Notation3-By-Example/examples/odrl/example2.n3> <file:///Users/patrickhochstenbach/github.com/phochste/Notation3-By-Example/examples/odrl/policychecker.n3> <file:///Users/patrickhochstenbach/github.com/phochste/Notation3-By-Example/examples/odrl/security.n3>) 1).
-    || log:onNegativeSurface {
+    () log:onNegativeSurface {
         <http://example.com/policy:6164> <urn:example.org:is> <urn:example.org:NotSatisfied>.
     }.
-    |_:e_Policy_1 _:e_Permission_1 _:e_Constraint_1 _:e_Validity_1 _:e_Scope_1 _:e_Scope2_1| log:onNegativeSurface {
+    (_:e_Policy_1 _:e_Permission_1 _:e_Constraint_1 _:e_Validity_1 _:e_Scope_1 _:e_Scope2_1) log:onNegativeSurface {
         _:e_Policy_1 a odrl:Offer.
         _:e_Policy_1 odrl:permission _:e_Permission_1.
         ({
@@ -29,7 +29,7 @@
         } {
             _:e_Validity_1 log:equalTo <urn:example.org:NotSatisfied>.
         }) log:ifThenElseIn _:e_Scope_1.
-        || log:onNegativeSurface {
+        () log:onNegativeSurface {
             _:e_Policy_1 <urn:example.org:is> _:e_Validity_1.
         }.
     }.

@@ -17,7 +17,7 @@
 # Test 2
 
 # Alice doesn't eat Quiche
-|| log:onNegativeSurface {
+() log:onNegativeSurface {
     :Alice :eats :Quiche .
 } .
 
@@ -30,7 +30,7 @@
 ############################################## 
 # Test 3
 
-|| log:onNegativeSurface {
+() log:onNegativeSurface {
     :Charly a :RealProgrammer .
 } .
 
@@ -40,15 +40,15 @@
 ############################################## 
 # Test 4
 
-|| log:onNegativeSurface {
-    || log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :Dave :eats :Quiche .
     } .
 } .
 
-|| log:onNegativeSurface {
-    || log:onNegativeSurface {
-        || log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
+        () log:onNegativeSurface {
             :Estelle a :RealProgrammer.
         } .
     } .
@@ -64,35 +64,35 @@
 #     ( P -> ~Q ) AND (~Q -> P) AND ( ~P -> Q ) AND ( Q -> ~ P )
 # P = real programmer
 # Q = eat quiche
-|_:S| log:onNegativeSurface {
+(_:S) log:onNegativeSurface {
 
     _:S a :RealProgrammer .
 
-    || log:onNegativeSurface {
+    () log:onNegativeSurface {
     
-        || log:onNegativeSurface {
+        () log:onNegativeSurface {
             _:S :eats :Quiche  .
         } .
     } .
 }.
 
-|_:S| log:onNegativeSurface {
+(_:S) log:onNegativeSurface {
 
-    || log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:S a :RealProgrammer .
     } .
 
-    || log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:S :eats :Quiche .
     } .
 }.
 
-|_:S| log:onNegativeSurface {
+(_:S) log:onNegativeSurface {
 
     _:S :eats :Quiche .
  
-    || log:onNegativeSurface {
-        || log:onNegativeSurface {
+    () log:onNegativeSurface {
+        () log:onNegativeSurface {
             _:S a :RealProgrammer .
         } .
     } .
@@ -101,42 +101,42 @@
 # Q (eat quiche) -> P ( you are a programmer)
 #
 # Q -> P = ~ ( Q AND ~P )
-|_:S| log:onNegativeSurface {
+(_:S) log:onNegativeSurface {
     _:S :eats :Quiche .
 
-    || log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:S a :Programmer .
     } .
 } .
 
-|_:S _:C| log:onQuerySurface {
+(_:S _:C) log:onQuerySurface {
     _:S a _:C.
 } .
 
-|_:S _:C| log:onQuerySurface {
+(_:S _:C) log:onQuerySurface {
     _:S :eats _:C .
 } .
 
-|_:S _:C| log:onQuerySurface {
-    || log:onNegativeSurface { _:S :eats _:C } .
+(_:S _:C) log:onQuerySurface {
+    () log:onNegativeSurface { _:S :eats _:C } .
 } .
 
-|_:S _:C| log:onQuerySurface {
-    || log:onNegativeSurface { _:S a _:C } .
+(_:S _:C) log:onQuerySurface {
+    () log:onNegativeSurface { _:S a _:C } .
 } .
 
 # Test
-|| log:onNegativeSurface {
+() log:onNegativeSurface {
     :Alice a :RealProgrammer .
     :Bob a :Programmer .
     :Charly a :Programmer .
     :Dave a :Programmer .
     :Estelle a :Programmer .
-    || log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-|| log:onQuerySurface {
+() log:onQuerySurface {
     :test :is true .
 } .

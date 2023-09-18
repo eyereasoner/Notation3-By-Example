@@ -12,7 +12,7 @@
 #   G - a formula
 #   N - a numerable or variable
 # Find the cardinality of a pattern X in G as number N
-|_:Pat _:Graph _:L _:N| log:onNegativeSurface {
+(_:Pat _:Graph _:L _:N) log:onNegativeSurface {
     () log:negativeTriple {
         (_:Pat _:Graph) util:cardinality _:N .
     } .
@@ -28,7 +28,7 @@
 #   G - a formula
 # Finds all occurenced of the triple X1 in G and creates
 # a list X2 of result
-|_:Pat _:List _:Graph _:GraphL| log:onNegativeSurface {
+(_:Pat _:List _:Graph _:GraphL) log:onNegativeSurface {
     () log:negativeTriple {
         (_:Pat _:List) util:collectAllIn _:Graph .
     } .
@@ -38,13 +38,13 @@
     (_:Pat _:List ()) util:_collectAllIn _:GraphL . 
 } .
 
-|_:Pat _:Result| log:onNegativeSurface {
+(_:Pat _:Result) log:onNegativeSurface {
     () log:negativeTriple {
         (_:Pat _:Result _:Result) util:_collectAllIn () .
     } .
 } .
 
-|_:Pat _:List _:Result _:GraphL _:F _:R _:ResultNext _:T1 _:T2 _:N| log:onNegativeSurface {
+(_:Pat _:List _:Result _:GraphL _:F _:R _:ResultNext _:T1 _:T2 _:N) log:onNegativeSurface {
     () log:negativeTriple {
         (_:Pat _:List _:Result) util:_collectAllIn _:GraphL .
     } .
@@ -58,7 +58,7 @@
     (_:Pat _:List _:ResultNext) util:_collectAllIn _:R .
 } .
 
-|_:Pat _:List _:Result _:GraphL _:F _:R| log:onNegativeSurface {
+(_:Pat _:List _:Result _:GraphL _:F _:R) log:onNegativeSurface {
     () log:negativeTriple {
         (_:Pat _:List _:Result) util:_collectAllIn _:GraphL .
     } .
@@ -76,14 +76,14 @@
 #    X - a resource
 #    << S P O >> - a triple pattern
 # Turn all triple patterns for the graph with subject X
-|_:subject _:S _:P _:O| log:onNegativeSurface {
+(_:subject _:S _:P _:O) log:onNegativeSurface {
     () log:negativeTriple {
         _:subject util:walkGraph << _:subject _:P _:O >> .
     } .
     _:subject _:P _:O .
 } .
 
-|_:subject _:X _:Y _:S _:P _:O| log:onNegativeSurface {
+(_:subject _:X _:Y _:S _:P _:O) log:onNegativeSurface {
     () log:negativeTriple {
         _:subject util:walkGraph << _:S _:P _:O >> .
     } .
@@ -96,7 +96,7 @@
 # X util:policyParam Y
 #   X - a policy formula { Name pol:policy Data }
 #   Y - a renamed policy formula { Skolem(Name) pol:policy Data }
-|_:A _:B _:X1 _:X2 _:X3 _:X4 _:X5 _:NewName| log:onNegativeSurface {
+(_:A _:B _:X1 _:X2 _:X3 _:X4 _:X5 _:NewName) log:onNegativeSurface {
     () log:negativeTriple {
         _:A util:policyParam _:B .
     } .

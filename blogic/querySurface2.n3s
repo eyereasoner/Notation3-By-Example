@@ -8,10 +8,10 @@
 | _:X _:Y | :is { _:X a _:Y }.
 | _:X _:Y | :is { _:X :is _:Y }.
 
-|_:P _:Q| log:onNegativeSurface {
+(_:P _:Q) log:onNegativeSurface {
     _:P :is _:Q .
 
-    || log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:P log:onQuerySurface _:Q .
         # Make test happy
         :test :is true .
