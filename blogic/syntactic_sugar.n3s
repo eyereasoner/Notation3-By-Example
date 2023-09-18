@@ -4,7 +4,7 @@
 :Ghent a :City .
 
 # There is an _:S that is a city implies _:S a HumanCommunity AND _:S a :Settlement
-( | _:S | { _:S a :City } ) :implies { _:S a :HumanCommunity } , { _:S a :Settlement } .
+( ( _:S ) { _:S a :City } ) :implies { _:S a :HumanCommunity } , { _:S a :Settlement } .
 
 ( _:S _:O ) log:onQuerySurface {
     _:S a _:O .
