@@ -5,74 +5,74 @@
 # Skip this when reasoning only allows disjunction via contrapositives
 
 :A a :B .
-() log:onNegativeSurface {
+(| log:onNegativeSurface {
     :A a :B2 .
 } .
 
 # ∀S : (S a B) -> (S a B1) ∨ (S a B2)
-(_:S) log:onNegativeSurface {
+(_:S| log:onNegativeSurface {
     _:S a :B .
 
-    () log:onPositiveSurface {
-        () log:onNegativeSurface {
+    (| log:onPositiveSurface {
+        (| log:onNegativeSurface {
             _:S a :B1 .
         } .
 
-        () log:onNegativeSurface {
+        (| log:onNegativeSurface {
             _:S a :B2 .
         } .
     } .
 } .
 
 # ∀S : (S a B1) -> (S a C) 
-(_:S) log:onNegativeSurface {
+(_:S| log:onNegativeSurface {
     _:S a :B1 .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         _:S a :C .
     }.
 } .
 
 # ∀S : (S a B2) -> (S a C) 
-(_:S) log:onNegativeSurface {
+(_:S| log:onNegativeSurface {
     _:S a :B2 .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         _:S a :C .
     }.
 } .
 
 # Test if we still have a particular (A a B1) ∨ (A a B2)
-() log:onNegativeSurface {
-    () log:onNegativeSurface {
-        () log:onNegativeSurface {
+(| log:onNegativeSurface {
+    (| log:onNegativeSurface {
+        (| log:onNegativeSurface {
             :A a :B1 .
         } .
-        () log:onNegativeSurface {
+        (| log:onNegativeSurface {
             :A a :B2 .
         } .
     } .
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         :A a :D .
     } .
 } .
 
-() log:onNegativeSurface {
+(| log:onNegativeSurface {
     # Test if we still get the C
     :A a :C .
     # Test if we still get the disjunction
     :A a :D .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
+(_:S _:O| log:onQuerySurface {
     _:S a _:O .
 } .
 
 # Test
-(_:S _:O) log:onQuerySurface {
+(_:S _:O| log:onQuerySurface {
     _:S :is _:O .
 } .

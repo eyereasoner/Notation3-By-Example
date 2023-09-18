@@ -4,15 +4,15 @@
 :Alice :likes :Bob .
 
 # Choose one : test case A
-() log:onNegativeSurface {
+(| log:onNegativeSurface {
     :Alice :knows :Bob .
 } .
 
 # Choose one : test case B
-#() log:onNegativeSurface {
+#(| log:onNegativeSurface {
 #    :Bob :knows :Alice .
 #} .
-#() log:onAskSurface {
+#(| log:onAskSurface {
 #    :Alice :knows :Bob .
 #} .
 
@@ -27,14 +27,14 @@
 #    B : Bob knows Alice
 #
 # This is the normal way to write it
-#() log:onNegativeSurface {
+#(| log:onNegativeSurface {
 #    :Alice :likes :Bob .
 #
-#    () log:onNegativeSurface {
+#    (| log:onNegativeSurface {
 #        :Alice :knows :Bob .
 #    } .
 #
-#    () log:onNegativeSurface {
+#    (| log:onNegativeSurface {
 #        :Bob :knows :Alice .
 #    } .
 #} .
@@ -49,18 +49,18 @@
 #
 #  NOT( C . NOT(B) . NOT( A . NOT(B) ) )
 #
-() log:onNegativeSurface {
+(| log:onNegativeSurface {
     :Alice :likes :Bob .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         :Bob :knows :Alice .
     } .
 
-    ( ) log:onNegativeSurface {
+    ( | log:onNegativeSurface {
         
         :Alice :knows :Bob .
 
-        () log:onNegativeSurface {
+        (| log:onNegativeSurface {
             :Bob :knows :Alice .
         } .
     } .  
@@ -68,20 +68,20 @@
 
 # Query and test 
 
-(_:S _:O) log:onQuerySurface {
+(_:S _:O| log:onQuerySurface {
     _:S :knows _:O .
 } .
 
 # Test 
 
-( ) log:onNegativeSurface {
+( | log:onNegativeSurface {
     :Bob :knows :Alice .
 
-    ( ) log:onNegativeSurface {
+    ( | log:onNegativeSurface {
         :test :is true .
     } . 
 } .
 
-( ) log:onQuerySurface {
+( | log:onQuerySurface {
     :test :is true .
 } .

@@ -8,40 +8,40 @@
 :Bob :is :Alive .
 
 # This should fail
-#() log:onNegativeSurface {
+#(| log:onNegativeSurface {
 #    :Bob :is :Breathing .
 #} .
 
 # A biconditions P <-> Q is true when P if and only if Q
 # This is same as
 #    ( P -> Q ) AND ( Q -> P )
-(_:S) log:onNegativeSurface {
+(_:S| log:onNegativeSurface {
 
     _:S :is :Breathing .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         _:S :is :Alive .
     } .
 }.
 
-(_:S) log:onNegativeSurface {
+(_:S| log:onNegativeSurface {
 
     _:S :is :Alive .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         _:S :is :Breathing .
     } .
 }.
 
 # Test
-() log:onNegativeSurface {
+(| log:onNegativeSurface {
     :Alice :is :Alive .
     :Bob   :is :Breathing .
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
           :test :is true .
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
+(_:S _:O| log:onQuerySurface {
     _:S :is _:O .
 } .

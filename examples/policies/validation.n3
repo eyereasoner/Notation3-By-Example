@@ -14,7 +14,7 @@
     _:ThenCount 
     _:ThenNotCount
     _:S _:O
-) log:onNegativeSurface {
+| log:onNegativeSurface {
     _:Rule a pol:Rule ;
        pol:body _:Body .
 
@@ -22,22 +22,22 @@
     ( { _:S pol:then _:O } _:Body) util:cardinality _:ThenCount .
     ( { _:S pol:thenNot _:O } _:Body) util:cardinality _:ThenNotCount .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
 
         # When we have a then
-        () log:onNegativeSurface {
+        (| log:onNegativeSurface {
             _:WhenCount math:equalTo 1 .
             _:ThenCount math:greaterThan 0 .
-            () log:onNegativeSurface {
+            (| log:onNegativeSurface {
                 _:Rule a pol:ValidRule .
             }
         } .
 
         # When we have thenNot
-        () log:onNegativeSurface {
+        (| log:onNegativeSurface {
             _:WhenCount math:equalTo 1 .
             _:ThenNotCount math:greaterThan 0 .
-            () log:onNegativeSurface {
+            (| log:onNegativeSurface {
                 _:Rule a pol:ValidRule .
             }
         } .

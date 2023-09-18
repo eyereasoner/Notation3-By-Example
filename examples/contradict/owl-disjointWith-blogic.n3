@@ -1,18 +1,18 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 
-(_:A _:B _:X _:Y) log:onNegativeSurface {
+(_:A _:B _:X _:Y| log:onNegativeSurface {
     _:A owl:disjointWith _:B .
     _:X a _:A .
     _:Y a _:B .
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         _:X owl:differentForm _:Y .
     } .
 } .
 
-(_:A _:B _:X) log:onNegativeSurface {
+(_:A _:B _:X| log:onNegativeSurface {
     _:A owl:disjointWith _:B .
     _:X a _:A .
     _:X a _:B .
-    () log:onPositiveSurface {} .
+    (| log:onPositiveSurface {} .
 } .

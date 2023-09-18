@@ -3,11 +3,11 @@
 
 # A OR B
 #  |= ~( ~A OR ~B )
-() log:onNegativeSurface {
-    () log:onNegativeSurface {
+(| log:onNegativeSurface {
+    (| log:onNegativeSurface {
         :A a :Fish .
     } .
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         :B a :Mussle .
     } .
 } .
@@ -16,22 +16,22 @@
 #  |= ~( (A OR B) AND ~(C OR D))
 #  |= ~( ~(~A AND ~B) AND ~( ~( ~C AND ~D) )
 #  |= ~( ~(~A AND ~B) AND (~C AND ~D) )
-() log:onNegativeSurface {
+(| log:onNegativeSurface {
     # This is the (A OR B) part.
-    () log:onNegativeSurface {
-        () log:onNegativeSurface {
+    (| log:onNegativeSurface {
+        (| log:onNegativeSurface {
             :A a :Fish .
         } .
-        () log:onNegativeSurface {
+        (| log:onNegativeSurface {
             :B a :Mussle .
         } . 
     } .
     # This is the implied ( C OR D )
-    () log:onPositiveSurface {
-        () log:onNegativeSurface {
+    (| log:onPositiveSurface {
+        (| log:onNegativeSurface {
             :C a :Freeze .
         } .
-        () log:onNegativeSurface {
+        (| log:onNegativeSurface {
             :D a :Thaw .
         } . 
     } .
@@ -41,40 +41,40 @@
 # ( C OR D ) -> (test is true)
 #  |= ~( (C OR D) AND ~(test is true) )
 #  |= ~( ~( ~C AND ~D) AND ~(test is true) )
-() log:onNegativeSurface {
-    () log:onNegativeSurface {
-        () log:onNegativeSurface {
+(| log:onNegativeSurface {
+    (| log:onNegativeSurface {
+        (| log:onNegativeSurface {
             :C a :Freeze .
         } .
-        () log:onNegativeSurface {
+        (| log:onNegativeSurface {
             :D a :Thaw .
         } . 
     } . 
     # OR 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-() log:onQuerySurface {
+(| log:onQuerySurface {
     :test :is true .
 } .
 
 # Debug
-(_:X1 _:X2 _:X3 _:X4) log:onNegativeSurface {
-    () log:onNegativeSurface {
-        () log:onNegativeSurface {
+(_:X1 _:X2 _:X3 _:X4| log:onNegativeSurface {
+    (| log:onNegativeSurface {
+        (| log:onNegativeSurface {
             _:X1 a _:X2 .
         } .
-        () log:onNegativeSurface {
+        (| log:onNegativeSurface {
             _:X3 a _:X4 .
         } . 
     } .  
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         { _:X1 a _:X2 } :OR { _:X3 a _:X4 } .
     } .
 } .
 
-(_:G1 _:G2) log:onQuerySurface {
+(_:G1 _:G2| log:onQuerySurface {
     _:G1 :OR _:G2 .
 } .

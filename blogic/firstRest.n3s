@@ -11,7 +11,7 @@
     }
 } .
 
-#(_:S) log:onQuerySurface {
+#(_:S| log:onQuerySurface {
 [ rdf:first _:S ; rdf:rest [ rdf:first _:O ; rdf:rest rdf:nil ]] log:onQuerySurface {
     _:S a _:O .
 } .

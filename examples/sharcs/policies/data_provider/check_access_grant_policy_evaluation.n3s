@@ -12,7 +12,7 @@
 # (<AccessGrant> client <Client>) 
 # IMPLIES
 #    (<Login> a ValidAccessGrant)
-(_:Login _:User _:Session _:Client _:AccessGrant) log:onNegativeSurface {
+(_:Login _:User _:Session _:Client _:AccessGrant| log:onNegativeSurface {
     _:Login 
         a :Login ;
         :as _:User .
@@ -28,7 +28,7 @@
         :isActive true ;
         :client _:Client .
     
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         _:Login
             a :ValidAccessGrant ;
             :grant _:AccessGrant .

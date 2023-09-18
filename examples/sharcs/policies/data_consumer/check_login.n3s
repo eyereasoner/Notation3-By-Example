@@ -13,7 +13,7 @@
 # IMPLIES
 #   (<Login> user <User>) &
 #   (<Login> a ValidLogin)        
-(_:Login _:Client _:Session _:User) log:onNegativeSurface {
+(_:Login _:Client _:Session _:User| log:onNegativeSurface {
     
     _:Login 
         a :Login ;
@@ -28,7 +28,7 @@
         a :DataConsumer ;
         :isActive true .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         _:Login :user _:User .
         _:Login a :ValidLogin .
     } .
@@ -47,7 +47,7 @@
 # IMPLIES
 #   (<Login> organization <Organization>) &
 #   (<Login> a ValidMembership)
-(_:Login _:Membership _:Organization _:User) log:onNegativeSurface {
+(_:Login _:Membership _:Organization _:User| log:onNegativeSurface {
     _:Login 
         a :Login ;
         :user _:User .
@@ -58,7 +58,7 @@
         :hasOrganization _:Organization ;
         :hasMember _:User .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         _:Login :membership _:Membership .
         _:Login :organization _:Organization .
         _:Login a :ValidMembership .
@@ -73,7 +73,7 @@
 # (<Organization> hasMember <User>)
 # IMPLIES:
 #   (<Login> a ValidOrganization)
-(_:Login _:Organization _:User) log:onNegativeSurface {
+(_:Login _:Organization _:User| log:onNegativeSurface {
     _:Login 
         a :Login ;
         :user _:User .
@@ -83,7 +83,7 @@
         :isActive true ;
         :hasMember _:User .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         _:Login a :ValidOrganization .
     }
 } .
@@ -98,7 +98,7 @@
 # IMPLIES:
 #   (<Login> clientSubscription <Client>) &&
 #   (<Login> a ValidSubscription)
-(_:Login _:Membership _:Client _:Subscription) log:onNegativeSurface {
+(_:Login _:Membership _:Client _:Subscription| log:onNegativeSurface {
     _:Login 
         a :Login ;
         :membership _:Membership .
@@ -109,7 +109,7 @@
         :hasMembership _:Membership ;
         :hasClient _:Client .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         _:Login :subscription _:Subscription .
         _:Login :clientSubscription _:Client .
         _:Login a :ValidSubscription .

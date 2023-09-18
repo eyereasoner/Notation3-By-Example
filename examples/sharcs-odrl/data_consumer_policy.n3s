@@ -9,7 +9,7 @@
 @prefix string: <http://www.w3.org/2000/10/swap/string#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
-(_:sk_0 _:bn_3 _:sk_1 _:sk_2 _:bn_4 _:bn_5 _:bn_6 _:bn_9) log:onNegativeSurface {
+(_:sk_0 _:bn_3 _:sk_1 _:sk_2 _:bn_4 _:bn_5 _:bn_6 _:bn_9| log:onNegativeSurface {
     _:sk_0 a odrl:Session.
     _:sk_0 ex:login _:bn_3.
     _:sk_1 log:equalTo <http://example.org/policy/policy-authorization>.
@@ -24,7 +24,7 @@
     _:bn_9 a odrl:Session.
     _:bn_3 log:rawType log:Other.
     _:bn_9 log:rawType log:Other.
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         <urn:odrl-compiler:Result> <urn:odrl-compiler:policy> _:sk_1.
         <urn:odrl-compiler:Result> odrl:assignee _:bn_3.
         <urn:odrl-compiler:Result> odrl:action odrlp:grantAccess.
@@ -32,9 +32,9 @@
     }.
 }.
 
-(_:sk_3) log:onNegativeSurface {
+(_:sk_3| log:onNegativeSurface {
     _:sk_3 <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         <urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _:sk_4.
         _:sk_4 a <urn:odrl-compiler:Constraint>.
         _:sk_4 odrl:leftOperand odrl:dateTime.
@@ -43,9 +43,9 @@
     }.
 }.
 
-(_:sk_5) log:onNegativeSurface {
+(_:sk_5| log:onNegativeSurface {
     _:sk_5 <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         <urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _:sk_6.
         _:sk_6 a <urn:odrl-compiler:Constraint>.
         _:sk_6 odrl:leftOperand odrl:dateTime.

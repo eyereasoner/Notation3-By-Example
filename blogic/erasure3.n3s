@@ -8,15 +8,15 @@
 :A a :A2 .
 :B a :B2 .
 
-() log:onNegativeSurface {
+(| log:onNegativeSurface {
     :A a :A2 .
     :B a :B2 .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         # C
         :C a :C2 .
 
-        () log:onNegativeSurface {
+        (| log:onNegativeSurface {
             :A a :A2 .
             :B a :B2 .
             :D a :D2 .
@@ -25,18 +25,18 @@
 } .
 
 # Test
-() log:onNegativeSurface {
+(| log:onNegativeSurface {
     :C a :C2 .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         :D a :D2 .
     } .
 
-    () log:onNegativeSurface {
+    (| log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-() log:onQuerySurface {
+(| log:onQuerySurface {
     :test :is true .
 } .
