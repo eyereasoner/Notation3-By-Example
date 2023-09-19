@@ -18,7 +18,7 @@
 
 _:A2 :seenIn :Austria .
 
-(_:X _:Y _:S _:A| log:onNegativeSurface {
+(_:X _:Y _:S _:A) log:onNegativeSurface {
     _:X :believes _:Y .
 
     # Make Bill's believe true
@@ -31,53 +31,53 @@ _:A2 :seenIn :Austria .
     # It could still be the case that all planes are equal
     _:A log:isomorphic _:A1 .
 
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-(| log:onQuerySurface {
+() log:onQuerySurface {
     :test :is true .
 } .
 
 # sameAs: all properties of A are in B
-(_:A _:B _:C _:D| log:onNegativeSurface {
+(_:A _:B _:C _:D) log:onNegativeSurface {
     _:A owl:sameAs _:B .
     _:A _:C _:D .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:B _:C _:D .
     } .
 } .
 
 # sameAs: all subjects and objects of A as property also go for B as property
-(_:A _:B _:C _:D| log:onNegativeSurface {
+(_:A _:B _:C _:D) log:onNegativeSurface {
     _:A owl:sameAs _:B .
     _:C _:A _:D .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:C _:B _:D .
     } .
 } . 
 
 # sameAs: interchanging A and B as object has no effect 
-(_:A _:B _:C _:D| log:onNegativeSurface {
+(_:A _:B _:C _:D) log:onNegativeSurface {
     _:A owl:sameAs _:B .
     _:D _:C _:A .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:D _:C _:B .
     } .
 } .
 
-(_:A _:B| log:onNegativeSurface {
+(_:A _:B) log:onNegativeSurface {
     _:A owl:sameAs _:B .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:B owl:sameAs _:A .
     } .
 } .
 
-(_:A _:B _:C| log:onNegativeSurface {
+(_:A _:B _:C) log:onNegativeSurface {
     _:A owl:sameAs _:B .
     _:B owl:sameAs _:C .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:A owl:sameAs _:C .
     } .
 } .

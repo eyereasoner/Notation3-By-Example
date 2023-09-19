@@ -4,33 +4,33 @@
 :Ghent a :City .
 
 # There is an _:S that is a city implies _:S a HumanCommunity AND _:S a :Settlement
-( ( _:S | { _:S a :City } ) :implies { _:S a :HumanCommunity } , { _:S a :Settlement } .
+( ( _:S ) { _:S a :City } ) :implies { _:S a :HumanCommunity } , { _:S a :Settlement } .
 
-( _:S _:O | log:onQuerySurface {
+( _:S _:O ) log:onQuerySurface {
     _:S a _:O .
 } .
 
 # START BLOGIC Stuff------------------------------------------------------------
 # Compile the syntactic sugar for implies into blogic
-( _:X _:G1 _:G2 _:G3 | log:onNegativeSurface {
+( _:X _:G1 _:G2 _:G3 ) log:onNegativeSurface {
     ( _:X _:G1 ) :implies _:G2 .
-    ( _:G1 { ( | log:onNegativeSurface _:G2 } ) log:conjunction _:G3 .
+    ( _:G1 { ( ) log:onNegativeSurface _:G2 } ) log:conjunction _:G3 .
 
-    ( | log:onNegativeSurface {
+    ( ) log:onNegativeSurface {
         _:X log:onNegativeSurface _:G3 .
     }
 } .
 # END BLOGIC Stuff--------------------------------------------------------------
 
 # Test
-( | log:onNegativeSurface {
+( ) log:onNegativeSurface {
     :Ghent a :HumanCommunity .
     :Ghent a :Settlement .
-    ( | log:onNegativeSurface {
+    ( ) log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-( | log:onQuerySurface {
+( ) log:onQuerySurface {
     :test :is true .
 } .

@@ -28,17 +28,17 @@
 # What in N3 was:
 #    { ?X a ?Y } => { ?Y a :Test } .
 # is in blogic
-#    (_:X _:Y| log:onNegativeSurface {
+#    (_:X _:Y) log:onNegativeSurface {
 #       _:X a _:Y .
-#       (| log:onNegativeSurface  {
+#       () log:onNegativeSurface  {
 #           _:Y a :Test .
 #       } .
 #    } .
-(_:X _:Y _:Z| log:onNegativeSurface {
+(_:X _:Y _:Z) log:onNegativeSurface {
     _:X :sibling _:Y .
     _:Y :sibling _:Z .
 
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:X :sibling _:Z .
     } .
 } .
@@ -46,19 +46,19 @@
 # Filter out what to see in the output 
 # ( _:P _:O ) is for all P and O in log:onQuerySurface 
 # return only the triples matching 
-(_:S _:O| log:onQuerySurface {
+(_:S _:O) log:onQuerySurface {
     _:S :sibling  _:O . 
 } .
 
 # Test
-(| log:onNegativeSurface {
+() log:onNegativeSurface {
     :Alice :sibling :Charly .
     :Hans :sibling :Agnes .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-(| log:onQuerySurface {
+() log:onQuerySurface {
     :test :is true .
 } .

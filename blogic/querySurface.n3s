@@ -5,103 +5,103 @@
 :Alice a :Person .
 
 # Return Alice to an external process
-(| log:onQuerySurface {
+() log:onQuerySurface {
     :Alice a :Person .
 } .
 
 :Someone a :Person .
 
 # Use a blank node a universal
-(_:S| log:onQuerySurface {
+(_:S) log:onQuerySurface {
     _:S a :Person .
 } .
 
-(| log:onMySurface1 {
+() log:onMySurface1 {
     :Bob a :Person .
 } .
 
 # Return from a surface 
-(_:S| log:onQuerySurface {
-    (| log:onMySurface1 {
+(_:S) log:onQuerySurface {
+    () log:onMySurface1 {
         _:S a :Person .
     } .
 } .
 
-(| log:onMySurface2 {
+() log:onMySurface2 {
     :Charly a :Person .
     :Daisy a :Person .
 } .
 
 # This will not work
-(| log:onQuerySurface {
-    (| log:onMySurface2 {
+() log:onQuerySurface {
+    () log:onMySurface2 {
         :Charly a :Person .
     } .
 } .
 
-(| log:onMySurface3 {
+() log:onMySurface3 {
     :Charly a :Person .
     :Daisy a :Person .
 } .
 
 # This will work , but includes Charly and Daisy
-(_:G| log:onQuerySurface {
-    (| log:onMySurface3 _:G .
+(_:G) log:onQuerySurface {
+    () log:onMySurface3 _:G .
 } .
 
-(| log:onMySurface4 {
+() log:onMySurface4 {
     :Alice a :Person .
     :Charly a :Cat .
 } .
 
 # Only show the surface which contains a cat
-(_:G _:S| log:onQuerySurface {
-    (| log:onMySurface4 _:G .
+(_:G _:S) log:onQuerySurface {
+    () log:onMySurface4 _:G .
     _:G log:includes { _:S a :Cat } .
 } .
 
-(| log:onMySurface5 {
+() log:onMySurface5 {
     :Alice a :Person  .
     :Bob a :Person .
     :Charly a :Cat .
 } .
 
-(| log:onMySurface5 {
+() log:onMySurface5 {
     :Daisy a :Person  .
 } .
 
 # Query surfaces can also be a result of a rule
-(_:G _:S| log:onNegativeSurface {
-    (| log:onMySurface5 _:G .
+(_:G _:S) log:onNegativeSurface {
+    () log:onMySurface5 _:G .
     _:G log:includes { _:S a :Cat } .
 
-    (| log:onNegativeSurface {
-        (| log:onQuerySurface {
-            (| log:onMySurface5 _:G .
+    () log:onNegativeSurface {
+        () log:onQuerySurface {
+            () log:onMySurface5 _:G .
         } .
     } .
 } .
 
 # This trick can be used to filter out only the things that 
 # are of your interest
-(_:G _:S1 _:S2| log:onNegativeSurface {
-    (| log:onMySurface5 _:G .
+(_:G _:S1 _:S2) log:onNegativeSurface {
+    () log:onMySurface5 _:G .
     _:G log:includes { _:S1 a :Person } .
     _:G log:includes { _:S2 a :Cat } .
 
-    (| log:onNegativeSurface {
-        (| log:onMyResultSurface {
+    () log:onNegativeSurface {
+        () log:onMyResultSurface {
             _:S1 a :Person .
         } .
 
-        (_:X| log:onQuerySurface {
-            (| log:onMyResultSurface _:X .
+        (_:X) log:onQuerySurface {
+            () log:onMyResultSurface _:X .
         } .
     } .
 } .
 
 # Make the ./make_example.sh happy
 :test :is true .
-(| log:onQuerySurface {
+() log:onQuerySurface {
     :test :is true .
 } .

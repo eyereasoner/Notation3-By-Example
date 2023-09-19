@@ -6,29 +6,29 @@
 
 :MyList :is (1 2 3 4).
 
-(_:X _:Y| log:onNegativeSurface {
+(_:X _:Y) log:onNegativeSurface {
     :MyList :is _:X .
     _:X :rev _:Y .
 
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         :result :is _:Y .
     } .
 } .
 
-(_:L _:R| log:onNegativeSurface {
+(_:L _:R) log:onNegativeSurface {
     () log:negativeTriple {
         _:L :rev _:R .
     } .
     (_:L ()) :revAcc _:R .
 } .
 
-(_:R| log:onNegativeSurface {
+(_:R) log:onNegativeSurface {
     () log:negativeTriple {
         (() _:R) :revAcc _:R .
     } .
 } .
 
-(_:L _:Acc _:AccNew _:H _:T _:R| log:onNegativeSurface {
+(_:L _:Acc _:AccNew _:H _:T _:R) log:onNegativeSurface {
     () log:negativeTriple {
         (_:L _:Acc) :revAcc _:R .
     } .
@@ -37,6 +37,6 @@
     (_:T _:AccNew) :revAcc _:R .
 } .
 
-(_:S _:O| log:onQuerySurface {
+(_:S _:O) log:onQuerySurface {
     _:S :is _:O .
 } .

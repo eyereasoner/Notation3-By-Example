@@ -3,17 +3,17 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
 # Policy 2 : a Friend gets to see all the data
-(_:Login _:S _:P _:O| log:onNegativeSurface {
-    (| log:onAccessSurface {
+(_:Login _:S _:P _:O) log:onNegativeSurface {
+    () log:onAccessSurface {
         _:Login a :Friend .
     } .
 
     _:S a foaf:Person .
     _:S _:P _:O .
 
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         # We write the triples on a result surface
-        (| log:onResultSurface {
+        () log:onResultSurface {
             _:S _:P _:O {| log:ohyeah :Policy_2 |} .
         } .
     } .

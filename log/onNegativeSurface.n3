@@ -2,108 +2,108 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # 1
-(_:X| log:onNegativeSurface {
-    (| log:onNegativeSurface {
+(_:X) log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test1 a :Test .
     } .
     # 2
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
       # 3
-      (| log:onNegativeSurface {
+      () log:onNegativeSurface {
         # 4
-        (| log:onNegativeSurface {
+        () log:onNegativeSurface {
            :A a :X .
            # 5
-           (| log:onNegativeSurface true .
+           () log:onNegativeSurface true .
         } .
       } .
     } .
 }.
 
 # 1
-(| log:onNegativeSurface {
-    (| log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test2 a :Test .
     } .
     # 2
-    (_:X| log:onNegativeSurface {
+    (_:X) log:onNegativeSurface {
       # 3
-      (| log:onNegativeSurface {
+      () log:onNegativeSurface {
         # 4
-        (| log:onNegativeSurface {
+        () log:onNegativeSurface {
            :A a :X .
            # 5
-           (| log:onNegativeSurface true .
+           () log:onNegativeSurface true .
         } .
       } .
     } .
 }.
 
 # 1
-(| log:onNegativeSurface {
-    (| log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test3 a :Test .
     } .
     # 2
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
       # 3
-      (_:X| log:onNegativeSurface {
+      (_:X) log:onNegativeSurface {
         # 4
-        (| log:onNegativeSurface {
+        () log:onNegativeSurface {
            :A a :X .
            # 5
-           (| log:onNegativeSurface true .
+           () log:onNegativeSurface true .
         } .
       } .
     } .
 }.
 
 # 1
-(| log:onNegativeSurface {
-    (| log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test4 a :Test .
     } .
     # 2
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
       # 3
-      (| log:onNegativeSurface {
+      () log:onNegativeSurface {
         # 4
-        (_:X| log:onNegativeSurface {
+        (_:X) log:onNegativeSurface {
            :A a :X .
            # 5
-           (| log:onNegativeSurface true .
+           () log:onNegativeSurface true .
         } .
       } .
     } .
 }.
 
 # 1
-(| log:onNegativeSurface {
-    (| log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test5 a :Test .
     } .
     # 2
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
       # 3
-      (| log:onNegativeSurface {
+      () log:onNegativeSurface {
         # 4
-        (| log:onNegativeSurface {
+        () log:onNegativeSurface {
            :A a :X .
            # 5
-           (_:X| log:onNegativeSurface true .
+           (_:X) log:onNegativeSurface true .
         } .
       } .
     } .
 }.
 
 # Test
-(| log:onQuestionSurface {
+() log:onQuestionSurface {
     :test1 a :Test .
     :test2 a :Test .
     :test3 a :Test .
     :test4 a :Test .
     :test5 a :Test .
-    (| log:onAnswerSurface {
+    () log:onAnswerSurface {
         :test :is true .
     } .
 } .

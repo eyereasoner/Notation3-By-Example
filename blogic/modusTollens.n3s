@@ -4,37 +4,37 @@
 # Modus tollens example.
 
 # If X is a chicken, then X is a bird
-(_:X| log:onNegativeSurface {
+(_:X) log:onNegativeSurface {
     _:X a :Chicken .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:X a :Bird .
     } .
 } .
 
 # Rex is not a bird...
-(| log:onNegativeSurface {
+() log:onNegativeSurface {
     :Rex a :Bird .
 } .
 
 # ..then Rex is not a chicken
 
 # (test if this conclusion is true)
-(| log:onNegativeSurface {
-    (| log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :Rex a :Chicken .
     } .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-(| log:onQuerySurface {
+() log:onQuerySurface {
     :test :is true .
 } .
 
 # Show the results
-(_:S _:O| log:onQuerySurface {
-    (| log:onNegativeSurface {
+(_:S _:O) log:onQuerySurface {
+    () log:onNegativeSurface {
         _:S a _:O .
     } .
 } .

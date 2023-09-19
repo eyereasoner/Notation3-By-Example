@@ -16,42 +16,42 @@
 # special RDFS entailment.
 # See slide 33 in http://videolectures.net/iswc09_hayes_blogic/
 # If :A rdfs:range B, then this means that if :C :A :D, then :D a :B .
-(_:X _:Y| log:onNegativeSurface {
+(_:X _:Y) log:onNegativeSurface {
     _:X rdfs:range _:Y .
 
-    (| log:onNegativeSurface {
-        (_:U _:V| log:onNegativeSurface {
+    () log:onNegativeSurface {
+        (_:U _:V) log:onNegativeSurface {
             _:U _:X _:V .
-            (| log:onNegativeSurface {
+            () log:onNegativeSurface {
                 _:V rdf:type _:Y .
             } .
         } .
     } .
 } .
 
-(_:S _:O| log:onQuerySurface {
+(_:S _:O) log:onQuerySurface {
     _:S :watches _:O .
 } .
 
-(_:S _:O| log:onQuerySurface {
+(_:S _:O) log:onQuerySurface {
     _:S :cooks _:O .
 } .
 
-(_:S _:O| log:onQuerySurface {
+(_:S _:O) log:onQuerySurface {
     _:S a _:O .
 } .
 
 # Test 
-(| log:onNegativeSurface {
+() log:onNegativeSurface {
     :Spaghetti a :Food .
     :Lasagne a :Food .
     :Friends a :TVSeries .
     :Supranos a :TVSeries .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test :is true .
     }
 } .
 
-(| log:onQuerySurface {
+() log:onQuerySurface {
     :test :is true .
 } .

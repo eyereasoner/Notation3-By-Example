@@ -5,17 +5,17 @@
 
 # p -> q 
 
-(| log:onNegativeSurface {
+() log:onNegativeSurface {
     :p a :verb .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         :q a :verb .
     } .
 } .
 
 # ~q v r
-(| log:onNegativeSurface {
+() log:onNegativeSurface {
     :q a :verb .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         :r a :verb . 
     } .
 } .
@@ -23,19 +23,19 @@
 # Consequent
 
 # p -> r 
-(| log:onNegativeSurface {
-    (| log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :p a :verb .
-        (| log:onNegativeSurface {
+        () log:onNegativeSurface {
             :r a :verb . 
         } . 
     } .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test :is true . 
     } .
 } .
 
 # query
-(| log:onQuerySurface {
+() log:onQuerySurface {
     :test :is true .
 } .

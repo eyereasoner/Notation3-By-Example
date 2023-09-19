@@ -5,9 +5,9 @@
 _:X a :Cyclist , :IceSkater .
 
 # No cyclist is an iceskater
-(_:X| log:onNegativeSurface {
+(_:X) log:onNegativeSurface {
     _:X a :Cyclist .
-    (| log:onPositiveSurface { 
+    () log:onPositiveSurface { 
         _:X a :IceSkater .
     } .
 } .

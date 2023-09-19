@@ -2,33 +2,33 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # p -> ( q & r )
-(| log:onNegativeSurface {
+() log:onNegativeSurface {
     :p a :verb .
 
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         :q a :verb . 
         :r a :verb . 
     } .
 } .
 
 # q -> ~s 
-(| log:onNegativeSurface {
+() log:onNegativeSurface {
     :q a :verb .
     :s a :verb .
 } .
 
 # consequent s -> ~p
-(| log:onNegativeSurface {
-    (| log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :s a :verb .
         :p a :verb . 
     } .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test :is true . 
     } .
 } .
 
 # query
-(| log:onQuerySurface {
+() log:onQuerySurface {
     :test :is true .
 } .

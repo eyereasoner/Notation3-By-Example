@@ -5,56 +5,56 @@
 # we see it is failing when activating line 35 (_:S a :Person)
 
 :Alice a :Person .
-(| log:onNegativeSurface {
+() log:onNegativeSurface {
     :Alice a :DogLover .
 } .
 
 # For all S a Person : 
 #  (S a DogLover) OR
 #  (S a CatLover)
-(_:S| log:onNegativeSurface {
+(_:S) log:onNegativeSurface {
     _:S a :Person .
 
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:S a :DogLover .
     } .
 
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:S a :CatLover .
     } .
 } .
 
 # All DogLovers are PetLovers
-(_:S| log:onNegativeSurface {
+(_:S) log:onNegativeSurface {
     _:S a :DogLover .
 
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:S a :PetLover .
     } .
 } .
 
 # All CatLovers (that are Persons) are PetLovers
-(_:S| log:onNegativeSurface {
+(_:S) log:onNegativeSurface {
     _:S a :Person .  # Without this line it works
     _:S a :CatLover .
 
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:S a :PetLover .
     } .
 } .
 
-(_:S _:O| log:onQuerySurface {
+(_:S _:O) log:onQuerySurface {
     _:S a _:O .
 } .
 
 # Test
-(| log:onNegativeSurface {
+() log:onNegativeSurface {
     :Alice a :PetLover .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-(| log:onQuerySurface {
+() log:onQuerySurface {
     :test :is true .
 } .

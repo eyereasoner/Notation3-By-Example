@@ -9,25 +9,25 @@
 #   .. but when reasoning about surfaces this
 #   should be interpreted as a conjunction 
 #   with Alice's statement.
-(| log:onPositiveSurface {
+() log:onPositiveSurface {
     :Bob :knows :Charly .
 } .
 
 # If X knows Y, then X,Y is knowable
-(_:S _:O| log:onNegativeSurface {
+(_:S _:O) log:onNegativeSurface {
 
     # We add the premise on a postive
     # surface .. it is not strictly needed 
     # because the implicit surface is positive
-    #   (| log:onNegativeSurface {  <-- this part here is implicit positive --> }
+    #   () log:onNegativeSurface {  <-- this part here is implicit positive --> }
     # This also means that
-    #   (| log:onNegativeSurface {}
+    #   () log:onNegativeSurface {}
     # is a contradiction because a positive empty surface {} is a 'true'
-    (| log:onPositiveSurface {
+    () log:onPositiveSurface {
         _:S :knows _:O .
     } .
 
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:S :isKnowable true .
         _:O :isKnowable true .
     } .
@@ -35,26 +35,26 @@
 
 # Here we implement a broken rule, we add graffiti
 # on the positive surface to block the scope of the variables
-(_:S _:O| log:onNegativeSurface {
+(_:S _:O) log:onNegativeSurface {
     # Write for _:S and _:O new grafiti ..
-    (_:S _:O| log:onPositiveSurface {
+    (_:S _:O) log:onPositiveSurface {
         _:S :knows _:O .
     } .
-    (| log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:S :hates _:O .
     } .
 } .
 
-(_:S| log:onQuerySurface {
+(_:S) log:onQuerySurface {
     _:S :isKnowable true .
 } .
 
 # Test 
 # See the noGod example why this works...
-(| log:onPositiveSurface {
+() log:onPositiveSurface {
     [] :hates [] .
 
-    (_:Counter _:S _:O| log:onNegativeSurface {
+    (_:Counter _:S _:O) log:onNegativeSurface {
         :Alice :isKnowable true .
         :Bob :isKnowable true .
         :Charly :isKnowable true .
@@ -63,7 +63,7 @@
         _:Counter a log:GraphCounter .
         { _:S :hates _:O } _:Counter 1.
 
-        (| log:onNegativeSurface {
+        () log:onNegativeSurface {
             :test :is true .
         } .
     } .
@@ -71,7 +71,7 @@
 
 # Add a counter
 :cardinalCount a log:GraphCounter .
-(_:Graph _:Count _:List _:Scope| log:onNegativeSurface {
+(_:Graph _:Count _:List _:Scope) log:onNegativeSurface {
     () log:negativeTriple {
         _:Graph :cardinalCount _:Count .
     } .
@@ -79,6 +79,6 @@
     _:List list:length _:Count .
 } .
 
-(| log:onQuerySurface {
+() log:onQuerySurface {
     :test :is true .
 } .

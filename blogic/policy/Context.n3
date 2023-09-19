@@ -2,11 +2,11 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
-(| log:onAccessSurface {
+() log:onAccessSurface {
     :Someone 
         a :PublicAccess .
 } .
 
-#(| log:onAccessSurface {
+#() log:onAccessSurface {
 #    :Charly a :Friend .
 #} .

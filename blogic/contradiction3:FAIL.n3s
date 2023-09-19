@@ -2,7 +2,7 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # \Some y : not( y log:onNegativeSurface { :Alice :hates :Quiche } )
-(| log:onNegativeSurface {
+() log:onNegativeSurface {
     # The negative surface below is just an RDF structure (not a negation)
     _:y log:onNegativeSurface {
         :Alice :hates :Quiche

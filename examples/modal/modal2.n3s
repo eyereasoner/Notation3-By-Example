@@ -2,20 +2,20 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # alice likes cats
-(| log:onNegativeSurface {
-    (| log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :Alice :likes :Cats .
     } .
 } .
 
-(| log:onQuestionSurface {
+() log:onQuestionSurface {
     # is it possible that alice likes cats?
-    (| log:onModalSurface {
-        (| log:onNegativeSurface {
+    () log:onModalSurface {
+        () log:onNegativeSurface {
             :Alice :likes :Cats .
         } .
     } .
-    (| log:onAnswerSurface {
+    () log:onAnswerSurface {
         :modal2 :is true .
     } .
 } .
