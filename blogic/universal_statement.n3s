@@ -6,16 +6,16 @@
 # Follows:
 #  ~(bob is Perfect) 
 
-(_:X) log:onNegativeSurface {
+($ _:X $) log:onNegativeSurface {
     _:X :is :Perfect .
 } .
 
-() log:onQuestionSurface {
-    () log:onNegativeSurface {
+($ $) log:onQuestionSurface {
+    ($ $) log:onNegativeSurface {
        :bob :is :Perfect .
     } .
 
-    () log:onAnswerSurface {
+    ($ $) log:onAnswerSurface {
         :test :is true .
     } .
 } .

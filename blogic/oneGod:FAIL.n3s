@@ -6,18 +6,18 @@
 
 # We write on the positive surface, and we introduce a god (_:x). 
 # If any God is not equal to this god, we burn the fuse.
-(_:x) log:onPositiveSurface {
+($ _:x $) log:onPositiveSurface {
     _:x a :God .
 
-    (_:y) log:onNegativeSurface {
+    ($ _:y $) log:onNegativeSurface {
         _:y a :God .
 
         _:x log:notEqualTo _:y .
 
-        () log:onNegativeSurface false .
+        ($ $) log:onNegativeSurface false .
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
+($ _:S _:O $) log:onQuerySurface {
     _:S a _:O .
 } .

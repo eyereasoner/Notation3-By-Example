@@ -13,7 +13,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix cert: <http://www.w3.org/ns/auth/cert>.
 
-(_:sk_0 _:bn_3 _:sk_1 _:sk_2 _:bn_4 _:bn_5 _:bn_6 _:bn_7 _:bn_8 _:bn_9 _:bn_10) log:onNegativeSurface {
+($ _:sk_0 _:bn_3 _:sk_1 _:sk_2 _:bn_4 _:bn_5 _:bn_6 _:bn_7 _:bn_8 _:bn_9 _:bn_10 $) log:onNegativeSurface {
     _:sk_0 a odrl:Session.
     _:sk_0 ex:login _:bn_3.
     _:sk_1 log:equalTo <http://example.org/policy/policy-authorization-organizationABC>.
@@ -44,7 +44,7 @@
     _:bn_10 a odrl:Session.
     _:bn_3 log:rawType log:Other.
     _:bn_10 log:rawType log:Other.
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         <urn:odrl-compiler:Result> <urn:odrl-compiler:policy> _:sk_1.
         <urn:odrl-compiler:Result> odrl:assignee _:bn_3.
         <urn:odrl-compiler:Result> odrl:action odrlp:grantAccess.

@@ -8,12 +8,12 @@
 :Bob :friend :Charly .
 
 # Alice doesn't like Charly
-() log:onNegativeSurface {
+($ $) log:onNegativeSurface {
     :Alice :likes :Charly.
 } .
 
 # Alice doesn't like Bob
-#() log:onNegativeSurface {
+#($ $) log:onNegativeSurface {
 #    :Alice :likes :Bob.
 #} .
 
@@ -21,35 +21,35 @@
 # ~ ( P AND ~Q AND ~R ) <=> ~P OR ~(~Q AND ~R ) <=>
 # P -> ~(~Q AND ~R) <=> P -> Q OR R
 # Adding more negative surfaces expresses thus an OR relation.
-(_:X _:Y _:Z) log:onNegativeSurface {
+($ _:X _:Y _:Z $) log:onNegativeSurface {
     _:X :friend _:Y .
     _:Y :friend _:Z .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         _:X :likes _:Y .
     } .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         _:X :likes _:Z .
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
+($ _:S _:O $) log:onQuerySurface {
     _:S :friend _:O . 
 } .
 
-(_:S _:O) log:onQuerySurface {
+($ _:S _:O $) log:onQuerySurface {
     _:S :likes _:O . 
 } .
 
 # Test
-() log:onNegativeSurface {
+($ $) log:onNegativeSurface {
     :Alice :likes :Bob .
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-() log:onQuerySurface {
+($ $) log:onQuerySurface {
     :test :is true .
 } .

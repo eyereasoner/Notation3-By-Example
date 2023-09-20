@@ -4,7 +4,7 @@
 
 # We don't want to have an invalid policies in our system
 
-(_:Policy) log:onNegativeSurface {
+($ _:Policy $) log:onNegativeSurface {
     _:Policy a odrl:Offer ;
         :is :NotSatisfied .
 } .

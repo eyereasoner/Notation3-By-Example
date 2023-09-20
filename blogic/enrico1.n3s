@@ -6,30 +6,30 @@
 :franklin a :father .
 
 # \forall x: ( (x ref:type :father) -> \exists y (y :child x) )
-(_:x) log:onNegativeSurface {
+($ _:x $) log:onNegativeSurface {
     _:x a :father .
-    (_:y) log:onNegativeSurface {
+    ($ _:y $) log:onNegativeSurface {
         _:y :child _:x .
     } .
 } .
 
 # Test
-(_:x _:y) log:onNegativeSurface {
+($ _:x _:y $) log:onNegativeSurface {
     _:x :child :jozef .
     _:y :child :franklin .
 
     _:x log:notEqualTo _:y .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
 # queries
-(_:S _:O) log:onQuerySurface {
+($ _:S _:O $) log:onQuerySurface {
     _:S :child _:O .
 } .
 
-() log:onQuerySurface {
+($ $) log:onQuerySurface {
     :test :is true .
 } .

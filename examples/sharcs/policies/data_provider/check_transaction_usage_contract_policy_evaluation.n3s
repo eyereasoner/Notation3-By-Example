@@ -12,7 +12,7 @@
 # IMPLIES
 #    (<Login> a ValidTransactionUsageContract) &
 #    (<Login> contract <TransactionUsageContract>)
-(_:Login _:Client _:Membership _:TransactionUsageContract) log:onNegativeSurface {
+($ _:Login _:Client _:Membership _:TransactionUsageContract $) log:onNegativeSurface {
     _:Login
          a :Login;
          :client _:Client ;
@@ -24,7 +24,7 @@
         :hasMembership _:Membership ;
         :hasClient _:Client .
         
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         _:Login
             a :ValidTransactionUsageContract ;
             :contract _:TransactionUsageContract .
@@ -44,7 +44,7 @@
 # (<Allows> subscriber <User>)
 # IMPLIES
 #   (<Login> a ValidPermission)
-(_:Login _:Contract _:User _:Membership _:Permission _:Allows) log:onNegativeSurface {
+($ _:Login _:Contract _:User _:Membership _:Permission _:Allows $) log:onNegativeSurface {
     _:Login 
         a :Login ;
         :user _:User ;
@@ -62,7 +62,7 @@
         :contract _:Contract ;
         :subscriber _:User .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         _:Login
             a :ValidPermission .
     } .

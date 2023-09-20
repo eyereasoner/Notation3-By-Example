@@ -2,47 +2,47 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # □ A
-() log:onNegativeSurface {
-    () log:onModalSurface {
+($ $) log:onNegativeSurface {
+    ($ $) log:onModalSurface {
         :A a :Statement .
     } .
 } .
 
 # ◇ B
-() log:onModalSurface {
-    () log:onNegativeSurface {
+($ $) log:onModalSurface {
+    ($ $) log:onNegativeSurface {
         :B a :Statement .
     } .
 } .
 
-() log:onQuestionSurface {
+($ $) log:onQuestionSurface {
     # □ A = ~◇~A
-    () log:onNegativeSurface {
-        () log:onModalSurface {
-            () log:onNegativeSurface {
-                () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
+        ($ $) log:onModalSurface {
+            ($ $) log:onNegativeSurface {
+                ($ $) log:onNegativeSurface {
                     :A a :Statement .
                 }
             } .
         } .
     } .
-    () log:onAnswerSurface {
+    ($ $) log:onAnswerSurface {
         :modal0a :is true .
     } .
 } .
 
-() log:onQuestionSurface {
+($ $) log:onQuestionSurface {
     # ◇ B = ~□~B
-    () log:onNegativeSurface {
-        () log:onNegativeSurface {
-            () log:onModalSurface {
-                () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
+        ($ $) log:onNegativeSurface {
+            ($ $) log:onModalSurface {
+                ($ $) log:onNegativeSurface {
                     :B a :Statement .
                 }
             } .
         } .
     } .
-    () log:onAnswerSurface {
+    ($ $) log:onAnswerSurface {
         :modal0b :is true .
     } .
 } .

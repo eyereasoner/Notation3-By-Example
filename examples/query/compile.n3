@@ -5,8 +5,8 @@
 (  _:Query _:Body 
    _:Param _:WhereBody _:ResultBody
    _:Surface
-) log:onNegativeSurface {
-    () log:onNeutralSurface {
+ $) log:onNegativeSurface {
+    ($ $) log:onNeutralSurface {
         _:Query a query:Query ;
             query:select _:Body .
     } .
@@ -17,16 +17,16 @@
     } .
 
     ( _:WhereBody {
-        () log:onNegativeSurface {
+        ($ $) log:onNegativeSurface {
             _:Query query:answer _:ResultBody .
         } 
     }) log:conjunction _:Surface.
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         _:Param log:onNegativeSurface _:Surface.
     } .
 } .
 
-(_:X _:Answer) log:onQuerySurface {
+($ _:X _:Answer $) log:onQuerySurface {
     _:X query:answer _:Answer .
 } .

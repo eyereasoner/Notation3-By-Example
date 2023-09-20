@@ -8,12 +8,12 @@
 
 # A . ~( B . ~A ) = A , whatever B is
 # Testing we don't get a fuse
-() log:onNegativeSurface {
+($ $) log:onNegativeSurface {
     # B
-    () log:onNegativeSurface true .
+    ($ $) log:onNegativeSurface true .
 
     # This we should get as output
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         :A a :A0 .
     } .
 } .
@@ -22,14 +22,14 @@
 # 
 # Make C something false...
 #  `-> we should get a ~B
-() log:onNegativeSurface {
+($ $) log:onNegativeSurface {
     :B a :B1 .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         # C
-        () log:onNegativeSurface true .
+        ($ $) log:onNegativeSurface true .
 
-        () log:onNegativeSurface {
+        ($ $) log:onNegativeSurface {
             :A a :A0 .
         } .
     } . 
@@ -39,14 +39,14 @@
 #
 # Make C something true...
 #  `-> we should get a ~B
-() log:onNegativeSurface {
+($ $) log:onNegativeSurface {
     :B a :B2 .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         # C
         :C a :C2 .
 
-        () log:onNegativeSurface {
+        ($ $) log:onNegativeSurface {
             :A a :A0 .
         } .
     } . 
@@ -58,18 +58,18 @@
 :B a :B3 .
 # Make D something false...
 #  `-> we should get a (B -> C)
-() log:onNegativeSurface {
+($ $) log:onNegativeSurface {
     :B a :B3 .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         # C
         :C a :C3 .
 
-        () log:onNegativeSurface {
+        ($ $) log:onNegativeSurface {
             # D .
-            () log:onNegativeSurface true .
+            ($ $) log:onNegativeSurface true .
 
-            () log:onNegativeSurface {
+            ($ $) log:onNegativeSurface {
                 :A a :A0 .
             } .
         } .
@@ -82,18 +82,18 @@
 :B a :B4 .
 # Make D something true...
 #  `-> we should get a (B -> C)
-() log:onNegativeSurface {
+($ $) log:onNegativeSurface {
     :B a :B4 .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         # C
         :C a :C4 .
 
-        () log:onNegativeSurface {
+        ($ $) log:onNegativeSurface {
             # D .
             :D a :D4 .
 
-            () log:onNegativeSurface {
+            ($ $) log:onNegativeSurface {
                 :A a :A0 .
             } .
         } .
@@ -102,14 +102,14 @@
 
 # ~(B . ~(C . ~B)) = ~B, whatever C is
 # Make C something false
-() log:onNegativeSurface {
+($ $) log:onNegativeSurface {
     :B a :B5 .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         # C
-        () log:onNegativeSurface true .
+        ($ $) log:onNegativeSurface true .
 
-        () log:onNegativeSurface {
+        ($ $) log:onNegativeSurface {
             :B a :B5 .
         } .
     } .
@@ -117,14 +117,14 @@
 
 # ~(B . ~(C . ~B)) = ~B, whatever C is
 # Make C something true
-() log:onNegativeSurface {
+($ $) log:onNegativeSurface {
     :B a :B6 .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         # C
         :C a :C6 .
 
-        () log:onNegativeSurface {
+        ($ $) log:onNegativeSurface {
             :B a :B6 .
         } .
     } .
@@ -136,18 +136,18 @@
 :B a :B7 .
 # Make D something false...
 #  `-> we should get (B -> C)
-() log:onNegativeSurface {
+($ $) log:onNegativeSurface {
     :B a :B7 .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         # C
         :C a :C7 .
 
-        () log:onNegativeSurface {
+        ($ $) log:onNegativeSurface {
             # D .
-            () log:onNegativeSurface true .
+            ($ $) log:onNegativeSurface true .
 
-            () log:onNegativeSurface {
+            ($ $) log:onNegativeSurface {
                 :B a :B7 .
             } .
         } .
@@ -161,18 +161,18 @@
 :D a :D8 .
 # Make D something true...
 #  `-> we should get (B -> C)
-() log:onNegativeSurface {
+($ $) log:onNegativeSurface {
     :B a :B8 .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         # C
         :C a :C8 .
 
-        () log:onNegativeSurface {
+        ($ $) log:onNegativeSurface {
             # D .
             :D a :D8 .
 
-            () log:onNegativeSurface {
+            ($ $) log:onNegativeSurface {
                 :B a :B8 .
             } .
         } .
@@ -180,21 +180,21 @@
 } .
 
 
-(_:S _:O) log:onQuerySurface {
+($ _:S _:O $) log:onQuerySurface {
     _:S a  _:O .
 } .
 
-(_:S _:O) log:onQuerySurface {
-    () log:onNegativeSurface {
+($ _:S _:O $) log:onQuerySurface {
+    ($ $) log:onNegativeSurface {
         _:S a _:O .
     } .
 } .
 
 # Test
-() log:onNegativeSurface {
+($ $) log:onNegativeSurface {
     # The positive surface is added here to optimize the execution speed
     # it doesn't have any other effect
-    () log:onPositiveSurface {
+    ($ $) log:onPositiveSurface {
         :A a :A0 .
 
         :C a :C3 .
@@ -203,27 +203,27 @@
         :C a :C8 .
     } .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         :B a :B1.
     } .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         :B a :B2 .
     } .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         :B a :B5 .
     } .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         :B a :B6 .
     } .
 
-    () log:onNegativeSurface {
+    ($ $) log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-() log:onQuerySurface {
+($ $) log:onQuerySurface {
     :test :is true .
 } .
