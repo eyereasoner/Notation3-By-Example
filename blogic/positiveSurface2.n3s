@@ -5,33 +5,33 @@ _:x a :PastaEater .
 
 # The positive surface is the equivalent of a negative of a negative
 # surface. See positiveSurface1.n3
-($ $) log:onPositiveSurface {
+() log:onPositiveSurface {
     # The _:x on this positiveSurface binds to the _:x on the
     # implicit default surface
     _:x a :RiceEater .
 
-    ($ _:y $) log:onNegativeSurface {
+    (_:y) log:onNegativeSurface {
         _:y a :PastaEater , :RiceEater .
 
-        ($ $) log:onNegativeSurface {
+        () log:onNegativeSurface {
             _:y a :RisottoEater .
         } .
     } .
 } .
 
-($ _:S _:O $) log:onQuerySurface {
+(_:S _:O) log:onQuerySurface {
     _:S a _:O .
 } .
 
 # Test
 
-($ $) log:onNegativeSurface {
+() log:onNegativeSurface {
     _:x a :PastaEater, :RiceEater , :RisottoEater .
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-($ $) log:onQuerySurface {
+() log:onQuerySurface {
     :test :is true .
 } .

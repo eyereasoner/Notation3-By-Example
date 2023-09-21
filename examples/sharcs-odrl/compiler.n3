@@ -46,7 +46,7 @@
     { 
       ?TheAssignee log:rawType log:Other .
       ?TheTarget log:rawType log:Other .
-      ($ $) log:onNegativeSurface {
+      () log:onNegativeSurface {
         :Result 
           :policy _:Policy ;
           odrl:assignee ?TheAssignee ;
@@ -91,7 +91,7 @@
       _:Result :policy ?Policy .
     }
     {
-      ($ $) log:onNegativeSurface {
+      () log:onNegativeSurface {
         :Result :constraint [
           a :Constraint;
           odrl:leftOperand ?Left ;
@@ -111,7 +111,7 @@
 } .
 
 # Find the main subject (first triple subject node)
-# $A+ :mainSubject $B-
+#  $A+ :mainSubject $B-
 # where:
 #  - A : a node
 #  - B : a graph term

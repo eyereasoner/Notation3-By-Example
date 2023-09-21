@@ -5,7 +5,7 @@
 # ValidCheck defines the required classes for a login (Required).
 # Login has a collection of classes (HasClasses).
 # When check if Required is equal to HasClasses.
-($ _:Login _:Class _:HasClasses _:Required _:SCOPE $) log:onNegativeSurface {
+(_:Login _:Class _:HasClasses _:Required _:SCOPE) log:onNegativeSurface {
     _:Login 
         a :Login.
 
@@ -15,7 +15,7 @@
 
     _:Required list:setEqualTo _:HasClasses .
 
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:Login :action :AllowService .
     } .
 } .
@@ -24,7 +24,7 @@
 # We check if each required class (Class) is defined for the Login.
 # If true, then nothing happens.
 # If false, report the missing classes.
-($ _:Login _:Requires _:Class _:SCOPE $) log:onNegativeSurface {
+(_:Login _:Requires _:Class _:SCOPE) log:onNegativeSurface {
     _:Login
         a :Login.
 
@@ -35,7 +35,7 @@
         _:Login a _:Class .
     } .
 
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:Login :action :DenyService .
         _:Login :missing _:Class .
     } .

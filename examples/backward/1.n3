@@ -4,20 +4,20 @@
 :Alice a :Human .
 :Alice :likes :Cats .
 
-($ _:S $) log:onNegativeSurface {
+(_:S) log:onNegativeSurface {
    _:S :likesAnimals true .
-   ($ $) log:onNegativeSurface {
+   () log:onNegativeSurface {
         :result :is true .
    } .
 } .
 
-($ _:S $) log:onNegativeSurface {
+(_:S) log:onNegativeSurface {
     () log:negativeTriple {
         _:S :likesAnimals true .
     } .
     _:S :likes :Cats . 
 } .     
 
-($ _:S _:O $) log:onQuerySurface {
+(_:S _:O) log:onQuerySurface {
     _:S :is _:O .
 } .

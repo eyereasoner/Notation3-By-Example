@@ -16,8 +16,8 @@ Examples:
 
 ```
 # It is necessary that Alice likes cats 
-($ $) log:onNegativeSurface {
-    ($ $) log:onModalSurface {
+() log:onNegativeSurface {
+    () log:onModalSurface {
         :Alice :likes :Cats .
     }
 }
@@ -25,8 +25,8 @@ Examples:
 
 ```
 # It is possible that Alice hates dogs 
-($ $) log:onModalSurface {
-    ($ $) log:onNegativeSurface {
+() log:onModalSurface {
+    () log:onNegativeSurface {
         :Alice :hates :Dogs .
     }
 }

@@ -13,41 +13,41 @@
 # |- (P v R)->Q . (P v R)
 # Here follows Q
 :Beetle a :Car .
-($ $) log:onNegativeSurface {
+() log:onNegativeSurface {
     :Beetle :is :blue . 
 } .
 
-($ _:S $) log:onNegativeSurface {
+(_:S) log:onNegativeSurface {
     # P
     _:S :is :green.
 
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         # -> Q
         _:S :is :beautiful .
     } .
 } .
 
-($ _:S $) log:onNegativeSurface {
+(_:S) log:onNegativeSurface {
     # R
     _:S :is :blue.
 
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         # -> Q
         _:S :is :beautiful .
     } .
 } .
 
-($ _:S $) log:onNegativeSurface {
+(_:S) log:onNegativeSurface {
     # Need to match something in the data to trigger the rules
     _:S a :Car.
 
     # P
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:S :is :green . 
     } .
 
     # OR R
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:S :is :blue . 
     } .
 } .
@@ -59,7 +59,7 @@
 
 # The negation of the conclusion should blow an inference fuse
 # ~Q (!?)
-#($ $) log:onNegativeSurface {
+#() log:onNegativeSurface {
 #    :Beetle :is :beautiful .
 #} .
 
@@ -67,14 +67,14 @@
 # in a reasoner, this also needs to work. 
 # 
 ## Test
-($ $) log:onNegativeSurface {
+() log:onNegativeSurface {
     :Beetle :is :beautiful .
     
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-($ _:S _:O $) log:onQuerySurface {
+(_:S _:O) log:onQuerySurface {
     _:S :is _:O .
 } .

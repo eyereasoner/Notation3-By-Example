@@ -2,30 +2,30 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Self destruct or Beetle is a Car
-($ $) log:onNegativeSurface {
-    ($ $) log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         # The self destructor
-        ($ _:G _:F $) log:onNegativeSurface {
+        (_:G _:F) log:onNegativeSurface {
             _:G log:onNegativeSurface _:F .
 
-            ($ $) log:onPositiveSurface {
+            () log:onPositiveSurface {
                 _:G log:onNegativeSurface _:F .
             } . 
         } .
     } .
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         :Beetle a :Car .
     } .
 } .
 
-($ $) log:onNegativeSurface {
+() log:onNegativeSurface {
     :Beetle a :Car .
 
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-($ $) log:onQuerySurface {
+() log:onQuerySurface {
     :test :is true .
 } .

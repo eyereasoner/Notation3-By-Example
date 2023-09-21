@@ -7,8 +7,8 @@
 # Merge all modal surfaces in A resulting in B
 #   - A a graph term
 #   - B a graph term
-($ _:G1 _:G2 _:G1L _:G2L $) log:onNegativeSurface {
-    ($ $) log:onNegativeSurface <<_:G1 :asMergedModal _:G2>> .
+(_:G1 _:G2 _:G1L _:G2L) log:onNegativeSurface {
+    () log:onNegativeSurface <<_:G1 :asMergedModal _:G2>> .
 
     _:G1 graph:list _:G1L .
 
@@ -18,18 +18,18 @@
 } .
 
 # At the end of the process we merge all modals and append it to the rest of the triples
-($ _:Acc _:Modals _:G _:Answer $) log:onNegativeSurface {
-    ($ $) log:onNegativeSurface <<(() _:Acc _:Modals) :asMergedModal_ _:Answer>> .
+(_:Acc _:Modals _:G _:Answer) log:onNegativeSurface {
+    () log:onNegativeSurface <<(() _:Acc _:Modals) :asMergedModal_ _:Answer>> .
 
     _:Modals log:notEqualTo () .
 
     _:Modals graph:union _:G .
 
-     ($ ( { ( $) log:onModalSurface _:G } ) _:Acc) list:append _:Answer .
+     ( ( { () log:onModalSurface _:G } ) _:Acc) list:append _:Answer .
 } .
 
-($ _:Acc _:AccNew _:Modals _:ModalsNew _:Lin _:Lout _:H _:T _:X _:Y _:Z _:Scope $) log:onNegativeSurface {
-    ($ $) log:onNegativeSurface <<(_:Lin _:Acc _:Modals) :asMergedModal_ _:Lout>> .
+(_:Acc _:AccNew _:Modals _:ModalsNew _:Lin _:Lout _:H _:T _:X _:Y _:Z _:Scope) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:Lin _:Acc _:Modals) :asMergedModal_ _:Lout>> .
 
     _:Lin list:firstRest (_:H _:T) .
 
@@ -57,10 +57,10 @@
 } .
 
 # Merge nested modal surfaces on negative surfaces
-($ _:A _:B _:X $) log:onNegativeSurface {
+(_:A _:B _:X) log:onNegativeSurface {
     _:X log:onNegativeSurface _:A .
     _:A :asMergedModal _:B .
-    ($ $) log:onNegativeSurface {
-        ($ $) log:onNegativeSurface _:B .
+    () log:onNegativeSurface {
+        () log:onNegativeSurface _:B .
     } .
 } .

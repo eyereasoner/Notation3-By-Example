@@ -4,13 +4,13 @@
 :alice a :person .
 :alice :likes :cat .
 
-($ $) log:onQuestionSurface {
-    ($ $) log:onNegativeSurface {
-      ($ _:X $) log:onNegativeSurface {
+() log:onQuestionSurface {
+    () log:onNegativeSurface {
+      (_:X) log:onNegativeSurface {
          :alice :likes _:X .
       } .
     } .
-    ($ $) log:onAnswerSurface {
+    () log:onAnswerSurface {
         :test :is true .
     } .
 } .

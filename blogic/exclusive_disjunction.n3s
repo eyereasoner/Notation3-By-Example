@@ -10,7 +10,7 @@
 :Alice a :Winner .
 
 # Make Bob a winner
-#($ $) log:onNegativeSurface {
+#() log:onNegativeSurface {
 #    :Alice a :Winner .
 #} .
 
@@ -24,24 +24,24 @@
 #     ( P -> ~Q ) AND (~Q -> P) AND ( ~P -> Q ) AND ( Q -> ~ P )
 
 # [1]
-($ $) log:onNegativeSurface {
+() log:onNegativeSurface {
 
     :Alice a :Winner .
 
-    ($ $) log:onNegativeSurface {
-        ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
+        () log:onNegativeSurface {
             :Bob a :Winner .
         } .
     } .
 }.
 
 # [2]
-($ $) log:onNegativeSurface {
-    ($ $) log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :Bob a :Winner .
     } .
 
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         :Alice a :Winner .
     } .
 }.
@@ -49,46 +49,46 @@
 # [3] 
 # Remark [2] and [3] are the same only with the order switched. One
 # could keep only one of these rules
-($ $) log:onNegativeSurface {
-    ($ $) log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :Alice a :Winner .
     } .
 
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         :Bob a :Winner .
     } .
 }.
 
 # [4]
-($ $) log:onNegativeSurface {
+() log:onNegativeSurface {
     :Bob a :Winner .
 
-    ($ $) log:onNegativeSurface {
-        ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
+        () log:onNegativeSurface {
             :Alice a :Winner .
         } .
     } .
 }.
 
 # Test 
-($ $) log:onNegativeSurface {
+() log:onNegativeSurface {
     :Alice a :Winner ;
         :is :Racing .
     :Bob :is :Racing .
 
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test :is true .
     } .
 } .
 
-($ _:S _:O $) log:onQuerySurface {
+(_:S _:O) log:onQuerySurface {
     _:S a _:O.
 } .
 
-($ _:S _:O $) log:onQuerySurface {
+(_:S _:O) log:onQuerySurface {
     _:S :is _:O.
 } .
 
-($ $) log:onQuerySurface {
+() log:onQuerySurface {
     :test :is true .
 } .

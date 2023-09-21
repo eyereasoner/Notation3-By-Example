@@ -7,7 +7,7 @@
 # Check if the ODRL policies are valid. This is true when
 # all constrains are valid (in our example)
 
-($ _:Policy _:Permission _:Constraint _:LO _:O _:RO _:Validity _:Scope $) log:onNegativeSurface {
+(_:Policy _:Permission _:Constraint _:LO _:O _:RO _:Validity _:Scope) log:onNegativeSurface {
 
     # Gather all the metadata of the policy
     _:Policy a odrl:Offer .
@@ -31,13 +31,13 @@
       {_:Validity log:equalTo :NotSatisfied}
     ) log:ifThenElseIn _:Scope.
 
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:Constraint :is _:Validity .
     } .
 } .
 
 # Implementation of an odrl:lt checker for dates
-($ _:Blank _:CurrentDate _:Date $) log:onNegativeSurface {
+(_:Blank _:CurrentDate _:Date) log:onNegativeSurface {
     () log:negativeTriple {
         odrl:dateTime odrl:lt _:Date .
     } .
@@ -46,7 +46,7 @@
 } .
 
 # Implementation of an odrl:gt checker for dates
-($ _:Blank _:CurrentDate _:Date $) log:onNegativeSurface {
+(_:Blank _:CurrentDate _:Date) log:onNegativeSurface {
     () log:negativeTriple {
         odrl:dateTime odrl:gt _:Date .
     } .
@@ -55,7 +55,7 @@
 } .
 
 # A policy is valid when all the contraints are valid 
-($ _:Policy _:Permission _:Constraint _:Validity _:Scope _:Scope2 $) log:onNegativeSurface {
+(_:Policy _:Permission _:Constraint _:Validity _:Scope _:Scope2) log:onNegativeSurface {
     _:Policy a odrl:Offer .
     _:Policy odrl:permission _:Permission .
     
@@ -73,13 +73,13 @@
         {  _:Validity log:equalTo :NotSatisfied }
     ) log:ifThenElseIn _:Scope .
 
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:Policy :is _:Validity .
     } .
 } .
 
 # Show something on the output
-($ _:S _:P _:O $) log:onQuerySurface {
+(_:S _:P _:O) log:onQuerySurface {
     _:S _:P _:O .
     _:P log:notEqualTo log:onNegativeSurface .
     _:P log:notEqualTo log:onQuerySurface .

@@ -4,17 +4,17 @@
 :Alice a :Girl .
 
 # \Every x : \Some y : x a Girl & y a Boy & y loves x
-($ _:X $) log:onNegativeSurface {
-   ($ _:Y $) log:onNegativeSurface {
+(_:X) log:onNegativeSurface {
+   (_:Y) log:onNegativeSurface {
         _:X a :Girl .
         _:Y a :Boy .
         _:Y :loves _:X .
    } . 
 } .
 
-($ _:X _:Y $) log:onQuestionSurface {
+(_:X _:Y) log:onQuestionSurface {
     _:X :loves _:Y .
-    ($ $) log:onAnswerSurface {
+    () log:onAnswerSurface {
         :test :is true .
    } .
 } .

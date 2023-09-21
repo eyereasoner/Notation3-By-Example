@@ -9,8 +9,8 @@
 #   A a graph
 #   Odd true|false
 #   B a graph with modals/negatives replaced
-($ _:G1 _:G1L _:E _:G2 _:G2L $) log:onNegativeSurface {
-    ($ $) log:onNegativeSurface <<(_:G1 _:E) :asModal _:G2>> .
+(_:G1 _:G1L _:E _:G2 _:G2L) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:G1 _:E) :asModal _:G2>> .
 
     _:G1 graph:list _:G1L .
 
@@ -21,13 +21,13 @@
 } .
 
 # We are done when the input is empty
-($ _:E _:Acc $) log:onNegativeSurface {
-    ($ $) log:onNegativeSurface <<(() _:E _:Acc) :asModal_ _:Acc>> .
+(_:E _:Acc) log:onNegativeSurface {
+    () log:onNegativeSurface <<(() _:E _:Acc) :asModal_ _:Acc>> .
 } .
 
 # Process Odd = true
-($ _:E _:Acc _:AccNew _:Lin _:Lout _:H _:T _:X _:G _:GN _:Scope _:HN $) log:onNegativeSurface {
-    ($ $) log:onNegativeSurface <<(_:Lin _:E _:Acc) :asModal_ _:Lout>> .
+(_:E _:Acc _:AccNew _:Lin _:Lout _:H _:T _:X _:G _:GN _:Scope _:HN) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:Lin _:E _:Acc) :asModal_ _:Lout>> .
 
     _:Lin list:firstRest (_:H _:T) .
 
@@ -53,8 +53,8 @@
 } .
 
 # Process Odd = false
-($ _:E _:Acc _:AccNew _:Lin _:Lout _:H _:T _:X _:G _:G2 _:GN _:Scope _:HN $) log:onNegativeSurface {
-    ($ $) log:onNegativeSurface <<(_:Lin _:E _:Acc) :asModal_ _:Lout>> .
+(_:E _:Acc _:AccNew _:Lin _:Lout _:H _:T _:X _:G _:G2 _:GN _:Scope _:HN) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:Lin _:E _:Acc) :asModal_ _:Lout>> .
 
     _:Lin list:firstRest (_:H _:T) .
 
@@ -80,23 +80,23 @@
 } .
 
 # on an odd surface we may replace a modal surface by a negative surface
-($ _:X _:Y _:YN $) log:onNegativeSurface {
+(_:X _:Y _:YN) log:onNegativeSurface {
     _:X log:onNegativeSurface _:Y .
 
     (_:Y true) :asModal _:YN .
     
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:X log:onNegativeSurface _:YN .
     } .
 } .
 
 # on an even surface we may replace a negativesurface by a modal surface 
-($ _:X _:Y _:YN $) log:onNegativeSurface {
+(_:X _:Y _:YN) log:onNegativeSurface {
     _:X log:onNegativeSurface _:Y .
     
     (_:Y true) :asModal _:YN .
 
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         _:X log:onModalSurface _:YN .
     } .
 } .

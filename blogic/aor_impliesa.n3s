@@ -2,39 +2,39 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # (A v ~A) => (test is true)
-($ $) log:onNegativeSurface {
-    ($ $) log:onNegativeSurface {
-        ($ $) log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
+        () log:onNegativeSurface {
             :A a :Statement .
         } .
-        ($ $) log:onNegativeSurface {
-            ($ $) log:onNegativeSurface {
+        () log:onNegativeSurface {
+            () log:onNegativeSurface {
                 :A a :Statement .
             } .
         } . 
     } .
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test1 :is true .
     }
 } .
 
 # (A => A) => (test is true)
-($ $) log:onNegativeSurface {
-    ($ $) log:onNegativeSurface {
+() log:onNegativeSurface {
+    () log:onNegativeSurface {
         :A a :Statement .
-        ($ $) log:onNegativeSurface {
+        () log:onNegativeSurface {
             :A a :Statement .
         } .
     } .
-    ($ $) log:onNegativeSurface {
+    () log:onNegativeSurface {
         :test2 :is true .
     } .
 } .
 
-($ $) log:onQuestionSurface {
+() log:onQuestionSurface {
     :test1 :is true .
     :test2 :is true .
-    ($ $) log:onAnswerSurface {
+    () log:onAnswerSurface {
         :test :is true .
     } .
 } .

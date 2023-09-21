@@ -2,13 +2,13 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # \Some x,y,z : :Alice :hates :Quiche 
-($ $) log:onNegativeSurface {
-    ($ _:a _:b _:c $) log:onNegativeSurface {
+() log:onNegativeSurface {
+    (_:a _:b _:c) log:onNegativeSurface {
         :Alice :hates :Quiche
     } .
 } .
 
 # \Every a : :Alices :hates :Quiche 
-($ _:a $) log:onNegativeSurface {
+(_:a) log:onNegativeSurface {
     :Alice :hates :Quiche .
 } .
