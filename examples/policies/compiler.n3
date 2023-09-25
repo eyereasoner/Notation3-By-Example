@@ -77,23 +77,23 @@
 } .
 
 # Extract the answer surfaces 
-(_:X _:Answer _:S _:P _:O) log:onQuerySurface {
+(_:X _:Answer _:S _:P _:O) log:onQuestionSurface {
     _:X pol:onAnswerSurface _:Answer .
-    () log:negativeTriple _:Answer .
+    () log:onAnswerSurface _:Answer .
 } .
 
 # Extract the original data without the rules
-(_:e _:id _:S _:P _:O) log:onQuerySurface {
+(_:e _:id _:S _:P _:O) log:onQuestionSurface {
     _:e pol:mainSubject _:id .
     _:id util:walkGraph << _:S _:P _:O >> .
 
-    () log:negativeTriple {
-        _:S _:P _:O .
+    () log:onAnswerSurface {
+        _:S _:P _:O
     } .
 } .
 
 # Extract the policy metadata
-(_:S _:P _:O) log:onQuerySurface {
+(_:S _:P _:O) log:onQuestionSurface {
     _:S _:P _:O .
 
     _:P list:in ( 
@@ -101,7 +101,7 @@
         <https://www.example.org/ns/policy#origin>
     ) .
 
-    () log:negativeTriple {
+    () log:onAnswerSurface {
         _:S _:P _:O .
     } .
 } .

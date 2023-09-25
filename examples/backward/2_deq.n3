@@ -21,9 +21,7 @@
 } .
 
 (_:S) log:onNegativeSurface {
-    () log:negativeTriple {
-        _:S :likesAnimals :Dogs .
-    } .
+    () log:onNegativeSurface <<_:S :likesAnimals :Dogs>> .
     _:S :likes :Dogs . 
 } .     
 

@@ -1,12 +1,2 @@
-@prefix : <https://github.com/eyereasoner/Notation3-By-Example/example/n3l#>.
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#>.
-@prefix math: <http://www.w3.org/2000/10/swap/math#>.
-@prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
-@prefix ns1: <urn:example.org:>.
-
 <urn:example.org:Alice> <urn:example.org:likes> <urn:example.org:Bob>.
 <urn:example.org:Alice> <urn:example.org:likes-star> <urn:example.org:Bob>.
-

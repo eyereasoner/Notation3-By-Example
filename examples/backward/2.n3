@@ -12,16 +12,12 @@
 } .
 
 (_:S) log:onNegativeSurface {
-    () log:negativeTriple {
-        _:S :likesAnimals :Cats .
-    } .
+    () log:onNegativeSurface <<_:S :likesAnimals :Cats>> .
     _:S :likes :Cats . 
 } .     
 
 (_:S) log:onNegativeSurface {
-    () log:negativeTriple {
-        _:S :likesAnimals :Dogs .
-    } .
+    () log:onNegativeSurface <<_:S :likesAnimals :Dogs>> .
     _:S :likes :Dogs . 
 } .     
 

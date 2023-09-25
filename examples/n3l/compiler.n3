@@ -17,25 +17,19 @@
 # List :asSurface Blogic
 #  returns the List as Blogic graph
 (_:F _:G) log:onNegativeSurface {
-    () log:negativeTriple {
-        _:F :asSurface _:G .
-    } .
+    () log:onNegativeSurface <<_:F :asSurface _:G>> .
     # We use an accumulator to construct the graph
     (_:F ()) :_asSurface _:G . 
 } .
 
 # When the list is empty we are done with accumulating and return the result
 (_:Acc) log:onNegativeSurface {
-    () log:negativeTriple {
-        (() _:Acc) :_asSurface _:Acc .
-    } .
+    () log:onNegativeSurface <<(() _:Acc) :_asSurface _:Acc>> .
 } .
 
 # Peak into the list if we see a blogic type list, that gathering the subgraph defined in it
 (_:F _:Acc _:N _:G _:A _:B _:Type _:Rest _:Graph) log:onNegativeSurface {
-    () log:negativeTriple {
-        (_:F _:Acc) :_asSurface _:G .
-    } .
+    () log:onNegativeSurface <<(_:F _:Acc) :_asSurface _:G>> .
     
     _:F list:length _:N .
     _:N math:greaterThan 0 .
@@ -55,47 +49,35 @@
 
 # Construct the graphs we need..
 (_:Param _:Graph _:Blogic) log:onNegativeSurface {
-    () log:negativeTriple {
-        (log:neg _:Param _:Graph) :makeSurface _:Blogic .
-    } .
+    () log:onNegativeSurface <<(log:neg _:Param _:Graph) :makeSurface _:Blogic>> .
     ( () { _:Param log:onNegativeSurface _:Graph }) :_asSurface _:Blogic .
 } .
 
 (_:Param _:Graph _:Blogic) log:onNegativeSurface {
-    () log:negativeTriple {
-        (log:pos _:Param _:Graph) :makeSurface _:Blogic .
-    } .
+    () log:onNegativeSurface <<(log:pos _:Param _:Graph) :makeSurface _:Blogic>> .
     ( () { _:Param log:onPositiveSurface _:Graph }) :_asSurface _:Blogic .
 } .
 
 (_:Param _:Graph _:Blogic) log:onNegativeSurface {
-    () log:negativeTriple {
-        (log:query _:Param _:Graph) :makeSurface _:Blogic .
-    } .
+    () log:onNegativeSurface <<(log:query _:Param _:Graph) :makeSurface _:Blogic>> .
     ( () { _:Param log:onQuerySurface _:Graph }) :_asSurface _:Blogic .
 } .
 
 (_:Param _:Graph _:Blogic) log:onNegativeSurface {
-    () log:negativeTriple {
-        (log:construct _:Param _:Graph) :makeSurface _:Blogic .
-    } .
+    () log:onNegativeSurface <<(log:construct _:Param _:Graph) :makeSurface _:Blogic>> .
     ( () { _:Param log:onQuerySurface _:Graph }) :_asSurface _:Blogic .
 } .
 
 # List :asGraph Formula
 #  given a list of 3 return a graph
 (_:L _:Graph _:Temp) log:onNegativeSurface {
-    () log:negativeTriple {
-        _:L :asGraph _:Graph .
-    } .
+    () log:onNegativeSurface <<_:L :asGraph _:Graph>> .
     (_:L ()) :_asGraph _:Temp .
     _:Graph graph:list _:Temp .
 } .
 
 (_:Acc) log:onNegativeSurface {
-    () log:negativeTriple {
-        ( () _:Acc) :_asGraph _:Acc .
-    } .
+    () log:onNegativeSurface <<( () _:Acc) :_asGraph _:Acc>> .
 } .
 
 (
@@ -104,9 +86,7 @@
    _:N _:S _:P _:O _:Rest _:AccNew _:Surface
    _:Scope
 ) log:onNegativeSurface {
-    () log:negativeTriple {
-        (_:L _:Acc) :_asGraph _:Graph .
-    } .
+    () log:onNegativeSurface <<(_:L _:Acc) :_asGraph _:Graph>> .
 
     _:L list:length _:N .
     _:N math:greaterThan 0 .
