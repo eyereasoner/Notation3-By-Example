@@ -11,23 +11,23 @@
 :Test rdf:value 0. 
 
 # This is a counter example 
-(_:X _:Y) log:onNegativeSurface {
-    _:X rdf:value _:Y .
-    _:Y math:greaterThan 100.
+(_X _Y) log:onNegativeSurface {
+    _X rdf:value _Y .
+    _Y math:greaterThan 100.
 
     () log:onNegativeSurface false .
 } . 
 
-(_:G _:X _:Y) log:onNegativeSurface {
-    _:G rdf:value _:X .
+(_G _X _Y) log:onNegativeSurface {
+    _G rdf:value _X .
 
-    ( _:X 1 ) math:sum _:Y .
+    ( _X 1 ) math:sum _Y .
     
     () log:onNegativeSurface  {
-        _:G rdf:value _:Y.
+        _G rdf:value _Y.
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
-    _:S rdf:value _:O .
+(_S _O) log:onQuerySurface {
+    _S rdf:value _O .
 } .

@@ -8,7 +8,7 @@
 } .
 
 () log:onNegativeSurface {
-    (_:x) log:onNegativeSurface {
+    (_x) log:onNegativeSurface {
         :test2 a :test .
     } .
 } .
@@ -26,8 +26,8 @@
 () log:onNegativeSurface {
     :subject1 a :subject .
 
-    (_:y) log:onNegativeSurface {
-        (_:x) log:onNegativeSurface {
+    (_y) log:onNegativeSurface {
+        (_x) log:onNegativeSurface {
             :test4 a :test .
         } .
     } .

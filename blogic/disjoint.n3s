@@ -68,8 +68,8 @@
 
 # Query and test 
 
-(_:S _:O) log:onQuerySurface {
-    _:S :knows _:O .
+(_S _O) log:onQuerySurface {
+    _S :knows _O .
 } .
 
 # Test 

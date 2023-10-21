@@ -12,8 +12,8 @@
 :Someone a :Person .
 
 # Use a blank node a universal
-(_:S) log:onQuerySurface {
-    _:S a :Person .
+(_S) log:onQuerySurface {
+    _S a :Person .
 } .
 
 () log:onMySurface1 {
@@ -21,9 +21,9 @@
 } .
 
 # Return from a surface 
-(_:S) log:onQuerySurface {
+(_S) log:onQuerySurface {
     () log:onMySurface1 {
-        _:S a :Person .
+        _S a :Person .
     } .
 } .
 
@@ -45,8 +45,8 @@
 } .
 
 # This will work , but includes Charly and Daisy
-(_:G) log:onQuerySurface {
-    () log:onMySurface3 _:G .
+(_G) log:onQuerySurface {
+    () log:onMySurface3 _G .
 } .
 
 () log:onMySurface4 {
@@ -55,9 +55,9 @@
 } .
 
 # Only show the surface which contains a cat
-(_:G _:S) log:onQuerySurface {
-    () log:onMySurface4 _:G .
-    _:G log:includes { _:S a :Cat } .
+(_G _S) log:onQuerySurface {
+    () log:onMySurface4 _G .
+    _G log:includes { _S a :Cat } .
 } .
 
 () log:onMySurface5 {
@@ -71,31 +71,31 @@
 } .
 
 # Query surfaces can also be a result of a rule
-(_:G _:S) log:onNegativeSurface {
-    () log:onMySurface5 _:G .
-    _:G log:includes { _:S a :Cat } .
+(_G _S) log:onNegativeSurface {
+    () log:onMySurface5 _G .
+    _G log:includes { _S a :Cat } .
 
     () log:onNegativeSurface {
         () log:onQuerySurface {
-            () log:onMySurface5 _:G .
+            () log:onMySurface5 _G .
         } .
     } .
 } .
 
 # This trick can be used to filter out only the things that 
 # are of your interest
-(_:G _:S1 _:S2) log:onNegativeSurface {
-    () log:onMySurface5 _:G .
-    _:G log:includes { _:S1 a :Person } .
-    _:G log:includes { _:S2 a :Cat } .
+(_G _S1 _S2) log:onNegativeSurface {
+    () log:onMySurface5 _G .
+    _G log:includes { _S1 a :Person } .
+    _G log:includes { _S2 a :Cat } .
 
     () log:onNegativeSurface {
         () log:onMyResultSurface {
-            _:S1 a :Person .
+            _S1 a :Person .
         } .
 
-        (_:X) log:onQuerySurface {
-            () log:onMyResultSurface _:X .
+        (_X) log:onQuerySurface {
+            () log:onMyResultSurface _X .
         } .
     } .
 } .

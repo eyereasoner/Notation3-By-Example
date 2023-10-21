@@ -4,20 +4,20 @@
 
 # Policy 1 : a PublicAccess only gets to see the 
 # foaf:name and foaf:email
-(_:Login _:S _:name _:email) log:onNegativeSurface {
+(_Login _S _name _email) log:onNegativeSurface {
     () log:onAccessSurface {
-        _:Login a :PublicAccess .
+        _Login a :PublicAccess .
     } .
 
-    _:S a foaf:Person .
-    _:S foaf:name _:name .
-    _:S foaf:email _:email .
+    _S a foaf:Person .
+    _S foaf:name _name .
+    _S foaf:email _email .
 
     () log:onNegativeSurface {
         # We write the triples on a result surface
         () log:onResultSurface {
-            _:S foaf:name _:name {| log:ohyeah :Policy_1 |} .
-            _:S foaf:email _:email {| log:ohyeah :Policy_1 |} . 
+            _S foaf:name _name {| log:ohyeah :Policy_1 |} .
+            _S foaf:email _email {| log:ohyeah :Policy_1 |} . 
         } .
     } .
 } {| :name :Policy_1 |} .

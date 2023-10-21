@@ -61,20 +61,20 @@
 } .
 
 # Debug
-(_:X1 _:X2 _:X3 _:X4) log:onNegativeSurface {
+(_X1 _X2 _X3 _X4) log:onNegativeSurface {
     () log:onNegativeSurface {
         () log:onNegativeSurface {
-            _:X1 a _:X2 .
+            _X1 a _X2 .
         } .
         () log:onNegativeSurface {
-            _:X3 a _:X4 .
+            _X3 a _X4 .
         } . 
     } .  
     () log:onNegativeSurface {
-        { _:X1 a _:X2 } :OR { _:X3 a _:X4 } .
+        { _X1 a _X2 } :OR { _X3 a _X4 } .
     } .
 } .
 
-(_:G1 _:G2) log:onQuerySurface {
-    _:G1 :OR _:G2 .
+(_G1 _G2) log:onQuerySurface {
+    _G1 :OR _G2 .
 } .

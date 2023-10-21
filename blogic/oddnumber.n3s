@@ -5,53 +5,53 @@
 10 a :NaturalNumber .
 
 # All x : (X a EvenNumber) OR (X a OddNumber)
-(_:x) log:onNegativeSurface {
+(_x) log:onNegativeSurface {
     () log:onNegativeSurface {
-        _:x a :EvenNumber .
+        _x a :EvenNumber .
     } .
     () log:onNegativeSurface {
-        _:x a :OddNumber .
+        _x a :OddNumber .
     } .
 } . 
 
 # All x,y : (X a NaturalNumber) ->  (y = x-1, y > 0 a NaturalNumber)
-(_:x _:y) log:onNegativeSurface {
-    _:x a :NaturalNumber .
+(_x _y) log:onNegativeSurface {
+    _x a :NaturalNumber .
 
-    (_:x -1 ) math:sum _:y .
+    (_x -1 ) math:sum _y .
 
-    _:y math:greaterThan 0 .
+    _y math:greaterThan 0 .
 
     () log:onNegativeSurface {
-        _:y a :NaturalNumber .
+        _y a :NaturalNumber .
     } .
 } . 
 
 # All x : (X a NaturalNumber) -> ( x : 2 = 0 , not(X a OddNumber) )
-(_:x) log:onNegativeSurface {
-    _:x a :NaturalNumber .
+(_x) log:onNegativeSurface {
+    _x a :NaturalNumber .
 
-    (_:x 2) math:remainder 0 .
+    (_x 2) math:remainder 0 .
 
     () log:onPositiveSurface {
-        _:x a :OddNumber .
+        _x a :OddNumber .
     } .
 
     ## Or alternative implementation
     #() log:onNegativeSurface {
     #    () log:onNegativeSurface {
-    #        _:x a :OddNumber .
+    #        _x a :OddNumber .
     #    }
     #} .
 } .
 
-(_:S _:O) log:onQuerySurface {
-    _:S a _:O .
+(_S _O) log:onQuerySurface {
+    _S a _O .
 } .
 
-(_:S _:O) log:onQuerySurface {
+(_S _O) log:onQuerySurface {
     () log:onNegativeSurface {
-        _:S a _:O .
+        _S a _O .
     }
 } .
 

@@ -81,12 +81,12 @@
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
-    _:S a _:O.
+(_S _O) log:onQuerySurface {
+    _S a _O.
 } .
 
-(_:S _:O) log:onQuerySurface {
-    _:S :is _:O.
+(_S _O) log:onQuerySurface {
+    _S :is _O.
 } .
 
 () log:onQuerySurface {

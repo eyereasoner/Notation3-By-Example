@@ -1,34 +1,34 @@
 @prefix : <urn:example:> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-_:x a :PastaEater .
+_x a :PastaEater .
 
 # The negative of a negative surface is the implicit positive surface.
 # We can write grafiti on this surface and just add more triples on 
 # the positive surface.
-(_:x) log:onNegativeSurface {
+(_x) log:onNegativeSurface {
     () log:onNegativeSurface {
-        _:x a :RiceEater .
+        _x a :RiceEater .
 
-        (_:x _:y) log:onNegativeSurface {
-            _:x a :PastaEater . 
-            _:y a :RiceEater .
+        (_x _y) log:onNegativeSurface {
+            _x a :PastaEater . 
+            _y a :RiceEater .
 
-            (_:z) log:onNegativeSurface {
-                _:z a :RisottoEater .
+            (_z) log:onNegativeSurface {
+                _z a :RisottoEater .
             } .
         } .
     } .
 } .  
 
-(_:S _:O) log:onQuerySurface {
-    _:S a _:O .
+(_S _O) log:onQuerySurface {
+    _S a _O .
 } .
 
 # Test
 
-(_:x) log:onNegativeSurface {
-    _:x a :RisottoEater .
+(_x) log:onNegativeSurface {
+    _x a :RisottoEater .
     () log:onNegativeSurface {
         :test :is true .
     } .

@@ -3,18 +3,18 @@
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
-_:x a :Person .
+_x a :Person .
 
 # Nesting of postive surfaces adds to the implicit positive default
 # surface
 () log:onPositiveSurface {
-    _:x :likes :Music .
+    _x :likes :Music .
 
     () log:onPositiveSurface {
-        _:x :plays :Piano .
+        _x :plays :Piano .
 
             () log:onPositiveSurface {
-                _:x :listensTo :JoeyAlexander .
+                _x :listensTo :JoeyAlexander .
             } .
     } . 
 } .
@@ -25,47 +25,47 @@ _:x a :Person .
 # With every even number of nestings something is written on
 # the implicit default positive surface (if the antecedent
 # is true).
-(_:x) log:onNegativeSurface {
+(_x) log:onNegativeSurface {
     # On the negative surface...
-    _:x a :Person . # The antecedent
+    _x a :Person . # The antecedent
 
     # On the positive surface...the consequent
     () log:onNegativeSurface {
-        _:x a :PersonPerson . # A new antecedent
+        _x a :PersonPerson . # A new antecedent
 
         # On the negative surface...a new consequent
         () log:onNegativeSurface {
-            _:x a :PersonPerson . # A new antecedent
+            _x a :PersonPerson . # A new antecedent
 
             # On the positiveSurface
             () log:onNegativeSurface {
-                _:x a :PersonPersonPerson . # The final consequent
+                _x a :PersonPersonPerson . # The final consequent
             }
         } .
     } .
 } .
 
 # Nesting of other surfaces keep the nested structure intact
-(_:x) log:onNeutralSurface {
-    _:x :likes :Food .
+(_x) log:onNeutralSurface {
+    _x :likes :Food .
 
-    (_:x) log:onNeutralSurface {
-        _:x :likes :IndonesianFood .
+    (_x) log:onNeutralSurface {
+        _x :likes :IndonesianFood .
     } .
 
     # Negative & Positive surfaces will not be interpreted here
-    (_:x) log:onNegativeSurface {
-        _:x a :Person .
+    (_x) log:onNegativeSurface {
+        _x a :Person .
         
         () log:onNegativeSurface {
-            _:x a :Human .
+            _x a :Human .
         } .
     } .
 } .
 
 # Test
 () log:onNegativeSurface {
-    _:x a :Person , :PersonPerson , :PersonPersonPerson ;
+    _x a :Person , :PersonPerson , :PersonPersonPerson ;
         :likes :Music ;
         :listensTo :JoeyAlexander ;
         :plays :Piano .
@@ -74,7 +74,7 @@ _:x a :Person .
     } .
 } .
 
-(_:S _:P _:O) log:onQuerySurface {
-    _:S _:P _:O .
-    (rdf:type :is :likes :plays :listensTo) list:member _:P . 
+(_S _P _O) log:onQuerySurface {
+    _S _P _O .
+    (rdf:type :is :likes :plays :listensTo) list:member _P . 
 } .

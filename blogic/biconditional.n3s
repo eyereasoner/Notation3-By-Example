@@ -15,21 +15,21 @@
 # A biconditions P <-> Q is true when P if and only if Q
 # This is same as
 #    ( P -> Q ) AND ( Q -> P )
-(_:S) log:onNegativeSurface {
+(_S) log:onNegativeSurface {
 
-    _:S :is :Breathing .
+    _S :is :Breathing .
 
     () log:onNegativeSurface {
-        _:S :is :Alive .
+        _S :is :Alive .
     } .
 }.
 
-(_:S) log:onNegativeSurface {
+(_S) log:onNegativeSurface {
 
-    _:S :is :Alive .
+    _S :is :Alive .
 
     () log:onNegativeSurface {
-        _:S :is :Breathing .
+        _S :is :Breathing .
     } .
 }.
 
@@ -42,6 +42,6 @@
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
-    _:S :is _:O .
+(_S _O) log:onQuerySurface {
+    _S :is _O .
 } .

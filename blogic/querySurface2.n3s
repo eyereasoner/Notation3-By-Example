@@ -5,14 +5,14 @@
 :Alice a :Person .
 
 # Create a dynamic query surface
-(_:X _:Y) :is { _:X a _:Y }.
-(_:X _:Y) :is { _:X :is _:Y }.
+(_X _Y) :is { _X a _Y }.
+(_X _Y) :is { _X :is _Y }.
 
-(_:P _:Q) log:onNegativeSurface {
-    _:P :is _:Q .
+(_P _Q) log:onNegativeSurface {
+    _P :is _Q .
 
     () log:onNegativeSurface {
-        _:P log:onQuerySurface _:Q .
+        _P log:onQuerySurface _Q .
         # Make test happy
         :test :is true .
     } .

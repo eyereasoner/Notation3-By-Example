@@ -14,30 +14,30 @@
 :P2 :name "Elizabeth" .
 
 # Check for a cardinality
-(_:a _:b _:c _:x _:y _:Counter _:o) log:onNegativeSurface {
-    _:a owl:onProperty _:b.
-    _:a owl:cardinality _:c.
+(_a _b _c _x _y _Counter _o) log:onNegativeSurface {
+    _a owl:onProperty _b.
+    _a owl:cardinality _c.
 
-    _:x _:b _:y .
+    _x _b _y .
 
     # Search for a cardinality Counter 
     # ...actually this means for any log:GraphCounter you 
     # can find this must be true.
-    _:Counter a log:GraphCounter .
+    _Counter a log:GraphCounter .
 
-    { _:x _:b _:o } _:Counter _:c .
+    { _x _b _o } _Counter _c .
     
     () log:onNegativeSurface {
-       _:x a _:a.
+       _x a _a.
     }.
 }.
 
 # This is a local implementation of a log:GraphCounter
 :cardinalCount a log:GraphCounter .
-(_:Graph _:Count _:List _:Scope) log:onNegativeSurface {
-    () log:onNegativeSurface <<_:Graph :cardinalCount _:Count>> .
-    ( () _:Graph _:List ) log:collectAllIn _:Scope .
-    _:List list:length _:Count .
+(_Graph _Count _List _Scope) log:onNegativeSurface {
+    () log:onNegativeSurface <<_Graph :cardinalCount _Count>> .
+    ( () _Graph _List ) log:collectAllIn _Scope .
+    _List list:length _Count .
 } .
 
 # Test
@@ -48,12 +48,12 @@
     } .
 } .
 
-(_:S _:X) log:onQuerySurface {
-    _:S a _:X .
+(_S _X) log:onQuerySurface {
+    _S a _X .
 } .
 
-(_:S _:X) log:onQuerySurface {
-    _:S :name _:X .
+(_S _X) log:onQuerySurface {
+    _S :name _X .
 } .
 
 () log:onQuerySurface {
