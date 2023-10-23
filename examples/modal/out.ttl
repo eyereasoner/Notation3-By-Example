@@ -1,0 +1,3 @@
+<urn:example:modal0b> <urn:example:is> true.
+<urn:example:modal1> <urn:example:is> true.
+<urn:example:modal2> <urn:example:is> true.
