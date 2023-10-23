@@ -3,27 +3,27 @@
 @prefix n3s: <https://github.com/eyereasoner/Notation3-By-Example/example/n3s#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-_:x a :Person ; :loves :Food .
+_x a :Person ; :loves :Food .
 
-_:y a :Person .
+_y a :Person .
 
 {
-  _:y a :Person ; :loves :Food .
+  _y a :Person ; :loves :Food .
 }
 n3s:implies
 {
-  _:x a :Human .
+  _x a :Human .
 } .
 
 # Should return [1]
 # [ a :Human ] 
 
 {
-  _:y a :Person ; :loves :Food .
+  _y a :Person ; :loves :Food .
 }
 n3s:implies
 {
-  _:y a :Human2 .
+  _y a :Human2 .
 } .
 
 # Should return [2]
