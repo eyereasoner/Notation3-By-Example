@@ -4,27 +4,27 @@
 :Alice a :Human .
 :Alice :likes :Cats , :Dogs .
 
-(_:S _:What) log:onNegativeSurface {
-   _:S :likes :Cats .
-   _:What log:equalTo :Cats .
+(_S _What) log:onNegativeSurface {
+   _S :likes :Cats .
+   _What log:equalTo :Cats .
    () log:onNegativeSurface {
-        :result :is _:What .
+        :result :is _What .
    } .
 } .
 
-(_:S _:What) log:onNegativeSurface {
-   _:S :likes :Dogs .
-   _:What log:equalTo :Dogs .
+(_S _What) log:onNegativeSurface {
+   _S :likes :Dogs .
+   _What log:equalTo :Dogs .
    () log:onNegativeSurface {
-        :result :is _:What .
+        :result :is _What .
    } .
 } .
 
-(_:S) log:onNegativeSurface {
-    () log:onNegativeSurface <<_:S :likesAnimals :Dogs>> .
-    _:S :likes :Dogs . 
+(_S) log:onNegativeSurface {
+    () log:onNegativeSurface <<_S :likesAnimals :Dogs>> .
+    _S :likes :Dogs . 
 } .     
 
-(_:S _:O) log:onQuerySurface {
-    _:S :is _:O .
+(_S _O) log:onQuerySurface {
+    _S :is _O .
 } .
