@@ -7,17 +7,17 @@
 # Sub list test
 :SubListTest 
     a log:RDFSurface ;
-    rdf:value (log:neg (_:S _:P) 
-      _:S :says (log:pos _:P :is :Handsome)
+    rdf:value (log:neg (_S _P) 
+      _S :says (log:pos _P :is :Handsome)
       (log:neg () 
-         _:S :likes _:P
+         _S :likes _P
       )
     ) .
 
 :SubListQuery 
     a log:RDFSurface ;
-    rdf:value (log:query (_:S _:O)
-        _:S :likes _:O 
+    rdf:value (log:query (_S _O)
+        _S :likes _O 
     ) .
 
 # In case we would allow RDF star
@@ -26,15 +26,15 @@
 # RDF Star test
 :RDFStarTest
     a log:RDFSurface ;
-    rdf:value (log:neg (_:S _:P) 
-        _:S :says << _:P :is :Handsome >>
+    rdf:value (log:neg (_S _P) 
+        _S :says << _P :is :Handsome >>
         (log:neg () 
-            _:S :likes-star _:P
+            _S :likes-star _P
         )
     ) .
 
 :RDFStarQuery
     a log:RDFSurface ;
-    rdf:value (log:query (_:S _:O)
-        _:S :likes-star _:O 
+    rdf:value (log:query (_S _O)
+        _S :likes-star _O 
     ) .

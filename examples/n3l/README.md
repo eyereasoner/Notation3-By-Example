@@ -31,18 +31,18 @@ The Socrates example can be programmed like:
 
 :SubClassRule
     a log:RDFSurface ;
-    rdf:value ( log:neg (_:A _:B _:S)
-        _:A rdfs:subClassOf _:B
-        _:S rdf:type _:A
+    rdf:value ( log:neg (_A _B _S)
+        _A rdfs:subClassOf _B
+        _S rdf:type _A
         ( log:neg () 
-            _:S rdf:type _:B
+            _S rdf:type _B
         )
     ) .
 
 :MyQuery
     a log:RDFSurface ;
-    rdf:value ( log:query (_:S _:O)
-        _:S rdf:type _:O
+    rdf:value ( log:query (_S _O)
+        _S rdf:type _O
     ) .
 ```
 
