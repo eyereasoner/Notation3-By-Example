@@ -1,7 +1,4 @@
-@prefix : <urn:example:>.
-
 <urn:example:Alice> a <urn:example:Person>.
 <urn:example:Bob> a <urn:example:Person>.
 <urn:example:Alice> a <urn:example:Human>.
 <urn:example:Bob> a <urn:example:Human>.
-

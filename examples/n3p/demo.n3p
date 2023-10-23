@@ -1,8 +1,8 @@
-flag('quantify', 'http://josd.github.io/.well-known/genid/1843446341225450412#').
+flag('quantify', 'http://eyereasoner.github.io/.well-known/genid/baeed81e-29b4-445b-b3ac-e85cf29be91b#').
 implies(exopred(A, B, C), answer(A, B, C), '<http://eulersharp.sourceforge.net/2003/03swap/pass>').
-scope('<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/n3p/demo.n3>').
+scope('<file:///home/jdroo/github.com/eyereasoner/Notation3-By-Example/examples/n3p/demo.n3>').
 pfx(:, '<urn:example:>').
 '<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'('<urn:example:Alice>', '<urn:example:Person>').
-implies('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, '<urn:example:Person>'), '<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, '<urn:example:Human>'), '<file:///Users/patrickhochstenbach/Dev/Notation3-By-Example/examples/n3p/demo.n3>').
+implies('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, '<urn:example:Person>'), '<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, '<urn:example:Human>'), '<file:///home/jdroo/github.com/eyereasoner/Notation3-By-Example/examples/n3p/demo.n3>').
 scount(2).
 end_of_file.

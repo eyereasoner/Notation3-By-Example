@@ -1,2 +1,0 @@
-<urn:example.org:Alice> <urn:example.org:likes> <urn:example.org:Bob>.
-<urn:example.org:Alice> <urn:example.org:likes-star> <urn:example.org:Bob>.
