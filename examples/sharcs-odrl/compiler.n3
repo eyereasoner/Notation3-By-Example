@@ -34,13 +34,13 @@
   ( 
     { 
       # Find a Session in the data
-      _:Session 
+      ?Session 
         a odrl:Session ;
         ex:login ?TheAssignee .
 
       # Match the policy
-      _:Policy log:equalTo ?Policy .
-      _:Assignee log:equalTo ?Assignee .
+      ?Policy log:equalTo ?Policy .
+      ?Assignee log:equalTo ?Assignee .
     }
     ?AssigneeGraph ?TargetGraph
     { 
@@ -48,7 +48,7 @@
       ?TheTarget log:rawType log:Other .
       () log:onNegativeSurface {
         :Result 
-          :policy _:Policy ;
+          :policy ?Policy ;
           odrl:assignee ?TheAssignee ;
           odrl:action ?Action ;
           odrl:target ?TheTarget .
@@ -88,7 +88,7 @@
   (
     {
       # Match a result
-      _:Result :policy ?Policy .
+      ?Result :policy ?Policy .
     }
     {
       () log:onNegativeSurface {
