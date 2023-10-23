@@ -12,10 +12,10 @@
 #   G - a formula
 #   N - a numerable or variable
 # Find the cardinality of a pattern X in G as number N
-(_:Pat _:Graph _:L _:N) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_:Pat _:Graph) util:cardinality _:N>> .
-    (_:Pat _:L) util:collectAllIn _:Graph .
-    _:L list:length _:N .
+(_Pat _Graph _L _N) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_Pat _Graph) util:cardinality _N>> .
+    (_Pat _L) util:collectAllIn _Graph .
+    _L list:length _N .
 } .
 
 ##################################################################
@@ -26,38 +26,38 @@
 #   G - a formula
 # Finds all occurenced of the triple X1 in G and creates
 # a list X2 of result
-(_:Pat _:List _:Graph _:GraphL) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_:Pat _:List) util:collectAllIn _:Graph>> .
+(_Pat _List _Graph _GraphL) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_Pat _List) util:collectAllIn _Graph>> .
 
-    _:Graph graph:list _:GraphL .
+    _Graph graph:list _GraphL .
 
-    (_:Pat _:List ()) util:_collectAllIn _:GraphL .
+    (_Pat _List ()) util:_collectAllIn _GraphL .
 } .
 
-(_:Pat _:Result) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_:Pat _:Result _:Result) util:_collectAllIn ()>> .
+(_Pat _Result) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_Pat _Result _Result) util:_collectAllIn ()>> .
 } .
 
-(_:Pat _:List _:Result _:GraphL _:F _:R _:ResultNext _:T1 _:T2 _:N) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_:Pat _:List _:Result) util:_collectAllIn _:GraphL>> .
+(_Pat _List _Result _GraphL _F _R _ResultNext _T1 _T2 _N) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_Pat _List _Result) util:_collectAllIn _GraphL>> .
 
-    _:GraphL list:firstRest (_:F _:R) .
+    _GraphL list:firstRest (_F _R) .
 
-    _:F log:includesNotBind _:Pat .
+    _F log:includesNotBind _Pat .
 
-    (_:Result (_:F) ) list:append _:ResultNext .
+    (_Result (_F) ) list:append _ResultNext .
 
-    (_:Pat _:List _:ResultNext) util:_collectAllIn _:R .
+    (_Pat _List _ResultNext) util:_collectAllIn _R .
 } .
 
-(_:Pat _:List _:Result _:GraphL _:F _:R) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_:Pat _:List _:Result) util:_collectAllIn _:GraphL>> .
+(_Pat _List _Result _GraphL _F _R) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_Pat _List _Result) util:_collectAllIn _GraphL>> .
 
-    _:GraphL list:firstRest (_:F _:R) .
+    _GraphL list:firstRest (_F _R) .
 
-    _:F log:notIncludes _:Pat .
+    _F log:notIncludes _Pat .
 
-    (_:Pat _:List _:Result) util:_collectAllIn _:R .
+    (_Pat _List _Result) util:_collectAllIn _R .
 } .
 
 ##################################################################
@@ -66,15 +66,15 @@
 #    X - a resource
 #    << S P O >> - a triple pattern
 # Turn all triple patterns for the graph with subject X
-(_:subject _:S _:P _:O) log:onNegativeSurface {
-    () log:onNegativeSurface <<_:subject util:walkGraph << _:subject _:P _:O >>>> .
-    _:subject _:P _:O .
+(_subject _S _P _O) log:onNegativeSurface {
+    () log:onNegativeSurface <<_subject util:walkGraph << _subject _P _O >>>> .
+    _subject _P _O .
 } .
 
-(_:subject _:X _:Y _:S _:P _:O) log:onNegativeSurface {
-    () log:onNegativeSurface <<_:subject util:walkGraph << _:S _:P _:O >>>> .
-    _:subject _:X _:Y .
-    _:Y util:walkGraph << _:S _:P _:O >> .
+(_subject _X _Y _S _P _O) log:onNegativeSurface {
+    () log:onNegativeSurface <<_subject util:walkGraph << _S _P _O >>>> .
+    _subject _X _Y .
+    _Y util:walkGraph << _S _P _O >> .
 } .
 
 ##################################################################
@@ -82,22 +82,22 @@
 # X util:policyParam Y
 #   X - a policy formula { Name pol:policy Data }
 #   Y - a renamed policy formula { Skolem(Name) pol:policy Data }
-(_:A _:B _:X1 _:X2 _:X3 _:X4 _:X5 _:NewName) log:onNegativeSurface {
-    () log:onNegativeSurface <<_:A util:policyParam _:B>> .
+(_A _B _X1 _X2 _X3 _X4 _X5 _NewName) log:onNegativeSurface {
+    () log:onNegativeSurface <<_A util:policyParam _B>> .
 
-    _:A log:includes {
-        _:X1 pol:policy _:X2
+    _A log:includes {
+        _X1 pol:policy _X2
     } .
 
-    _:A graph:list _:X3 .
+    _A graph:list _X3 .
 
-    ( _:X3 { _:X1 pol:policy _:X2 } ) list:remove _:X4 .
+    ( _X3 { _X1 pol:policy _X2 } ) list:remove _X4 .
 
-    _:X1 log:skolem _:NewName .
+    _X1 log:skolem _NewName .
 
-    ( ( { _:NewName pol:policy _:X2 } ) _:X4 ) list:append _:X5 .
+    ( ( { _NewName pol:policy _X2 } ) _X4 ) list:append _X5 .
 
-    _:B graph:list _:X5 .
+    _B graph:list _X5 .
 }.
 
 ##################################################################

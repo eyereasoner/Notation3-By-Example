@@ -4,16 +4,16 @@
 
 :Rule3 a pol:Rule ;
     pol:body { 
-        (_:Subject _:Object _:Policy) 
+        (_Subject _Object _Policy) 
             # When we have a create
             pol:when {
-                _:Subject a :Create ;
-                    :object _:Object .
+                _Subject a :Create ;
+                    :object _Object .
             } ;
             # ... then never append it to the log
             pol:thenNot {
-                _:Subject pol:policy _:Policy .
-                _:Policy
+                _Subject pol:policy _Policy .
+                _Policy
                     a fno:Execution ;
                     fno:executes :appendToLog .
             } .

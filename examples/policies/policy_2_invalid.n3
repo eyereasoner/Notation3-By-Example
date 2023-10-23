@@ -4,15 +4,15 @@
 
 :Rule2 a pol:Rule ;
     pol:body { 
-        (_:Subject _:Object) 
+        (_Subject _Object) 
             # Comment out the when clause to get an invalid rule
             # pol:when {
-            #    _:Subject a :Create ;
-            #        :object _:Object .
+            #    _Subject a :Create ;
+            #        :object _Object .
             #} ;
             # ... send it to the append log
             pol:then {
-                _:Subject pol:policy [
+                _Subject pol:policy [
                     a fno:Execution ;
                     fno:executes :startRockets
                 ] .
