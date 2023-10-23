@@ -3,10 +3,10 @@
 @prefix list: <http://www.w3.org/2000/10/swap/list#> .
 
 # A login can't both have an AllowService and DenyService .
-(_:Login) log:onNegativeSurface {
-    _:Login 
+(_Login) log:onNegativeSurface {
+    _Login 
         a :Login .
     
-    _:Login :action :AllowService .
-    _:Login :action :DenyService .
+    _Login :action :AllowService .
+    _Login :action :DenyService .
 } .
