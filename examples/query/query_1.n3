@@ -5,14 +5,14 @@
 () log:onNeutralSurface {
     :MyQuery a query:Query ;
         query:select {
-            (_S _O) 
+            (?S ?O) 
                 query:where {
-                    _S a _O ;
+                    ?S a ?O ;
                         :likes :Fruit .
-                    # _S _P _O # fails
+                    # ?S ?P ?O # fails
                 } ;
                 query:result {
-                    _S a _O .
+                    ?S a ?O .
                 } .
         } .
 }.

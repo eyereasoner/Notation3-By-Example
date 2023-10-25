@@ -8,7 +8,7 @@
 :Monaco a :State .
 :Monaco a :City .
 
-(_S _P _O) log:onQuerySurface {
-    _S a _O .
+(?S ?P ?O) log:onQuerySurface {
+    ?S a ?O .
 } .
     

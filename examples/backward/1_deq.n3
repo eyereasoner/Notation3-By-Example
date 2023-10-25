@@ -4,14 +4,14 @@
 :Alice a :Human .
 :Alice :likes :Cats .
 
-(_S) log:onNegativeSurface {
-   _S :likes :Cats .
+(?S) log:onNegativeSurface {
+   ?S :likes :Cats .
 
    () log:onNegativeSurface {
         :result :is true .
    } .
 } .
 
-(_S _O) log:onQuerySurface {
-    _S :is _O .
+(?S ?O) log:onQuerySurface {
+    ?S :is ?O .
 } .
