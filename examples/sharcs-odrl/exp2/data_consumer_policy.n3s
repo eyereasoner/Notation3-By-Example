@@ -4,42 +4,42 @@
 @prefix odrlp: <http://example.org/odrl:profile:01/>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 
-(_sk_0 _bn_66 _bn_70 _bn_72 _bn_74 _bn_80 _bn_82 _bn_84 _bn_86) log:onNegativeSurface {
-    _sk_0 a odrl:Session.
-    _sk_0 ex:login _bn_66.
+(?sk_0 ?bn_66 ?bn_70 ?bn_72 ?bn_74 ?bn_80 ?bn_82 ?bn_84 ?bn_86) log:onNegativeSurface {
+    ?sk_0 a odrl:Session.
+    ?sk_0 ex:login ?bn_66.
     <http://example.org/policy/policy-authorization-organizationABC> log:equalTo <http://example.org/policy/policy-authorization-organizationABC>.
-    _bn_66 log:equalTo _bn_66.
-    _bn_66 a odrlp:User.
-    _bn_66 odrlp:worksFor _bn_70.
-    _bn_70 a foaf:Organization.
-    _bn_70 foaf:name "organizationABC".
-    _bn_70 <http://www.w3.org/ns/auth/certkey> <https://example-organization-ABC.com>.
-    _bn_70 odrlp:offers _bn_72.
-    _bn_72 a odrlp:Membership.
-    _bn_72 foaf:name "membershipABC".
-    _bn_72 <http://www.w3.org/ns/auth/certkey> <https://example-membership-ABC.com>.
-    _bn_66 odrlp:isMemberOf _bn_74.
-    _bn_74 a odrlp:Membership.
-    _bn_74 foaf:name "membershipABC".
-    _bn_74 <http://www.w3.org/ns/auth/certkey> <https://example-membership-ABC.com>.
-    _bn_66 odrlp:isPartOf _bn_80.
-    _bn_80 a odrlp:Subscription.
-    _bn_80 odrlp:hasSubscriber _bn_82.
-    _bn_82 a foaf:Organization.
-    _bn_82 foaf:name "organizationABC".
-    _bn_82 <http://www.w3.org/ns/auth/certkey> <https://example-organization-ABC.com>.
-    _bn_80 odrlp:hasProvider _bn_84.
-    _bn_84 a odrlp:DataProvider.
-    _bn_84 foaf:name "providerDPV".
-    _bn_84 <http://www.w3.org/ns/auth/certkey> <https://example-app-provider.com>.
-    _bn_86 a odrl:Session.
-    _bn_66 log:rawType log:Other.
-    _bn_86 log:rawType log:Other.
+    ?bn_66 log:equalTo ?bn_66.
+    ?bn_66 a odrlp:User.
+    ?bn_66 odrlp:worksFor ?bn_70.
+    ?bn_70 a foaf:Organization.
+    ?bn_70 foaf:name "organizationABC".
+    ?bn_70 <http://www.w3.org/ns/auth/certkey> <https://example-organization-ABC.com>.
+    ?bn_70 odrlp:offers ?bn_72.
+    ?bn_72 a odrlp:Membership.
+    ?bn_72 foaf:name "membershipABC".
+    ?bn_72 <http://www.w3.org/ns/auth/certkey> <https://example-membership-ABC.com>.
+    ?bn_66 odrlp:isMemberOf ?bn_74.
+    ?bn_74 a odrlp:Membership.
+    ?bn_74 foaf:name "membershipABC".
+    ?bn_74 <http://www.w3.org/ns/auth/certkey> <https://example-membership-ABC.com>.
+    ?bn_66 odrlp:isPartOf ?bn_80.
+    ?bn_80 a odrlp:Subscription.
+    ?bn_80 odrlp:hasSubscriber ?bn_82.
+    ?bn_82 a foaf:Organization.
+    ?bn_82 foaf:name "organizationABC".
+    ?bn_82 <http://www.w3.org/ns/auth/certkey> <https://example-organization-ABC.com>.
+    ?bn_80 odrlp:hasProvider ?bn_84.
+    ?bn_84 a odrlp:DataProvider.
+    ?bn_84 foaf:name "providerDPV".
+    ?bn_84 <http://www.w3.org/ns/auth/certkey> <https://example-app-provider.com>.
+    ?bn_86 a odrl:Session.
+    ?bn_66 log:rawType log:Other.
+    ?bn_86 log:rawType log:Other.
     () log:onNegativeSurface {
         <urn:odrl-compiler:Result> <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization-organizationABC>.
-        <urn:odrl-compiler:Result> odrl:assignee _bn_66.
+        <urn:odrl-compiler:Result> odrl:assignee ?bn_66.
         <urn:odrl-compiler:Result> odrl:action odrlp:grantAccess.
-        <urn:odrl-compiler:Result> odrl:target _bn_86.
+        <urn:odrl-compiler:Result> odrl:target ?bn_86.
     }.
 }.
 

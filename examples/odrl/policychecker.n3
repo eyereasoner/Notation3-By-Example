@@ -7,79 +7,79 @@
 # Check if the ODRL policies are valid. This is true when
 # all constrains are valid (in our example)
 
-(_Policy _Permission _Constraint _LO _O _RO _Validity _Scope) log:onNegativeSurface {
+(?Policy ?Permission ?Constraint ?LO ?O ?RO ?Validity ?Scope) log:onNegativeSurface {
 
     # Gather all the metadata of the policy
-    _Policy a odrl:Offer .
-    _Policy odrl:permission _Permission .
-    _Permission odrl:constraint _Constraint .
+    ?Policy a odrl:Offer .
+    ?Policy odrl:permission ?Permission .
+    ?Permission odrl:constraint ?Constraint .
 
     # This matches logical constraints that are in the policy
-    _Constraint odrl:leftOperand _LO .
-    _Constraint odrl:operator _O .
-    _Constraint odrl:rightOperand _RO .
+    ?Constraint odrl:leftOperand ?LO .
+    ?Constraint odrl:operator ?O .
+    ?Constraint odrl:rightOperand ?RO .
 
     # Using the experimental ifThenElseIn built-in to
     # execute the logical contraint (see below for an
     # implementation using backward rules)
     ( 
       # if 
-      {_LO _O _RO} 
+      {?LO ?O ?RO} 
       # then
-      {_Validity log:equalTo :Satisfied} 
+      {?Validity log:equalTo :Satisfied} 
       # else 
-      {_Validity log:equalTo :NotSatisfied}
-    ) log:ifThenElseIn _Scope.
+      {?Validity log:equalTo :NotSatisfied}
+    ) log:ifThenElseIn ?Scope.
 
     () log:onNegativeSurface {
-        _Constraint :is _Validity .
+        ?Constraint :is ?Validity .
     } .
 } .
 
 # Implementation of an odrl:lt checker for dates
-(_Blank _CurrentDate _Date) log:onNegativeSurface {
-    () log:onNegativeSurface <<odrl:dateTime odrl:lt _Date>> .
-    _Blank :currentDate _CurrentDate  .
-    _CurrentDate string:lessThan _Date .
+(?Blank ?CurrentDate ?Date) log:onNegativeSurface {
+    () log:onNegativeSurface <<odrl:dateTime odrl:lt ?Date>> .
+    ?Blank :currentDate ?CurrentDate  .
+    ?CurrentDate string:lessThan ?Date .
 } .
 
 # Implementation of an odrl:gt checker for dates
-(_Blank _CurrentDate _Date) log:onNegativeSurface {
-    () log:onNegativeSurface <<odrl:dateTime odrl:gt _Date>> .
-    _Blank :currentDate _CurrentDate  .
-    _CurrentDate string:greaterThan _Date .
+(?Blank ?CurrentDate ?Date) log:onNegativeSurface {
+    () log:onNegativeSurface <<odrl:dateTime odrl:gt ?Date>> .
+    ?Blank :currentDate ?CurrentDate  .
+    ?CurrentDate string:greaterThan ?Date .
 } .
 
 # A policy is valid when all the contraints are valid 
-(_Policy _Permission _Constraint _Validity _Scope _Scope2) log:onNegativeSurface {
-    _Policy a odrl:Offer .
-    _Policy odrl:permission _Permission .
+(?Policy ?Permission ?Constraint ?Validity ?Scope ?Scope2) log:onNegativeSurface {
+    ?Policy a odrl:Offer .
+    ?Policy odrl:permission ?Permission .
     
     (
         # if
         {
             # All constraints are valid ..
             ( 
-                { _Permission odrl:constraint _Constraint }
-                { _Constraint :is :Satisfied } 
-            ) log:forAllIn _Scope .
+                { ?Permission odrl:constraint ?Constraint }
+                { ?Constraint :is :Satisfied } 
+            ) log:forAllIn ?Scope .
         }
         # then
-        {  _Validity log:equalTo :Satisfied } 
-        {  _Validity log:equalTo :NotSatisfied }
-    ) log:ifThenElseIn _Scope .
+        {  ?Validity log:equalTo :Satisfied } 
+        {  ?Validity log:equalTo :NotSatisfied }
+    ) log:ifThenElseIn ?Scope .
 
     () log:onNegativeSurface {
-        _Policy :is _Validity .
+        ?Policy :is ?Validity .
     } .
 } .
 
 # Show something on the output
-(_S _P _O) log:onQuestionSurface {
-    _S _P _O .
-    _P log:notEqualTo log:onNegativeSurface .
-    _P log:notEqualTo log:onQuestionSurface .
+(?S ?P ?O) log:onQuestionSurface {
+    ?S ?P ?O .
+    ?P log:notEqualTo log:onNegativeSurface .
+    ?P log:notEqualTo log:onQuestionSurface .
     () log:onAnswerSurface {
-        _S _P _O .
+        ?S ?P ?O .
     } .
 } .

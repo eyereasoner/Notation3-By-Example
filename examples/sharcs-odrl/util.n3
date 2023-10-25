@@ -37,19 +37,19 @@
         { ?S :isBlankNode true . }
         { (?Acc (?S)) list:append ?Acc1 . }
         { ?Acc log:equalTo ?Acc1 . }
-    ) log:ifThenElseIn _:x .
+    ) log:ifThenElseIn ?x .
 
     ( 
         { ?P :isBlankNode true . }
         { (?Acc1 (?P)) list:append ?Acc2 .  }
         { ?Acc1 log:equalTo ?Acc2 .}
-    ) log:ifThenElseIn _:y .  
+    ) log:ifThenElseIn ?y .  
 
     ( 
         { ?O :isBlankNode true . }
         { (?Acc2 (?O)) list:append ?Acc3 }
         { ?Acc2 log:equalTo ?Acc3 }
-    ) log:ifThenElseIn _:z .  
+    ) log:ifThenElseIn ?z .  
 
     ( ?Tail ?Acc3) :blankNodeList_ ?B .
 } .
@@ -67,7 +67,7 @@
 {
     # Collect for the blank node Node all predicate/objects into a list ?F
     # The list F contains items like:
-    #   ( ( _:bn1 :name "Patrick" ) ( _:bn1 :likes "Cats" ) )
+    #   ( ( ?bn1 :name "Patrick" ) ( ?bn1 :likes "Cats" ) )
     ( (?A ?P ?O) { ?A ?P ?O } ?F ) log:collectAllIn ?Scope .
     # Expand this list (the objects could also contain blank nodes)
     (?F ()) :graphList_ ?B .

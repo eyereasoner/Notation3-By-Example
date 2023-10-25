@@ -1,17 +1,17 @@
 @prefix : <urn:odrl-compiler:> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 
-(_P _O) log:onQuestionSurface {
-   :Result _P _O .
+(?P ?O) log:onQuestionSurface {
+   :Result ?P ?O .
    () log:onAnswerSurface {
-      :Result _P _O .
+      :Result ?P ?O .
    }
 } .
 
-(_P _O _P2 _O2) log:onQuestionSurface {
-   :Result :constraint _O .
-   _O _P2 _O2 .
+(?P ?O ?P2 ?O2) log:onQuestionSurface {
+   :Result :constraint ?O .
+   ?O ?P2 ?O2 .
    () log:onAnswerSurface {
-      _O _P2 _O2 .
+      ?O ?P2 ?O2 .
    }
 } .

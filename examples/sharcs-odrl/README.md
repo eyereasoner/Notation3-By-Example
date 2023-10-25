@@ -58,8 +58,8 @@ $ ./run.sh
 <urn:odrl-compiler:Result> <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
 <urn:odrl-compiler:Result> odrl:assignee ex:alice.
 <urn:odrl-compiler:Result> odrl:target ex:Session2300.
-<urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _:e_sk_12_1.
-<urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _:e_sk_13_1.
+<urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> ?:e_sk_12_1.
+<urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> ?:e_sk_13_1.
 _:e_sk_12_1 a <urn:odrl-compiler:Constraint>.
 _:e_sk_13_1 a <urn:odrl-compiler:Constraint>.
 _:e_sk_12_1 odrl:leftOperand odrl:dateTime.

@@ -5,48 +5,48 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
-(_sk_0 _bn_34 _bn_36 _bn_38 _bn_40 _bn_46) log:onNegativeSurface {
-    _sk_0 a odrl:Session.
-    _sk_0 ex:login _bn_34.
+(?sk_0 ?bn_34 ?bn_36 ?bn_38 ?bn_40 ?bn_46) log:onNegativeSurface {
+    ?sk_0 a odrl:Session.
+    ?sk_0 ex:login ?bn_34.
     <http://example.org/policy/policy-authorization> log:equalTo <http://example.org/policy/policy-authorization>.
-    _bn_34 log:equalTo _bn_34.
-    _bn_34 a odrlp:User.
-    _bn_34 odrlp:worksFor _bn_36.
-    _bn_36 a foaf:Organization.
-    _bn_34 odrlp:isMemberOf _bn_38.
-    _bn_38 a odrlp:Membership.
-    _bn_34 odrlp:isPartOf _bn_40.
-    _bn_40 a odrlp:Subscription.
-    _bn_46 a odrl:Session.
-    _bn_34 log:rawType log:Other.
-    _bn_46 log:rawType log:Other.
+    ?bn_34 log:equalTo ?bn_34.
+    ?bn_34 a odrlp:User.
+    ?bn_34 odrlp:worksFor ?bn_36.
+    ?bn_36 a foaf:Organization.
+    ?bn_34 odrlp:isMemberOf ?bn_38.
+    ?bn_38 a odrlp:Membership.
+    ?bn_34 odrlp:isPartOf ?bn_40.
+    ?bn_40 a odrlp:Subscription.
+    ?bn_46 a odrl:Session.
+    ?bn_34 log:rawType log:Other.
+    ?bn_46 log:rawType log:Other.
     () log:onNegativeSurface {
         <urn:odrl-compiler:Result> <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
-        <urn:odrl-compiler:Result> odrl:assignee _bn_34.
+        <urn:odrl-compiler:Result> odrl:assignee ?bn_34.
         <urn:odrl-compiler:Result> odrl:action odrlp:grantAccess.
-        <urn:odrl-compiler:Result> odrl:target _bn_46.
+        <urn:odrl-compiler:Result> odrl:target ?bn_46.
     }.
 }.
 
-(_sk_1) log:onNegativeSurface {
-    _sk_1 <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
+(?sk_1) log:onNegativeSurface {
+    ?sk_1 <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
     () log:onNegativeSurface {
-        <urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _sk_2.
-        _sk_2 a <urn:odrl-compiler:Constraint>.
-        _sk_2 odrl:leftOperand odrl:dateTime.
-        _sk_2 odrl:operator odrl:lt.
-        _sk_2 odrl:rightOperand "2024-01-01"^^xsd:date.
+        <urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> ?sk_2.
+        ?sk_2 a <urn:odrl-compiler:Constraint>.
+        ?sk_2 odrl:leftOperand odrl:dateTime.
+        ?sk_2 odrl:operator odrl:lt.
+        ?sk_2 odrl:rightOperand "2024-01-01"^^xsd:date.
     }.
 }.
 
-(_sk_3) log:onNegativeSurface {
-    _sk_3 <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
+(?sk_3) log:onNegativeSurface {
+    ?sk_3 <urn:odrl-compiler:policy> <http://example.org/policy/policy-authorization>.
     () log:onNegativeSurface {
-        <urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> _sk_4.
-        _sk_4 a <urn:odrl-compiler:Constraint>.
-        _sk_4 odrl:leftOperand odrl:dateTime.
-        _sk_4 odrl:operator odrl:gt.
-        _sk_4 odrl:rightOperand "2022-01-01"^^xsd:date.
+        <urn:odrl-compiler:Result> <urn:odrl-compiler:constraint> ?sk_4.
+        ?sk_4 a <urn:odrl-compiler:Constraint>.
+        ?sk_4 odrl:leftOperand odrl:dateTime.
+        ?sk_4 odrl:operator odrl:gt.
+        ?sk_4 odrl:rightOperand "2022-01-01"^^xsd:date.
     }.
 }.
 
