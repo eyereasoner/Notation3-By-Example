@@ -9,36 +9,36 @@
 # .. with one and only one pol:when
 # .. with at least one pol:then or pol:thenNot
 (
-    _Rule _Body 
-    _WhenCount 
-    _ThenCount 
-    _ThenNotCount
-    _S _O
+    ?Rule ?Body 
+    ?WhenCount 
+    ?ThenCount 
+    ?ThenNotCount
+    ?S ?O
 ) log:onNegativeSurface {
-    _Rule a pol:Rule ;
-       pol:body _Body .
+    ?Rule a pol:Rule ;
+       pol:body ?Body .
 
-    ( { _S pol:when _O } _Body) util:cardinality _WhenCount .
-    ( { _S pol:then _O } _Body) util:cardinality _ThenCount .
-    ( { _S pol:thenNot _O } _Body) util:cardinality _ThenNotCount .
+    ( { ?S pol:when ?O } ?Body) util:cardinality ?WhenCount .
+    ( { ?S pol:then ?O } ?Body) util:cardinality ?ThenCount .
+    ( { ?S pol:thenNot ?O } ?Body) util:cardinality ?ThenNotCount .
 
     () log:onNegativeSurface {
 
         # When we have a then
         () log:onNegativeSurface {
-            _WhenCount math:equalTo 1 .
-            _ThenCount math:greaterThan 0 .
+            ?WhenCount math:equalTo 1 .
+            ?ThenCount math:greaterThan 0 .
             () log:onNegativeSurface {
-                _Rule a pol:ValidRule .
+                ?Rule a pol:ValidRule .
             }
         } .
 
         # When we have thenNot
         () log:onNegativeSurface {
-            _WhenCount math:equalTo 1 .
-            _ThenNotCount math:greaterThan 0 .
+            ?WhenCount math:equalTo 1 .
+            ?ThenNotCount math:greaterThan 0 .
             () log:onNegativeSurface {
-                _Rule a pol:ValidRule .
+                ?Rule a pol:ValidRule .
             }
         } .
     } .

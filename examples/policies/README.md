@@ -34,13 +34,13 @@ When running `test_valid.sh` you should get as output:
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
 @prefix math: <http://www.w3.org/2000/10/swap/math#>.
 
-:Record1 pol:policy _bn_1.
+:Record1 pol:policy ?bn_1.
 _bn_1 a fno:Execution.
 _bn_1 fno:executes :appendToLog.
-:Record1 pol:policy _bn_2.
+:Record1 pol:policy ?bn_2.
 _bn_2 a fno:Execution.
 _bn_2 fno:executes :removeBlindCopies.
-:Record1 pol:policy _bn_3.
+:Record1 pol:policy ?bn_3.
 _bn_3 a fno:Execution.
 _bn_3 fno:executes :sendMessage.
 _bn_3 :to <https://somebody.net/profile/card#me>.

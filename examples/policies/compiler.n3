@@ -10,35 +10,35 @@
 #  pol:body holds the logic of the rule
 #  ... pol:when select on what conditions the rule should be executed
 #  ... pol:then* describes what should happen when the condition holds
-(  _Rule _Body 
-   _Param _WhenBody _ThenBody
-   _WhenBodyPrime  _ThenBodyPrime
+(  ?Rule ?Body 
+   ?Param ?WhenBody ?ThenBody
+   ?WhenBodyPrime  ?ThenBodyPrime
 ) log:onNegativeSurface {
     # Select all rules with a body
-    _Rule a pol:Rule , pol:ValidRule ;
-        pol:body _Body .
+    ?Rule a pol:Rule , pol:ValidRule ;
+        pol:body ?Body .
 
     # The body should contain a `when` and possible multiple `then`-s.
-    _Body log:includes {
-        _Param pol:when _WhenBody ;
-                pol:then _ThenBody .
+    ?Body log:includes {
+        ?Param pol:when ?WhenBody ;
+                pol:then ?ThenBody .
     } .
 
-    _ThenBody util:policyParam _ThenBodyPrime .
+    ?ThenBody util:policyParam ?ThenBodyPrime .
 
     # Create the body of a new negative surface implication. The
     # `when` triples will be the head and the `then` triples the body
     # of the implication: HEAD -> BODY
-    ( _WhenBody {
+    ( ?WhenBody {
         () log:onNegativeSurface {
             # Write the results on an answer surface
-            () pol:onAnswerSurface _ThenBodyPrime .
+            () pol:onAnswerSurface ?ThenBodyPrime .
         } 
-    }) log:conjunction _WhenBodyPrime .
+    }) log:conjunction ?WhenBodyPrime .
 
     # Execute the new negative surface implication rules
     () log:onNegativeSurface {
-        _Param log:onNegativeSurface _WhenBodyPrime .
+        ?Param log:onNegativeSurface ?WhenBodyPrime .
     } .
 } .
 
@@ -46,62 +46,62 @@
 #  pol:body holds the logic of the rule
 #  ... pol:when select on what conditions the rule should be executed
 #  ... pol:thenNot* describes what should not happen when the condition holds
-(  _Rule _Body 
-   _Param _WhenBody _ThenNotBody
-   _WhenBodyPrime
+(  ?Rule ?Body 
+   ?Param ?WhenBody ?ThenNotBody
+   ?WhenBodyPrime
 ) log:onNegativeSurface {
     # Select all rules with a body
-    _Rule a pol:Rule , pol:ValidRule ;
-        pol:body _Body .
+    ?Rule a pol:Rule , pol:ValidRule ;
+        pol:body ?Body .
 
     # The body should contain a `when` and possible multiple `thenNot`-s.
-    _Body log:includes {
-        _Param pol:when _WhenBody ;
-                pol:thenNot _ThenNotBody .
+    ?Body log:includes {
+        ?Param pol:when ?WhenBody ;
+                pol:thenNot ?ThenNotBody .
     } .
 
     # Create the body of a new negative surface implication. The
     # `when` triples will be the head and the `then` triples the body
     # of the implication: HEAD -> BODY
-    ( _WhenBody {
+    ( ?WhenBody {
         () log:onPositiveSurface {
             # Write the results on an answer surface
-            () pol:onAnswerSurface _ThenNotBody .
+            () pol:onAnswerSurface ?ThenNotBody .
         } 
-    }) log:conjunction _WhenBodyPrime .
+    }) log:conjunction ?WhenBodyPrime .
 
     # Execute the new negative surface implication rules
     () log:onNegativeSurface {
-        _Param log:onNegativeSurface _WhenBodyPrime .
+        ?Param log:onNegativeSurface ?WhenBodyPrime .
     } .
 } .
 
 # Extract the answer surfaces 
-(_X _Answer _S _P _O) log:onQuestionSurface {
-    _X pol:onAnswerSurface _Answer .
-    () log:onAnswerSurface _Answer .
+(?X ?Answer ?S ?P ?O) log:onQuestionSurface {
+    ?X pol:onAnswerSurface ?Answer .
+    () log:onAnswerSurface ?Answer .
 } .
 
 # Extract the original data without the rules
-(_e _id _S _P _O) log:onQuestionSurface {
-    _e pol:mainSubject _id .
-    _id util:walkGraph << _S _P _O >> .
+(?e ?id ?S ?P ?O) log:onQuestionSurface {
+    ?e pol:mainSubject ?id .
+    ?id util:walkGraph << ?S ?P ?O >> .
 
     () log:onAnswerSurface {
-        _S _P _O
+        ?S ?P ?O
     } .
 } .
 
 # Extract the policy metadata
-(_S _P _O) log:onQuestionSurface {
-    _S _P _O .
+(?S ?P ?O) log:onQuestionSurface {
+    ?S ?P ?O .
 
-    _P list:in ( 
+    ?P list:in ( 
         <https://www.example.org/ns/policy#mainSubject>
         <https://www.example.org/ns/policy#origin>
     ) .
 
     () log:onAnswerSurface {
-        _S _P _O .
+        ?S ?P ?O .
     } .
 } .

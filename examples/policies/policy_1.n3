@@ -4,11 +4,11 @@
 
 :Rule1 a pol:Rule ;
     pol:body { 
-        (_Subject _Object) 
+        (?Subject ?Object) 
             # When we have a create
             pol:when {
-                _Subject a :Create ;
-                    :object _Object .
+                ?Subject a :Create ;
+                    :object ?Object .
             } ;
             # ... send it to the append log
             pol:then {
@@ -31,7 +31,7 @@
                     fno:executes :sendMessage ;
                     :to <https://somebody.net/profile/card#me> ;
                     :from  <https://alice.net/card#me> ;
-                    :message _Object 
+                    :message ?Object 
                 ] .
             } .
     } .
