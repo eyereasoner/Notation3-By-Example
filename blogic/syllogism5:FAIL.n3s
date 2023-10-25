@@ -7,10 +7,10 @@
 } .
 
 # All persons are cyclist and iceskater
-(_X) log:onNegativeSurface {
-    _X a :Person .
+(?X) log:onNegativeSurface {
+    ?X a :Person .
 
     () log:onNegativeSurface {
-        _X a :Cyclist , :IceSkater .
+        ?X a :Cyclist , :IceSkater .
     } .
 } .

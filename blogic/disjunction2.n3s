@@ -12,54 +12,54 @@
     a :LeuvenStudent .
 
 # [1]
-(_S) log:onNegativeSurface {
-    _S a :MasterStudent .
+(?S) log:onNegativeSurface {
+    ?S a :MasterStudent .
 
     () log:onNegativeSurface {
-        _S a :Student .
+        ?S a :Student .
     } .
 } .
 
-(_S) log:onNegativeSurface {
-    _S a :PhdStudent .
+(?S) log:onNegativeSurface {
+    ?S a :PhdStudent .
 
     () log:onNegativeSurface {
-        _S a :Student .
+        ?S a :Student .
     } .
 } .
 
 # [2]
-(_S) log:onNegativeSurface {
-    _S a :Student .
+(?S) log:onNegativeSurface {
+    ?S a :Student .
 
     () log:onNegativeSurface {
-        _S a :GhentStudent .
+        ?S a :GhentStudent .
     } .
 
     () log:onNegativeSurface {
-        _S a :LeuvenStudent .
+        ?S a :LeuvenStudent .
     } .
 } .
 
 # [3]
-(_S) log:onNegativeSurface {
-    _S a :GhentStudent .
+(?S) log:onNegativeSurface {
+    ?S a :GhentStudent .
 
     () log:onNegativeSurface {
-        _S a :SmartPerson .
+        ?S a :SmartPerson .
     } .
 } .
 
-(_S) log:onNegativeSurface {
-    _S a :LeuvenStudent .
+(?S) log:onNegativeSurface {
+    ?S a :LeuvenStudent .
 
     () log:onNegativeSurface {
-        _S a :SmartPerson .
+        ?S a :SmartPerson .
     } .
 } .
 
-(_S _O) log:onQuerySurface {
-    _S a _O .
+(?S ?O) log:onQuerySurface {
+    ?S a ?O .
 } .
 
 # Test
@@ -88,6 +88,6 @@
     } .
 } .
 
-(_S _O) log:onQuerySurface {
-    _S :is _O .
+(?S ?O) log:onQuerySurface {
+    ?S :is ?O .
 } .

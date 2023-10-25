@@ -5,11 +5,11 @@
 () log:onNegativeSurface {
     () log:onNegativeSurface {
         # The self destructor
-        (_G _F) log:onNegativeSurface {
-            _G log:onNegativeSurface _F .
+        (?G ?F) log:onNegativeSurface {
+            ?G log:onNegativeSurface ?F .
 
             () log:onPositiveSurface {
-                _G log:onNegativeSurface _F .
+                ?G log:onNegativeSurface ?F .
             } . 
         } .
     } .

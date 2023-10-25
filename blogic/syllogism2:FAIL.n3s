@@ -5,27 +5,27 @@
 _X a :Cyclist .
 
 () log:onNegativeSurface {
-    _X a :IceSkater .
+    ?X a :IceSkater .
 } .
 
 # Some iceskaters are not cyclists
 _Y a :IceSkater .
 () log:onNegativeSurface {
-    _Y a :Cyclist .
+    ?Y a :Cyclist .
 } .
 
 # All cyclists are skaters
-(_X) log:onNegativeSurface {
-    _X a :Cyclist .
+(?X) log:onNegativeSurface {
+    ?X a :Cyclist .
     () log:onNegativeSurface {
-        _X a :IceSkater .
+        ?X a :IceSkater .
     } .
 } . 
 
 # All skaters are cyclists 
-(_X) log:onNegativeSurface {
-    _X a :IceSkater .
+(?X) log:onNegativeSurface {
+    ?X a :IceSkater .
     () log:onNegativeSurface {
-        _X a :Cyclist .
+        ?X a :Cyclist .
     } .
 } . 

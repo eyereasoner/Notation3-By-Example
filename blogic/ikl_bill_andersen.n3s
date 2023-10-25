@@ -8,28 +8,28 @@
 # or has some information about it..but doesn't know if these planes are the same
 # (this is what an existential quantified \Exists: x,y,z does
 :BillAndersen :believes {
-    _S a :Iranian .
-    _S :customer "Bank Melli Iran" .
-    _S :owns _A1 , _A2 , _A3 .
-    _A1 a :Airplane .
-    _A2 a :Airplane .
-    _A3 a :Airplane .
+    ?S a :Iranian .
+    ?S :customer "Bank Melli Iran" .
+    ?S :owns ?A1 , ?A2 , ?A3 .
+    ?A1 a :Airplane .
+    ?A2 a :Airplane .
+    ?A3 a :Airplane .
 } .
 
 _A2 :seenIn :Austria .
 
-(_X _Y _S _A) log:onNegativeSurface {
-    _X :believes _Y .
+(?X ?Y ?S ?A) log:onNegativeSurface {
+    ?X :believes ?Y .
 
     # Make Bill's believe true
-    _Y log:includes {
-        _S :owns _A 
+    ?Y log:includes {
+        ?S :owns ?A 
     } .
 
-    _A :seenIn :Austria .
+    ?A :seenIn :Austria .
 
     # It could still be the case that all planes are equal
-    _A log:isomorphic _A1 .
+    ?A log:isomorphic ?A1 .
 
     () log:onNegativeSurface {
         :test :is true .
@@ -41,43 +41,43 @@ _A2 :seenIn :Austria .
 } .
 
 # sameAs: all properties of A are in B
-(_A _B _C _D) log:onNegativeSurface {
-    _A owl:sameAs _B .
-    _A _C _D .
+(?A ?B ?C ?D) log:onNegativeSurface {
+    ?A owl:sameAs ?B .
+    ?A ?C ?D .
     () log:onNegativeSurface {
-        _B _C _D .
+        ?B ?C ?D .
     } .
 } .
 
 # sameAs: all subjects and objects of A as property also go for B as property
-(_A _B _C _D) log:onNegativeSurface {
-    _A owl:sameAs _B .
-    _C _A _D .
+(?A ?B ?C ?D) log:onNegativeSurface {
+    ?A owl:sameAs ?B .
+    ?C ?A ?D .
     () log:onNegativeSurface {
-        _C _B _D .
+        ?C ?B ?D .
     } .
 } . 
 
 # sameAs: interchanging A and B as object has no effect 
-(_A _B _C _D) log:onNegativeSurface {
-    _A owl:sameAs _B .
-    _D _C _A .
+(?A ?B ?C ?D) log:onNegativeSurface {
+    ?A owl:sameAs ?B .
+    ?D ?C ?A .
     () log:onNegativeSurface {
-        _D _C _B .
+        ?D ?C ?B .
     } .
 } .
 
-(_A _B) log:onNegativeSurface {
-    _A owl:sameAs _B .
+(?A ?B) log:onNegativeSurface {
+    ?A owl:sameAs ?B .
     () log:onNegativeSurface {
-        _B owl:sameAs _A .
+        ?B owl:sameAs ?A .
     } .
 } .
 
-(_A _B _C) log:onNegativeSurface {
-    _A owl:sameAs _B .
-    _B owl:sameAs _C .
+(?A ?B ?C) log:onNegativeSurface {
+    ?A owl:sameAs ?B .
+    ?B owl:sameAs ?C .
     () log:onNegativeSurface {
-        _A owl:sameAs _C .
+        ?A owl:sameAs ?C .
     } .
 } .

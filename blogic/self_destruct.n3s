@@ -4,11 +4,11 @@
 # If there is a negative surface (including this surface)
 # then this surface is false?
 # No, the inner surfaces are not logical but pure syntax
-( _G _F ) log:onNegativeSurface {
-   _G log:onNegativeSurface _F .
+( ?G ?F ) log:onNegativeSurface {
+   ?G log:onNegativeSurface ?F .
 
    ( ) log:onNegativeSurface {
-       _G log:onNegativeSurface _F .
+       ?G log:onNegativeSurface ?F .
    } . 
 } .
 

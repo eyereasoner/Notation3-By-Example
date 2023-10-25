@@ -21,13 +21,13 @@
 } .
 
 # Verbose
-(_S _O) log:onQuerySurface {
-    _S a _O .
+(?S ?O) log:onQuerySurface {
+    ?S a ?O .
 } .
 
-(_S _O) log:onQuerySurface {
+(?S ?O) log:onQuerySurface {
     () log:onNegativeSurface {
-        _S a _O .
+        ?S a ?O .
     } .
 } .
 

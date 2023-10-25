@@ -28,29 +28,29 @@ _A1 :id 1 .
 _A2 :id 2 .
 _A3 :id 3 .
 
-_A1 owl:differentFrom _A2 .
-_A1 owl:differentFrom _A3 .
-_A2 owl:differentFrom _A3 .
+_A1 owl:differentFrom ?A2 .
+_A1 owl:differentFrom ?A3 .
+_A2 owl:differentFrom ?A3 .
 
 # Comment this out..this is should blow a fuse (and it does!)
 #() log:onNegativeSurface {
-#    (_X _Y) log:onNegativeSurface {
-#        _X a :Airplane .
-#        _Y a :Airplane .
-#        _X :id 1 .
-#        _Y :id 2 .
-#        _X owl:sameAs _Y .
+#    (?X ?Y) log:onNegativeSurface {
+#        ?X a :Airplane .
+#        ?Y a :Airplane .
+#        ?X :id 1 .
+#        ?Y :id 2 .
+#        ?X owl:sameAs ?Y .
 #    } .
 #} .
 
 () log:onNegativeSurface {
     # So this must be true
-    (_X _Y) log:onNegativeSurface {
-        _X a :Airplane .
-        _Y a :Airplane .
-        _X :id 1 .
-        _Y :id 2 .
-        _X owl:sameAs _Y .
+    (?X ?Y) log:onNegativeSurface {
+        ?X a :Airplane .
+        ?Y a :Airplane .
+        ?X :id 1 .
+        ?Y :id 2 .
+        ?X owl:sameAs ?Y .
     } .
     () log:onNegativeSurface {
         :test :is true .
@@ -63,53 +63,53 @@ _A2 owl:differentFrom _A3 .
 
 # OWL
 
-(_A _B) log:onNegativeSurface {
-    _A owl:differentFrom _B .
+(?A ?B) log:onNegativeSurface {
+    ?A owl:differentFrom ?B .
     () log:onNegativeSurface {
-        _B owl:differentFrom _A .
+        ?B owl:differentFrom ?A .
     } . 
 } . 
 
-(_A _B _C) log:onNegativeSurface {
-    _A owl:sameAs _B .
-    _A owl:differentFrom _B .
+(?A ?B ?C) log:onNegativeSurface {
+    ?A owl:sameAs ?B .
+    ?A owl:differentFrom ?B .
 } .  
 
-(_A _B _C _D) log:onNegativeSurface {
-    _A owl:sameAs _B .
-    _A _C _D .
+(?A ?B ?C ?D) log:onNegativeSurface {
+    ?A owl:sameAs ?B .
+    ?A ?C ?D .
     () log:onNegativeSurface {
-        _B _C _D .
+        ?B ?C ?D .
     } .
 } .
     
-(_A _B _C _D) log:onNegativeSurface {
-    _A owl:sameAs _B .
-    _C _A _D .
+(?A ?B ?C ?D) log:onNegativeSurface {
+    ?A owl:sameAs ?B .
+    ?C ?A ?D .
     () log:onNegativeSurface {
-        _C _B _D .
+        ?C ?B ?D .
     } .
 } . 
 
-(_A _B _C _D) log:onNegativeSurface {
-    _A owl:sameAs _B .
-    _D _C _A .
+(?A ?B ?C ?D) log:onNegativeSurface {
+    ?A owl:sameAs ?B .
+    ?D ?C ?A .
     () log:onNegativeSurface {
-        _D _C _B .
+        ?D ?C ?B .
     } .
 } .
 
-(_A _B) log:onNegativeSurface {
-    _A owl:sameAs _B .
+(?A ?B) log:onNegativeSurface {
+    ?A owl:sameAs ?B .
     () log:onNegativeSurface {
-        _B owl:sameAs _A .
+        ?B owl:sameAs ?A .
     } .
 } .
 
-(_A _B _C) log:onNegativeSurface {
-    _A owl:sameAs _B .
-    _B owl:sameAs _C .
+(?A ?B ?C) log:onNegativeSurface {
+    ?A owl:sameAs ?B .
+    ?B owl:sameAs ?C .
     () log:onNegativeSurface {
-        _A owl:sameAs _C .
+        ?A owl:sameAs ?C .
     } .
 } .

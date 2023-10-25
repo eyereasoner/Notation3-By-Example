@@ -7,7 +7,7 @@
 :Hans :sibling :Mary .
 :Mary :sibling :Agnes .
 
-# (_X _Y) is like For all X and Y) within the surface
+# (?X ?Y) is like For all X and Y) within the surface
 # log:onNegativeSurface claims the RDF graph on the surface
 # is false.
 #
@@ -28,26 +28,26 @@
 # What in N3 was:
 #    { ?X a ?Y } => { ?Y a :Test } .
 # is in blogic
-#    (_X _Y) log:onNegativeSurface {
-#       _X a _Y .
+#    (?X ?Y) log:onNegativeSurface {
+#       ?X a ?Y .
 #       () log:onNegativeSurface  {
-#           _Y a :Test .
+#           ?Y a :Test .
 #       } .
 #    } .
-(_X _Y _Z) log:onNegativeSurface {
-    _X :sibling _Y .
-    _Y :sibling _Z .
+(?X ?Y ?Z) log:onNegativeSurface {
+    ?X :sibling ?Y .
+    ?Y :sibling ?Z .
 
     () log:onNegativeSurface {
-        _X :sibling _Z .
+        ?X :sibling ?Z .
     } .
 } .
 
 # Filter out what to see in the output 
-# ( _P _O ) is for all P and O in log:onQuerySurface 
+# ( ?P ?O ) is for all P and O in log:onQuerySurface 
 # return only the triples matching 
-(_S _O) log:onQuerySurface {
-    _S :sibling  _O . 
+(?S ?O) log:onQuerySurface {
+    ?S :sibling  ?O . 
 } .
 
 # Test

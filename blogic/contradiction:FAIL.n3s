@@ -2,19 +2,19 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # \exists x : x a Cat
-(_x) log:onPositiveSurface {
-    _x a :Cat .
+(?x) log:onPositiveSurface {
+    ?x a :Cat .
 } .
 
 # \forall x : not(x a Cat)
-(_x) log:onNegativeSurface {
+(?x) log:onNegativeSurface {
     () log:onNegativeSurface {
         () log:onNegativeSurface {
-            _x a :Cat .
+            ?x a :Cat .
         } .
     } .
 } .
 
-(_S _O) log:onQuerySurface {
-    _S a _O .
+(?S ?O) log:onQuerySurface {
+    ?S a ?O .
 } .

@@ -5,14 +5,14 @@
 # On the positive surface we introduce a new God. Then we count how 
 # many Gods there are on the implicit surface and if there is just one, 
 # we know we didn't have a God on the original surface.
-(_x) log:onPositiveSurface {
-    _x a :God .
+(?x) log:onPositiveSurface {
+    ?x a :God .
 
-    (_y _Counter) log:onNegativeSurface { 
+    (?y ?Counter) log:onNegativeSurface { 
 
     # See: cardinality.n3
-        _Counter a log:GraphCounter .
-        { _y a :God } _Counter 1.
+        ?Counter a log:GraphCounter .
+        { ?y a :God } ?Counter 1.
 
         () log:onNegativeSurface {
             <> a :MissingGodTest .
@@ -22,19 +22,19 @@
 
 # This is a local implementation of a log:GraphCounter
 :cardinalCount a log:GraphCounter .
-(_Graph _Count _List _Scope) log:onNegativeSurface {
-    () log:onNegativeSurface <<_Graph :cardinalCount _Count>> .
-    ( () _Graph _List ) log:collectAllIn _Scope .
-    _List list:length _Count .
+(?Graph ?Count ?List ?Scope) log:onNegativeSurface {
+    () log:onNegativeSurface <<?Graph :cardinalCount ?Count>> .
+    ( () ?Graph ?List ) log:collectAllIn ?Scope .
+    ?List list:length ?Count .
 } .
 
-(_S _O) log:onQuerySurface {
-    _S a _O .
+(?S ?O) log:onQuerySurface {
+    ?S a ?O .
 } .
 
 # Test 
-(_x) log:onNegativeSurface {
-    _x a :MissingGodTest .
+(?x) log:onNegativeSurface {
+    ?x a :MissingGodTest .
     () log:onNegativeSurface {
         :test :is true .
     } .

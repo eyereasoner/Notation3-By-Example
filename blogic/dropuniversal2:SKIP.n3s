@@ -6,19 +6,19 @@
 # Follows:
 #  \ForAll x,y : p(x,y) => q(x) 
 
-(_X _Y) log:onNegativeSurface {
-    _X :p _Y .
+(?X ?Y) log:onNegativeSurface {
+    ?X :p ?Y .
     () log:onNegativeSurface {
-       _X :q true .
+       ?X :q true .
     } .
 } .
 
 () log:onQuestionSurface {
-    (_X) log:onNegativeSurface {
-       _X :p _Y .
+    (?X) log:onNegativeSurface {
+       ?X :p ?Y .
 
        () log:onNegativeSurface {
-            _X :q true .
+            ?X :q true .
        } .
     } .
 

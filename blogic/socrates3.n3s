@@ -5,19 +5,19 @@
 :Socrates a :Man.
 :Man rdfs:subClassOf :Mortal.
 
-(_A _B _S) log:onNegativeSurface {
+(?A ?B ?S) log:onNegativeSurface {
     () log:onPositiveSurface {
-        _A rdfs:subClassOf _B.
-        _S a _A.
+        ?A rdfs:subClassOf ?B.
+        ?S a ?A.
     }.
     () log:onNegativeSurface {
-        _S a _B.
+        ?S a ?B.
     }.
 }.
 
 # question
-(_S) log:onQuestionSurface {
-    _S a :Mortal.
+(?S) log:onQuestionSurface {
+    ?S a :Mortal.
     () log:onAnswerSurface {
         :test :is true.
     }.

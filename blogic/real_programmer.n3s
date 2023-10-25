@@ -64,36 +64,36 @@
 #     ( P -> ~Q ) AND (~Q -> P) AND ( ~P -> Q ) AND ( Q -> ~ P )
 # P = real programmer
 # Q = eat quiche
-(_S) log:onNegativeSurface {
+(?S) log:onNegativeSurface {
 
-    _S a :RealProgrammer .
+    ?S a :RealProgrammer .
 
     () log:onNegativeSurface {
     
         () log:onNegativeSurface {
-            _S :eats :Quiche  .
+            ?S :eats :Quiche  .
         } .
     } .
 }.
 
-(_S) log:onNegativeSurface {
+(?S) log:onNegativeSurface {
 
     () log:onNegativeSurface {
-        _S a :RealProgrammer .
+        ?S a :RealProgrammer .
     } .
 
     () log:onNegativeSurface {
-        _S :eats :Quiche .
+        ?S :eats :Quiche .
     } .
 }.
 
-(_S) log:onNegativeSurface {
+(?S) log:onNegativeSurface {
 
-    _S :eats :Quiche .
+    ?S :eats :Quiche .
  
     () log:onNegativeSurface {
         () log:onNegativeSurface {
-            _S a :RealProgrammer .
+            ?S a :RealProgrammer .
         } .
     } .
 }.
@@ -101,28 +101,28 @@
 # Q (eat quiche) -> P ( you are a programmer)
 #
 # Q -> P = ~ ( Q AND ~P )
-(_S) log:onNegativeSurface {
-    _S :eats :Quiche .
+(?S) log:onNegativeSurface {
+    ?S :eats :Quiche .
 
     () log:onNegativeSurface {
-        _S a :Programmer .
+        ?S a :Programmer .
     } .
 } .
 
-(_S _C) log:onQuerySurface {
-    _S a _C.
+(?S ?C) log:onQuerySurface {
+    ?S a ?C.
 } .
 
-(_S _C) log:onQuerySurface {
-    _S :eats _C .
+(?S ?C) log:onQuerySurface {
+    ?S :eats ?C .
 } .
 
-(_S _C) log:onQuerySurface {
-    () log:onNegativeSurface { _S :eats _C } .
+(?S ?C) log:onQuerySurface {
+    () log:onNegativeSurface { ?S :eats ?C } .
 } .
 
-(_S _C) log:onQuerySurface {
-    () log:onNegativeSurface { _S a _C } .
+(?S ?C) log:onQuerySurface {
+    () log:onNegativeSurface { ?S a ?C } .
 } .
 
 # Test

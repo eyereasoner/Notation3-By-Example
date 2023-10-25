@@ -6,8 +6,8 @@
 # Follows:
 #  ~(bob is Perfect) 
 
-(_X) log:onNegativeSurface {
-    _X :is :Perfect .
+(?X) log:onNegativeSurface {
+    ?X :is :Perfect .
 } .
 
 () log:onQuestionSurface {

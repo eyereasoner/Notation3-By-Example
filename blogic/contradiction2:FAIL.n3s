@@ -6,11 +6,11 @@
 #:Alice :likes :Beer .
 
 ## There is nothing that Alice loves
-(_What) log:onNegativeSurface {
-    :Alice :loves _What  .
+(?What) log:onNegativeSurface {
+    :Alice :loves ?What  .
     () log:onNegativeSurface {
         () log:onNegativeSurface {
-            :Alice :loves _What .
+            :Alice :loves ?What .
         }
     } .
 } .
@@ -22,7 +22,7 @@
     } .
 } .
 
-(_S _O) log:onQuerySurface {
-    _S :loves _O .
+(?S ?O) log:onQuerySurface {
+    ?S :loves ?O .
 } .
 

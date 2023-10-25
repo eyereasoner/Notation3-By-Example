@@ -2,19 +2,19 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # A neutral surface with a contradiction
-(_x) log:onNeutralSurface {
-    _x a :B .
+(?x) log:onNeutralSurface {
+    ?x a :B .
     () log:onNegativeSurface {
-        _x a :B .
+        ?x a :B .
     } .
 } .
 
 # Test if we can match the neutral surface
 () log:onNegativeSurface {
-    (_x) log:onNeutralSurface {
-        _x a :B .
+    (?x) log:onNeutralSurface {
+        ?x a :B .
         () log:onNegativeSurface {
-            _x a :B .
+            ?x a :B .
         } .
     } .
     () log:onNegativeSurface {

@@ -12,8 +12,8 @@
 :Someone a :Person .
 
 # Use a blank node a universal
-(_S) log:onQuerySurface {
-    _S a :Person .
+(?S) log:onQuerySurface {
+    ?S a :Person .
 } .
 
 () log:onMySurface1 {
@@ -21,9 +21,9 @@
 } .
 
 # Return from a surface 
-(_S) log:onQuerySurface {
+(?S) log:onQuerySurface {
     () log:onMySurface1 {
-        _S a :Person .
+        ?S a :Person .
     } .
 } .
 
@@ -45,8 +45,8 @@
 } .
 
 # This will work , but includes Charly and Daisy
-(_G) log:onQuerySurface {
-    () log:onMySurface3 _G .
+(?G) log:onQuerySurface {
+    () log:onMySurface3 ?G .
 } .
 
 () log:onMySurface4 {
@@ -55,9 +55,9 @@
 } .
 
 # Only show the surface which contains a cat
-(_G _S) log:onQuerySurface {
-    () log:onMySurface4 _G .
-    _G log:includes { _S a :Cat } .
+(?G ?S) log:onQuerySurface {
+    () log:onMySurface4 ?G .
+    ?G log:includes { ?S a :Cat } .
 } .
 
 () log:onMySurface5 {
@@ -71,31 +71,31 @@
 } .
 
 # Query surfaces can also be a result of a rule
-(_G _S) log:onNegativeSurface {
-    () log:onMySurface5 _G .
-    _G log:includes { _S a :Cat } .
+(?G ?S) log:onNegativeSurface {
+    () log:onMySurface5 ?G .
+    ?G log:includes { ?S a :Cat } .
 
     () log:onNegativeSurface {
         () log:onQuerySurface {
-            () log:onMySurface5 _G .
+            () log:onMySurface5 ?G .
         } .
     } .
 } .
 
 # This trick can be used to filter out only the things that 
 # are of your interest
-(_G _S1 _S2) log:onNegativeSurface {
-    () log:onMySurface5 _G .
-    _G log:includes { _S1 a :Person } .
-    _G log:includes { _S2 a :Cat } .
+(?G ?S1 ?S2) log:onNegativeSurface {
+    () log:onMySurface5 ?G .
+    ?G log:includes { ?S1 a :Person } .
+    ?G log:includes { ?S2 a :Cat } .
 
     () log:onNegativeSurface {
         () log:onMyResultSurface {
-            _S1 a :Person .
+            ?S1 a :Person .
         } .
 
-        (_X) log:onQuerySurface {
-            () log:onMyResultSurface _X .
+        (?X) log:onQuerySurface {
+            () log:onMyResultSurface ?X .
         } .
     } .
 } .

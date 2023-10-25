@@ -6,29 +6,29 @@ _x a :PastaEater .
 # The negative of a negative surface is the implicit positive surface.
 # We can write grafiti on this surface and just add more triples on 
 # the positive surface.
-(_x) log:onNegativeSurface {
+(?x) log:onNegativeSurface {
     () log:onNegativeSurface {
-        _x a :RiceEater .
+        ?x a :RiceEater .
 
-        (_x _y) log:onNegativeSurface {
-            _x a :PastaEater . 
-            _y a :RiceEater .
+        (?x ?y) log:onNegativeSurface {
+            ?x a :PastaEater . 
+            ?y a :RiceEater .
 
-            (_z) log:onNegativeSurface {
-                _z a :RisottoEater .
+            (?z) log:onNegativeSurface {
+                ?z a :RisottoEater .
             } .
         } .
     } .
 } .  
 
-(_S _O) log:onQuerySurface {
-    _S a _O .
+(?S ?O) log:onQuerySurface {
+    ?S a ?O .
 } .
 
 # Test
 
-(_x) log:onNegativeSurface {
-    _x a :RisottoEater .
+(?x) log:onNegativeSurface {
+    ?x a :RisottoEater .
     () log:onNegativeSurface {
         :test :is true .
     } .

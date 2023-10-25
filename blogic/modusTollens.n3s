@@ -4,10 +4,10 @@
 # Modus tollens example.
 
 # If X is a chicken, then X is a bird
-(_X) log:onNegativeSurface {
-    _X a :Chicken .
+(?X) log:onNegativeSurface {
+    ?X a :Chicken .
     () log:onNegativeSurface {
-        _X a :Bird .
+        ?X a :Bird .
     } .
 } .
 
@@ -33,8 +33,8 @@
 } .
 
 # Show the results
-(_S _O) log:onQuerySurface {
+(?S ?O) log:onQuerySurface {
     () log:onNegativeSurface {
-        _S a _O .
+        ?S a ?O .
     } .
 } .

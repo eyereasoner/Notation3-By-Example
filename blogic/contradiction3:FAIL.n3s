@@ -4,7 +4,7 @@
 # \Some y : not( y log:onNegativeSurface { :Alice :hates :Quiche } )
 () log:onNegativeSurface {
     # The negative surface below is just an RDF structure (not a negation)
-    _y log:onNegativeSurface {
+    ?y log:onNegativeSurface {
         :Alice :hates :Quiche
     } .
 } .

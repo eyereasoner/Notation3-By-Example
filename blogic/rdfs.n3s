@@ -50,22 +50,22 @@
 :Charly :diet :Kosher .
 
 # Start serving food acoording to preferences
-(_S _Plate _Drink _Type) log:onNegativeSurface {
-    _S a :Person .
-    _S :diet _Type .
+(?S ?Plate ?Drink ?Type) log:onNegativeSurface {
+    ?S a :Person .
+    ?S :diet ?Type .
 
-    _Plate a :Eatable , _Type .
-    _Drink a :Drinkable , _Type .
+    ?Plate a :Eatable , ?Type .
+    ?Drink a :Drinkable , ?Type .
 
     () log:onNegativeSurface {
-        _S :eats _Plate .
-        _S :drinks _Drink . 
+        ?S :eats ?Plate .
+        ?S :drinks ?Drink . 
     } .
 } .
 
 # Find out what we need to serve Alice
-(_S _O _T) log:onQuerySurface {
-    :Alice :consumes _O .
+(?S ?O ?T) log:onQuerySurface {
+    :Alice :consumes ?O .
 } .
 
 ####################################################################
@@ -79,14 +79,14 @@
 #      A P B
 #    then
 #      A a Q
-(_X _Y) log:onNegativeSurface {
-    _X rdfs:domain _Y .
+(?X ?Y) log:onNegativeSurface {
+    ?X rdfs:domain ?Y .
 
     () log:onNegativeSurface {
-        (_U _V) log:onNegativeSurface {
-            _U _X _V .
+        (?U ?V) log:onNegativeSurface {
+            ?U ?X ?V .
             () log:onNegativeSurface {
-                _U rdf:type _Y .
+                ?U rdf:type ?Y .
             } .
         } .
     } .
@@ -104,14 +104,14 @@ rdfs:domain
 #      A P B
 #    then
 #      B a Q
-(_X _Y) log:onNegativeSurface {
-    _X rdfs:range _Y .
+(?X ?Y) log:onNegativeSurface {
+    ?X rdfs:range ?Y .
 
     () log:onNegativeSurface {
-        (_U _V) log:onNegativeSurface {
-            _U _X _V .
+        (?U ?V) log:onNegativeSurface {
+            ?U ?X ?V .
             () log:onNegativeSurface {
-                _V rdf:type _Y .
+                ?V rdf:type ?Y .
             } .
         } .
     } .
@@ -129,14 +129,14 @@ rdfs:range
 #      A a P
 #    then
 #      A a Q
-(_X _Y) log:onNegativeSurface {
-    _X rdfs:subClassOf _Y .
+(?X ?Y) log:onNegativeSurface {
+    ?X rdfs:subClassOf ?Y .
 
     () log:onNegativeSurface {
-        (_U) log:onNegativeSurface {
-            _U rdf:type _X .
+        (?U) log:onNegativeSurface {
+            ?U rdf:type ?X .
             () log:onNegativeSurface {
-                _U rdf:type _Y.
+                ?U rdf:type ?Y.
             } .
         } .
     } .
@@ -153,14 +153,14 @@ rdfs:subClassOf rdfs:domain rdfs:Class ;
 #      A P B
 #    then
 #      A Q B
-(_X _Y) log:onNegativeSurface {
-    _X rdfs:subPropertyOf _Y .
+(?X ?Y) log:onNegativeSurface {
+    ?X rdfs:subPropertyOf ?Y .
 
     () log:onNegativeSurface {
-        (_U _V) log:onNegativeSurface {
-            _U _X _V .
+        (?U ?V) log:onNegativeSurface {
+            ?U ?X ?V .
             () log:onNegativeSurface {
-                _U _Y _V.
+                ?U ?Y ?V.
             } .
         } .
     } .

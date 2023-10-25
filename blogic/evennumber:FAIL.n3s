@@ -6,28 +6,28 @@
 
 # ( x a NaturalNumber AND x : 2 = 0 ) -> NOT( x a EvenNumber )
 # This should be a contradiction when x is an even number
-(_x) log:onNegativeSurface {
-    _x a :NaturalNumber . 
+(?x) log:onNegativeSurface {
+    ?x a :NaturalNumber . 
 
-    (_x 2) math:remainder 0 .
+    (?x 2) math:remainder 0 .
 
     ## This burns the fuse
     #() log:onNegativeSurface {
-    #    (_x) log:onNegativeSurface {
-    #        _x a :EvenNumber .
+    #    (?x) log:onNegativeSurface {
+    #        ?x a :EvenNumber .
     #    }
     #} .
 
     ## And this also (!)
     () log:onPositiveSurface {
-        _x a :EvenNumber .
+        ?x a :EvenNumber .
     } .
 } .
 
-(_x) log:onQuerySurface {
-    _x a :NaturalNumber .
+(?x) log:onQuerySurface {
+    ?x a :NaturalNumber .
 } .
 
-(_x) log:onQuerySurface {
-    _x a :EvenNumber .
+(?x) log:onQuerySurface {
+    ?x a :EvenNumber .
 } .

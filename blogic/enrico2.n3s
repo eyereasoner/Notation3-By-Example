@@ -8,33 +8,33 @@
 #\forall x \exists y1,y2 \forall z : 
 #  (x a Father) -> y1 child x & y2 pet y1 & 
 #  (z pet y1 & y1 child x -> x likes z) 
-(_x) log:onNegativeSurface {
-    _x a :father .
-    (_y1 _y2) log:onNegativeSurface {
-        _y1 :child _x .
-        _y2 :pet _y1.
+(?x) log:onNegativeSurface {
+    ?x a :father .
+    (?y1 ?y2) log:onNegativeSurface {
+        ?y1 :child ?x .
+        ?y2 :pet ?y1.
 
-        (_z) log:onNegativeSurface {
-            _z :pet _y1 .
-            _y1 :child _x .
+        (?z) log:onNegativeSurface {
+            ?z :pet ?y1 .
+            ?y1 :child ?x .
             () log:onNegativeSurface {
-                _x :likes _z .
+                ?x :likes ?z .
             } .
         } .
     } .
 } .
 
 # Test
-(_x _y _a _b) log:onNegativeSurface {
-    _x :child :jozef .
-    _y :child :franklin .
+(?x ?y ?a ?b) log:onNegativeSurface {
+    ?x :child :jozef .
+    ?y :child :franklin .
 
-    _x log:notEqualTo _y .
+    ?x log:notEqualTo ?y .
 
-    :jozef :likes _a .
-    :franklin :likes _b .
+    :jozef :likes ?a .
+    :franklin :likes ?b .
 
-    _a log:notEqualTo _b .
+    ?a log:notEqualTo ?b .
 
     () log:onNegativeSurface {
         :test :is true .
@@ -44,20 +44,20 @@
 # Todo add test for the pets
 
 # Queries
-(_s _o) log:onQuerySurface {
-    _s a _o . 
+(?s ?o) log:onQuerySurface {
+    ?s a ?o . 
 } .
 
-(_s _o _q) log:onQuerySurface {
-    _s :pet _o . 
+(?s ?o ?q) log:onQuerySurface {
+    ?s :pet ?o . 
 } .
 
-(_s _o _q) log:onQuerySurface {
-    _s :child _o . 
+(?s ?o ?q) log:onQuerySurface {
+    ?s :child ?o . 
 } .
 
-(_s _o _q) log:onQuerySurface {
-    _s :likes _o . 
+(?s ?o ?q) log:onQuerySurface {
+    ?s :likes ?o . 
 } .
 
 () log:onQuerySurface {

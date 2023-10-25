@@ -16,29 +16,29 @@
 # special RDFS entailment.
 # See slide 33 in http://videolectures.net/iswc09_hayes_blogic/
 # If :A rdfs:range B, then this means that if :C :A :D, then :D a :B .
-(_X _Y) log:onNegativeSurface {
-    _X rdfs:range _Y .
+(?X ?Y) log:onNegativeSurface {
+    ?X rdfs:range ?Y .
 
     () log:onNegativeSurface {
-        (_U _V) log:onNegativeSurface {
-            _U _X _V .
+        (?U ?V) log:onNegativeSurface {
+            ?U ?X ?V .
             () log:onNegativeSurface {
-                _V rdf:type _Y .
+                ?V rdf:type ?Y .
             } .
         } .
     } .
 } .
 
-(_S _O) log:onQuerySurface {
-    _S :watches _O .
+(?S ?O) log:onQuerySurface {
+    ?S :watches ?O .
 } .
 
-(_S _O) log:onQuerySurface {
-    _S :cooks _O .
+(?S ?O) log:onQuerySurface {
+    ?S :cooks ?O .
 } .
 
-(_S _O) log:onQuerySurface {
-    _S a _O .
+(?S ?O) log:onQuerySurface {
+    ?S a ?O .
 } .
 
 # Test 
