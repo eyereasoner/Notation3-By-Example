@@ -9,19 +9,19 @@
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
 
 # Main rule which defined the :implies
-(_A _C _X _Xp _Y _Yp _Ypbn _Ypvar _CNew) log:onNegativeSurface {
-    _A :implies _C .
+(?A ?C ?X ?Xp ?Y ?Yp ?Ypbn ?Ypvar ?CNew) log:onNegativeSurface {
+    ?A :implies ?C .
 
     # Translated qvars to blank nodes
     #  Xp will contain a unique list of blank nodes
     #  X will be the translated formula
-    _A :qvar2bn (_Xp _X).
-    _C :qvar2bn (_Yp _Y).
+    ?A :qvar2bn (?Xp ?X).
+    ?C :qvar2bn (?Yp ?Y).
 
     # Bn blank nodes are rewritten blank nodes in the original formula
     # We scope these flagged blank nodes to create the consequent of a rule
     # E.g. when
-    #      { _X a :Cat } :implies { _X a :Feline }
+    #      { ?X a :Cat } :implies { ?X a :Feline }
     # we need to construct something like
     #    (genid:t_0-bn) log:onNegativeSurface  {
     #          genid_t_0-bn a :Cat .
@@ -41,16 +41,16 @@
     #            genid:t_0-var a :Feline .
     #        } .
     #    } .
-    ( _Yp :isSkolemBlank true ) :filter _Ypbn .
+    ( ?Yp :isSkolemBlank true ) :filter ?Ypbn .
 
     # Ypp is the scoping part of blank nodes
-    ( _X
-      { _Ypbn log:onNegativeSurface _Y }
-    ) graph:union _CNew .
+    ( ?X
+      { ?Ypbn log:onNegativeSurface ?Y }
+    ) graph:union ?CNew .
 
     () log:onNegativeSurface {
-        _Xp log:onNegativeSurface _CNew .
-        _Yp log:onQuerySurface _Y .
+        ?Xp log:onNegativeSurface ?CNew .
+        ?Yp log:onQuerySurface ?Y .
     } .
 } .
 
@@ -64,64 +64,64 @@
 #
 # E.g.
 #    { q:X a q:Y } :qvar2 ( (genid:t0 genid:t1) { genid:t0 a genid:t1} ) .
-(_X _Y _Z _T1 _T2 _L) log:onNegativeSurface {
-    () log:onNegativeSurface <<_X :qvar2bn (_Y _Z)>> .
-    _X graph:list _L .
-    ( _X _L () () ) :_qvar2bn (_T1 _T2) .
-    _T2 list:unique _Y .
-    _Z graph:list _T1 .
+(?X ?Y ?Z ?T1 ?T2 ?L) log:onNegativeSurface {
+    () log:onNegativeSurface <<?X :qvar2bn (?Y ?Z)>> .
+    ?X graph:list ?L .
+    ( ?X ?L () () ) :_qvar2bn (?T1 ?T2) .
+    ?T2 list:unique ?Y .
+    ?Z graph:list ?T1 .
 } .
 
-(_Formula _Acc1 _Acc2 ) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_Formula () _Acc1 _Acc2) :_qvar2bn (_Acc1 _Acc2)>> .
+(?Formula ?Acc1 ?Acc2 ) log:onNegativeSurface {
+    () log:onNegativeSurface <<(?Formula () ?Acc1 ?Acc2) :_qvar2bn (?Acc1 ?Acc2)>> .
 } .
 
 (
-    _Formula
-    _L _X _Acc1 _Acc2
-    _Acc1New _Acc2New _Acc2S _Acc2P
-    _N _H _T
-    _S _P _O
-    _Sv _Pv _Ov
-    _Scope
+    ?Formula
+    ?L ?X ?Acc1 ?Acc2
+    ?Acc1New ?Acc2New ?Acc2S ?Acc2P
+    ?N ?H ?T
+    ?S ?P ?O
+    ?Sv ?Pv ?Ov
+    ?Scope
 ) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_Formula _L _Acc1 _Acc2) :_qvar2bn _X>> .
-    _L log:rawType rdf:List .
-    _L list:length _N .
-    _N math:greaterThan 0 .
+    () log:onNegativeSurface <<(?Formula ?L ?Acc1 ?Acc2) :_qvar2bn ?X>> .
+    ?L log:rawType rdf:List .
+    ?L list:length ?N .
+    ?N math:greaterThan 0 .
 
-    _L list:firstRest (_H _T) .
+    ?L list:firstRest (?H ?T) .
 
-    _H log:includes { _S _P _O } .
+    ?H log:includes { ?S ?P ?O } .
 
-    (_Formula _S) :skolemize _Sv .
-    (_Formula _P) :skolemize _Pv .
-    (_Formula _O) :skolemize _Ov .
+    (?Formula ?S) :skolemize ?Sv .
+    (?Formula ?P) :skolemize ?Pv .
+    (?Formula ?O) :skolemize ?Ov .
 
     # If the S changed into a skolem, add it to the list of blank nodes
     (
-        { _S log:equalTo _Sv }
-        { _Acc2 log:equalTo _Acc2S }
-        { (_Acc2 (_Sv)) list:append _Acc2S }
-    ) log:ifThenElseIn _Scope .
+        { ?S log:equalTo ?Sv }
+        { ?Acc2 log:equalTo ?Acc2S }
+        { (?Acc2 (?Sv)) list:append ?Acc2S }
+    ) log:ifThenElseIn ?Scope .
 
     # If the P changed into a skolem, add it to the list of blank nodes
     (
-        { _P log:equalTo _Pv }
-        { _Acc2S log:equalTo _Acc2P }
-        { (_Acc2S (_Pv)) list:append _Acc2P }
-    ) log:ifThenElseIn _Scope .
+        { ?P log:equalTo ?Pv }
+        { ?Acc2S log:equalTo ?Acc2P }
+        { (?Acc2S (?Pv)) list:append ?Acc2P }
+    ) log:ifThenElseIn ?Scope .
 
     # If the O changed into a skolem, add it to the list of blank nodes
     (
-        { _O log:equalTo _Ov }
-        { _Acc2P log:equalTo _Acc2New }
-        { (_Acc2P (_Ov)) list:append _Acc2New }
-    ) log:ifThenElseIn _Scope .
+        { ?O log:equalTo ?Ov }
+        { ?Acc2P log:equalTo ?Acc2New }
+        { (?Acc2P (?Ov)) list:append ?Acc2New }
+    ) log:ifThenElseIn ?Scope .
 
-    ( _Acc1 ({ _Sv _Pv _Ov }) ) list:append _Acc1New .
+    ( ?Acc1 ({ ?Sv ?Pv ?Ov }) ) list:append ?Acc1New .
 
-    ( _Formula _T _Acc1New _Acc2New ) :_qvar2bn _X .
+    ( ?Formula ?T ?Acc1New ?Acc2New ) :_qvar2bn ?X .
 } .
 
 ##################################################################
@@ -132,18 +132,18 @@
 #    Formula - a context formula for which a variable needs to be skolemized
 #    X - a qvar or blank node variable
 #    Y - the skolemized version of the variable
-(_Formula _Y _X _Xn _Xnp _Scope) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_Formula _X) :skolemize _Y>> .
+(?Formula ?Y ?X ?Xn ?Xnp ?Scope) log:onNegativeSurface {
+    () log:onNegativeSurface <<(?Formula ?X) :skolemize ?Y>> .
 
     (
         # If we get a n3q variable, equivalent of a qvar (?x) in notation3....
         {
-            _X log:namespace _Xn .
-            _Xn log:equalTo "https://github.com/eyereasoner/Notation3-By-Example/example/n3q#" .
+            ?X log:namespace ?Xn .
+            ?Xn log:equalTo "https://github.com/eyereasoner/Notation3-By-Example/example/n3q#" .
         }
         # ... then turn it into a skolem variable
         {
-            _X :skolemVar _Y .
+            ?X :skolemVar ?Y .
         }
         # ... otherwise
         {
@@ -151,20 +151,20 @@
             # to trigger generating a universal in :_qvar2bn
             (
                 {
-                    _X :isSkolem true .
+                    ?X :isSkolem true .
                 }
                 {
                     # Rewrite the skolem to trigger creating a universal
                     # Add the context formula to trigger a new blank node
                     # for every new quoted graph..
-                    (_Formula _X) :skolemBlank _Y .
+                    (?Formula ?X) :skolemBlank ?Y .
                 }
                 {
-                    _X log:equalTo _Y .
+                    ?X log:equalTo ?Y .
                 }
-            ) log:ifThenElseIn _Scope .
+            ) log:ifThenElseIn ?Scope .
         }
-    ) log:ifThenElseIn _Scope .
+    ) log:ifThenElseIn ?Scope .
 } .
 
 ##################################################################
@@ -177,10 +177,10 @@
 #       genid:t_0 :isSkolem true
 #       genid:t_1-var :isSkolem true
 #       genid:t_1-dn :isSkolem true
-(_X _Xn) log:onNegativeSurface {
-    () log:onNegativeSurface <<_X :isSkolem true>> .
-    _X log:namespace _Xn .
-    _Xn string:contains ".well-known/genid/" .
+(?X ?Xn) log:onNegativeSurface {
+    () log:onNegativeSurface <<?X :isSkolem true>> .
+    ?X log:namespace ?Xn .
+    ?Xn string:contains ".well-known/genid/" .
 } .
 
 ##################################################################
@@ -191,28 +191,28 @@
 #   Y a var skolem
 # E.g.
 #      q:X :skolemVar genid:t_0-var
-(_X _Y _T1 _T2 _T3) log:onNegativeSurface {
-    () log:onNegativeSurface <<_X :skolemVar _Y>> .
-    _X log:skolem _T1 .
-    _T1 log:uri _T2 .
-    ( _T2 "-var" ) string:concatenation _T3 .
-    _Y log:uri _T3 .
+(?X ?Y ?T1 ?T2 ?T3) log:onNegativeSurface {
+    () log:onNegativeSurface <<?X :skolemVar ?Y>> .
+    ?X log:skolem ?T1 .
+    ?T1 log:uri ?T2 .
+    ( ?T2 "-var" ) string:concatenation ?T3 .
+    ?Y log:uri ?T3 .
 } .
 
 ##################################################################
 
 # X :skolemBlank Y
-# Turn X into a flagged bn skolem Y (blank node equivalent _Y)
+# Turn X into a flagged bn skolem Y (blank node equivalent ?Y)
 #   X a resource
 #   Y a bn skolem
 # E.g.
-#       _X :skolemBlank genid:t_1-bn
-(_X _Y _T1 _T2 _T3) log:onNegativeSurface {
-    () log:onNegativeSurface <<_X :skolemBlank _Y>> .
-    _X log:skolem _T1 .
-    _T1 log:uri _T2 .
-    ( _T2 "-bn" ) string:concatenation _T3 .
-    _Y log:uri _T3 .
+#       ?X :skolemBlank genid:t_1-bn
+(?X ?Y ?T1 ?T2 ?T3) log:onNegativeSurface {
+    () log:onNegativeSurface <<?X :skolemBlank ?Y>> .
+    ?X log:skolem ?T1 .
+    ?T1 log:uri ?T2 .
+    ( ?T2 "-bn" ) string:concatenation ?T3 .
+    ?Y log:uri ?T3 .
 } .
 
 ##################################################################
@@ -224,9 +224,9 @@
 # E.g.
 #       genid:t_1-bn :isSkolemBlank true
 #       genid:t_0-var :isSkolemBlank false
-(_X _Y ) log:onNegativeSurface {
-    () log:onNegativeSurface <<_X :isSkolemBlank _Y>> .
-    (_X "-bn") :isSkolemOfType _Y .
+(?X ?Y ) log:onNegativeSurface {
+    () log:onNegativeSurface <<?X :isSkolemBlank ?Y>> .
+    (?X "-bn") :isSkolemOfType ?Y .
 } .
 
 # X :isSkolemVar Y
@@ -236,27 +236,27 @@
 # E.g.
 #       genid:t_1-bn :isSkolemBlank false
 #       genid:t_0-var :isSkolemBlank true
-(_X _T1 _Y _Scope) log:onNegativeSurface {
-    () log:onNegativeSurface <<_X :isSkolemVar _Y>> .
-    (_X "-var") :isSkolemOfType _Y .
+(?X ?T1 ?Y ?Scope) log:onNegativeSurface {
+    () log:onNegativeSurface <<?X :isSkolemVar ?Y>> .
+    (?X "-var") :isSkolemOfType ?Y .
 } .
 
 # Helper function for :isSkolemBlank :isSkolemVar
-(_X _Type _T1 _Y _Scope) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_X _Type) :isSkolemOfType _Y>> .
-    _X log:uri _T1 .
+(?X ?Type ?T1 ?Y ?Scope) log:onNegativeSurface {
+    () log:onNegativeSurface <<(?X ?Type) :isSkolemOfType ?Y>> .
+    ?X log:uri ?T1 .
     (
         {
-            _T1 string:contains ".well-known/genid/" .
-            _T1 string:endsWith _Type .
+            ?T1 string:contains ".well-known/genid/" .
+            ?T1 string:endsWith ?Type .
         }
         {
-            _Y log:equalTo true .
+            ?Y log:equalTo true .
         }
         {
-            _Y log:equalTo false .
+            ?Y log:equalTo false .
         }
-    ) log:ifThenElseIn _Scope .
+    ) log:ifThenElseIn ?Scope .
 } .
 
 ##################################################################
@@ -270,46 +270,46 @@
 #
 # E.g.
 #       ( (1 2 4 8 16) math:greaterThan 4) :filter (8 16)
-(_X _F _FV _Y) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_X _F _FV) :filter _Y>> .
-    (_X _F _FV ()) :_filter _Y .
+(?X ?F ?FV ?Y) log:onNegativeSurface {
+    () log:onNegativeSurface <<(?X ?F ?FV) :filter ?Y>> .
+    (?X ?F ?FV ()) :_filter ?Y .
 } .
 
-(_F _FV _Acc) log:onNegativeSurface {
-    () log:onNegativeSurface <<( () _F _FV _Acc ) :_filter _Acc>> .
+(?F ?FV ?Acc) log:onNegativeSurface {
+    () log:onNegativeSurface <<( () ?F ?FV ?Acc ) :_filter ?Acc>> .
 } .
 
-(_X _F _FV _Acc _Y _H _T _N _AccNew _Scope) log:onNegativeSurface {
-    () log:onNegativeSurface <<( _X _F _FV _Acc ) :_filter _Y>> .
+(?X ?F ?FV ?Acc ?Y ?H ?T ?N ?AccNew ?Scope) log:onNegativeSurface {
+    () log:onNegativeSurface <<( ?X ?F ?FV ?Acc ) :_filter ?Y>> .
 
-    _X log:rawType rdf:List .
-    _X list:length _N .
-    _N math:greaterThan 0 .
+    ?X log:rawType rdf:List .
+    ?X list:length ?N .
+    ?N math:greaterThan 0 .
 
-    _X list:firstRest (_H _T) .
+    ?X list:firstRest (?H ?T) .
 
     (
-        { _H _F _FV }
+        { ?H ?F ?FV }
         {
-            ( _Acc (_H)) list:append _AccNew .
+            ( ?Acc (?H)) list:append ?AccNew .
         }
         {
-            _Acc log:equalTo _AccNew .
+            ?Acc log:equalTo ?AccNew .
         }
-    ) log:ifThenElseIn _Scope .
+    ) log:ifThenElseIn ?Scope .
 
-    ( _T _F _FV _AccNew ) :_filter _Y .
+    ( ?T ?F ?FV ?AccNew ) :_filter ?Y .
 } .
 
 ##################################################################
 
 # Debug
-(_S _O) log:onQuerySurface {
-    _S log:onNegativeSurfaceTest _O .
+(?S ?O) log:onQuerySurface {
+    ?S log:onNegativeSurfaceTest ?O .
 } .
 
-(_S _O) log:onQuerySurface {
-    _S log:onQuerySurfaceTest _O .
+(?S ?O) log:onQuerySurface {
+    ?S log:onQuerySurfaceTest ?O .
 } .
 
 ##################################################################

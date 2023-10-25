@@ -7,91 +7,91 @@
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#> .
 
 # Find all log:RDFSurface and compile them into blogic
-(_N _F _X) log:onNegativeSurface {
-    _N a log:RDFSurface ;
-        rdf:value _F .
-    _F :asSurface _X .
-    () log:onNegativeSurface _X . 
+(?N ?F ?X) log:onNegativeSurface {
+    ?N a log:RDFSurface ;
+        rdf:value ?F .
+    ?F :asSurface ?X .
+    () log:onNegativeSurface ?X . 
 } .
 
 # List :asSurface Blogic
 #  returns the List as Blogic graph
-(_F _G) log:onNegativeSurface {
-    () log:onNegativeSurface <<_F :asSurface _G>> .
+(?F ?G) log:onNegativeSurface {
+    () log:onNegativeSurface <<?F :asSurface ?G>> .
     # We use an accumulator to construct the graph
-    (_F ()) :_asSurface _G . 
+    (?F ()) :_asSurface ?G . 
 } .
 
 # When the list is empty we are done with accumulating and return the result
-(_Acc) log:onNegativeSurface {
-    () log:onNegativeSurface <<(() _Acc) :_asSurface _Acc>> .
+(?Acc) log:onNegativeSurface {
+    () log:onNegativeSurface <<(() ?Acc) :_asSurface ?Acc>> .
 } .
 
 # Peak into the list if we see a blogic type list, that gathering the subgraph defined in it
-(_F _Acc _N _G _A _B _Type _Rest _Graph) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_F _Acc) :_asSurface _G>> .
+(?F ?Acc ?N ?G ?A ?B ?Type ?Rest ?Graph) log:onNegativeSurface {
+    () log:onNegativeSurface <<(?F ?Acc) :_asSurface ?G>> .
     
-    _F list:length _N .
-    _N math:greaterThan 0 .
+    ?F list:length ?N .
+    ?N math:greaterThan 0 .
 
     # Peek what we have in the list
-    ( (_A _B) _Rest ) list:append _F .    
+    ( (?A ?B) ?Rest ) list:append ?F .    
 
     # Test if it is blogic like...
-    _A list:in ( log:neg log:pos log:query log:construct ) .
+    ?A list:in ( log:neg log:pos log:query log:construct ) .
 
     # Find the subgraph of the rest
-    _Rest :asGraph _Graph .
+    ?Rest :asGraph ?Graph .
 
     # Construct the surface...
-    (_A _B _Graph) :makeSurface _G .
+    (?A ?B ?Graph) :makeSurface ?G .
 } .
 
 # Construct the graphs we need..
-(_Param _Graph _Blogic) log:onNegativeSurface {
-    () log:onNegativeSurface <<(log:neg _Param _Graph) :makeSurface _Blogic>> .
-    ( () { _Param log:onNegativeSurface _Graph }) :_asSurface _Blogic .
+(?Param ?Graph ?Blogic) log:onNegativeSurface {
+    () log:onNegativeSurface <<(log:neg ?Param ?Graph) :makeSurface ?Blogic>> .
+    ( () { ?Param log:onNegativeSurface ?Graph }) :_asSurface ?Blogic .
 } .
 
-(_Param _Graph _Blogic) log:onNegativeSurface {
-    () log:onNegativeSurface <<(log:pos _Param _Graph) :makeSurface _Blogic>> .
-    ( () { _Param log:onPositiveSurface _Graph }) :_asSurface _Blogic .
+(?Param ?Graph ?Blogic) log:onNegativeSurface {
+    () log:onNegativeSurface <<(log:pos ?Param ?Graph) :makeSurface ?Blogic>> .
+    ( () { ?Param log:onPositiveSurface ?Graph }) :_asSurface ?Blogic .
 } .
 
-(_Param _Graph _Blogic) log:onNegativeSurface {
-    () log:onNegativeSurface <<(log:query _Param _Graph) :makeSurface _Blogic>> .
-    ( () { _Param log:onQuerySurface _Graph }) :_asSurface _Blogic .
+(?Param ?Graph ?Blogic) log:onNegativeSurface {
+    () log:onNegativeSurface <<(log:query ?Param ?Graph) :makeSurface ?Blogic>> .
+    ( () { ?Param log:onQuerySurface ?Graph }) :_asSurface ?Blogic .
 } .
 
-(_Param _Graph _Blogic) log:onNegativeSurface {
-    () log:onNegativeSurface <<(log:construct _Param _Graph) :makeSurface _Blogic>> .
-    ( () { _Param log:onQuerySurface _Graph }) :_asSurface _Blogic .
+(?Param ?Graph ?Blogic) log:onNegativeSurface {
+    () log:onNegativeSurface <<(log:construct ?Param ?Graph) :makeSurface ?Blogic>> .
+    ( () { ?Param log:onQuerySurface ?Graph }) :_asSurface ?Blogic .
 } .
 
 # List :asGraph Formula
 #  given a list of 3 return a graph
-(_L _Graph _Temp) log:onNegativeSurface {
-    () log:onNegativeSurface <<_L :asGraph _Graph>> .
-    (_L ()) :_asGraph _Temp .
-    _Graph graph:list _Temp .
+(?L ?Graph ?Temp) log:onNegativeSurface {
+    () log:onNegativeSurface <<?L :asGraph ?Graph>> .
+    (?L ()) :_asGraph ?Temp .
+    ?Graph graph:list ?Temp .
 } .
 
-(_Acc) log:onNegativeSurface {
-    () log:onNegativeSurface <<( () _Acc) :_asGraph _Acc>> .
+(?Acc) log:onNegativeSurface {
+    () log:onNegativeSurface <<( () ?Acc) :_asGraph ?Acc>> .
 } .
 
 (
-   _L _Acc _Graph 
-   _Head _Tail _Peek
-   _N _S _P _O _Rest _AccNew _Surface
-   _Scope
+   ?L ?Acc ?Graph 
+   ?Head ?Tail ?Peek
+   ?N ?S ?P ?O ?Rest ?AccNew ?Surface
+   ?Scope
 ) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_L _Acc) :_asGraph _Graph>> .
+    () log:onNegativeSurface <<(?L ?Acc) :_asGraph ?Graph>> .
 
-    _L list:length _N .
-    _N math:greaterThan 0 .
+    ?L list:length ?N .
+    ?N math:greaterThan 0 .
 
-    _L list:firstRest (_Head _Tail) . 
+    ?L list:firstRest (?Head ?Tail) . 
 
     # If we have a log:neg, then create a nested log:neg otherwise
     # continue building the graph
@@ -100,23 +100,23 @@
        {
          # Check if the head is a list with a log:neg
 
-         _Head log:rawType rdf:List .
-         _Head list:first _Peek .
-         _Peek list:in (log:neg log:pos log:query log:construct) .
+         ?Head log:rawType rdf:List .
+         ?Head list:first ?Peek .
+         ?Peek list:in (log:neg log:pos log:query log:construct) .
        }
        # then
        {
-            _Head :asSurface _Surface .            
-            ( _Acc ( _Surface ) ) list:append _AccNew .
-            ( _Tail _AccNew ) :_asGraph _Graph .
+            ?Head :asSurface ?Surface .            
+            ( ?Acc ( ?Surface ) ) list:append ?AccNew .
+            ( ?Tail ?AccNew ) :_asGraph ?Graph .
        }  
        # else 
        {
-            ( (_S _P _O) _Rest ) list:append _L . 
+            ( (?S ?P ?O) ?Rest ) list:append ?L . 
 
             # Append this as new triple graph to the accumulator
-            ( _Acc ( { _S _P _O } ) ) list:append _AccNew .
-            ( _Rest _AccNew ) :_asGraph _Graph .
+            ( ?Acc ( { ?S ?P ?O } ) ) list:append ?AccNew .
+            ( ?Rest ?AccNew ) :_asGraph ?Graph .
        }
-    ) log:ifThenElseIn _Scope .
+    ) log:ifThenElseIn ?Scope .
 } .

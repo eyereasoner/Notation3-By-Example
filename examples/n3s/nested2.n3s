@@ -3,14 +3,14 @@
 @prefix n3s: <https://github.com/eyereasoner/Notation3-By-Example/example/n3s#> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-_x :says { _x :can :fly } .
+_x :says { ?x :can :fly } .
 
 {
-    _foo :says { _bar :can :fly } .
+    ?foo :says { ?bar :can :fly } .
 }
 n3s:implies 
 {
-    _blah :knows :Superman .
+    ?blah :knows :Superman .
 } .
 
 # Test
