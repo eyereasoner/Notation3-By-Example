@@ -2,15 +2,15 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
-(?S ?P ?O) log:onQuerySurface {
+(_:S _:P _:O) log:onQuerySurface {
     () log:onResultSurface {
-        ?S ?P ?O .    
+        _:S _:P _:O .    
     } .
 } .
 
-(?S ?P ?O) log:onQuerySurface {
+(_:S _:P _:O) log:onQuerySurface {
     () log:onWarningSurface {
-        ?S ?P ?O .    
+        _:S _:P _:O .    
     } .
 } .
 

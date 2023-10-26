@@ -13,26 +13,26 @@
 # IMPLIES
 #   (<Login> a ValidLogin) &
 #   (<Login> client <Client>)
-(?Login ?Session ?User ?Client) log:onNegativeSurface {
-    ?Login 
+(_:Login _:Session _:User _:Client) log:onNegativeSurface {
+    _:Login 
         a :Login ;
-        :as ?User .
+        :as _:User .
 
-    ?Session 
+    _:Session 
         a :LoginSession ;
-        :user ?User ;
+        :user _:User ;
         :status :LoggedIn ;
-        :client ?Client .
+        :client _:Client .
 
-    ?Client 
+    _:Client 
         a :DataProvider ;
         :isActive true .
 
     () log:onNegativeSurface {
-        ?Login
+        _:Login
             a :ValidLogin ;
-            :user ?User ;
-            :client ?Client .
+            :user _:User ;
+            :client _:Client .
     } .
 } .
 
@@ -49,20 +49,20 @@
 # IMPLIES
 #   (<Login> organization <Organization>) &
 #   (<Login> a ValidMembership)
-(?Login ?Membership ?Organization ?User) log:onNegativeSurface {
-    ?Login 
+(_:Login _:Membership _:Organization _:User) log:onNegativeSurface {
+    _:Login 
         a :Login ;
-        :user ?User .
+        :user _:User .
 
-    ?Membership 
+    _:Membership 
         a :PMPMembership ;
         :isActive true ;
-        :hasOrganization ?Organization ;
-        :hasMember ?User .
+        :hasOrganization _:Organization ;
+        :hasMember _:User .
 
     () log:onNegativeSurface {
-        ?Login :membership ?Membership .
-        ?Login :organization ?Organization .
-        ?Login a :ValidMembership .
+        _:Login :membership _:Membership .
+        _:Login :organization _:Organization .
+        _:Login a :ValidMembership .
     } .
 } .

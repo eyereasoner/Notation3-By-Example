@@ -15,13 +15,13 @@
     ) .
 
 # This is to display the output of your program
-(?S ?O) log:onQuerySurface {
-    ?S :result ?O .
+(_:S _:O) log:onQuerySurface {
+    _:S :result _:O .
 } .
 
 # Test
-( ?S) log:onNegativeSurface {
-    ?S :result { :a a :c } .
+( _:S) log:onNegativeSurface {
+    _:S :result { :a a :c } .
     () log:onNegativeSurface {
         :test :is true .
     } .
@@ -35,50 +35,50 @@
 # This is still work in progress
 
 # Compile
-(?Name ?Prog ?Answer) log:onNegativeSurface {
-    ?Name :value ?Prog .
+(_:Name _:Prog _:Answer) log:onNegativeSurface {
+    _:Name :value _:Prog .
 
-    ?Prog :eval ?Answer .
+    _:Prog :eval _:Answer .
 
     () log:onNegativeSurface {
-        ?Name :result ?Answer .
+        _:Name :result _:Answer .
     } .
 } .
 
-(?L1 ?L2 ?H ?R) log:onNegativeSurface {
-    () log:onNegativeSurface <<?L1 :eval ?L2>> .
+(_:L1 _:L2 _:H _:R) log:onNegativeSurface {
+    () log:onNegativeSurface <<_:L1 :eval _:L2>> .
 
-    ?L1 log:rawType rdf:List .
+    _:L1 log:rawType rdf:List .
 
     # Calculate the H(ead) and R(est)
-    ?L1 list:firstRest ( ?H ?R ) .
+    _:L1 list:firstRest ( _:H _:R ) .
 
-    ?H log:rawType log:Other .
+    _:H log:rawType log:Other .
 
     # Evaluate first the inner
-    ?R ?H ?L2 .
+    _:R _:H _:L2 .
 } .
 
-(?L1 ?L2 ?Type) log:onNegativeSurface {
-    () log:onNegativeSurface <<?L1 :eval ?L2>> .
-    ?L1 log:rawType ?Type .
-    ?Type log:notEqualTo rdf:List .
-    ?L1 log:equalTo ?L2 .
+(_:L1 _:L2 _:Type) log:onNegativeSurface {
+    () log:onNegativeSurface <<_:L1 :eval _:L2>> .
+    _:L1 log:rawType _:Type .
+    _:Type log:notEqualTo rdf:List .
+    _:L1 log:equalTo _:L2 .
 } .
 
-(?L1 ?L2 ?H ?R ?Type) log:onNegativeSurface {
-    () log:onNegativeSurface <<?L1 :eval ?L2>> .
+(_:L1 _:L2 _:H _:R _:Type) log:onNegativeSurface {
+    () log:onNegativeSurface <<_:L1 :eval _:L2>> .
 
-    ?L1 log:rawType rdf:List .
+    _:L1 log:rawType rdf:List .
 
     # Calculate the H(ead) and R(est)
-    ?L1 list:firstRest ( ?H ?R ).
+    _:L1 list:firstRest ( _:H _:R ).
 
-    ?H log:rawType ?Type .
+    _:H log:rawType _:Type .
 
-    ?Type log:notEqualTo log:Other .
+    _:Type log:notEqualTo log:Other .
 
-    ?L1 log:equalTo ?L2 .
+    _:L1 log:equalTo _:L2 .
 } .
 
 #############################################################
@@ -86,69 +86,69 @@
 #############################################################
 
 # :quote
-(?L1 ?L2) log:onNegativeSurface {
-    () log:onNegativeSurface <<(?L1) :quote ?L2>> .
-    ?L1 log:equalTo ?L2 .
+(_:L1 _:L2) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:L1) :quote _:L2>> .
+    _:L1 log:equalTo _:L2 .
 } .
 
 # :atom
-(?L1 ?X) log:onNegativeSurface {
-    () log:onNegativeSurface <<?L1 :atom true>> .
-    ?L1 :eval ?X .
-    ?X log:rawType log:Formula . 
+(_:L1 _:X) log:onNegativeSurface {
+    () log:onNegativeSurface <<_:L1 :atom true>> .
+    _:L1 :eval _:X .
+    _:X log:rawType log:Formula . 
 } .
 
-(?L1 ?X ?Y) log:onNegativeSurface {
-    () log:onNegativeSurface <<(?L1) :atom false>> .
-    ?L1 :eval ?X .
-    ?X log:rawType ?Y . 
-    ?Y log:notEqualTo log:Formula .
+(_:L1 _:X _:Y) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:L1) :atom false>> .
+    _:L1 :eval _:X .
+    _:X log:rawType _:Y . 
+    _:Y log:notEqualTo log:Formula .
 } .
 
 # :eq
-(?L1 ?L2 ?X ?Y) log:onNegativeSurface {
-    () log:onNegativeSurface <<(?L1 ?L2) :eq true>> .
-    ?L1 :eval ?X .
-    ?L2 :eval ?Y .
-    ?X :atom true .
-    ?X log:equalTo ?Y .
+(_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:L1 _:L2) :eq true>> .
+    _:L1 :eval _:X .
+    _:L2 :eval _:Y .
+    _:X :atom true .
+    _:X log:equalTo _:Y .
 } .
 
-(?L1 ?L2 ?X ?Y) log:onNegativeSurface {
-    () log:onNegativeSurface <<(?L1 ?L2) :eq false>> .
-    ?L1 :eval ?X .
-    ?L2 :eval ?Y .
-    ?X :atom false .
+(_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:L1 _:L2) :eq false>> .
+    _:L1 :eval _:X .
+    _:L2 :eval _:Y .
+    _:X :atom false .
 } .
 
-(?L1 ?L2 ?X ?Y) log:onNegativeSurface {
-    () log:onNegativeSurface <<(?L1 ?L2) :eq false>> .
-    ?L1 :eval ?X .
-    ?L2 :eval ?Y .
-    ?X log:notEqualTo ?Y .
+(_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:L1 _:L2) :eq false>> .
+    _:L1 :eval _:X .
+    _:L2 :eval _:Y .
+    _:X log:notEqualTo _:Y .
 } .
 
 # :car
-(?L1 ?L2 ?X) log:onNegativeSurface {
-    () log:onNegativeSurface <<(?L1) :car ?L2>> .
-    ?L1 :eval ?X .
-    ?X list:first ?L2 .
+(_:L1 _:L2 _:X) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:L1) :car _:L2>> .
+    _:L1 :eval _:X .
+    _:X list:first _:L2 .
 } .
 
 # :cdr
-(?L1 ?X ?Y ?L2) log:onNegativeSurface {
-    () log:onNegativeSurface <<(?L1) :cdr ?L2>> .
-    ?L1 :eval ?X .
+(_:L1 _:X _:Y _:L2) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:L1) :cdr _:L2>> .
+    _:L1 :eval _:X .
 
-    ?X list:firstRest ( ?Y ?L2 ) .
+    _:X list:firstRest ( _:Y _:L2 ) .
 } .
 
 # :cons
-(?L1 ?X ?Y ?L2 ?L3) log:onNegativeSurface {
-    () log:onNegativeSurface <<(?L1 ?L2) :cons ?L3>> .
-    ?L1 :eval ?X .
-    ?L2 :eval ?Y .
-    ( (?X) ?Y ) list:append ?L3 .
+(_:L1 _:X _:Y _:L2 _:L3) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:L1 _:L2) :cons _:L3>> .
+    _:L1 :eval _:X .
+    _:L2 :eval _:Y .
+    ( (_:X) _:Y ) list:append _:L3 .
 } .
 
 # END BLOGIC Stuff--------------------------------------------------------------

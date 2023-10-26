@@ -7,9 +7,9 @@
 } .
 
 # When anyone cant do dishes, it is because the sink doens't contain water
-(?X) log:onNegativeSurface {
+(_:X) log:onNegativeSurface {
     () log:onNegativeSurface {
-        ?X :does :Dishes .
+        _:X :does :Dishes .
     } .
     () log:onPositiveSurface {
         :Sink :contains :Water .

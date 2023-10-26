@@ -2,30 +2,30 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Some cyclists are not iceskaters
-_X a :Cyclist .
+_:X a :Cyclist .
 
 () log:onNegativeSurface {
-    ?X a :IceSkater .
+    _:X a :IceSkater .
 } .
 
 # Some iceskaters are not cyclists
-_Y a :IceSkater .
+_:Y a :IceSkater .
 () log:onNegativeSurface {
-    ?Y a :Cyclist .
+    _:Y a :Cyclist .
 } .
 
 # All cyclists are skaters
-(?X) log:onNegativeSurface {
-    ?X a :Cyclist .
+(_:X) log:onNegativeSurface {
+    _:X a :Cyclist .
     () log:onNegativeSurface {
-        ?X a :IceSkater .
+        _:X a :IceSkater .
     } .
 } . 
 
 # All skaters are cyclists 
-(?X) log:onNegativeSurface {
-    ?X a :IceSkater .
+(_:X) log:onNegativeSurface {
+    _:X a :IceSkater .
     () log:onNegativeSurface {
-        ?X a :Cyclist .
+        _:X a :Cyclist .
     } .
 } . 

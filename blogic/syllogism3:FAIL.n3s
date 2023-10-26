@@ -7,16 +7,16 @@
 } .
 
 # All cyclists are iceskaters and all iceskaters are cyclists
-(?X) log:onNegativeSurface {
-    ?X a :Cyclist .
+(_:X) log:onNegativeSurface {
+    _:X a :Cyclist .
     () log:onNegativeSurface {
-        ?X a :IceSkater .
+        _:X a :IceSkater .
     } .
 } . 
 
-(?X) log:onNegativeSurface {
-    ?X a :IceSkater .
+(_:X) log:onNegativeSurface {
+    _:X a :IceSkater .
     () log:onNegativeSurface {
-        ?X a :Cyclist .
+        _:X a :Cyclist .
     } .
 } . 

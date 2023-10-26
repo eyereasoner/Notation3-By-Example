@@ -8,22 +8,22 @@ _:x a :Person ; :loves :Food .
 _:y a :Person .
 
 {
-  q:x a :Person ; :loves :Food .
+  _:y a :Person ; :loves :Food .
 }
 n3s:implies
 {
-  q:y a :Human .
+  _:x a :Human .
 } .
 
 # Should return [1]
 # [ a :Human ] 
 
 {
-  q:x a :Person ; :loves :Food .
+  _:y a :Person ; :loves :Food .
 }
 n3s:implies
 {
-  q:y a :Human2 .
+  _:y a :Human2 .
 } .
 
 # Should return [2]

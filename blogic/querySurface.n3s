@@ -12,8 +12,8 @@
 :Someone a :Person .
 
 # Use a blank node a universal
-(?S) log:onQuerySurface {
-    ?S a :Person .
+(_:S) log:onQuerySurface {
+    _:S a :Person .
 } .
 
 () log:onMySurface1 {
@@ -21,9 +21,9 @@
 } .
 
 # Return from a surface 
-(?S) log:onQuerySurface {
+(_:S) log:onQuerySurface {
     () log:onMySurface1 {
-        ?S a :Person .
+        _:S a :Person .
     } .
 } .
 
@@ -45,8 +45,8 @@
 } .
 
 # This will work , but includes Charly and Daisy
-(?G) log:onQuerySurface {
-    () log:onMySurface3 ?G .
+(_:G) log:onQuerySurface {
+    () log:onMySurface3 _:G .
 } .
 
 () log:onMySurface4 {
@@ -55,9 +55,9 @@
 } .
 
 # Only show the surface which contains a cat
-(?G ?S) log:onQuerySurface {
-    () log:onMySurface4 ?G .
-    ?G log:includes { ?S a :Cat } .
+(_:G _:S) log:onQuerySurface {
+    () log:onMySurface4 _:G .
+    _:G log:includes { _:S a :Cat } .
 } .
 
 () log:onMySurface5 {
@@ -71,31 +71,31 @@
 } .
 
 # Query surfaces can also be a result of a rule
-(?G ?S) log:onNegativeSurface {
-    () log:onMySurface5 ?G .
-    ?G log:includes { ?S a :Cat } .
+(_:G _:S) log:onNegativeSurface {
+    () log:onMySurface5 _:G .
+    _:G log:includes { _:S a :Cat } .
 
     () log:onNegativeSurface {
         () log:onQuerySurface {
-            () log:onMySurface5 ?G .
+            () log:onMySurface5 _:G .
         } .
     } .
 } .
 
 # This trick can be used to filter out only the things that 
 # are of your interest
-(?G ?S1 ?S2) log:onNegativeSurface {
-    () log:onMySurface5 ?G .
-    ?G log:includes { ?S1 a :Person } .
-    ?G log:includes { ?S2 a :Cat } .
+(_:G _:S1 _:S2) log:onNegativeSurface {
+    () log:onMySurface5 _:G .
+    _:G log:includes { _:S1 a :Person } .
+    _:G log:includes { _:S2 a :Cat } .
 
     () log:onNegativeSurface {
         () log:onMyResultSurface {
-            ?S1 a :Person .
+            _:S1 a :Person .
         } .
 
-        (?X) log:onQuerySurface {
-            () log:onMyResultSurface ?X .
+        (_:X) log:onQuerySurface {
+            () log:onMyResultSurface _:X .
         } .
     } .
 } .

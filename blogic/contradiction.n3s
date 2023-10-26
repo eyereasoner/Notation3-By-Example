@@ -14,8 +14,8 @@
     () log:onNegativeSurface {} .
 } .
 
-(?S ?O) log:onQuerySurface {
-    ?S :loves ?O .
+(_:S _:O) log:onQuerySurface {
+    _:S :loves _:O .
 } .
 
 # Test

@@ -1,4 +1,6 @@
 @prefix ex: <http://www.example.org/rdf#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
 
 ex:MyTestProvider a ex:Login.
 ex:MyTestProvider a ex:ValidAccessGrant.
@@ -14,3 +16,4 @@ ex:MyTestProvider ex:grant ex:AccessGrant123.
 ex:MyTestProvider ex:membership ex:ABCMembership.
 ex:MyTestProvider ex:organization ex:ABC.
 ex:MyTestProvider ex:action ex:AllowService.
+

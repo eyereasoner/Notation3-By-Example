@@ -7,60 +7,60 @@
 # Merge all modal surfaces in A resulting in B
 #   - A a graph term
 #   - B a graph term
-(?G1 ?G2 ?G1L ?G2L) log:onNegativeSurface {
-    () log:onNegativeSurface <<?G1 :asMergedModal ?G2>> .
+(_:G1 _:G2 _:G1L _:G2L) log:onNegativeSurface {
+    () log:onNegativeSurface <<_:G1 :asMergedModal _:G2>> .
 
-    ?G1 graph:list ?G1L .
+    _:G1 graph:list _:G1L .
 
-    (?G1L () ()) :asMergedModal_ ?G2L .
+    (_:G1L () ()) :asMergedModal_ _:G2L .
 
-    ?G2 graph:list ?G2L .
+    _:G2 graph:list _:G2L .
 } .
 
 # At the end of the process we merge all modals and append it to the rest of the triples
-(?Acc ?Modals ?G ?Answer) log:onNegativeSurface {
-    () log:onNegativeSurface <<(() ?Acc ?Modals) :asMergedModal_ ?Answer>> .
+(_:Acc _:Modals _:G _:Answer) log:onNegativeSurface {
+    () log:onNegativeSurface <<(() _:Acc _:Modals) :asMergedModal_ _:Answer>> .
 
-    ?Modals log:notEqualTo () .
+    _:Modals log:notEqualTo () .
 
-    ?Modals graph:union ?G .
+    _:Modals graph:union _:G .
 
-     ( ( { () log:onModalSurface ?G } ) ?Acc) list:append ?Answer .
+     ( ( { () log:onModalSurface _:G } ) _:Acc) list:append _:Answer .
 } .
 
-(?Acc ?AccNew ?Modals ?ModalsNew ?Lin ?Lout ?H ?T ?X ?Y ?Z ?Scope) log:onNegativeSurface {
-    () log:onNegativeSurface <<(?Lin ?Acc ?Modals) :asMergedModal_ ?Lout>> .
+(_:Acc _:AccNew _:Modals _:ModalsNew _:Lin _:Lout _:H _:T _:X _:Y _:Z _:Scope) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:Lin _:Acc _:Modals) :asMergedModal_ _:Lout>> .
 
-    ?Lin list:firstRest (?H ?T) .
+    _:Lin list:firstRest (_:H _:T) .
 
     (
         # If we have a modal surface
         {
-            ?H log:equalTo { ?X log:onModalSurface ?Y } .
+            _:H log:equalTo { _:X log:onModalSurface _:Y } .
         }
         # Then append to the modals
         {
-            ?Y graph:list ?Z .
+            _:Y graph:list _:Z .
 
             # TODO What to do about the modal graffiti (?!)
-            ( ?Modals ?Z ) list:append ?ModalsNew .
-            ?AccNew log:equalTo ?Acc .
+            ( _:Modals _:Z ) list:append _:ModalsNew .
+            _:AccNew log:equalTo _:Acc .
         }
         # Else append to the accumulator
         {
-            ( ?Acc (?H) ) list:append ?AccNew .
-            ?ModalsNew log:equalTo ?Modals .
+            ( _:Acc (_:H) ) list:append _:AccNew .
+            _:ModalsNew log:equalTo _:Modals .
         }
-    ) log:ifThenElseIn ?Scope .
+    ) log:ifThenElseIn _:Scope .
 
-    ( ?T ?AccNew ?ModalsNew) :asMergedModal_ ?Lout .
+    ( _:T _:AccNew _:ModalsNew) :asMergedModal_ _:Lout .
 } .
 
 # Merge nested modal surfaces on negative surfaces
-(?A ?B ?X) log:onNegativeSurface {
-    ?X log:onNegativeSurface ?A .
-    ?A :asMergedModal ?B .
+(_:A _:B _:X) log:onNegativeSurface {
+    _:X log:onNegativeSurface _:A .
+    _:A :asMergedModal _:B .
     () log:onNegativeSurface {
-        () log:onNegativeSurface ?B .
+        () log:onNegativeSurface _:B .
     } .
 } .

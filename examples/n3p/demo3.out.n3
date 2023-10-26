@@ -1,5 +1,8 @@
+@prefix : <urn:example:>.
+
 <urn:example:Alice> a <urn:example:Person>.
 <urn:example:Bob> a <urn:example:Person>.
 <urn:example:result> <urn:example:is> 7 .
 <urn:example:Alice> a <urn:example:Human>.
 <urn:example:Bob> a <urn:example:Human>.
+

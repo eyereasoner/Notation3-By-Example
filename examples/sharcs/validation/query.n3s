@@ -4,7 +4,7 @@
 # ForAll S,P,O:
 #   (<S> a Login) &&
 #   (<S> <P> <O>) 
-(?S ?P ?O) log:onQuerySurface {
-    ?S a :Login; 
-        ?P ?O .
+(_:S _:P _:O) log:onQuerySurface {
+    _:S a :Login; 
+        _:P _:O .
 } .

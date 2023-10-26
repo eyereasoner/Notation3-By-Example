@@ -6,31 +6,31 @@
 
 :MyList :is (1 2 3 4).
 
-(?X ?Y) log:onNegativeSurface {
-    :MyList :is ?X .
-    ?X :rev ?Y .
+(_:X _:Y) log:onNegativeSurface {
+    :MyList :is _:X .
+    _:X :rev _:Y .
 
     () log:onNegativeSurface {
-        :result :is ?Y .
+        :result :is _:Y .
     } .
 } .
 
-(?L ?R) log:onNegativeSurface {
-    () log:onNegativeSurface <<?L :rev ?R>> .
-    (?L ()) :revAcc ?R .
+(_:L _:R) log:onNegativeSurface {
+    () log:onNegativeSurface <<_:L :rev _:R>> .
+    (_:L ()) :revAcc _:R .
 } .
 
-(?R) log:onNegativeSurface {
-    () log:onNegativeSurface <<(() ?R) :revAcc ?R>> .
+(_:R) log:onNegativeSurface {
+    () log:onNegativeSurface <<(() _:R) :revAcc _:R>> .
 } .
 
-(?L ?Acc ?AccNew ?H ?T ?R) log:onNegativeSurface {
-    () log:onNegativeSurface <<(?L ?Acc) :revAcc ?R>> .
-    ?L list:firstRest (?H ?T) .
-    ( (?H) ?Acc) list:append ?AccNew .
-    (?T ?AccNew) :revAcc ?R .
+(_:L _:Acc _:AccNew _:H _:T _:R) log:onNegativeSurface {
+    () log:onNegativeSurface <<(_:L _:Acc) :revAcc _:R>> .
+    _:L list:firstRest (_:H _:T) .
+    ( (_:H) _:Acc) list:append _:AccNew .
+    (_:T _:AccNew) :revAcc _:R .
 } .
 
-(?S ?O) log:onQuerySurface {
-    ?S :is ?O .
+(_:S _:O) log:onQuerySurface {
+    _:S :is _:O .
 } .

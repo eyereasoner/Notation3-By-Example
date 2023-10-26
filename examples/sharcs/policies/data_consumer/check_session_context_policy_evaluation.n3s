@@ -14,27 +14,27 @@
 # IMPLIES:
 #   (<Login> permission <Permission>) &
 #   (<Login> a ValidPermission)
-(?Login ?User ?Membership ?Subscription ?Permission ?Allows) log:onNegativeSurface {
-    ?Login 
+(_:Login _:User _:Membership _:Subscription _:Permission _:Allows) log:onNegativeSurface {
+    _:Login 
         a :Login ;
-        :user ?User ;
-        :membership ?Membership ;
-        :subscription ?Subscription .
+        :user _:User ;
+        :membership _:Membership ;
+        :subscription _:Subscription .
 
-    ?Permission
+    _:Permission
         a :Permission;
         :isActive true;
-        :hasMembership ?Membership .
+        :hasMembership _:Membership .
 
-    ?Permission
-        :allows ?Allows.
+    _:Permission
+        :allows _:Allows.
 
-    ?Allows 
-        :subscription ?Subscription ;
-        :subscriber ?User .
+    _:Allows 
+        :subscription _:Subscription ;
+        :subscriber _:User .
 
     () log:onNegativeSurface {
-        ?Login :permission ?Permission .
-        ?Login a :ValidPermission .
+        _:Login :permission _:Permission .
+        _:Login a :ValidPermission .
     } .
 } .

@@ -5,18 +5,18 @@
 
 :Alice a :Person .
 
-(?S) log:onNegativeSurface {
-    ?S a :Person .
+(_:S) log:onNegativeSurface {
+    _:S a :Person .
     () log:onNegativeSurface {
         [] :nested {
-            ?S a :Human .
+            _:S a :Human .
         } .
     } .
 } .
 
 # A query surface will contain the exact match of a RDF triple pattern
-(?S ?O) log:onQuerySurface {
-    ?S :nested ?O .
+(_:S _:O) log:onQuerySurface {
+    _:S :nested _:O .
 } .
 
 # A constructSurface in a query surface works like:
@@ -29,9 +29,9 @@
 #
 # Where the first spo is from the constructSurface and the
 # second spo is from the querySurface
-(?S ?O) log:onQuestionSurface {
-    ?S :nested ?O .
-    () log:onAnswerSurface ?O .
+(_:S _:O) log:onQuestionSurface {
+    _:S :nested _:O .
+    () log:onAnswerSurface _:O .
 } .
 
 # This will not work. A construct surface can only be used in a nested

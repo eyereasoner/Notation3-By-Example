@@ -4,18 +4,18 @@
 
 # Provide a warning when something bad happens
 # E.g. exposing an email to a PublicAccess login
-(?Login ?RS ?S ?email) log:onNegativeSurface {
+(_:Login _:RS _:S _:email) log:onNegativeSurface {
     () log:onAccessSurface {
-        ?Login a :PublicAccess .
+        _:Login a :PublicAccess .
     } .
 
-    () log:onResultSurface ?RS.
-    ?RS log:includes {?S foaf:email ?email}.
+    () log:onResultSurface _:RS.
+    _:RS log:includes {_:S foaf:email _:email}.
 
     () log:onNegativeSurface {
         # We write the warning triples on a warning surface
         () log:onWarningSurface {
-            ?S foaf:email ?email {| 
+            _:S foaf:email _:email {| 
                 a log:WARNING; 
                 log:warningMessage "You are exposing email addresses as public access!" 
             |}.

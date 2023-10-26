@@ -1,32 +1,32 @@
 @prefix : <urn:example:> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-?x a :PastaEater .
+_:x a :PastaEater .
 
 # The positive surface is the equivalent of a negative of a negative
 # surface. See positiveSurface1.n3
 () log:onPositiveSurface {
-    # The ?x on this positiveSurface binds to the ?x on the
+    # The _:x on this positiveSurface binds to the _:x on the
     # implicit default surface
-    ?x a :RiceEater .
+    _:x a :RiceEater .
 
-    (?y) log:onNegativeSurface {
-        ?y a :PastaEater , :RiceEater .
+    (_:y) log:onNegativeSurface {
+        _:y a :PastaEater , :RiceEater .
 
         () log:onNegativeSurface {
-            ?y a :RisottoEater .
+            _:y a :RisottoEater .
         } .
     } .
 } .
 
-(?S ?O) log:onQuerySurface {
-    ?S a ?O .
+(_:S _:O) log:onQuerySurface {
+    _:S a _:O .
 } .
 
 # Test
 
-(?x) log:onNegativeSurface {
-    ?x a :PastaEater, :RiceEater , :RisottoEater .
+() log:onNegativeSurface {
+    _:x a :PastaEater, :RiceEater , :RisottoEater .
     () log:onNegativeSurface {
         :test :is true .
     } .

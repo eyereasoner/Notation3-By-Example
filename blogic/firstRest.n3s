@@ -4,16 +4,16 @@
 
 :Alice a :Person .
 
-[ rdf:first ?S ; rdf:rest rdf:nil ] log:onNegativeSurface {
+[ rdf:first _:S ; rdf:rest rdf:nil ] log:onNegativeSurface {
     :Alice a :Person .
     rdf:nil log:onNegativeSurface {
         :Alice a :Human .
     }
 } .
 
-#(?S) log:onQuerySurface {
-[ rdf:first ?S ; rdf:rest [ rdf:first ?O ; rdf:rest rdf:nil ]] log:onQuerySurface {
-    ?S a ?O .
+#(_:S) log:onQuerySurface {
+[ rdf:first _:S ; rdf:rest [ rdf:first _:O ; rdf:rest rdf:nil ]] log:onQuerySurface {
+    _:S a _:O .
 } .
 
 # Test 

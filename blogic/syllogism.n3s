@@ -8,18 +8,18 @@
 ## Syllogism 1 : Camestres
 
 # All cats are mammals
-(?Cat) log:onNegativeSurface {
-    ?Cat a :Cat .
+(_:Cat) log:onNegativeSurface {
+    _:Cat a :Cat .
     () log:onNegativeSurface {
-        ?Cat a :Mammal .
+        _:Cat a :Mammal .
     } .
 } .
 
 # No bird is a mammal
-(?Bird) log:onNegativeSurface {
-    ?Bird a :Bird .
+(_:Bird) log:onNegativeSurface {
+    _:Bird a :Bird .
     () log:onPositiveSurface {
-        ?Bird a :Mammal .
+        _:Bird a :Mammal .
     } .
 } .
 
@@ -28,35 +28,30 @@
 ## Syllogism 2 : Datasi
 
 # All cats are feline
-(?Cat) log:onNegativeSurface {
-    ?Cat a :Cat .
+(_:Cat) log:onNegativeSurface {
+    _:Cat a :Cat .
     () log:onNegativeSurface {
-        ?Cat a :Feline .
+        _:Cat a :Feline .
     } .
 } .
 
 # Some cats are white
-() log:onPositiveSurface {
-    ?X a :Cat , :White .
-} .
+_:X a :Cat , :White .
 
 # IMPLIES : Some white are feline 
 
 # Syllogism 3 : Ferio
 
 # No muslim is a christian
-(?M) log:onNegativeSurface {
-    ?M a :Muslim .
+(_:M) log:onNegativeSurface {
+    _:M a :Muslim .
     () log:onPositiveSurface {
-        ?M a :Christian .
+        _:M a :Christian .
     } .
 } .
 
 # Some worshippers are muslim
-() log:onPositiveSurface {
-    ?A a :Person .
-    ?P a :Worshipper , :Muslim .
-} .
+_:P a :Worshipper , :Muslim .
 
 # IMPLIES : Some worshipper is not a christian 
 
@@ -67,11 +62,11 @@
     } .
 
     # 2 
-    ?X a :White, :Feline .
+    _:X a :White, :Feline .
 
     # 3
     () log:onNegativeSurface {
-        ?P a :Christian .
+        _:P a :Christian .
     } .
 
     () log:onNegativeSurface {

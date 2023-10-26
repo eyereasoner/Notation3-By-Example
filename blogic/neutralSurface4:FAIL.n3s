@@ -2,19 +2,19 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # A neutral surface with a contradiction
-(?x) log:onNeutralSurface {
-    ?x a :B .
+(_:x) log:onNeutralSurface {
+    _:x a :B .
     () log:onNegativeSurface {
-        ?x a :B .
+        _:x a :B .
     } .
 } .
 
 # Test if we can match the neutral surface 
-(?S ?B) log:onNegativeSurface {
-    ?S log:onNeutralSurface ?B .
+(_:S _:B) log:onNegativeSurface {
+    _:S log:onNeutralSurface _:B .
 
     # This must blow a fuse .. the question is if we can prevent this while reasoning
-    ?S log:onNegativeSurface ?B .
+    _:S log:onNegativeSurface _:B .
 } .
 
 :test :is true .

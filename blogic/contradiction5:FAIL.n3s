@@ -3,11 +3,11 @@
 
 # [1]
 # \Every x : not( x log:onNegativeSurface { :Alice :hates :Quiche } )
-(?x) log:onNegativeSurface {
+(_:x) log:onNegativeSurface {
     # The negative surface below is just an RDF structure (not a negation)
     # The surface below will not be double-cut because the subject is not a list
-    # The surface below will be deiterated because [2] matches when ?x = (?a)
-    ?x log:onNegativeSurface {
+    # The surface below will be deiterated because [2] matches when _:x = (_:a)
+    _:x log:onNegativeSurface {
         :Alice :hates :Quiche
     } .
 } .
@@ -15,8 +15,8 @@
 # [2]
 # \Every a : not ( :Alices :hates :Quiche )
 # This is a negation and the structure
-# (?a) log:onNegativeSurface { :Alice :hates :Quiche } .
-(?a) log:onNegativeSurface {
+# (_:a) log:onNegativeSurface { :Alice :hates :Quiche } .
+(_:a) log:onNegativeSurface {
     :Alice :hates :Quiche .
 } .
 

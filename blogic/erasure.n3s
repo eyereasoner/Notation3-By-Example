@@ -180,13 +180,13 @@
 } .
 
 
-(?S ?O) log:onQuerySurface {
-    ?S a  ?O .
+(_:S _:O) log:onQuerySurface {
+    _:S a  _:O .
 } .
 
-(?S ?O) log:onQuerySurface {
+(_:S _:O) log:onQuerySurface {
     () log:onNegativeSurface {
-        ?S a ?O .
+        _:S a _:O .
     } .
 } .
 

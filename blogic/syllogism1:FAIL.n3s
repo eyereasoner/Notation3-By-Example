@@ -2,13 +2,13 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Some cyclists are iceskaters
-_X a :Cyclist , :IceSkater .
+_:X a :Cyclist , :IceSkater .
 
 # No cyclist is an iceskater
-(?X) log:onNegativeSurface {
-    ?X a :Cyclist .
+(_:X) log:onNegativeSurface {
+    _:X a :Cyclist .
     () log:onPositiveSurface { 
-        ?X a :IceSkater .
+        _:X a :IceSkater .
     } .
 } .
 

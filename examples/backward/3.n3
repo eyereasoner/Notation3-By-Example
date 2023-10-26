@@ -5,30 +5,30 @@
 :Alice a :Human .
 :Alice :likes (:Cats :Dogs) .
 
-(?S ?What ?L) log:onNegativeSurface {
-   ?S :likes ?L .
-   ?L :reverse ?What .
+(_:S _:What _:L) log:onNegativeSurface {
+   _:S :likes _:L .
+   _:L :reverse _:What .
    () log:onNegativeSurface {
-        :result :is ?What .
+        :result :is _:What .
    } .
 } .
 
-(?A ?B) log:onNegativeSurface {
-    () log:onNegativeSurface <<?A :reverse ?B>> .
-    (?A () ) :reverse_ ?B .
+(_:A _:B) log:onNegativeSurface {
+    () log:onNegativeSurface <<_:A :reverse _:B>> .
+    (_:A () ) :reverse_ _:B .
 } .
 
-(?Acc) log:onNegativeSurface {
-    () log:onNegativeSurface <<( () ?Acc ) :reverse_ ?Acc>> .
+(_:Acc) log:onNegativeSurface {
+    () log:onNegativeSurface <<( () _:Acc ) :reverse_ _:Acc>> .
 } .
 
-(?A ?B ?Acc ?AccN ?H ?T) log:onNegativeSurface {
-    () log:onNegativeSurface <<( ?A ?Acc ) :reverse_ ?B>> .
-    ?A list:firstRest (?H ?T) .
-    ((?H) ?Acc) list:append ?AccN .
-    ( ?T ?AccN) :reverse_ ?B .
+(_:A _:B _:Acc _:AccN _:H _:T) log:onNegativeSurface {
+    () log:onNegativeSurface <<( _:A _:Acc ) :reverse_ _:B>> .
+    _:A list:firstRest (_:H _:T) .
+    ((_:H) _:Acc) list:append _:AccN .
+    ( _:T _:AccN) :reverse_ _:B .
 } .
 
-(?S ?O) log:onQuerySurface {
-    ?S :is ?O .
+(_:S _:O) log:onQuerySurface {
+    _:S :is _:O .
 } .

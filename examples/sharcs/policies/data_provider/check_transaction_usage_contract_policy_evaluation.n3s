@@ -12,22 +12,22 @@
 # IMPLIES
 #    (<Login> a ValidTransactionUsageContract) &
 #    (<Login> contract <TransactionUsageContract>)
-(?Login ?Client ?Membership ?TransactionUsageContract) log:onNegativeSurface {
-    ?Login
+(_:Login _:Client _:Membership _:TransactionUsageContract) log:onNegativeSurface {
+    _:Login
          a :Login;
-         :client ?Client ;
-         :membership ?Membership .
+         :client _:Client ;
+         :membership _:Membership .
 
-    ?TransactionUsageContract 
+    _:TransactionUsageContract 
         a :TransactionUsageContract ;
         :isActive true ;
-        :hasMembership ?Membership ;
-        :hasClient ?Client .
+        :hasMembership _:Membership ;
+        :hasClient _:Client .
         
     () log:onNegativeSurface {
-        ?Login
+        _:Login
             a :ValidTransactionUsageContract ;
-            :contract ?TransactionUsageContract .
+            :contract _:TransactionUsageContract .
     } .
 } .
 
@@ -44,26 +44,26 @@
 # (<Allows> subscriber <User>)
 # IMPLIES
 #   (<Login> a ValidPermission)
-(?Login ?Contract ?User ?Membership ?Permission ?Allows) log:onNegativeSurface {
-    ?Login 
+(_:Login _:Contract _:User _:Membership _:Permission _:Allows) log:onNegativeSurface {
+    _:Login 
         a :Login ;
-        :user ?User ;
-        :membership ?Membership ;
-        :contract ?Contract . 
+        :user _:User ;
+        :membership _:Membership ;
+        :contract _:Contract . 
 
-    ?Permission 
+    _:Permission 
         a :Permission ;
         :isActive true ;
-        :hasMembership ?Membership .
+        :hasMembership _:Membership .
 
-    ?Permission :allows ?Allows .
+    _:Permission :allows _:Allows .
 
-    ?Allows 
-        :contract ?Contract ;
-        :subscriber ?User .
+    _:Allows 
+        :contract _:Contract ;
+        :subscriber _:User .
 
     () log:onNegativeSurface {
-        ?Login
+        _:Login
             a :ValidPermission .
     } .
 } .

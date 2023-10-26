@@ -21,13 +21,13 @@
         { ?LO log:rawType log:Other . }
         { ?Some ?LO ?LOV . }
         { ?LO log:equalTo ?LOV . }
-    ) log:ifThenElseIn ?:x .
+    ) log:ifThenElseIn _:x .
 
     (
         { ?RO log:rawType log:Other . }
         { ?Some ?RO ?ROV . }
         { ?RO log:equalTo ?ROV . }
-    ) log:ifThenElseIn ?:y .
+    ) log:ifThenElseIn _:y .
 
     # Test the constraint 
     ( 
@@ -37,7 +37,7 @@
       { ?Validity log:equalTo :Satisfied . } 
       # else 
       { ?Validity log:equalTo :NotSatisfied . }
-    ) log:ifThenElseIn ?:z.
+    ) log:ifThenElseIn _:z.
 }
 =>
 {

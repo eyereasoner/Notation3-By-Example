@@ -6,8 +6,8 @@
 
 () log:onQuestionSurface {
     () log:onNegativeSurface {
-      (?X) log:onNegativeSurface {
-         :alice :likes ?X .
+      (_:X) log:onNegativeSurface {
+         :alice :likes _:X .
       } .
     } .
     () log:onAnswerSurface {

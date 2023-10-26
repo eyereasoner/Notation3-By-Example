@@ -4,20 +4,20 @@
 # The test will fail if we introduce a new God
 :Mordakin a :God .
 
-# We write on the positive surface, and we introduce a god (?x). 
+# We write on the positive surface, and we introduce a god (_:x). 
 # If any God is not equal to this god, we burn the fuse.
-(?x) log:onPositiveSurface {
-    ?x a :God .
+(_:x) log:onPositiveSurface {
+    _:x a :God .
 
-    (?y) log:onNegativeSurface {
-        ?y a :God .
+    (_:y) log:onNegativeSurface {
+        _:y a :God .
 
-        ?x log:notEqualTo ?y .
+        _:x log:notEqualTo _:y .
 
         () log:onNegativeSurface false .
     } .
 } .
 
-(?S ?O) log:onQuerySurface {
-    ?S a ?O .
+(_:S _:O) log:onQuerySurface {
+    _:S a _:O .
 } .

@@ -14,7 +14,7 @@
 } .
 
 # If X knows Y, then X,Y is knowable
-(?S ?O) log:onNegativeSurface {
+(_:S _:O) log:onNegativeSurface {
 
     # We add the premise on a postive
     # surface .. it is not strictly needed 
@@ -24,29 +24,29 @@
     #   () log:onNegativeSurface {}
     # is a contradiction because a positive empty surface {} is a 'true'
     () log:onPositiveSurface {
-        ?S :knows ?O .
+        _:S :knows _:O .
     } .
 
     () log:onNegativeSurface {
-        ?S :isKnowable true .
-        ?O :isKnowable true .
+        _:S :isKnowable true .
+        _:O :isKnowable true .
     } .
 } .
 
 # Here we implement a broken rule, we add graffiti
 # on the positive surface to block the scope of the variables
-(?S ?O) log:onNegativeSurface {
-    # Write for ?S and ?O new grafiti ..
-    (?S ?O) log:onPositiveSurface {
-        ?S :knows ?O .
+(_:S _:O) log:onNegativeSurface {
+    # Write for _:S and _:O new grafiti ..
+    (_:S _:O) log:onPositiveSurface {
+        _:S :knows _:O .
     } .
     () log:onNegativeSurface {
-        ?S :hates ?O .
+        _:S :hates _:O .
     } .
 } .
 
-(?S) log:onQuerySurface {
-    ?S :isKnowable true .
+(_:S) log:onQuerySurface {
+    _:S :isKnowable true .
 } .
 
 # Test 
@@ -54,14 +54,14 @@
 () log:onPositiveSurface {
     [] :hates [] .
 
-    (?Counter ?S ?O) log:onNegativeSurface {
+    (_:Counter _:S _:O) log:onNegativeSurface {
         :Alice :isKnowable true .
         :Bob :isKnowable true .
         :Charly :isKnowable true .
 
         # There shouldn't be any extra hates
-        ?Counter a log:GraphCounter .
-        { ?S :hates ?O } ?Counter 1.
+        _:Counter a log:GraphCounter .
+        { _:S :hates _:O } _:Counter 1.
 
         () log:onNegativeSurface {
             :test :is true .
@@ -71,10 +71,10 @@
 
 # Add a counter
 :cardinalCount a log:GraphCounter .
-(?Graph ?Count ?List ?Scope) log:onNegativeSurface {
-    () log:onNegativeSurface <<?Graph :cardinalCount ?Count>> .
-    ( () ?Graph ?List ) log:collectAllIn ?Scope .
-    ?List list:length ?Count .
+(_:Graph _:Count _:List _:Scope) log:onNegativeSurface {
+    () log:onNegativeSurface <<_:Graph :cardinalCount _:Count>> .
+    ( () _:Graph _:List ) log:collectAllIn _:Scope .
+    _:List list:length _:Count .
 } .
 
 () log:onQuerySurface {

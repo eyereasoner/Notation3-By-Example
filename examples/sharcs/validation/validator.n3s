@@ -5,18 +5,18 @@
 # ValidCheck defines the required classes for a login (Required).
 # Login has a collection of classes (HasClasses).
 # When check if Required is equal to HasClasses.
-(?Login ?Class ?HasClasses ?Required ?SCOPE) log:onNegativeSurface {
-    ?Login 
+(_:Login _:Class _:HasClasses _:Required _:SCOPE) log:onNegativeSurface {
+    _:Login 
         a :Login.
 
-    :ValidCheck :requires ?Required .
+    :ValidCheck :requires _:Required .
 
-    ( ?Class { ?Login a ?Class} ?HasClasses) log:collectAllIn ?SCOPE .
+    ( _:Class { _:Login a _:Class} _:HasClasses) log:collectAllIn _:SCOPE .
 
-    ?Required list:setEqualTo ?HasClasses .
+    _:Required list:setEqualTo _:HasClasses .
 
     () log:onNegativeSurface {
-        ?Login :action :AllowService .
+        _:Login :action :AllowService .
     } .
 } .
 
@@ -24,19 +24,19 @@
 # We check if each required class (Class) is defined for the Login.
 # If true, then nothing happens.
 # If false, report the missing classes.
-(?Login ?Requires ?Class ?SCOPE) log:onNegativeSurface {
-    ?Login
+(_:Login _:Requires _:Class _:SCOPE) log:onNegativeSurface {
+    _:Login
         a :Login.
 
-    :ValidCheck :requires ?Requires .
-    ?Requires list:member ?Class .
+    :ValidCheck :requires _:Requires .
+    _:Requires list:member _:Class .
 
-    ?SCOPE log:notIncludes {
-        ?Login a ?Class .
+    _:SCOPE log:notIncludes {
+        _:Login a _:Class .
     } .
 
     () log:onNegativeSurface {
-        ?Login :action :DenyService .
-        ?Login :missing ?Class .
+        _:Login :action :DenyService .
+        _:Login :missing _:Class .
     } .
 } .

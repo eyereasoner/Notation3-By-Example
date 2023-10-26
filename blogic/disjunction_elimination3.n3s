@@ -10,35 +10,35 @@
 } .
 
 # ∀S : (S a B) -> (S a B1) ∨ (S a B2)
-(?S) log:onNegativeSurface {
-    ?S a :B .
+(_:S) log:onNegativeSurface {
+    _:S a :B .
 
     () log:onPositiveSurface {
         () log:onNegativeSurface {
-            ?S a :B1 .
+            _:S a :B1 .
         } .
 
         () log:onNegativeSurface {
-            ?S a :B2 .
+            _:S a :B2 .
         } .
     } .
 } .
 
 # ∀S : (S a B1) -> (S a C) 
-(?S) log:onNegativeSurface {
-    ?S a :B1 .
+(_:S) log:onNegativeSurface {
+    _:S a :B1 .
 
     () log:onNegativeSurface {
-        ?S a :C .
+        _:S a :C .
     }.
 } .
 
 # ∀S : (S a B2) -> (S a C) 
-(?S) log:onNegativeSurface {
-    ?S a :B2 .
+(_:S) log:onNegativeSurface {
+    _:S a :B2 .
 
     () log:onNegativeSurface {
-        ?S a :C .
+        _:S a :C .
     }.
 } .
 
@@ -68,11 +68,11 @@
     } .
 } .
 
-(?S ?O) log:onQuerySurface {
-    ?S a ?O .
+(_:S _:O) log:onQuerySurface {
+    _:S a _:O .
 } .
 
 # Test
-(?S ?O) log:onQuerySurface {
-    ?S :is ?O .
+(_:S _:O) log:onQuerySurface {
+    _:S :is _:O .
 } .

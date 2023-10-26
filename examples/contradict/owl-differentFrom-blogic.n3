@@ -1,9 +1,9 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 
-(?A ?B) log:onNegativeSurface {
-    ?A owl:differentFrom ?B .
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:differentFrom _:B .
     () log:onNegativeSurface {
-        ?B owl:differentFrom ?A .
+        _:B owl:differentFrom _:A .
     } .
 } .
