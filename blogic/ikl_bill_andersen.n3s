@@ -8,28 +8,28 @@
 # or has some information about it..but doesn't know if these planes are the same
 # (this is what an existential quantified \Exists: x,y,z does
 :BillAndersen :believes {
-    _:S a :Iranian .
-    _:S :customer "Bank Melli Iran" .
-    _:S :owns _:A1 , _:A2 , _:A3 .
-    _:A1 a :Airplane .
-    _:A2 a :Airplane .
-    _:A3 a :Airplane .
+    skolem:S a :Iranian .
+    skolem:S :customer "Bank Melli Iran" .
+    skolem:S :owns skolem:A1 , skolem:A2 , skolem:A3 .
+    skolem:A1 a :Airplane .
+    skolem:A2 a :Airplane .
+    skolem:A3 a :Airplane .
 } .
 
-_:A2 :seenIn :Austria .
+skolem:A2 :seenIn :Austria .
 
-(_:X _:Y _:S _:A) log:onNegativeSurface {
-    _:X :believes _:Y .
+(skolem:X skolem:Y skolem:S skolem:A) log:onNegativeSurface {
+    skolem:X :believes skolem:Y .
 
     # Make Bill's believe true
-    _:Y log:includes {
-        _:S :owns _:A 
+    skolem:Y log:includes {
+        skolem:S :owns skolem:A 
     } .
 
-    _:A :seenIn :Austria .
+    skolem:A :seenIn :Austria .
 
     # It could still be the case that all planes are equal
-    _:A log:isomorphic _:A1 .
+    skolem:A log:isomorphic skolem:A1 .
 
     () log:onNegativeSurface {
         :test :is true .
@@ -41,43 +41,43 @@ _:A2 :seenIn :Austria .
 } .
 
 # sameAs: all properties of A are in B
-(_:A _:B _:C _:D) log:onNegativeSurface {
-    _:A owl:sameAs _:B .
-    _:A _:C _:D .
+(skolem:A skolem:B skolem:C skolem:D) log:onNegativeSurface {
+    skolem:A owl:sameAs skolem:B .
+    skolem:A skolem:C skolem:D .
     () log:onNegativeSurface {
-        _:B _:C _:D .
+        skolem:B skolem:C skolem:D .
     } .
 } .
 
 # sameAs: all subjects and objects of A as property also go for B as property
-(_:A _:B _:C _:D) log:onNegativeSurface {
-    _:A owl:sameAs _:B .
-    _:C _:A _:D .
+(skolem:A skolem:B skolem:C skolem:D) log:onNegativeSurface {
+    skolem:A owl:sameAs skolem:B .
+    skolem:C skolem:A skolem:D .
     () log:onNegativeSurface {
-        _:C _:B _:D .
+        skolem:C skolem:B skolem:D .
     } .
 } . 
 
 # sameAs: interchanging A and B as object has no effect 
-(_:A _:B _:C _:D) log:onNegativeSurface {
-    _:A owl:sameAs _:B .
-    _:D _:C _:A .
+(skolem:A skolem:B skolem:C skolem:D) log:onNegativeSurface {
+    skolem:A owl:sameAs skolem:B .
+    skolem:D skolem:C skolem:A .
     () log:onNegativeSurface {
-        _:D _:C _:B .
+        skolem:D skolem:C skolem:B .
     } .
 } .
 
-(_:A _:B) log:onNegativeSurface {
-    _:A owl:sameAs _:B .
+(skolem:A skolem:B) log:onNegativeSurface {
+    skolem:A owl:sameAs skolem:B .
     () log:onNegativeSurface {
-        _:B owl:sameAs _:A .
+        skolem:B owl:sameAs skolem:A .
     } .
 } .
 
-(_:A _:B _:C) log:onNegativeSurface {
-    _:A owl:sameAs _:B .
-    _:B owl:sameAs _:C .
+(skolem:A skolem:B skolem:C) log:onNegativeSurface {
+    skolem:A owl:sameAs skolem:B .
+    skolem:B owl:sameAs skolem:C .
     () log:onNegativeSurface {
-        _:A owl:sameAs _:C .
+        skolem:A owl:sameAs skolem:C .
     } .
 } .

@@ -14,30 +14,30 @@
 :P2 :name "Elizabeth" .
 
 # Check for a cardinality
-(_:a _:b _:c _:x _:y _:Counter _:o) log:onNegativeSurface {
-    _:a owl:onProperty _:b.
-    _:a owl:cardinality _:c.
+(skolem:a skolem:b skolem:c skolem:x skolem:y skolem:Counter skolem:o) log:onNegativeSurface {
+    skolem:a owl:onProperty skolem:b.
+    skolem:a owl:cardinality skolem:c.
 
-    _:x _:b _:y .
+    skolem:x skolem:b skolem:y .
 
     # Search for a cardinality Counter 
     # ...actually this means for any log:GraphCounter you 
     # can find this must be true.
-    _:Counter a log:GraphCounter .
+    skolem:Counter a log:GraphCounter .
 
-    { _:x _:b _:o } _:Counter _:c .
+    { skolem:x skolem:b skolem:o } skolem:Counter skolem:c .
     
     () log:onNegativeSurface {
-       _:x a _:a.
+       skolem:x a skolem:a.
     }.
 }.
 
 # This is a local implementation of a log:GraphCounter
 :cardinalCount a log:GraphCounter .
-(_:Graph _:Count _:List _:Scope) log:onNegativeSurface {
-    () log:onNegativeSurface <<_:Graph :cardinalCount _:Count>> .
-    ( () _:Graph _:List ) log:collectAllIn _:Scope .
-    _:List list:length _:Count .
+(skolem:Graph skolem:Count skolem:List skolem:Scope) log:onNegativeSurface {
+    () log:onNegativeSurface <<skolem:Graph :cardinalCount skolem:Count>> .
+    ( () skolem:Graph skolem:List ) log:collectAllIn skolem:Scope .
+    skolem:List list:length skolem:Count .
 } .
 
 # Test
@@ -48,12 +48,12 @@
     } .
 } .
 
-(_:S _:X) log:onQuerySurface {
-    _:S a _:X .
+(skolem:S skolem:X) log:onQuerySurface {
+    skolem:S a skolem:X .
 } .
 
-(_:S _:X) log:onQuerySurface {
-    _:S :name _:X .
+(skolem:S skolem:X) log:onQuerySurface {
+    skolem:S :name skolem:X .
 } .
 
 () log:onQuerySurface {

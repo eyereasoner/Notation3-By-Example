@@ -8,33 +8,33 @@
 #\forall x \exists y1,y2 \forall z : 
 #  (x a Father) -> y1 child x & y2 pet y1 & 
 #  (z pet y1 & y1 child x -> x likes z) 
-(_:x) log:onNegativeSurface {
-    _:x a :father .
-    (_:y1 _:y2) log:onNegativeSurface {
-        _:y1 :child _:x .
-        _:y2 :pet _:y1.
+(skolem:x) log:onNegativeSurface {
+    skolem:x a :father .
+    (skolem:y1 skolem:y2) log:onNegativeSurface {
+        skolem:y1 :child skolem:x .
+        skolem:y2 :pet skolem:y1.
 
-        (_:z) log:onNegativeSurface {
-            _:z :pet _:y1 .
-            _:y1 :child _:x .
+        (skolem:z) log:onNegativeSurface {
+            skolem:z :pet skolem:y1 .
+            skolem:y1 :child skolem:x .
             () log:onNegativeSurface {
-                _:x :likes _:z .
+                skolem:x :likes skolem:z .
             } .
         } .
     } .
 } .
 
 # Test
-(_:x _:y _:a _:b) log:onNegativeSurface {
-    _:x :child :jozef .
-    _:y :child :franklin .
+(skolem:x skolem:y skolem:a skolem:b) log:onNegativeSurface {
+    skolem:x :child :jozef .
+    skolem:y :child :franklin .
 
-    _:x log:notEqualTo _:y .
+    skolem:x log:notEqualTo skolem:y .
 
-    :jozef :likes _:a .
-    :franklin :likes _:b .
+    :jozef :likes skolem:a .
+    :franklin :likes skolem:b .
 
-    _:a log:notEqualTo _:b .
+    skolem:a log:notEqualTo skolem:b .
 
     () log:onNegativeSurface {
         :test :is true .
@@ -44,20 +44,20 @@
 # Todo add test for the pets
 
 # Queries
-(_:s _:o) log:onQuerySurface {
-    _:s a _:o . 
+(skolem:s skolem:o) log:onQuerySurface {
+    skolem:s a skolem:o . 
 } .
 
-(_:s _:o _:q) log:onQuerySurface {
-    _:s :pet _:o . 
+(skolem:s skolem:o skolem:q) log:onQuerySurface {
+    skolem:s :pet skolem:o . 
 } .
 
-(_:s _:o _:q) log:onQuerySurface {
-    _:s :child _:o . 
+(skolem:s skolem:o skolem:q) log:onQuerySurface {
+    skolem:s :child skolem:o . 
 } .
 
-(_:s _:o _:q) log:onQuerySurface {
-    _:s :likes _:o . 
+(skolem:s skolem:o skolem:q) log:onQuerySurface {
+    skolem:s :likes skolem:o . 
 } .
 
 () log:onQuerySurface {

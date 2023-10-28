@@ -10,35 +10,35 @@
 } .
 
 # ∀S : (S a B) -> (S a B1) ∨ (S a B2)
-(_:S) log:onNegativeSurface {
-    _:S a :B .
+(skolem:S) log:onNegativeSurface {
+    skolem:S a :B .
 
     () log:onPositiveSurface {
         () log:onNegativeSurface {
-            _:S a :B1 .
+            skolem:S a :B1 .
         } .
 
         () log:onNegativeSurface {
-            _:S a :B2 .
+            skolem:S a :B2 .
         } .
     } .
 } .
 
 # ∀S : (S a B1) -> (S a C) 
-(_:S) log:onNegativeSurface {
-    _:S a :B1 .
+(skolem:S) log:onNegativeSurface {
+    skolem:S a :B1 .
 
     () log:onNegativeSurface {
-        _:S a :C .
+        skolem:S a :C .
     }.
 } .
 
 # ∀S : (S a B2) -> (S a C) 
-(_:S) log:onNegativeSurface {
-    _:S a :B2 .
+(skolem:S) log:onNegativeSurface {
+    skolem:S a :B2 .
 
     () log:onNegativeSurface {
-        _:S a :C .
+        skolem:S a :C .
     }.
 } .
 
@@ -68,11 +68,11 @@
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
-    _:S a _:O .
+(skolem:S skolem:O) log:onQuerySurface {
+    skolem:S a skolem:O .
 } .
 
 # Test
-(_:S _:O) log:onQuerySurface {
-    _:S :is _:O .
+(skolem:S skolem:O) log:onQuerySurface {
+    skolem:S :is skolem:O .
 } .

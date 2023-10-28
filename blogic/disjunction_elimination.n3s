@@ -17,38 +17,38 @@
     :Beetle :is :blue . 
 } .
 
-(_:S) log:onNegativeSurface {
+(skolem:S) log:onNegativeSurface {
     # P
-    _:S :is :green.
+    skolem:S :is :green.
 
     () log:onNegativeSurface {
         # -> Q
-        _:S :is :beautiful .
+        skolem:S :is :beautiful .
     } .
 } .
 
-(_:S) log:onNegativeSurface {
+(skolem:S) log:onNegativeSurface {
     # R
-    _:S :is :blue.
+    skolem:S :is :blue.
 
     () log:onNegativeSurface {
         # -> Q
-        _:S :is :beautiful .
+        skolem:S :is :beautiful .
     } .
 } .
 
-(_:S) log:onNegativeSurface {
+(skolem:S) log:onNegativeSurface {
     # Need to match something in the data to trigger the rules
-    _:S a :Car.
+    skolem:S a :Car.
 
     # P
     () log:onNegativeSurface {
-        _:S :is :green . 
+        skolem:S :is :green . 
     } .
 
     # OR R
     () log:onNegativeSurface {
-        _:S :is :blue . 
+        skolem:S :is :blue . 
     } .
 } .
 
@@ -75,6 +75,6 @@
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
-    _:S :is _:O .
+(skolem:S skolem:O) log:onQuerySurface {
+    skolem:S :is skolem:O .
 } .

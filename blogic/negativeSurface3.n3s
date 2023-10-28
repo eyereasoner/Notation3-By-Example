@@ -2,14 +2,14 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # ∀x : ~( Beetle a Car )
-(_:x) log:onNegativeSurface {
+(skolem:x) log:onNegativeSurface {
     :Beetle a :Car .
 } .
 
-(_:S _:O) log:onQuestionSurface {
+(skolem:S skolem:O) log:onQuestionSurface {
     # ∀S,O : ~(S a O)
     () log:onNegativeSurface {
-        _:S a _:O .
+        skolem:S a skolem:O .
     } .
     () log:onAnswerSurface {
         :test :is true .

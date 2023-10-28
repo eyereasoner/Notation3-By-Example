@@ -1,10 +1,10 @@
 @prefix : <urn:example:> .
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
-(_:X _:G) log:onNegativeSurface {
-   _:X log:onNegativeSurface _:G .
+(skolem:X skolem:G) log:onNegativeSurface {
+   skolem:X log:onNegativeSurface skolem:G .
 } .
 
-(_:S _:P _:O) log:onQuerySurface {
-    _:S _:P _:O .
+(skolem:S skolem:P skolem:O) log:onQuerySurface {
+    skolem:S skolem:P skolem:O .
 } .

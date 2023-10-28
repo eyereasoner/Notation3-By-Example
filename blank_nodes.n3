@@ -4,14 +4,14 @@
 
 # Ex 1
 :let :c1 {
-    # Blank _:x on the left is the same as _:x on the right
+    # Blank _:x on the left is not the same as _:x on the right
     _:x :says { _:x a :Cat } .
 }.
 
 # Ex 2
 :let :c2 {
-    # Blank _:x on the left is the same as _:x on the right
-    # and even the same blank node as any in example 1
+    # Blank _:x on the left is not the same as _:x on the right
+    # and even not the same blank node as any in example 1
     _:x :says { _:x a :Cat } .
 } .
 
@@ -20,7 +20,7 @@
     :let :c1 ?A .
     :let :c2 ?B .
     (?A ?B) log:conjunction ?C .
-	?C graph:length 1 .
+	?C graph:length 2 .
 }
 =>
 {
