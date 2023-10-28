@@ -9,36 +9,36 @@
 # .. with one and only one pol:when
 # .. with at least one pol:then or pol:thenNot
 (
-    _:Rule _:Body 
-    _:WhenCount 
-    _:ThenCount 
-    _:ThenNotCount
-    _:S _:O
+    skolem:Rule skolem:Body 
+    skolem:WhenCount 
+    skolem:ThenCount 
+    skolem:ThenNotCount
+    skolem:S skolem:O
 ) log:onNegativeSurface {
-    _:Rule a pol:Rule ;
-       pol:body _:Body .
+    skolem:Rule a pol:Rule ;
+       pol:body skolem:Body .
 
-    ( { _:S pol:when _:O } _:Body) util:cardinality _:WhenCount .
-    ( { _:S pol:then _:O } _:Body) util:cardinality _:ThenCount .
-    ( { _:S pol:thenNot _:O } _:Body) util:cardinality _:ThenNotCount .
+    ( { skolem:S pol:when skolem:O } skolem:Body) util:cardinality skolem:WhenCount .
+    ( { skolem:S pol:then skolem:O } skolem:Body) util:cardinality skolem:ThenCount .
+    ( { skolem:S pol:thenNot skolem:O } skolem:Body) util:cardinality skolem:ThenNotCount .
 
     () log:onNegativeSurface {
 
         # When we have a then
         () log:onNegativeSurface {
-            _:WhenCount math:equalTo 1 .
-            _:ThenCount math:greaterThan 0 .
+            skolem:WhenCount math:equalTo 1 .
+            skolem:ThenCount math:greaterThan 0 .
             () log:onNegativeSurface {
-                _:Rule a pol:ValidRule .
+                skolem:Rule a pol:ValidRule .
             }
         } .
 
         # When we have thenNot
         () log:onNegativeSurface {
-            _:WhenCount math:equalTo 1 .
-            _:ThenNotCount math:greaterThan 0 .
+            skolem:WhenCount math:equalTo 1 .
+            skolem:ThenNotCount math:greaterThan 0 .
             () log:onNegativeSurface {
-                _:Rule a pol:ValidRule .
+                skolem:Rule a pol:ValidRule .
             }
         } .
     } .
