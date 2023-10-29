@@ -13,24 +13,24 @@
 # IMPLIES
 #   (<Login> user <User>) &
 #   (<Login> a ValidLogin)        
-(_:Login _:Client _:Session _:User) log:onNegativeSurface {
+(skolem:Login skolem:Client skolem:Session skolem:User) log:onNegativeSurface {
     
-    _:Login 
+    skolem:Login 
         a :Login ;
-        :as _:User .
+        :as skolem:User .
 
-    _:Session a :LoginSession ;
-        :user _:User ;
-        :client _:Client ;
+    skolem:Session a :LoginSession ;
+        :user skolem:User ;
+        :client skolem:Client ;
         :status :LoggedIn .
 
-    _:Client 
+    skolem:Client 
         a :DataConsumer ;
         :isActive true .
 
     () log:onNegativeSurface {
-        _:Login :user _:User .
-        _:Login a :ValidLogin .
+        skolem:Login :user skolem:User .
+        skolem:Login a :ValidLogin .
     } .
 } .
 
@@ -47,21 +47,21 @@
 # IMPLIES
 #   (<Login> organization <Organization>) &
 #   (<Login> a ValidMembership)
-(_:Login _:Membership _:Organization _:User) log:onNegativeSurface {
-    _:Login 
+(skolem:Login skolem:Membership skolem:Organization skolem:User) log:onNegativeSurface {
+    skolem:Login 
         a :Login ;
-        :user _:User .
+        :user skolem:User .
 
-    _:Membership 
+    skolem:Membership 
         a :PMPMembership ;
         :isActive true ;
-        :hasOrganization _:Organization ;
-        :hasMember _:User .
+        :hasOrganization skolem:Organization ;
+        :hasMember skolem:User .
 
     () log:onNegativeSurface {
-        _:Login :membership _:Membership .
-        _:Login :organization _:Organization .
-        _:Login a :ValidMembership .
+        skolem:Login :membership skolem:Membership .
+        skolem:Login :organization skolem:Organization .
+        skolem:Login a :ValidMembership .
     } .
 } .
 
@@ -73,18 +73,18 @@
 # (<Organization> hasMember <User>)
 # IMPLIES:
 #   (<Login> a ValidOrganization)
-(_:Login _:Organization _:User) log:onNegativeSurface {
-    _:Login 
+(skolem:Login skolem:Organization skolem:User) log:onNegativeSurface {
+    skolem:Login 
         a :Login ;
-        :user _:User .
+        :user skolem:User .
 
-    _:Organization 
+    skolem:Organization 
         a :Organization ;
         :isActive true ;
-        :hasMember _:User .
+        :hasMember skolem:User .
 
     () log:onNegativeSurface {
-        _:Login a :ValidOrganization .
+        skolem:Login a :ValidOrganization .
     }
 } .
 
@@ -98,20 +98,20 @@
 # IMPLIES:
 #   (<Login> clientSubscription <Client>) &&
 #   (<Login> a ValidSubscription)
-(_:Login _:Membership _:Client _:Subscription) log:onNegativeSurface {
-    _:Login 
+(skolem:Login skolem:Membership skolem:Client skolem:Subscription) log:onNegativeSurface {
+    skolem:Login 
         a :Login ;
-        :membership _:Membership .
+        :membership skolem:Membership .
 
-    _:Subscription 
+    skolem:Subscription 
         a :Subscription ;
         :isActive true ;
-        :hasMembership _:Membership ;
-        :hasClient _:Client .
+        :hasMembership skolem:Membership ;
+        :hasClient skolem:Client .
 
     () log:onNegativeSurface {
-        _:Login :subscription _:Subscription .
-        _:Login :clientSubscription _:Client .
-        _:Login a :ValidSubscription .
+        skolem:Login :subscription skolem:Subscription .
+        skolem:Login :clientSubscription skolem:Client .
+        skolem:Login a :ValidSubscription .
     } .  
 } .

@@ -5,18 +5,18 @@
 # ValidCheck defines the required classes for a login (Required).
 # Login has a collection of classes (HasClasses).
 # When check if Required is equal to HasClasses.
-(_:Login _:Class _:HasClasses _:Required _:SCOPE) log:onNegativeSurface {
-    _:Login 
+(skolem:Login skolem:Class skolem:HasClasses skolem:Required skolem:SCOPE) log:onNegativeSurface {
+    skolem:Login 
         a :Login.
 
-    :ValidCheck :requires _:Required .
+    :ValidCheck :requires skolem:Required .
 
-    ( _:Class { _:Login a _:Class} _:HasClasses) log:collectAllIn _:SCOPE .
+    ( skolem:Class { skolem:Login a skolem:Class} skolem:HasClasses) log:collectAllIn skolem:SCOPE .
 
-    _:Required list:setEqualTo _:HasClasses .
+    skolem:Required list:setEqualTo skolem:HasClasses .
 
     () log:onNegativeSurface {
-        _:Login :action :AllowService .
+        skolem:Login :action :AllowService .
     } .
 } .
 
@@ -24,19 +24,19 @@
 # We check if each required class (Class) is defined for the Login.
 # If true, then nothing happens.
 # If false, report the missing classes.
-(_:Login _:Requires _:Class _:SCOPE) log:onNegativeSurface {
-    _:Login
+(skolem:Login skolem:Requires skolem:Class skolem:SCOPE) log:onNegativeSurface {
+    skolem:Login
         a :Login.
 
-    :ValidCheck :requires _:Requires .
-    _:Requires list:member _:Class .
+    :ValidCheck :requires skolem:Requires .
+    skolem:Requires list:member skolem:Class .
 
-    _:SCOPE log:notIncludes {
-        _:Login a _:Class .
+    skolem:SCOPE log:notIncludes {
+        skolem:Login a skolem:Class .
     } .
 
     () log:onNegativeSurface {
-        _:Login :action :DenyService .
-        _:Login :missing _:Class .
+        skolem:Login :action :DenyService .
+        skolem:Login :missing skolem:Class .
     } .
 } .

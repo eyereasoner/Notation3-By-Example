@@ -12,22 +12,22 @@
 # IMPLIES
 #    (<Login> a ValidTransactionUsageContract) &
 #    (<Login> contract <TransactionUsageContract>)
-(_:Login _:Client _:Membership _:TransactionUsageContract) log:onNegativeSurface {
-    _:Login
+(skolem:Login skolem:Client skolem:Membership skolem:TransactionUsageContract) log:onNegativeSurface {
+    skolem:Login
          a :Login;
-         :client _:Client ;
-         :membership _:Membership .
+         :client skolem:Client ;
+         :membership skolem:Membership .
 
-    _:TransactionUsageContract 
+    skolem:TransactionUsageContract 
         a :TransactionUsageContract ;
         :isActive true ;
-        :hasMembership _:Membership ;
-        :hasClient _:Client .
+        :hasMembership skolem:Membership ;
+        :hasClient skolem:Client .
         
     () log:onNegativeSurface {
-        _:Login
+        skolem:Login
             a :ValidTransactionUsageContract ;
-            :contract _:TransactionUsageContract .
+            :contract skolem:TransactionUsageContract .
     } .
 } .
 
@@ -44,26 +44,26 @@
 # (<Allows> subscriber <User>)
 # IMPLIES
 #   (<Login> a ValidPermission)
-(_:Login _:Contract _:User _:Membership _:Permission _:Allows) log:onNegativeSurface {
-    _:Login 
+(skolem:Login skolem:Contract skolem:User skolem:Membership skolem:Permission skolem:Allows) log:onNegativeSurface {
+    skolem:Login 
         a :Login ;
-        :user _:User ;
-        :membership _:Membership ;
-        :contract _:Contract . 
+        :user skolem:User ;
+        :membership skolem:Membership ;
+        :contract skolem:Contract . 
 
-    _:Permission 
+    skolem:Permission 
         a :Permission ;
         :isActive true ;
-        :hasMembership _:Membership .
+        :hasMembership skolem:Membership .
 
-    _:Permission :allows _:Allows .
+    skolem:Permission :allows skolem:Allows .
 
-    _:Allows 
-        :contract _:Contract ;
-        :subscriber _:User .
+    skolem:Allows 
+        :contract skolem:Contract ;
+        :subscriber skolem:User .
 
     () log:onNegativeSurface {
-        _:Login
+        skolem:Login
             a :ValidPermission .
     } .
 } .
