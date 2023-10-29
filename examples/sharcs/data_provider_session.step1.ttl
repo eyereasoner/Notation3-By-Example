@@ -1,5 +1,4 @@
 @prefix ex: <http://www.example.org/rdf#>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#>.
 
 ex:MyTestProvider a ex:Login.
 ex:MyTestProvider a ex:ValidAccessGrant.
@@ -14,4 +13,3 @@ ex:MyTestProvider ex:user ex:user1.
 ex:MyTestProvider ex:grant ex:AccessGrant123.
 ex:MyTestProvider ex:membership ex:ABCMembership.
 ex:MyTestProvider ex:organization ex:ABC.
-
