@@ -19,3 +19,7 @@ Run the code online by copy and pasting into the online [Notation3 Editor](http:
 - https://github.com/eyereasoner/eye/blob/master/reasoning/bi/biP.n3
 - https://docs.google.com/presentation/d/191Dt3ooe8G8o7uP5eI-ePiFGjAFk5s2okzHrsUHH1OI/edit#slide=id.g1163749ccf3_1_830
 - https://n3.restdesc.org
+
+## Blogic
+
+To run the blogic examples check the required EYE version in the file EYE_VERSION
