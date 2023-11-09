@@ -14,7 +14,7 @@
 } .
 
 # If X knows Y, then X,Y is knowable
-(_:S _:O) log:onNegativeSurface {
+(skolem:S skolem:O) log:onNegativeSurface {
 
     # We add the premise on a postive
     # surface .. it is not strictly needed 
@@ -24,29 +24,29 @@
     #   () log:onNegativeSurface {}
     # is a contradiction because a positive empty surface {} is a 'true'
     () log:onPositiveSurface {
-        _:S :knows _:O .
+        skolem:S :knows skolem:O .
     } .
 
     () log:onNegativeSurface {
-        _:S :isKnowable true .
-        _:O :isKnowable true .
+        skolem:S :isKnowable true .
+        skolem:O :isKnowable true .
     } .
 } .
 
 # Here we implement a broken rule, we add graffiti
 # on the positive surface to block the scope of the variables
-(_:S _:O) log:onNegativeSurface {
-    # Write for _:S and _:O new grafiti ..
-    (_:S _:O) log:onPositiveSurface {
-        _:S :knows _:O .
+(skolem:S skolem:O) log:onNegativeSurface {
+    # Write for skolem:S and skolem:O new grafiti ..
+    (skolem:S skolem:O) log:onPositiveSurface {
+        skolem:S :knows skolem:O .
     } .
     () log:onNegativeSurface {
-        _:S :hates _:O .
+        skolem:S :hates skolem:O .
     } .
 } .
 
-(_:S) log:onQuerySurface {
-    _:S :isKnowable true .
+(skolem:S) log:onQuerySurface {
+    skolem:S :isKnowable true .
 } .
 
 # Test 
@@ -54,14 +54,14 @@
 () log:onPositiveSurface {
     [] :hates [] .
 
-    (_:Counter _:S _:O) log:onNegativeSurface {
+    (skolem:Counter skolem:S skolem:O) log:onNegativeSurface {
         :Alice :isKnowable true .
         :Bob :isKnowable true .
         :Charly :isKnowable true .
 
         # There shouldn't be any extra hates
-        _:Counter a log:GraphCounter .
-        { _:S :hates _:O } _:Counter 1.
+        skolem:Counter a log:GraphCounter .
+        { skolem:S :hates skolem:O } skolem:Counter 1.
 
         () log:onNegativeSurface {
             :test :is true .
@@ -71,10 +71,10 @@
 
 # Add a counter
 :cardinalCount a log:GraphCounter .
-(_:Graph _:Count _:List _:Scope) log:onNegativeSurface {
-    () log:onNegativeSurface <<_:Graph :cardinalCount _:Count>> .
-    ( () _:Graph _:List ) log:collectAllIn _:Scope .
-    _:List list:length _:Count .
+(skolem:Graph skolem:Count skolem:List skolem:Scope) log:onNegativeSurface {
+    () log:onNegativeSurface <<skolem:Graph :cardinalCount skolem:Count>> .
+    ( () skolem:Graph skolem:List ) log:collectAllIn skolem:Scope .
+    skolem:List list:length skolem:Count .
 } .
 
 () log:onQuerySurface {

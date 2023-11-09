@@ -34,16 +34,16 @@ When running `test_valid.sh` you should get as output:
 @prefix graph: <http://www.w3.org/2000/10/swap/graph#>.
 @prefix math: <http://www.w3.org/2000/10/swap/math#>.
 
-:Record1 pol:policy _:bn_1.
-_:bn_1 a fno:Execution.
-_:bn_1 fno:executes :appendToLog.
-:Record1 pol:policy _:bn_2.
-_:bn_2 a fno:Execution.
-_:bn_2 fno:executes :removeBlindCopies.
-:Record1 pol:policy _:bn_3.
-_:bn_3 a fno:Execution.
-_:bn_3 fno:executes :sendMessage.
-_:bn_3 :to <https://somebody.net/profile/card#me>.
-_:bn_3 :from <https://alice.net/card#me>.
-_:bn_3 :message <http://university.us/publications/mellon.pdf>.
+:Record1 pol:policy skolem:bn_1.
+skolem:bn_1 a fno:Execution.
+skolem:bn_1 fno:executes :appendToLog.
+:Record1 pol:policy skolem:bn_2.
+skolem:bn_2 a fno:Execution.
+skolem:bn_2 fno:executes :removeBlindCopies.
+:Record1 pol:policy skolem:bn_3.
+skolem:bn_3 a fno:Execution.
+skolem:bn_3 fno:executes :sendMessage.
+skolem:bn_3 :to <https://somebody.net/profile/card#me>.
+skolem:bn_3 :from <https://alice.net/card#me>.
+skolem:bn_3 :message <http://university.us/publications/mellon.pdf>.
 ```

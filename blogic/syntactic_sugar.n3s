@@ -3,21 +3,21 @@
 
 :Ghent a :City .
 
-# There is an _:S that is a city implies _:S a HumanCommunity AND _:S a :Settlement
-( ( _:S ) { _:S a :City } ) :implies { _:S a :HumanCommunity } , { _:S a :Settlement } .
+# There is an skolem:S that is a city implies skolem:S a HumanCommunity AND skolem:S a :Settlement
+( ( skolem:S ) { skolem:S a :City } ) :implies { skolem:S a :HumanCommunity } , { skolem:S a :Settlement } .
 
-( _:S _:O ) log:onQuerySurface {
-    _:S a _:O .
+( skolem:S skolem:O ) log:onQuerySurface {
+    skolem:S a skolem:O .
 } .
 
 # START BLOGIC Stuff------------------------------------------------------------
 # Compile the syntactic sugar for implies into blogic
-( _:X _:G1 _:G2 _:G3 ) log:onNegativeSurface {
-    ( _:X _:G1 ) :implies _:G2 .
-    ( _:G1 { ( ) log:onNegativeSurface _:G2 } ) log:conjunction _:G3 .
+( skolem:X skolem:G1 skolem:G2 skolem:G3 ) log:onNegativeSurface {
+    ( skolem:X skolem:G1 ) :implies skolem:G2 .
+    ( skolem:G1 { ( ) log:onNegativeSurface skolem:G2 } ) log:conjunction skolem:G3 .
 
     ( ) log:onNegativeSurface {
-        _:X log:onNegativeSurface _:G3 .
+        skolem:X log:onNegativeSurface skolem:G3 .
     }
 } .
 # END BLOGIC Stuff--------------------------------------------------------------

@@ -4,6 +4,10 @@ SHARCS example is a collection of data, rules and validation steps to simulate a
 
 This code is an expansion of the [sharcs example](https://github.com/eyereasoner/Notation3-By-Example/tree/main/examples/sharcs). Instead of writing the policy rules in [RDF Surfaces](https://w3c-cg.github.io/rdfsurfaces/) language we use the [ODRL2](https://www.w3.org/ns/odrl/2/) ontology examples provided by [Inès Akaichi](https://github.com/Ines-Akaichi/SHARCS-Use-Case).
 
+## Dependencies
+
+- EYE v4.5.3
+
 ## Architecture
 
 This experiment contains the core knowledge base `data.ttl` which can be accessed using RDF Surfaces policies (the `.n3s` files). These policies are compiled from their Turtle source files:

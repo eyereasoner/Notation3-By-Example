@@ -13,9 +13,9 @@
     :C a :D .
 } .
 
-(_:S _:O) log:onNegativeSurface {
+(skolem:S skolem:O) log:onNegativeSurface {
     () log:onNegativeSurface {
-        _:S a _:O .
+        skolem:S a skolem:O .
     } .
 
     () log:onNegativeSurface {

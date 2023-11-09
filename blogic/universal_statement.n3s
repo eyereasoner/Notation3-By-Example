@@ -6,8 +6,8 @@
 # Follows:
 #  ~(bob is Perfect) 
 
-(_:X) log:onNegativeSurface {
-    _:X :is :Perfect .
+(skolem:X) log:onNegativeSurface {
+    skolem:X :is :Perfect .
 } .
 
 () log:onQuestionSurface {

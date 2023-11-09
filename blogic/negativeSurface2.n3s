@@ -21,25 +21,25 @@
 # ~ ( P AND ~Q AND ~R ) <=> ~P OR ~(~Q AND ~R ) <=>
 # P -> ~(~Q AND ~R) <=> P -> Q OR R
 # Adding more negative surfaces expresses thus an OR relation.
-(_:X _:Y _:Z) log:onNegativeSurface {
-    _:X :friend _:Y .
-    _:Y :friend _:Z .
+(skolem:X skolem:Y skolem:Z) log:onNegativeSurface {
+    skolem:X :friend skolem:Y .
+    skolem:Y :friend skolem:Z .
 
     () log:onNegativeSurface {
-        _:X :likes _:Y .
+        skolem:X :likes skolem:Y .
     } .
 
     () log:onNegativeSurface {
-        _:X :likes _:Z .
+        skolem:X :likes skolem:Z .
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
-    _:S :friend _:O . 
+(skolem:S skolem:O) log:onQuerySurface {
+    skolem:S :friend skolem:O . 
 } .
 
-(_:S _:O) log:onQuerySurface {
-    _:S :likes _:O . 
+(skolem:S skolem:O) log:onQuerySurface {
+    skolem:S :likes skolem:O . 
 } .
 
 # Test

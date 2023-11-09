@@ -4,18 +4,18 @@
 
 # Provide a warning when something bad happens
 # E.g. exposing an email to a PublicAccess login
-(_:Login _:RS _:S _:email) log:onNegativeSurface {
+(skolem:Login skolem:RS skolem:S skolem:email) log:onNegativeSurface {
     () log:onAccessSurface {
-        _:Login a :PublicAccess .
+        skolem:Login a :PublicAccess .
     } .
 
-    () log:onResultSurface _:RS.
-    _:RS log:includes {_:S foaf:email _:email}.
+    () log:onResultSurface skolem:RS.
+    skolem:RS log:includes {skolem:S foaf:email skolem:email}.
 
     () log:onNegativeSurface {
         # We write the warning triples on a warning surface
         () log:onWarningSurface {
-            _:S foaf:email _:email {| 
+            skolem:S foaf:email skolem:email {| 
                 a log:WARNING; 
                 log:warningMessage "You are exposing email addresses as public access!" 
             |}.

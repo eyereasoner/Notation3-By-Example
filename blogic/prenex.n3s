@@ -4,9 +4,9 @@
 # (\Every x: (x a Cat)) v (:Hector a :Dog)
 () log:onNegativeSurface {
     () log:onNegativeSurface {
-        (_:X) log:onNegativeSurface {
+        (skolem:X) log:onNegativeSurface {
            () log:onNegativeSurface {
-              _:X a :Cat .
+              skolem:X a :Cat .
            } .
         } .
     } .
@@ -19,9 +19,9 @@
 () log:onQuestionSurface {
 
     # \Every x: ( (x a Cat) v (:Hector a :Dog) )
-    (_:X) log:onNegativeSurface {
+    (skolem:X) log:onNegativeSurface {
         () log:onNegativeSurface {
-            _:X a :Cat .
+            skolem:X a :Cat .
         } .
         () log:onNegativeSurface {
             :Hector a :Dog .

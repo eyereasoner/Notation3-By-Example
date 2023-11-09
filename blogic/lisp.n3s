@@ -15,13 +15,13 @@
     ) .
 
 # This is to display the output of your program
-(_:S _:O) log:onQuerySurface {
-    _:S :result _:O .
+(skolem:S skolem:O) log:onQuerySurface {
+    skolem:S :result skolem:O .
 } .
 
 # Test
-( _:S) log:onNegativeSurface {
-    _:S :result { :a a :c } .
+( skolem:S) log:onNegativeSurface {
+    skolem:S :result { :a a :c } .
     () log:onNegativeSurface {
         :test :is true .
     } .
@@ -35,50 +35,50 @@
 # This is still work in progress
 
 # Compile
-(_:Name _:Prog _:Answer) log:onNegativeSurface {
-    _:Name :value _:Prog .
+(skolem:Name skolem:Prog skolem:Answer) log:onNegativeSurface {
+    skolem:Name :value skolem:Prog .
 
-    _:Prog :eval _:Answer .
+    skolem:Prog :eval skolem:Answer .
 
     () log:onNegativeSurface {
-        _:Name :result _:Answer .
+        skolem:Name :result skolem:Answer .
     } .
 } .
 
-(_:L1 _:L2 _:H _:R) log:onNegativeSurface {
-    () log:onNegativeSurface <<_:L1 :eval _:L2>> .
+(skolem:L1 skolem:L2 skolem:H skolem:R) log:onNegativeSurface {
+    () log:onNegativeSurface <<skolem:L1 :eval skolem:L2>> .
 
-    _:L1 log:rawType rdf:List .
+    skolem:L1 log:rawType rdf:List .
 
     # Calculate the H(ead) and R(est)
-    _:L1 list:firstRest ( _:H _:R ) .
+    skolem:L1 list:firstRest ( skolem:H skolem:R ) .
 
-    _:H log:rawType log:Other .
+    skolem:H log:rawType log:Other .
 
     # Evaluate first the inner
-    _:R _:H _:L2 .
+    skolem:R skolem:H skolem:L2 .
 } .
 
-(_:L1 _:L2 _:Type) log:onNegativeSurface {
-    () log:onNegativeSurface <<_:L1 :eval _:L2>> .
-    _:L1 log:rawType _:Type .
-    _:Type log:notEqualTo rdf:List .
-    _:L1 log:equalTo _:L2 .
+(skolem:L1 skolem:L2 skolem:Type) log:onNegativeSurface {
+    () log:onNegativeSurface <<skolem:L1 :eval skolem:L2>> .
+    skolem:L1 log:rawType skolem:Type .
+    skolem:Type log:notEqualTo rdf:List .
+    skolem:L1 log:equalTo skolem:L2 .
 } .
 
-(_:L1 _:L2 _:H _:R _:Type) log:onNegativeSurface {
-    () log:onNegativeSurface <<_:L1 :eval _:L2>> .
+(skolem:L1 skolem:L2 skolem:H skolem:R skolem:Type) log:onNegativeSurface {
+    () log:onNegativeSurface <<skolem:L1 :eval skolem:L2>> .
 
-    _:L1 log:rawType rdf:List .
+    skolem:L1 log:rawType rdf:List .
 
     # Calculate the H(ead) and R(est)
-    _:L1 list:firstRest ( _:H _:R ).
+    skolem:L1 list:firstRest ( skolem:H skolem:R ).
 
-    _:H log:rawType _:Type .
+    skolem:H log:rawType skolem:Type .
 
-    _:Type log:notEqualTo log:Other .
+    skolem:Type log:notEqualTo log:Other .
 
-    _:L1 log:equalTo _:L2 .
+    skolem:L1 log:equalTo skolem:L2 .
 } .
 
 #############################################################
@@ -86,69 +86,69 @@
 #############################################################
 
 # :quote
-(_:L1 _:L2) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_:L1) :quote _:L2>> .
-    _:L1 log:equalTo _:L2 .
+(skolem:L1 skolem:L2) log:onNegativeSurface {
+    () log:onNegativeSurface <<(skolem:L1) :quote skolem:L2>> .
+    skolem:L1 log:equalTo skolem:L2 .
 } .
 
 # :atom
-(_:L1 _:X) log:onNegativeSurface {
-    () log:onNegativeSurface <<_:L1 :atom true>> .
-    _:L1 :eval _:X .
-    _:X log:rawType log:Formula . 
+(skolem:L1 skolem:X) log:onNegativeSurface {
+    () log:onNegativeSurface <<skolem:L1 :atom true>> .
+    skolem:L1 :eval skolem:X .
+    skolem:X log:rawType log:Formula . 
 } .
 
-(_:L1 _:X _:Y) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_:L1) :atom false>> .
-    _:L1 :eval _:X .
-    _:X log:rawType _:Y . 
-    _:Y log:notEqualTo log:Formula .
+(skolem:L1 skolem:X skolem:Y) log:onNegativeSurface {
+    () log:onNegativeSurface <<(skolem:L1) :atom false>> .
+    skolem:L1 :eval skolem:X .
+    skolem:X log:rawType skolem:Y . 
+    skolem:Y log:notEqualTo log:Formula .
 } .
 
 # :eq
-(_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_:L1 _:L2) :eq true>> .
-    _:L1 :eval _:X .
-    _:L2 :eval _:Y .
-    _:X :atom true .
-    _:X log:equalTo _:Y .
+(skolem:L1 skolem:L2 skolem:X skolem:Y) log:onNegativeSurface {
+    () log:onNegativeSurface <<(skolem:L1 skolem:L2) :eq true>> .
+    skolem:L1 :eval skolem:X .
+    skolem:L2 :eval skolem:Y .
+    skolem:X :atom true .
+    skolem:X log:equalTo skolem:Y .
 } .
 
-(_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_:L1 _:L2) :eq false>> .
-    _:L1 :eval _:X .
-    _:L2 :eval _:Y .
-    _:X :atom false .
+(skolem:L1 skolem:L2 skolem:X skolem:Y) log:onNegativeSurface {
+    () log:onNegativeSurface <<(skolem:L1 skolem:L2) :eq false>> .
+    skolem:L1 :eval skolem:X .
+    skolem:L2 :eval skolem:Y .
+    skolem:X :atom false .
 } .
 
-(_:L1 _:L2 _:X _:Y) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_:L1 _:L2) :eq false>> .
-    _:L1 :eval _:X .
-    _:L2 :eval _:Y .
-    _:X log:notEqualTo _:Y .
+(skolem:L1 skolem:L2 skolem:X skolem:Y) log:onNegativeSurface {
+    () log:onNegativeSurface <<(skolem:L1 skolem:L2) :eq false>> .
+    skolem:L1 :eval skolem:X .
+    skolem:L2 :eval skolem:Y .
+    skolem:X log:notEqualTo skolem:Y .
 } .
 
 # :car
-(_:L1 _:L2 _:X) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_:L1) :car _:L2>> .
-    _:L1 :eval _:X .
-    _:X list:first _:L2 .
+(skolem:L1 skolem:L2 skolem:X) log:onNegativeSurface {
+    () log:onNegativeSurface <<(skolem:L1) :car skolem:L2>> .
+    skolem:L1 :eval skolem:X .
+    skolem:X list:first skolem:L2 .
 } .
 
 # :cdr
-(_:L1 _:X _:Y _:L2) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_:L1) :cdr _:L2>> .
-    _:L1 :eval _:X .
+(skolem:L1 skolem:X skolem:Y skolem:L2) log:onNegativeSurface {
+    () log:onNegativeSurface <<(skolem:L1) :cdr skolem:L2>> .
+    skolem:L1 :eval skolem:X .
 
-    _:X list:firstRest ( _:Y _:L2 ) .
+    skolem:X list:firstRest ( skolem:Y skolem:L2 ) .
 } .
 
 # :cons
-(_:L1 _:X _:Y _:L2 _:L3) log:onNegativeSurface {
-    () log:onNegativeSurface <<(_:L1 _:L2) :cons _:L3>> .
-    _:L1 :eval _:X .
-    _:L2 :eval _:Y .
-    ( (_:X) _:Y ) list:append _:L3 .
+(skolem:L1 skolem:X skolem:Y skolem:L2 skolem:L3) log:onNegativeSurface {
+    () log:onNegativeSurface <<(skolem:L1 skolem:L2) :cons skolem:L3>> .
+    skolem:L1 :eval skolem:X .
+    skolem:L2 :eval skolem:Y .
+    ( (skolem:X) skolem:Y ) list:append skolem:L3 .
 } .
 
 # END BLOGIC Stuff--------------------------------------------------------------

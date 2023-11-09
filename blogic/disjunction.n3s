@@ -2,7 +2,7 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 # Testing full disjunction. Skipping the test because
-# we see it is failing when activating line 35 (_:S a :Person)
+# we see it is failing when activating line 35 (skolem:S a :Person)
 
 :Alice a :Person .
 () log:onNegativeSurface {
@@ -12,39 +12,39 @@
 # For all S a Person : 
 #  (S a DogLover) OR
 #  (S a CatLover)
-(_:S) log:onNegativeSurface {
-    _:S a :Person .
+(skolem:S) log:onNegativeSurface {
+    skolem:S a :Person .
 
     () log:onNegativeSurface {
-        _:S a :DogLover .
+        skolem:S a :DogLover .
     } .
 
     () log:onNegativeSurface {
-        _:S a :CatLover .
+        skolem:S a :CatLover .
     } .
 } .
 
 # All DogLovers are PetLovers
-(_:S) log:onNegativeSurface {
-    _:S a :DogLover .
+(skolem:S) log:onNegativeSurface {
+    skolem:S a :DogLover .
 
     () log:onNegativeSurface {
-        _:S a :PetLover .
+        skolem:S a :PetLover .
     } .
 } .
 
 # All CatLovers (that are Persons) are PetLovers
-(_:S) log:onNegativeSurface {
-    _:S a :Person .  # Without this line it works
-    _:S a :CatLover .
+(skolem:S) log:onNegativeSurface {
+    skolem:S a :Person .  # Without this line it works
+    skolem:S a :CatLover .
 
     () log:onNegativeSurface {
-        _:S a :PetLover .
+        skolem:S a :PetLover .
     } .
 } .
 
-(_:S _:O) log:onQuerySurface {
-    _:S a _:O .
+(skolem:S skolem:O) log:onQuerySurface {
+    skolem:S a skolem:O .
 } .
 
 # Test

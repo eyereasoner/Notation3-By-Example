@@ -4,6 +4,10 @@ This is a more elaborate experiment with a `data_consumer_policy.ttl` that conta
 
 Based on Inès Akaichi's [ODRL policies](https://github.com/Ines-Akaichi/SHARCS-Use-Case/tree/2f4793e995e098b4241faa2f6af8d3541efab03b).
 
+## Dependencies
+
+- EYE v4.5.3
+
 ## Demo
 
 Run the experiment:

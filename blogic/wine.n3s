@@ -6,11 +6,11 @@
 :Croissant a :French, :Bread .
 
 # ∀ x : ( x a Wine ) -> ( x contains Alcohol )
-(_:X) log:onNegativeSurface {
-    _:X a :Wine .
+(skolem:X) log:onNegativeSurface {
+    skolem:X a :Wine .
 
     () log:onNegativeSurface {
-        _:X :contains :Alcohol .
+        skolem:X :contains :Alcohol .
     } .
 } .
 
@@ -25,37 +25,37 @@
 #         ( ( x a Wine ) -> ( x contains Alcohol ) )  ->
 #         ( ( x a French ) -> ( x needs ImportTax ) )
 #  ) 
-(_:X) log:onNegativeSurface {
+(skolem:X) log:onNegativeSurface {
     () log:onNegativeSurface {
-        _:X a :Wine .
+        skolem:X a :Wine .
 
         () log:onNegativeSurface {
-            _:X :contains :Alcohol .
+            skolem:X :contains :Alcohol .
         } .
     } . 
     () log:onNegativeSurface {
         () log:onNegativeSurface {
-            _:X :contains :Alcohol . # This is the extra rule that makes the Question work (josd)
-            _:X a :French .
+            skolem:X :contains :Alcohol . # This is the extra rule that makes the Question work (josd)
+            skolem:X a :French .
 
             () log:onNegativeSurface {
-                _:X :needs :ImportTax .
+                skolem:X :needs :ImportTax .
             } .
         } . 
     } .
 } .
 
 # Output
-(_:S _:P) log:onQuerySurface {
-    _:S a _:P .
+(skolem:S skolem:P) log:onQuerySurface {
+    skolem:S a skolem:P .
 } .
 
-(_:S _:P) log:onQuerySurface {
-    _:S :contains _:P .
+(skolem:S skolem:P) log:onQuerySurface {
+    skolem:S :contains skolem:P .
 } .
 
-(_:S _:P) log:onQuerySurface {
-    _:S :needs _:P .
+(skolem:S skolem:P) log:onQuerySurface {
+    skolem:S :needs skolem:P .
 } .
 
 # Test

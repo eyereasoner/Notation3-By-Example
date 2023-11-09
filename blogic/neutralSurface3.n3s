@@ -10,14 +10,14 @@
 } .
 
 # Test if we can match the neutral surface
-(_:S _:B) log:onNegativeSurface {
-    _:S log:onNeutralSurface _:B .
+(skolem:S skolem:B) log:onNegativeSurface {
+    skolem:S log:onNeutralSurface skolem:B .
 
     # Are we allowed to find contradictional information ?
     # We need log:includes to 'unquote' the surface
-    _:B log:includes { :A a :B } .
+    skolem:B log:includes { :A a :B } .
 
-    _:B log:includes { 
+    skolem:B log:includes { 
         () log:onNegativeSurface { :A a :B } .
     } .
 

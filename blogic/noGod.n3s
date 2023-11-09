@@ -5,14 +5,14 @@
 # On the positive surface we introduce a new God. Then we count how 
 # many Gods there are on the implicit surface and if there is just one, 
 # we know we didn't have a God on the original surface.
-(_:x) log:onPositiveSurface {
-    _:x a :God .
+(skolem:x) log:onPositiveSurface {
+    skolem:x a :God .
 
-    (_:y _:Counter) log:onNegativeSurface { 
+    (skolem:y skolem:Counter) log:onNegativeSurface { 
 
     # See: cardinality.n3
-        _:Counter a log:GraphCounter .
-        { _:y a :God } _:Counter 1.
+        skolem:Counter a log:GraphCounter .
+        { skolem:y a :God } skolem:Counter 1.
 
         () log:onNegativeSurface {
             <> a :MissingGodTest .
@@ -22,19 +22,19 @@
 
 # This is a local implementation of a log:GraphCounter
 :cardinalCount a log:GraphCounter .
-(_:Graph _:Count _:List _:Scope) log:onNegativeSurface {
-    () log:onNegativeSurface <<_:Graph :cardinalCount _:Count>> .
-    ( () _:Graph _:List ) log:collectAllIn _:Scope .
-    _:List list:length _:Count .
+(skolem:Graph skolem:Count skolem:List skolem:Scope) log:onNegativeSurface {
+    () log:onNegativeSurface <<skolem:Graph :cardinalCount skolem:Count>> .
+    ( () skolem:Graph skolem:List ) log:collectAllIn skolem:Scope .
+    skolem:List list:length skolem:Count .
 } .
 
-(_:S _:O) log:onQuerySurface {
-    _:S a _:O .
+(skolem:S skolem:O) log:onQuerySurface {
+    skolem:S a skolem:O .
 } .
 
 # Test 
-(_:x) log:onNegativeSurface {
-    _:x a :MissingGodTest .
+(skolem:x) log:onNegativeSurface {
+    skolem:x a :MissingGodTest .
     () log:onNegativeSurface {
         :test :is true .
     } .

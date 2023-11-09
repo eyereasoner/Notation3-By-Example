@@ -12,25 +12,25 @@
 # (<AccessGrant> client <Client>) 
 # IMPLIES
 #    (<Login> a ValidAccessGrant)
-(_:Login _:User _:Session _:Client _:AccessGrant) log:onNegativeSurface {
-    _:Login 
+(skolem:Login skolem:User skolem:Session skolem:Client skolem:AccessGrant) log:onNegativeSurface {
+    skolem:Login 
         a :Login ;
-        :as _:User .
+        :as skolem:User .
 
-    _:Session 
+    skolem:Session 
         a :LoginSession ;
-        :user _:User ;
+        :user skolem:User ;
         :status :LoggedIn ;
-        :client _:Client .
+        :client skolem:Client .
 
-    _:AccessGrant
+    skolem:AccessGrant
         a :AccessGrant ;
         :isActive true ;
-        :client _:Client .
+        :client skolem:Client .
     
     () log:onNegativeSurface {
-        _:Login
+        skolem:Login
             a :ValidAccessGrant ;
-            :grant _:AccessGrant .
+            :grant skolem:AccessGrant .
     }
 } .

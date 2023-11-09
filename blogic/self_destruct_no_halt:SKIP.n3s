@@ -3,15 +3,15 @@
 
 # If there is a negative surface (including this surface)
 # this surface is false, or Beetle is a Car
-(_:G _:F) log:onNegativeSurface {
-   _:G log:onNegativeSurface _:F .
+(skolem:G skolem:F) log:onNegativeSurface {
+   skolem:G log:onNegativeSurface skolem:F .
 
    () log:onNegativeSurface {
 
        # Preparing the OR case
        () log:onNegativeSurface {
            # This surface was false
-           _:G log:onNegativeSurface _:F .
+           skolem:G log:onNegativeSurface skolem:F .
         
            # A Beetle is a Car
            () log:onNegativeSurface {

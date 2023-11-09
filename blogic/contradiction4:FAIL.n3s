@@ -3,12 +3,12 @@
 
 # \Some x,y,z : :Alice :hates :Quiche 
 () log:onNegativeSurface {
-    (_:a _:b _:c) log:onNegativeSurface {
+    (skolem:a skolem:b skolem:c) log:onNegativeSurface {
         :Alice :hates :Quiche
     } .
 } .
 
 # \Every a : :Alices :hates :Quiche 
-(_:a) log:onNegativeSurface {
+(skolem:a) log:onNegativeSurface {
     :Alice :hates :Quiche .
 } .
