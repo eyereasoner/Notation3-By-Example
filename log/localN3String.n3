@@ -18,7 +18,7 @@
 } .
 
 {
-    ?X :localN3String "<http://example.org/MyName> a <urn:example:Name>" .
+    ?X :localN3String "<http://example.org/MyName> a :Name" .
 }
 => 
 {

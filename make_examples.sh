@@ -51,7 +51,7 @@ for f in $(find . -name "*.out" | sort) ; do
     elif [[ $f =~ SKIP ]]; then
         echo -e "${PINK}SKIPPED${NORMAL}"
         ((SKIPPED++))
-    elif [[ $(grep '<urn:example:test> <urn:example:is> true' $f) ]]; then
+    elif [[ $(grep ':test :is true' $f) ]]; then
         echo -e "${GREEN}OK${NORMAL}"
         ((OK++))
     elif [[ $(grep '() log:onAnswerSurface true' $f) ]]; then
