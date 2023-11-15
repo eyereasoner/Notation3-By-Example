@@ -1,0 +1,72 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+:test1
+    :policy :PolicyX ;
+    :has :A , :B , :C .
+
+:PolicyX
+    a :Policy ;
+    :allOf :A, :B ;
+    :anyOf :C ;
+    :noneOf :D .
+
+
+(_:Pol _:Test _:Field _:X) log:onNegativeSurface {
+    _:Test :policy _:Pol .
+
+    _:Pol a :Policy .
+
+    ( { _:Pol :allOf _:Field } { _:Test :has _:Field } ) log:forAllIn _:X .
+
+    () log:onNegativeSurface {
+        _:Pol :pass :allOfTest .
+    } .
+} .
+
+(_:Pol _:Test _:Field _:List _:L _:X) log:onNegativeSurface {
+    _:Test :policy _:Pol .
+
+    _:Pol a :Policy .
+    
+    ( _:Field { _:Pol :anyOf _:Field . _:Test :has _:Field } _:List ) log:collectAllIn _:X .
+
+    _:List list:length _:L .
+
+    _:L log:notEqualTo 0 .
+
+    () log:onNegativeSurface {
+        _:Pol :pass :anyOfTest .
+    } .
+} .
+
+(_:Pol _:Test _:Field _:List _:L _:X) log:onNegativeSurface {
+    _:Test :policy _:Pol .
+
+    _:Pol a :Policy .
+    
+    ( _:Field { _:Pol :noneOf _:Field . _:Test :has _:Field } _:List ) log:collectAllIn _:X .
+
+    _:List list:length _:L .
+
+    _:L log:equalTo 0 .
+
+    () log:onNegativeSurface {
+        _:Pol :pass :noneOfTest .
+    } .
+} .
+
+(_:Pol) log:onNegativeSurface {
+    _:Pol a :Policy .
+
+    _:Pol :pass :allOfTest , :anyOfTest , :noneOfTest .
+
+    () log:onNegativeSurface {
+        :test :is true .
+    } .
+} .
+
+(_:S) log:onQuerySurface {
+    _:S :is true .
+} .
