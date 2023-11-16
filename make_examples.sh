@@ -11,7 +11,7 @@ SKIPPED=0
 
 if [ "$1" == "clean" ]; then
     rm *.out 2> /dev/null
-    for n3 in crypto graph list log math string time ; do
+    for n3 in crypto graph list log math string time blogic ; do
         rm $n3/*.out 2> /dev/null
     done
     exit 0
@@ -19,12 +19,12 @@ fi
 
 for n3 in *.n3 crypto/*.n3 graph/*.n3 list/*.n3 log/*.n3 math/*.n3 string/*.n3 time/*.n3 ; do
     if [[ "$n3" == "log/outputString.n3" ]] ; then
-        echo "eye --nope --quiet --pass --strings $n3 > $n3.out 2> /dev/null"
+        echo "eye --nope --quiet --pass --relabel-blank-nodes --strings $n3 > $n3.out 2> /dev/null"
         eye --nope --quiet --pass --relabel-blank-nodes --strings $n3 > $n3.out 2> /dev/null
     elif [[ "$n3" =~ SKIP ]] ; then
         echo "(skipping $n3)" | tee $n3.out
     else
-        echo "eye --nope --quiet --pass $n3 > $n3.out 2> /dev/null"
+        echo "eye --nope --quiet --pass --relabel-blank-nodes $n3 > $n3.out 2> /dev/null"
         eye --nope --quiet --pass --relabel-blank-nodes $n3 > $n3.out 2> /dev/null
     fi
 done
