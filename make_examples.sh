@@ -33,8 +33,8 @@ for n3s in blogic/*.n3s ; do
     if [[ "$n3s" =~ SKIP ]] ; then
         echo "(skipping $n3s)" | tee $n3s.out
     else
-        echo "eye --nope --quiet --no-bnode-relabeling $n3s > $n3s.out 2> /dev/null"
-        eye --nope --quiet --no-bnode-relabeling $n3s > $n3s.out 2> /dev/null
+        echo "eye --nope --quiet $n3s > $n3s.out 2> /dev/null"
+        eye --nope --quiet $n3s > $n3s.out 2> /dev/null
     fi
 done
 
