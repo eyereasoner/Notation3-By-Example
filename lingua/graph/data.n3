@@ -1,0 +1,18 @@
+@prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix : <#>.
+
+{
+ {
+    :A :B :C.
+    :D :E :F.
+ } log:equalTo 
+ {
+    :A :B :C.
+    :D :E ?Z .
+ }
+}
+=> {
+ :graph :has ?Z .
+} .
