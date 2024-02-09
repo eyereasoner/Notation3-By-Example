@@ -12,17 +12,17 @@
     lingua:conclusion false .
 
 _:differentFrom_1_Premise {
-    var:A owl:disjointWith var:B .
-    var:X a var:A .
-    var:Y a var:B .
+    var:A1 owl:disjointWith var:B1 .
+    var:X1 a var:A1 .
+    var:Y1 a var:B1 .
 }
 
 _:disjointWithRule_1_Conclusion {
-    var:X owl:differentFrom var:Y .
+    var:X1 owl:differentFrom var:Y1 .
 }
 
 _:disjointWithRule_2_Premise {
-    var:A owl:disjointWith var:B .
-    var:X a var:A .
-    var:X a var:B .
+    var:A2 owl:disjointWith var:B2 .
+    var:X2 a var:A2 .
+    var:X2 a var:B2 .
 }

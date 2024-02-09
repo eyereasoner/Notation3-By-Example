@@ -8,9 +8,9 @@
     lingua:conclusion _:differentFrom_1_Conclusion .
 
 _:differentFrom_1_Premise {
-    var:A owl:differentFrom var:B .
+    var:A123 owl:differentFrom var:B123 .
 } 
 
 _:differentFrom_1_Conclusion {
-    var:B owl:differentFrom var:A . 
+    var:B123 owl:differentFrom var:A123 . 
 }
