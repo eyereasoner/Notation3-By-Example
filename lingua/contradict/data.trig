@@ -1,0 +1,10 @@
+@prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <#>.
+
+:Star owl:disjointWith :Planet .
+
+# Jupiter can't be both a star and a planet
+:Jupiter a :Star .
+:Jupiter a :Planet .

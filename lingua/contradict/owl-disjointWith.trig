@@ -1,0 +1,28 @@
+@prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <#>.
+
+:disjointWithRule_1
+    lingua:premise _:disjointWithRule_1_Premise ;
+    lingua:conclusion _:disjointWithRule_1_Conclusion .
+
+:disjointWithRule_2
+    lingua:premise _:disjointWithRule_2_Premise ;
+    lingua:conclusion false .
+
+_:differentFrom_1_Premise {
+    var:A owl:disjointWith var:B .
+    var:X a var:A .
+    var:Y a var:B .
+}
+
+_:disjointWithRule_1_Conclusion {
+    var:X owl:differentFrom var:Y .
+}
+
+_:disjointWithRule_2_Premise {
+    var:A owl:disjointWith var:B .
+    var:X a var:A .
+    var:X a var:B .
+}

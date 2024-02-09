@@ -1,0 +1,16 @@
+@prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <#>.
+
+:differentFromRule_1
+    lingua:premise _:differentFrom_1_Premise ;
+    lingua:conclusion _:differentFrom_1_Conclusion .
+
+_:differentFrom_1_Premise {
+    var:A owl:differentFrom var:B .
+} 
+
+_:differentFrom_1_Conclusion {
+    var:B owl:differentFrom var:A . 
+}
