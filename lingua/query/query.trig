@@ -1,0 +1,16 @@
+@prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://example.org/ns#>.
+
+:queryname
+        lingua:question _:questionname;
+        lingua:answer _:answername.
+
+_:questionname {
+    :Diaske a var:X .    
+}
+
+_:answername {
+    :Diaske a var:X .
+}
