@@ -1,0 +1,10 @@
+@prefix : <file:///Users/patrickhochstenbach/github.com/eyereasoner/Notation3-By-Example/lingua/global/data.trig#>.
+@prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+
+:rule1 lingua:bindings ((var:X :Alice)).
+:rule1 lingua:bindings ((var:X :Bob)).
+:question lingua:bindings ((var:Z1 _:e_y_1) (var:Z2 :Alice)).
+_:e_y_1 :motherOf :Alice.
+:question lingua:bindings ((var:Z1 _:e_y_1) (var:Z2 :Bob)).
+_:e_y_1 :motherOf :Bob.

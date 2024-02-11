@@ -1,0 +1,31 @@
+@prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix : <#>.
+
+:Alice a :Person .
+:Bob a :Person .
+
+:rule1 
+    lingua:premise _:premise1 ;
+    lingua:conclusion _:conclusion1 .
+
+_:premise1 {
+    var:X a :Person .
+}
+
+_:conclusion1 {
+    _:y :motherOf var:X .
+}
+
+:question 
+   lingua:question _:question;
+   lingua:answer _:answer.
+
+_:question {
+    var:Z1 :motherOf var:Z2 .
+}
+
+_:answer {
+    var:Z1 :motherOf var:Z2 .
+}
