@@ -1,0 +1,14 @@
+@prefix : <http://example.org/ns#>.
+@prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+
+:rule1 lingua:bindings ((var:X :Diaske)).
+:rule2 lingua:bindings ((var:X :Human)).
+:rule2 lingua:bindings ((var:X :Person)).
+:queryname lingua:bindings ((var:X :Human)).
+:Diaske a :Human.
+:queryname lingua:bindings ((var:X :Person)).
+:Diaske a :Person.
+:queryname lingua:bindings ((var:X :ClassInstance)).
+:Diaske a :ClassInstance.
+:rule2 lingua:bindings ((var:X :ClassInstance)).
