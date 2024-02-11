@@ -13,7 +13,7 @@ _2_
 
 ```
 # Every person has a mother
-\forall x , \exists x (y a :Person) => (x :motherOf y)
+\forall y , \exists x (y a :Person) => (x :motherOf y)
 ```
 
 Lingua seems to use form _1_ .
