@@ -10,6 +10,12 @@
     lingua:premise _:premise1 ;
     lingua:conclusion _:conclusion1 .
 
+_:premise1
+    log:closedBy <> .
+
+_:conclusion1 
+    log:closedBy <> .
+
 _:premise1 {
     var:X a :Person .
 }
@@ -21,6 +27,12 @@ _:conclusion1 {
 :question 
    lingua:question _:question;
    lingua:answer _:answer.
+
+_:question
+    log:closedBy <> .
+
+_:answer
+    log:closedBy <> .
 
 _:question {
     var:Z1 :motherOf var:Z2 .

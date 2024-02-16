@@ -17,6 +17,12 @@
    lingua:question _:question;
    lingua:answer _:answer.
 
+_:question
+    log:closedBy <> .
+
+_:answer
+    log:closedBy <> .
+    
 _:question {
     :graph1 lingua:graph var:X .
     :graph2 lingua:graph var:Y .

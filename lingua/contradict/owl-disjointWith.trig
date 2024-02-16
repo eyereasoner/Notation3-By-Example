@@ -1,6 +1,7 @@
 @prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
 @prefix var: <http://www.w3.org/2000/10/swap/var#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix : <#>.
 
 :disjointWithRule_1
@@ -10,6 +11,15 @@
 :disjointWithRule_2
     lingua:premise _:disjointWithRule_2_Premise ;
     lingua:conclusion false .
+
+_:disjointWithRule_1_Premise
+    log:closedBy <> .
+
+_:disjointWithRule_1_Conclusion
+    log:closedBy <>.
+
+_:disjointWithRule_2_Premise
+    log:closedBy <>.
 
 _:differentFrom_1_Premise {
     var:A1 owl:disjointWith var:B1 .

@@ -1,11 +1,18 @@
 @prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
 @prefix var: <http://www.w3.org/2000/10/swap/var#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix : <http://example.org/ns#>.
 
 :queryname
         lingua:question _:questionname;
         lingua:answer _:answername.
+
+_:questionname
+    log:closedBy <> .
+
+_:answername
+    log:closedBy <> .
 
 _:questionname {
     :Diaske a var:X .    

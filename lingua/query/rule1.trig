@@ -1,11 +1,18 @@
 @prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
 @prefix var: <http://www.w3.org/2000/10/swap/var#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix : <http://example.org/ns#>.
 
 :rule1
     lingua:premise _:rule1_Premise ;
     lingua:conclusion _:rule1_Conclusion .
+
+_:rule1_Premise
+    log:closedBy <> .
+
+_:rule1_Conclusion
+    log:closedBy <> .
 
 _:rule1_Premise {
     var:X a :Human .
