@@ -10,7 +10,7 @@
 
 # Test...
 
-# This _:implication1 is true, the conlusion is false, thus the premise
+# Here _:implication1 is true, the conclusion is false, thus the premise
 # can't be true (thus false)
 _:implication1
     lingua:premise _:pre1 ;
