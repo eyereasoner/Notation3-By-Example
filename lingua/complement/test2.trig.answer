@@ -1,6 +1,6 @@
 @prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
 @prefix var: <http://www.w3.org/2000/10/swap/var#>.
-@prefix ns3: <file:///Users/hochsten/github.com/eyereasoner/Notation3-By-Example/lingua/complement/test2.trig#>.
+@prefix ns3: <file:///home/jdroo/github.com/eyereasoner/Notation3-By-Example/lingua/complement/test2.trig#>.
 
 _:e_implication2_1 lingua:bindings ((var:X ns3:equal) (var:Y ns3:notEqual)).
 _:e_implication3_1 lingua:bindings ((var:X ns3:equal) (var:Y ns3:notEqual)).

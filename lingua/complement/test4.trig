@@ -24,7 +24,6 @@ _:pre1 {
     :A :notEqual :B . # This is false
 }
 
-# START HACKING ...
 _:hacking1 
     lingua:premise _:hprem1 ;
     lingua:conclusion _:hcon1 .
@@ -43,24 +42,13 @@ _:hprem1 {
         lingua:premise var:Pre ;
         lingua:conclusion false .
 
-    # TODO Want to use var:Pre here instead of _:pre1 but this doesn't work ?!
-    #var:Pre lingua:graph var:PreGraph .
-    _:pre1 lingua:graph var:PreGraph .
-
-    var:Pre log:closedBy <> . # Required to match only graphs in this test file
-
-    _:htemplate lingua:graph var:TemplateGraph .
-    _:htemplate log:closedBy <> . # Required to match only graphs in this test file
-
-    var:PreGraph log:equalTo var:TemplateGraph .
+    var:Pre log:equalTo _:htemplate .
     var:P log:complement var:PComplement .
 }
 
 _:hcon1 {
     var:S var:PComplement var:O .
 }
-
-### END HACKING
 
 # Test
 :test 
