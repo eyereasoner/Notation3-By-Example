@@ -1,0 +1,54 @@
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix : <#>.
+
+# Definition of complement
+
+# With a triple with a predicate and the same triple with the complement(predicate)
+# can't be true at the same time.
+_:implication1
+    lingua:premise _:pre1 ;
+    lingua:conclusion false .
+
+_:pre1 log:closedBy <> .
+
+_:pre1 {
+    var:X log:complement var:Y .
+    var:Foo var:X var:Bar .
+    var:Foo var:Y var:Bar .
+}
+
+# Complements should be symmetric 
+## A complement B => B complement A
+_:implication2
+    lingua:premise _:pre2 ;
+    lingua:conclusion _:con2 .
+
+_:pre2 log:closedBy <> .
+_:con2 log:closedBy <> .
+
+_:pre2 {
+    var:X log:complement var:Y .
+}
+
+_:con2 {
+    var:Y log:complement var:X .
+}
+
+# Complement should be disjoint 
+## A complement A => false
+_:implication3
+    lingua:premise _:pre3 ;
+    lingua:conclusion _:con3 .
+
+_:pre3 log:closedBy <> .
+_:con3 log:closedBy <> .
+
+_:pre3 {
+    var:X log:complement var:Y .
+}
+
+_:con3 {
+    var:X log:disjointWith var:Y .
+}

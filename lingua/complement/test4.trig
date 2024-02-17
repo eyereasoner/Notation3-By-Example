@@ -1,0 +1,42 @@
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix : <#>.
+
+:equal log:complement :notEqual .
+
+:equal a log:SymmetricProperty .
+:notEqual a log:SymmetricProperty .
+
+# Test...
+
+# This _:implication1 is true, the conlusion is false, thus the premise
+# can't be true (thus false)
+_:implication1
+    lingua:premise _:pre1 ;
+    lingua:conclusion false .
+
+_:pre1 log:closedBy <> .
+_:con1 log:closedBy <> .
+
+# But in this case we create a premise is NOT { :A :notEqual :B }  
+# which should be equal to :A :equal :B 
+_:pre1 {
+    :A :notEqual :B . # This is false
+}
+
+# Test
+_:test 
+    lingua:question _:question ;
+    lingua:answer _:answer .
+
+_:question log:closedBy <> .
+_:answer log:closedBy <> .
+
+_:question {
+    :A :equal :B .
+}
+
+_:answer {
+    :test :is true .
+}
