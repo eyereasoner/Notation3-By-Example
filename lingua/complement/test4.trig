@@ -17,7 +17,6 @@ _:implication1
     lingua:conclusion false .
 
 _:pre1 log:closedBy <> .
-_:con1 log:closedBy <> .
 
 # But in this case we create a premise is NOT { :A :notEqual :B }  
 # which should be equal to :A :equal :B 
