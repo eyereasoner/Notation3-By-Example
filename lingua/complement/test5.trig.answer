@@ -1,0 +1,11 @@
+@prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix ns3: <file:///Users/patrickhochstenbach/github.com/eyereasoner/Notation3-By-Example/lingua/complement/test5.trig#>.
+
+_:e_implication1_2 lingua:bindings ((var:P log:complement) (var:S ns3:equal) (var:O ns3:notEqual)).
+_:e_implication1_2 lingua:bindings ((var:P ns3:equal) (var:S ns3:Alice) (var:O ns3:Bob)).
+_:e_implication1_2 lingua:bindings ((var:P ns3:equal) (var:S ns3:Alice) (var:O ns3:Charly)).
+_:e_implication1_2 lingua:bindings ((var:P log:complement) (var:S ns3:notEqual) (var:O ns3:equal)).
+_:e_implication1_2 lingua:bindings ((var:P ns3:equal) (var:S ns3:Bob) (var:O ns3:Alice)).
+_:e_implication1_2 lingua:bindings ((var:P ns3:equal) (var:S ns3:Charly) (var:O ns3:Alice)).
