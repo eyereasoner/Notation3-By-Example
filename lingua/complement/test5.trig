@@ -20,6 +20,12 @@ _:question {
     :A owl:sameAs :C .
     :B owl:sameAs :C .
     :A owl:sameAs :B .
+
+    :foo log:complement var:X .
+    var:X log:complement var:Y .
+
+    var:Y owl:sameAs :foo .
+    :foo owl:sameAs var:Y .
 }
 
 _:answer {

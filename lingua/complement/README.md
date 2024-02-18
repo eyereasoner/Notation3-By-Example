@@ -10,3 +10,4 @@ Test4 if the complement tricks would really do classical negation it should prod
   - Update 2024-02-17: with `HACKING` section the double negation can work for this example
 
 Test5 should result in `:A owl:sameAs :B`
+  - Testing Wouter Termonts comments on Mattermost `Solid Reasoning` channel 2024-02-18

@@ -46,3 +46,22 @@ _:pre2 {
 _:con2 {
     var:A owl:sameAs var:B .
 }
+
+# A complement's complement is sameAs A
+_:implication3
+    lingua:premise _:pre3 ;
+    lingua:conclusion _:con3 .
+
+_:pre3 log:closedBy <> .
+_:con3 log:closedBy <> .
+
+_:pre3 {
+    var:X log:complement var:A .
+    var:A log:complement var:B .
+    var:X log:notEqualTo var:A .
+    var:A log:notEqualTo var:B .
+}
+
+_:con3 {
+    var:X owl:sameAs var:B .
+}
