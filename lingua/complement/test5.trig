@@ -4,10 +4,21 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 @prefix : <#>.
 
-:equal log:complement :notEqual .
+:foo log:complement :A .
+:foo log:complement :B .
 
-:equal a owl:SymmetricProperty .
-:notEqual a owl:SymmetricProperty .
+# Test
+:test 
+    lingua:question _:question ;
+    lingua:answer _:answer .
 
-:Alice :equal :Bob .
-:Alice :equal :Charly .
+_:question log:closedBy <> .
+_:answer log:closedBy <> .
+
+_:question {
+    :A owl:sameAs :B .
+}
+
+_:answer {
+    :test :is true .
+}
