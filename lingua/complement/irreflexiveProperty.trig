@@ -1,0 +1,18 @@
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <#>.
+
+# Definition of a irreflexive property
+
+_:implication1
+    lingua:premise _:pre1 ;
+    lingua:conclusion false .
+
+_:pre1 log:closedBy <> .
+
+_:pre1 {
+    var:P a owl:IrreflexiveProperty.
+    var:S var:P var:S .
+}
