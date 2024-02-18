@@ -6,6 +6,7 @@
 
 :foo log:complement :A .
 :foo log:complement :B .
+:foo log:complement :C .
 
 # Test
 :test 
@@ -16,6 +17,8 @@ _:question log:closedBy <> .
 _:answer log:closedBy <> .
 
 _:question {
+    :A owl:sameAs :C .
+    :B owl:sameAs :C .
     :A owl:sameAs :B .
 }
 

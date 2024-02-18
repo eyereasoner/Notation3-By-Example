@@ -27,3 +27,22 @@ log:complement a owl:SymmetricProperty .
 # Complement should be disjoint 
 ## A complement A => false
 log:complement a owl:IrreflexiveProperty .
+
+# A complement is unique
+## A complement B & A complement C => B sameAs C
+_:implication2
+    lingua:premise _:pre2 ;
+    lingua:conclusion _:con2 .
+
+_:pre2 log:closedBy <> .
+_:con2 log:closedBy <> .
+
+_:pre2 {
+    var:X log:complement var:A .
+    var:X log:complement var:B .
+    var:A log:notEqualTo var:B .
+}
+
+_:con2 {
+    var:A owl:sameAs var:B .
+}

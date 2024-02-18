@@ -1,9 +1,19 @@
 @prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
 @prefix var: <http://www.w3.org/2000/10/swap/var#>.
-@prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix ns3: <file:///Users/patrickhochstenbach/github.com/eyereasoner/Notation3-By-Example/lingua/complement/test5.trig#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
 
+_:e_implication2_1 lingua:bindings ((var:X ns3:foo) (var:A ns3:A) (var:B ns3:B)).
+_:e_implication2_1 lingua:bindings ((var:X ns3:foo) (var:A ns3:A) (var:B ns3:C)).
+_:e_implication2_1 lingua:bindings ((var:X ns3:foo) (var:A ns3:B) (var:B ns3:A)).
+_:e_implication2_1 lingua:bindings ((var:X ns3:foo) (var:A ns3:B) (var:B ns3:C)).
+_:e_implication2_1 lingua:bindings ((var:X ns3:foo) (var:A ns3:C) (var:B ns3:A)).
+_:e_implication2_1 lingua:bindings ((var:X ns3:foo) (var:A ns3:C) (var:B ns3:B)).
 _:e_implication1_2 lingua:bindings ((var:P log:complement) (var:S ns3:foo) (var:O ns3:A)).
 _:e_implication1_2 lingua:bindings ((var:P log:complement) (var:S ns3:foo) (var:O ns3:B)).
+_:e_implication1_2 lingua:bindings ((var:P log:complement) (var:S ns3:foo) (var:O ns3:C)).
+ns3:test lingua:bindings ().
+ns3:test ns3:is true.
 _:e_implication1_2 lingua:bindings ((var:P log:complement) (var:S ns3:A) (var:O ns3:foo)).
 _:e_implication1_2 lingua:bindings ((var:P log:complement) (var:S ns3:B) (var:O ns3:foo)).
+_:e_implication1_2 lingua:bindings ((var:P log:complement) (var:S ns3:C) (var:O ns3:foo)).
