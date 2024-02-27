@@ -29,14 +29,14 @@ for n3 in *.n3 crypto/*.n3 graph/*.n3 list/*.n3 log/*.n3 math/*.n3 string/*.n3 t
     fi
 done
 
-for n3s in blogic/*.n3s ; do 
-    if [[ "$n3s" =~ SKIP ]] ; then
-        echo "(skipping $n3s)" | tee $n3s.out
-    else
-        echo "eye --nope --quiet $n3s > $n3s.out 2> /dev/null"
-        eye --nope --quiet $n3s > $n3s.out 2> /dev/null
-    fi
-done
+#for n3s in blogic/*.n3s ; do 
+#    if [[ "$n3s" =~ SKIP ]] ; then
+#        echo "(skipping $n3s)" | tee $n3s.out
+#    else
+#        echo "eye --nope --quiet $n3s > $n3s.out 2> /dev/null"
+#        eye --nope --quiet $n3s > $n3s.out 2> /dev/null
+#    fi
+#done
 
 for f in $(find . -name "*.out" | sort) ; do
     if [[ $f =~ examples ]]; then 
