@@ -24,7 +24,7 @@
 
 {
     # Then also this one should give a result ?
-2
+
     _:x0 rdf:first 2 ;
          rdf:rest _:x1 .
 
