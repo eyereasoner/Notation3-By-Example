@@ -1,0 +1,33 @@
+@prefix : <urn:example:> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
+@prefix var: <http://www.w3.org/2000/10/swap/var#>.
+
+:test :value _:x0 .
+
+_:x0 rdf:first 1 .
+_:x0 rdf:rest _:x1 .
+
+_:x1 rdf:first 2 .
+_:x1 rdf:rest _:x2 .
+
+_:x2 rdf:first 3 .
+_:x2 rdf:rest rdf:nil .
+
+:myrule lingua:premise _:prem ;
+        lingua:conclusion _:conc .
+
+_:prem {
+    # _:x0 is global and should onlly match the first rdf:rest (?)
+    _:x0 rdf:rest var:What .
+}
+
+_:conc {
+    :result :is var:What .
+} 
+
+:query lingua:question _:question .
+
+_:question {
+    :result :is var:X .
+}

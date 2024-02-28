@@ -1,0 +1,3 @@
+@prefix : <urn:example:>.
+
+:test a :Result.

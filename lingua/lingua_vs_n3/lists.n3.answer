@@ -1,0 +1,5 @@
+@prefix : <urn:example:>.
+
+:result :is (2 3).
+:result :is (3).
+:result :is ().
