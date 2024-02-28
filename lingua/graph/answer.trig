@@ -1,10 +1,6 @@
-@prefix : <file:///Users/patrickhochstenbach/github.com/eyereasoner/Notation3-By-Example/lingua/graph/data.trig#>.
+@prefix : <file:///home/jdroo/github.com/eyereasoner/Notation3-By-Example/lingua/graph/data.trig#>.
 @prefix lingua: <http://www.w3.org/2000/10/swap/lingua#>.
 @prefix var: <http://www.w3.org/2000/10/swap/var#>.
 
-:rule1 lingua:bindings ((var:X :graph1) (var:Y :graph1) (var:Z :F)).
+:rule1 lingua:bindings ((var:Z :F)).
 :graph :has :F.
-:graph1 {
-    :A :B :C.
-    :D :E :F.
-}

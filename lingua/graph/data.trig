@@ -24,9 +24,7 @@ _:answer
     log:closedBy <> .
     
 _:question {
-    :graph1 lingua:graph var:X .
-    :graph2 lingua:graph var:Y .
-    var:X log:equalTo var:Y .
+    :graph1 log:equalTo :graph2 .
 }
 
 _:answer {
