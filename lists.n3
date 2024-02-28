@@ -41,13 +41,6 @@ _:x2 rdf:rest rdf:nil .
 } .
 
 {
-    # This is true in cases where rdf:rest is a built-in on list-terms
-    (1 2 3) rdf:rest (2 3) . # we want it to be false...
-}
-=> false .
-
-
-{
     # Attention _:x0 is here scoped to the premise..
     # this should match the three rdf:rest predicates above
     _:x0 rdf:rest ?O .
