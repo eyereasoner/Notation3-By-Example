@@ -31,12 +31,12 @@
 # second spo is from the querySurface
 (_:S _:O) log:onQuerySurface {
     _:S :nested _:O .
-    () log:onConstructSurface _:O .
+    () log:onQuerySurface _:O .
 } .
 
 # This will not work. A construct surface can only be used in a nested
 # query surface
-() log:onConstructSurface {
+() log:onQuerySurface {
     :Alice a :Cat .
 } .
 

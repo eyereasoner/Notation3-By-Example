@@ -4,6 +4,6 @@
 # Print output data to main surface
 (_:G) log:onQuerySurface {
     () log:onMetadataSurface _:G.
-    () log:onConstructSurface _:G.
+    () log:onQuerySurface _:G.
 } .
 

@@ -83,7 +83,7 @@
     _:S _:P _:O .
     _:P log:notEqualTo log:onNegativeSurface .
     _:P log:notEqualTo log:onQuerySurface .
-    () log:onConstructSurface {
+    () log:onQuerySurface {
         _:S _:P _:O .
     } .
 } .

@@ -79,7 +79,7 @@
     () log:onQuerySurface {
         (log:construct _:Param _:Graph) :makeSurface _:Blogic .
     } .
-    ( () { _:Param log:onConstructSurface _:Graph }) :_asSurface _:Blogic .
+    ( () { _:Param log:onQuerySurface _:Graph }) :_asSurface _:Blogic .
 } .
 
 # List :asGraph Formula

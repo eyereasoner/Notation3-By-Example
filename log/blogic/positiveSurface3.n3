@@ -72,7 +72,7 @@
 # Add a counter
 :cardinalCount a log:GraphCounter .
 (_:Graph _:Count _:List _:Scope) log:onNegativeSurface {
-    ( ) log:onQuerySurface {
+    ( ) log:onConstructSurface {
         _:Graph :cardinalCount _:Count .
     } .
     ( () _:Graph _:List ) log:collectAllIn _:Scope .
