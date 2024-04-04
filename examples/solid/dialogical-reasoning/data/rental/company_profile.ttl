@@ -1,0 +1,17 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>. 
+@prefix cc: <http://carcompany.com/#>. 
+@prefix ccl: <http://carcompany.com/listings/>. 
+@prefix cco: <http://carcompany.com/offerings/>. 
+
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix gr:      <http://purl.org/goodrelations/v1#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix vso:     <http://purl.org/vso/ns#> .
+
+# Company / Vendor Data (needed only once for all offers)
+cc:company a gr:BusinessEntity ;
+    gr:legalName "Car Company Ltd." ;
+    foaf:page <http://www.carcompany.com/> ;

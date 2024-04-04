@@ -1,0 +1,72 @@
+@prefix : <https://example.org/ns/>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>. 
+@prefix cc: <http://carcompany.com/#>. 
+@prefix ccl: <http://carcompany.com/listings/>. 
+@prefix cco: <http://carcompany.com/offerings/>. 
+
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix gr:      <http://purl.org/goodrelations/v1#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix vso:     <http://purl.org/vso/ns#> .
+
+# Company / Vendor Data (needed only once for all offers)
+cc:company a gr:BusinessEntity ;
+    gr:offers cco:offer_1 .
+
+# Offer: Price, Payment, Conditions
+cco:offer_1 a gr:Offering ;
+    gr:includes ccl:car_1 ;
+    gr:hasBusinessFunction gr:Sell ;
+    gr:hasPriceSpecification [ a gr:UnitPriceSpecification ;
+                                gr:hasCurrency "USD"^^xsd:string ;
+                                gr:hasCurrencyValue "11990"^^xsd:float ] ;
+    foaf:page <http://carcompany.com/offerings/offer_1> . # URI of the web page
+
+# Car Specification
+ccl:car_1 a vso:Automobile, gr:ActualProductOrServiceInstance ; # it' a real car
+    gr:hasManufacturer dbpedia:Chevrolet ;
+    gr:hasMakeAndModel dbpedia:Chevrolet_Camaro ;
+    vso:modelDate "2002-01-01"^^xsd:date ; # year-only data is not possible in xsd:date and also problematic
+    vso:color "red"@en ;
+    vso:transmission dbpedia:Manual_transmission ;
+    vso:fuelType dbpedia:Gasoline ;
+    vso:feature dbpedia:Cup_holder,
+                dbpedia:Power_window,
+                dbpedia:Air_conditioner,
+                dbpedia:Anti-lock_braking_system ;  # Add more DBPedia / Wikipedia URIs for additional features
+    foaf:depiction <http://www.agautosalesny.com/super_admin/car_images/71-Photo-01_large.jpg> ; # URI of a photo
+    foaf:page <http://carcompany.com/listings/car_1> . # URI of the web page
+
+
+### Entry 2
+
+
+# Company / Vendor Data (needed only once for all offers)
+cc:company a gr:BusinessEntity ;
+    gr:offers cco:offer_1 .
+
+# Offer: Price, Payment, Conditions
+cco:offer_1 a gr:Offering ;
+    gr:includes ccl:car_1 ;
+    gr:hasBusinessFunction gr:Sell ;
+    gr:hasPriceSpecification [ a gr:UnitPriceSpecification ;
+                                gr:hasCurrency "USD"^^xsd:string ;
+                                gr:hasCurrencyValue "11990"^^xsd:float ] ;
+    foaf:page <http://carcompany.com/offerings/offer_1> . # URI of the web page
+
+# Car Specification
+ccl:car_1 a vso:Automobile, gr:ActualProductOrServiceInstance ; # it' a real car
+    gr:hasManufacturer dbpedia:Chevrolet ;
+    gr:hasMakeAndModel dbpedia:Chevrolet_Camaro ;
+    vso:modelDate "2002-01-01"^^xsd:date ; # year-only data is not possible in xsd:date and also problematic
+    vso:color "red"@en ;
+    vso:transmission dbpedia:Manual_transmission ;
+    vso:fuelType dbpedia:Gasoline ;
+    vso:feature dbpedia:Cup_holder,
+                dbpedia:Power_window,
+                dbpedia:Air_conditioner,
+                dbpedia:Anti-lock_braking_system ;  # Add more DBPedia / Wikipedia URIs for additional features
+    foaf:depiction <http://www.agautosalesny.com/super_admin/car_images/71-Photo-01_large.jpg> ; # URI of a photo
+    foaf:page <http://carcompany.com/listings/car_1> . # URI of the web page
