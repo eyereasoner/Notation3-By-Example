@@ -1,0 +1,33 @@
+@prefix : <urn:example:> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+{
+    # Check if formula ?X is satisfiable
+    #    X a formula
+    #    Y a boolean
+    { :Alice a :Person } log:satisfiable ?S .
+}
+=>
+{
+    :test1 :is ?S .
+}.
+
+{
+    { 
+        :Alice a :Person . 
+        { ?X a :Person } => false .
+    } log:satisfiable ?S .
+}
+=>
+{
+    :test2 :is ?S .
+}.
+
+{
+    :test1 :is true .
+    :test2 :is true .
+}
+=> 
+{
+    :test :is true .
+} .
